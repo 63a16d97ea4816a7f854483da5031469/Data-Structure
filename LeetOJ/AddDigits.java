@@ -16,28 +16,90 @@ public class AddDigits {
 		System.out.println(i+"->"+getN(i));
 	}
 	
+	
+	/*
+	 * 
+	 * You can see the below number's plus result, you will find that
+	 * 9 numbers will have a loop.
+	 * 
+	 * But need to take care of 0, and 9, 18, 27, 36, 45..... These cases.
+	 * 
+0 -> 0
+1 -> 1
+2 -> 2
+3 -> 3
+4 -> 4
+5 -> 5
+6 -> 6
+7 -> 7
+8 -> 8
+9 -> 9
+
+10 -> 1
+11 -> 2
+12 -> 3
+13 -> 4
+14 -> 5
+15 -> 6
+16 -> 7
+17 -> 8
+18 -> 9
+19 -> 10
+
+20 -> 2
+21 -> 3
+22 -> 4
+23 -> 5
+24 -> 6
+25 -> 7
+26 -> 8
+27 -> 9
+28 -> 10
+29 -> 11
+	 * 
+	 */
+	
 	public static int getN(int n){
-		int result=0;
-		Integer nObj=(Integer)n;
-		String nstr=nObj.toString();
-
-		int end=n%10;
-		int begin=n/10;
+		if(n==0) return 0;
+		if(n%9==0) return 9;
 		
-		Integer nafter=(Integer)begin;
-		if(nafter.toString().length()!=1){
-			begin=getN(begin);
-		}
+		return n%9;
 		
-		result=begin+end;
-		
-		while(result>=10){
-			result=getN(begin+end);
-		}
-		
-	return result;
-
 	}
+	
+	
+/*
+ * 
+ * Accepted.
+ * 
+ * However, I used recusion.
+ * 
+ * O(n-1)
+ * 
+ */
+	
+//	public static int getN(int n){
+//		int result=0;
+//		Integer nObj=(Integer)n;
+//		String nstr=nObj.toString();
+//
+//		int end=n%10;
+//		int begin=n/10;
+//		
+//		Integer nafter=(Integer)begin;
+//		if(nafter.toString().length()!=1){
+//			begin=getN(begin);
+//		}
+//		
+//		result=begin+end;
+//		
+//		while(result>=10){
+//			result=getN(begin+end);
+//		}
+//		
+//	return result;
+//
+//	}
 
 // by using loop:
 //	public static int getN(int n) {
