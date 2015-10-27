@@ -7,7 +7,6 @@ import java.util.Stack;
 Given a binary tree, find its maximum depth.
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
  * 
- * 
  */
 
 class TreeNode {
@@ -37,6 +36,7 @@ public class MaximumDepthOfBinaryTree {
 	/*
 	 * BFS
 	 * 
+	 * Implement a BFS method to solve this issue
 	 * 
 	 */
 
