@@ -71,7 +71,9 @@ class NimGame {
 	// }
 	//
 
-	// by using recusion
+	
+	
+	// by using recursion
 	/*
 	 * submit result:
 	 * 

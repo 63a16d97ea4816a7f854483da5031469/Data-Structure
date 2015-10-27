@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Stack;
 
 /*
@@ -10,7 +11,7 @@ The maximum depth is the number of nodes along the longest path from the root no
  */
 
 class TreeNode {
-	// boolean isVisted;  //no need to use mark variable
+	// boolean isVisted; //no need to use mark variable
 	int val;
 	TreeNode left;
 	TreeNode right;
@@ -29,8 +30,59 @@ public class MaximumDepthOfBinaryTree {
 		// secondRoot.left=new TreeNode(333);
 		// root.left = secondRoot;
 		root.right = new TreeNode(2);
-		System.out.println(maxDepth(root));
+		// System.out.println(maxDepth(root));
 		// System.out.println(maxDeepbyDeepSearch(root));
+	}
+
+	/*
+	 * BFS
+	 * 
+	 * 
+	 */
+
+	public static int maxDepthBFS(TreeNode root) {
+		int len = 0;
+		/*
+		 * Because we remove and add nodes so frequently, we choose LinkedList
+		 * as fundamental structure.
+		 */
+		LinkedList<TreeNode> que = new LinkedList<TreeNode>();
+
+		if (root != null) { // need to consider the special cases.
+			que.add(root);
+			que.add(null); // add a special mark to mark the first level
+		}
+		/*
+		 * 构造特征，并可以reuse，是必备的一种技能
+		 * 
+		 * Creating new features based on the basic structure is a necessary
+		 * skill.
+		 * 
+		 */
+
+		while (!que.isEmpty()) {
+
+			TreeNode cur = que.removeFirst(); // Thinking why put in? --->
+												// should be in.
+
+			if (cur == null) {
+				len++; // if the que is empty, it means this level's nodes are
+						// visted.
+
+				if (!que.isEmpty())
+					que.addLast(null); // add the mark to mark this is the end
+										// of this level.
+
+			} else {
+				if (cur.left != null)
+					que.add(cur.left);
+				if (cur.right != null)
+					que.add(cur.right);
+			}
+
+		}
+
+		return 0;
 	}
 
 	/*
@@ -38,6 +90,18 @@ public class MaximumDepthOfBinaryTree {
 	 * Using stack to find out the maxDepth
 	 * 
 	 * Draw the tree structure and stack status, you will know the steps.
+	 * 
+	 * 
+	 * Normally, for this issue, we should not use the DFS, as DFS is not easy
+	 * to record the level information (The first nodes visted may not be the
+	 * deepest path.)
+	 * 
+	 * However, the BFS is suitable for this question.
+	 * 
+	 * So could you implement a BFS method to solve this issue?
+	 * 
+	 * 
+	 * 
 	 * 
 	 */
 
@@ -122,8 +186,8 @@ public class MaximumDepthOfBinaryTree {
 	// Deep search method:
 
 	/*
-	 * Reason: Iterative deep search will not go back to root.
-	 * As it will not record each sub-tree's root node
+	 * Reason: Iterative deep search will not go back to root. As it will not
+	 * record each sub-tree's root node
 	 * 
 	 * wrong answer: Input: [1,2,3] Output: 3 Expected: 2
 	 * 
@@ -159,8 +223,7 @@ public class MaximumDepthOfBinaryTree {
 
 	/*
 	 * 
-	 * Accepted:
-	 * This is used the Deep search.
+	 * Accepted: This is used the Deep search.
 	 * 
 	 * BFS - visit all children, then grandchildren, then great-grandchildren,
 	 * etc..
