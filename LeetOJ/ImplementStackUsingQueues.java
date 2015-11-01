@@ -1,3 +1,4 @@
+package ok;
 /*
  * 
 https://leetcode.com/problems/implement-stack-using-queues/
@@ -62,6 +63,16 @@ public class ImplementStackUsingQueues {
 		
 	}
 	
+	
+	
+	/*
+	 * 
+	 * Java: NoSuchElementException
+	 * 
+	 * if linkedlist is empty, but you use list.removeFirst() or list.remove() or 
+	 * list.removeLast() etc.  these remove operations will cause NoSuchElementException.
+	 * 
+	 */
 
 	
 	/*
