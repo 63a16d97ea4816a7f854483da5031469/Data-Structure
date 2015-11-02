@@ -150,8 +150,8 @@ public class SymmetricTree {
     	
     	if(left.val!=right.val) return false;
     	
-    	if(!symmSubTree(left.left,left.right)) return false;
-    	if(!symmSubTree(right.right,right.left)) return false;
+    	if(!symmSubTree(left.left,right.right)) return false;
+    	if(!symmSubTree(left.right,right.left)) return false;
     	
     	
     	return true; 	
