@@ -140,3 +140,7 @@ A slow pointer that moves one node at a time.
 A fast pointer that moves two nodes at a time.
 If the two pointer meet, it proves that there is a loop. Once they have met, one of the nodes will point to the head and then have both proceed one node at a time. They will meet at the start of the loop.
 
+![drawing](https://github.com/63a16d97ea4816a7f854483da5031469/Data-Structure/blob/master/Screenshots/LoopStartNode1.png)
+
+
+![drawing](https://github.com/63a16d97ea4816a7f854483da5031469/Data-Structure/blob/master/Screenshots/LoopStartNode2.png)
