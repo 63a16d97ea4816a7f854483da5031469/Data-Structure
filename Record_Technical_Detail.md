@@ -1,5 +1,93 @@
 # Record Technical Detail
 
+http://www.tutorialspoint.com/codingground.htm
+
+
+##Eclipse color theme plugin:
+http://eclipsecolorthemes.org/?view=plugin
+
+If you are on Eclipse 3.5 (Galileo), go to Help→Install New Software..., press Add Site and enter Eclipse Color Theme as the name and http://eclipse-color-theme.github.com/update as the URL. Then select the new entry from the select box labeled Work with, mark Eclipse Color Theme for installation and proceed.  
+
+Usage  
+After the installation, go to Window→Preferences→General→Appereance→Color Theme to change the color theme.
+
+##ASCII table: 
+
+http://mindprod.com/jgloss/ascii.html
+ASCII and Latin-1 Character Table
+
+	Char	Dec	Hex	Octal	HTML	Notes
+	0	48	0x30	0060	0	digit 0
+	1	49	0x31	0061	1	digit 1
+	2	50	0x32	0062	2	digit 2
+	3	51	0x33	0063	3	digit 3
+	4	52	0x34	0064	4	digit 4
+	5	53	0x35	0065	5	digit 5
+	6	54	0x36	0066	6	digit 6
+	7	55	0x37	0067	7	digit 7
+	8	56	0x38	0070	8	digit 8
+	9	57	0x39	0071	9	digit 9
+	
+	A	65	0x41	0101	A	upper case A
+	B	66	0x42	0102	B	upper case B
+	C	67	0x43	0103	C	upper case C
+	D	68	0x44	0104	D	upper case D
+	E	69	0x45	0105	E	upper case E
+	F	70	0x46	0106	F	upper case F
+	G	71	0x47	0107	G	upper case G
+	H	72	0x48	0110	H	upper case H
+	I	73	0x49	0111	I	upper case I
+	J	74	0x4a	0112	J	upper case J
+	K	75	0x4b	0113	K	upper case K
+	L	76	0x4c	0114	L	upper case L
+	M	77	0x4d	0115	M	upper case M
+	N	78	0x4e	0116	N	upper case N
+	O	79	0x4f	0117	O	upper case O
+	P	80	0x50	0120	P	upper case P
+	Q	81	0x51	0121	Q	upper case Q
+	R	82	0x52	0122	R	upper case R
+	S	83	0x53	0123	S	upper case S
+	T	84	0x54	0124	T	upper case T
+	U	85	0x55	0125	U	upper case U
+	V	86	0x56	0126	V	upper case V
+	W	87	0x57	0127	W	upper case W
+	X	88	0x58	0130	X	upper case X
+	Y	89	0x59	0131	Y	upper case Y
+	Z	90	0x5a	0132	Z	upper case Z
+	a	97	0x61	0141	a	lower case a
+	b	98	0x62	0142	b	lower case b
+	c	99	0x63	0143	c	lower case c
+	d	100	0x64	0144	d	lower case d
+	e	101	0x65	0145	e	lower case e
+	f	102	0x66	0146	f	lower case f
+	g	103	0x67	0147	g	lower case g
+	h	104	0x68	0150	h	lower case h
+	i	105	0x69	0151	i	lower case i
+	j	106	0x6a	0152	j	lower case j
+	k	107	0x6b	0153	k	lower case k
+	l	108	0x6c	0154	l	lower case l
+	m	109	0x6d	0155	m	lower case m
+	n	110	0x6e	0156	n	lower case n
+	o	111	0x6f	0157	o	lower case o
+	p	112	0x70	0160	p	lower case p
+	q	113	0x71	0161	q	lower case q
+	r	114	0x72	0162	r	lower case r
+	s	115	0x73	0163	s	lower case s
+	t	116	0x74	0164	t	lower case t
+	u	117	0x75	0165	u	lower case u
+	v	118	0x76	0166	v	lower case v
+	w	119	0x77	0167	w	lower case w
+	x	120	0x78	0170	x	lower case x
+	y	121	0x79	0171	y	lower case y
+	z	122	0x7a	0172	z	lower case z
+
+System.out.println((char)'1');  
+System.out.println((byte)'1');  
+
+Output:		
+1  
+49  
+
 
 ## Convert the Binary String to Integer
 
