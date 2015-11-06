@@ -245,6 +245,13 @@ If the two pointer meet, it proves that there is a loop. Once they have met, one
 
 
 
+## To do list for issues:
+
+Binary Tree --->https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+
+
+
+
 
 
 
