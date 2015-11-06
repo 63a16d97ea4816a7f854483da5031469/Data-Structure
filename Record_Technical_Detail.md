@@ -1,4 +1,4 @@
-# Record Technical Detail
+# Record Technical Detail for JAVA
 
 http://www.tutorialspoint.com/codingground.htm
 
@@ -232,3 +232,19 @@ If the two pointer meet, it proves that there is a loop. Once they have met, one
 
 
 ![drawing](https://github.com/63a16d97ea4816a7f854483da5031469/Data-Structure/blob/master/Screenshots/LoopStartNode2.png)
+
+
+
+## CompareTo return result
+    public int compareTo(BigDecimal val) {} 
+@return -1, 0, or 1 as this {@code BigDecimal} is numerically less than, equal to, or greater than {@code val}.
+
+-1  ====>  less than  
+0   ====>  equal to   
+1   ====>  greater than  
+
+
+
+
+
+
