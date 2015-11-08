@@ -250,8 +250,27 @@ If the two pointer meet, it proves that there is a loop. Once they have met, one
 Binary Tree --->https://leetcode.com/problems/remove-duplicates-from-sorted-list/
 
 
+## The right way to set initial max variable's value
 
+If you want to find out the maximum number of an array, when you do the initialization, you need to do it in this way:
 
+	public static void main(String args[]) {
+		int[] arr = { 1, 2, 3, 4, 9, 0, 12, 23 };
+		findMax(arr);
 
+	}
 
+	public static void findMax(int[] arr) {
+		if (arr != null && arr.length > 0) {
+			int maxNumber = arr[0];
+
+			for (int tmpInt : arr) {
+				if (maxNumber < tmpInt) {
+					maxNumber = tmpInt;
+				}
+
+			}
+			System.out.println(maxNumber);
+		}
+	}
 
