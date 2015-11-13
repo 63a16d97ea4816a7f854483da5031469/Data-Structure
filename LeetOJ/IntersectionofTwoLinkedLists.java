@@ -194,6 +194,8 @@ public class IntersectionofTwoLinkedLists {
 	/*
 	 * reference to the link: http://www.programcreek.com/2014/02/leetcode-intersection-of-two-linked-lists-java/
 	 * 
+	 * http://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
+	 * 
 	 * First calculate the length of two lists and find the difference. 
 	 * Then start from the longer list at the diff offset, iterate though 2 lists and find the node.
 	 * 
