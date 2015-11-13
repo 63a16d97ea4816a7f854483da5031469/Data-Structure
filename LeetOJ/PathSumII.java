@@ -1,3 +1,4 @@
+package ok;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,14 +41,17 @@ public class Solution {
     }
 }
 
+
+7 November 2015 at 8:54:05 pm
+
  * 
  */
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
+//class TreeNode{
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//	TreeNode(int x){val=x;}
+//}
 
 /*
         	  5

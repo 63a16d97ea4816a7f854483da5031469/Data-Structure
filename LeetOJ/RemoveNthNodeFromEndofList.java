@@ -1,3 +1,4 @@
+package ok;
 /*
 https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
@@ -25,6 +26,8 @@ public class Solution {
         
     }
 }
+
+7 November 2015 at 8:53:41 pm
 
  * 
  */
@@ -72,11 +75,11 @@ Delete middle node:
 
 import java.util.*;
 
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
+//class ListNode{
+//	int val;
+//	ListNode next;
+//	ListNode(int x){val=x;}
+//}
 
 
 public class RemoveNthNodeFromEndofList {

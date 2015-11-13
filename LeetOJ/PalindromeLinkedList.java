@@ -1,3 +1,4 @@
+package ok;
 /*
 https://leetcode.com/problems/palindrome-linked-list/
 
@@ -19,6 +20,9 @@ public class Solution {
         
     }
 }
+
+11 November 2015 at 11:39:42 pm
+
  * 
  * 
  */

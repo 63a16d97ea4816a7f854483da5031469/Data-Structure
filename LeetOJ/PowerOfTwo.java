@@ -1,3 +1,5 @@
+package ok;
+
 /*
 
 https://leetcode.com/problems/power-of-two/
@@ -9,6 +11,8 @@ public class Solution {
         
     }
 }
+
+30 October 2015 at 11:48:08 pm
 
  * 
  */

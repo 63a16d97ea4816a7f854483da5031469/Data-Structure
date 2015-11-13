@@ -1,3 +1,4 @@
+package ok;
 //https://leetcode.com/problems/remove-linked-list-elements/
 
 /*
@@ -20,14 +21,17 @@ public class Solution {
         
     }
 }
+
+
+7 November 2015 at 8:53:24 pm
  */
 
 
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
+//class ListNode{
+//	int val;
+//	ListNode next;
+//	ListNode(int x){val=x;}
+//}
 
 public class RemoveLinkedListElements {
 

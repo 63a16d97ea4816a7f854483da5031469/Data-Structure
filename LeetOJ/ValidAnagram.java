@@ -1,3 +1,5 @@
+package ok;
+
 /*
  * 
 https://leetcode.com/problems/valid-anagram/
@@ -21,6 +23,8 @@ public class Solution {
     }
 }
 
+
+Last Modified:29 October 2015 at 8:35:19 pm
  * 
  */
 

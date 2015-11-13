@@ -1,3 +1,5 @@
+package ok;
+
 /*
 https://leetcode.com/problems/merge-sorted-array/
 
@@ -14,6 +16,8 @@ public class Solution {
         
     }
 }
+
+12 November 2015 at 8:32:30 pm
  * 
  */
 public class MergeSortedArray {

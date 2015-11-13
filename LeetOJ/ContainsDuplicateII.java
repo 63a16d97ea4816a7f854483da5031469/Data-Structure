@@ -1,3 +1,4 @@
+package ok;
 /*
  * https://leetcode.com/problems/contains-duplicate-ii/
  * 
@@ -10,6 +11,8 @@ public class Solution {
         
     }
 }
+
+4 November 2015 at 12:12:30 am
 
  * 
  * 

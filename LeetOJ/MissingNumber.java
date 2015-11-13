@@ -1,3 +1,4 @@
+package ok;
 import java.util.HashMap;
 
 /*
@@ -16,6 +17,8 @@ public class Solution {
         
     }
 }
+
+7 November 2015 at 10:35:33 pm
 
 /*
  * Considering the cases:
@@ -111,6 +114,13 @@ public class MissingNumber {
 
 
 
+>>>>>>>>>If you cannot find out any idea about the issue, you should begin from 
+the observing the testing cases and their related results. thinking the features of it.
+From simple cases to complex cases.
+You will get some brief understanding of the problems you are facing to.
+
+Actually, it is the normal process of solving a problem. 
+Even we will ignore this common method and fail to realize it.
 	 */
 	
 	

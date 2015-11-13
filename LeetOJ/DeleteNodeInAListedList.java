@@ -1,3 +1,5 @@
+package ok;
+
 
 /*
  * https://leetcode.com/problems/delete-node-in-a-linked-list/
@@ -19,16 +21,19 @@ public class Solution {
         
     }
 }
+
+29 October 2015 at 7:40:32 pm
+
  * 
  * 
  */
-class ListNode {
-	int val;
-	ListNode next;
-	ListNode(int val) {
-		this.val = val;
-	}
-}
+//class ListNode {
+//	int val;
+//	ListNode next;
+//	ListNode(int val) {
+//		this.val = val;
+//	}
+//}
 
 public class DeleteNodeInAListedList {
 	public static void main(String args[]) {

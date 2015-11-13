@@ -1,3 +1,5 @@
+package ok;
+
 import java.util.ArrayList;
 
 /*
@@ -40,7 +42,7 @@ Two binary trees are considered equal if they are structurally identical and the
  *      2
  * 
  * 
- * 
+ * 28 October 2015 at 12:30:05 pm
  */
 
 public class SameTree {

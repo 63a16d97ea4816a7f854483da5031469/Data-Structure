@@ -1,3 +1,5 @@
+package ok;
+
 import java.util.Arrays;
 
 /*
@@ -23,6 +25,8 @@ public class Solution extends VersionControl {
         
     }
 }
+
+10 November 2015 at 9:00:02 pm
  * 
  * 
  */
@@ -34,15 +38,14 @@ public class FirstBadVersion {
 
 	public static void main(String args[]) {
 		FirstBadVersion fb = new FirstBadVersion();
-		System.out.println(fb.firstBadVersion3(2147483647));
+		System.out.println(fb.firstBadVersion3(5));
 		
 		System.out.println(Math.pow(2, 31)-1);
- 
-		
 	}
 
 	
 	/*
+	 * 
 	 * To avoid the overflow caused by n+1,
 	 * I set the index begin from 0.
 	 * 
@@ -92,10 +95,10 @@ public class FirstBadVersion {
 	
 	//in order to test the 2147483647, I modified the below method:
 	public boolean isBadVersion(int curr) {
-		if(curr!=Math.pow(2, 31)-1) return false;
-		else 
-			return true;
-//		return bad[curr];
+//		if(curr!=Math.pow(2, 31)-1) return false;
+//		else 
+//			return true;
+		return bad[curr];
 	}
 	
 	

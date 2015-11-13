@@ -1,3 +1,4 @@
+package ok;
 /*
  * 
  * https://leetcode.com/problems/count-and-say/
@@ -20,6 +21,9 @@ public class Solution {
         
     }
 }
+
+4 November 2015 at 7:31:32 pm
+
  * 
  */
  

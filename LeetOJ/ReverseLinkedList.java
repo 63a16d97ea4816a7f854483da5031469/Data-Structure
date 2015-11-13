@@ -1,3 +1,5 @@
+package ok;
+
 /*
  * 
 https://leetcode.com/problems/reverse-linked-list/
@@ -17,6 +19,9 @@ public class Solution {
         
     }
 }
+
+
+29 October 2015 at 7:56:10 pm
  * 
  */
 

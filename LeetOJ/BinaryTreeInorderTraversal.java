@@ -1,3 +1,5 @@
+package ok;
+
 /*
 https://leetcode.com/problems/binary-tree-inorder-traversal/
 
@@ -31,6 +33,8 @@ public class Solution {
     }
 }
 
+9 November 2015 at 5:01:46 pm
+
  * 
  */
 
@@ -45,15 +49,15 @@ public class Solution {
 
 import java.util.*;
 
-class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-
-	TreeNode(int x) {
-		val = x;
-	}
-}
+//class TreeNode {
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//
+//	TreeNode(int x) {
+//		val = x;
+//	}
+//}
 
 public class BinaryTreeInorderTraversal {
 	public static void main(String args[]) {
@@ -98,6 +102,14 @@ public class BinaryTreeInorderTraversal {
 	
 	/*
 	 * Accepted
+	 * 
+	 * 
+Features:
+1. the parents are always visted first.
+2. there are two kinds of nodes--->
+(1)the node which contain children
+(2)the node which does not contain children.
+
 	 * 
 	 */
 	public List<Integer> inorderTraversal(TreeNode root) {

@@ -1,3 +1,4 @@
+package ok;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -40,6 +41,7 @@ public class Solution {
     }
 }
 
+7 November 2015 at 8:53:10 pm
  * 
  */
 
@@ -55,13 +57,13 @@ public class Solution {
 
 
 
-
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){ val=x;}
-}
+//
+//class TreeNode{
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//	TreeNode(int x){ val=x;}
+//}
 
 public class SymmetricTree {
 	
@@ -150,8 +152,8 @@ public class SymmetricTree {
     	
     	if(left.val!=right.val) return false;
     	
-    	if(!symmSubTree(left.left,right.right)) return false;
-    	if(!symmSubTree(left.right,right.left)) return false;
+    	if(!symmSubTree(left.left,left.right)) return false;
+    	if(!symmSubTree(right.right,right.left)) return false;
     	
     	
     	return true; 	

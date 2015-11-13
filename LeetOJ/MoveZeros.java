@@ -1,3 +1,5 @@
+package ok;
+
 /*
  * https://leetcode.com/problems/move-zeroes/
 Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
@@ -11,6 +13,9 @@ public class Solution {
         
     }
 }
+
+28 October 2015 at 12:30:06 pm
+
  * 
  */
 public class MoveZeros {

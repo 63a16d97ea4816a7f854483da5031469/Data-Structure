@@ -4,7 +4,7 @@ package ok;
 /*
  * To do something about the Fibonacci Nubmer
  * 
- * 
+ * 13 November 2015 at 4:56:12 pm
  */
 
 public class Fibonacci_Numbers {
@@ -13,7 +13,7 @@ public class Fibonacci_Numbers {
 		    
 		    int n=100;
 		    for(int i=0;i<n;i++){
-		    System.out.println(i+" "+fib.find_fib2(i));
+		    System.out.println(i+" "+fib.find_fib0(i));
 		    }
 		  }
 	  

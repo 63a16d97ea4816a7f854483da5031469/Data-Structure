@@ -1,3 +1,4 @@
+package ok;
 /*
  * 
 
@@ -66,9 +67,9 @@ public class SingleNumberII {
 		SingleNumberII s=new SingleNumberII();
  
 //		int[] nums={2,2,2,3,3,3,432};
-		int[] nums={5,2,5,2,5,2,31};
+		int[] nums={5,2,5,2,5,2,1,1,1,31};
 		
-		System.out.println(s.singleNumber6(nums));
+		System.out.println(s.singleNumber5(nums));
  
 	}
  

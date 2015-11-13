@@ -1,4 +1,5 @@
- 
+package ok;
+
 /*
  * 
  * https://leetcode.com/problems/lru-cache/
@@ -26,6 +27,9 @@ public class LRUCache {
         
     }
 }
+
+5 November 2015 at 5:22:30 pm
+
  */
 
 import java.util.*;

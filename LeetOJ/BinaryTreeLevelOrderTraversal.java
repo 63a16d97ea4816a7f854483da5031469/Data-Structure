@@ -1,3 +1,4 @@
+package ok;
 //https://leetcode.com/problems/binary-tree-level-order-traversal/
 /*
  * 
@@ -33,17 +34,19 @@ public class Solution {
     }
 }
 
+7 November 2015 at 8:54:35 pm
+
  * 
  */
 import java.util.*;
 
-class TreeNode {
-	  int val;
-	  TreeNode left;
-	  TreeNode right;
-	  TreeNode(int x){ val=x;}
-
-}
+//class TreeNode {
+//	  int val;
+//	  TreeNode left;
+//	  TreeNode right;
+//	  TreeNode(int x){ val=x;}
+//
+//}
 
 public class BinaryTreeLevelOrderTraversal {
 	

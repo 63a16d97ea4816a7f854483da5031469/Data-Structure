@@ -1,3 +1,5 @@
+package ok;
+
 /*
  * 
 https://leetcode.com/problems/ugly-number/
@@ -16,6 +18,8 @@ public class Solution {
         
     }
 }
+
+13 November 2015 at 8:17:37 pm
 
  * 
  */

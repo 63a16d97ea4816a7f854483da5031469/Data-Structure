@@ -1,3 +1,4 @@
+package ok;
 /*
  * 
 Path Sum
@@ -32,15 +33,17 @@ public class Solution {
     }
 }
 
+7 November 2015 at 8:54:09 pm
+
  * 
  */
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
+//class TreeNode{
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//	TreeNode(int x){val=x;}
+//}
 
 public class PathSum {
 

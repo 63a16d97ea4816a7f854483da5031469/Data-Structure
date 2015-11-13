@@ -1,3 +1,4 @@
+package ok;
 
 /*
  * 
@@ -19,21 +20,24 @@ public class Solution {
         
     }
 }
+
+
+7 November 2015 at 8:53:56 pm
  *
  */
 
 import java.util.*;
 
-class ListNode {
-	int val;
-	ListNode next;
-	ListNode() {
-	}
-
-	ListNode(int x) {
-		val = x;
-	}
-}
+//class ListNode {
+//	int val;
+//	ListNode next;
+//	ListNode() {
+//	}
+//
+//	ListNode(int x) {
+//		val = x;
+//	}
+//}
 
 // Given a sorted linked list, delete all duplicates such that each element
 // appear only once.

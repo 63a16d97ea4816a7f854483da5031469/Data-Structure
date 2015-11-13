@@ -1,3 +1,4 @@
+package ok;
 import java.util.HashMap;
 
 /*
@@ -29,6 +30,9 @@ public class Solution {
         
     }
 }
+
+29 October 2015 at 12:39:06 am
+
 
  */
 

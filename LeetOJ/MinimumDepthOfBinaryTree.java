@@ -1,3 +1,5 @@
+package ok;
+
 
 //https://leetcode.com/problems/minimum-depth-of-binary-tree/
 /*
@@ -22,6 +24,7 @@ public class Solution {
     }
 }
 
+30 October 2015 at 5:46:52 pm
 
 
 Thinking:

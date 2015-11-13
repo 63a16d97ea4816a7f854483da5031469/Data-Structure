@@ -1,3 +1,4 @@
+package ok;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -7,19 +8,21 @@ import java.util.Stack;
  * 
 Given a binary tree, find its maximum depth.
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+7 November 2015 at 8:56:39 pm
  * 
  */
 
-class TreeNode {
-	// boolean isVisted; //no need to use mark variable
-	int val;
-	TreeNode left;
-	TreeNode right;
-
-	TreeNode(int x) {
-		val = x;
-	}
-}
+//class TreeNode {
+//	// boolean isVisted; //no need to use mark variable
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//
+//	TreeNode(int x) {
+//		val = x;
+//	}
+//}
 
 public class MaximumDepthOfBinaryTree {
 

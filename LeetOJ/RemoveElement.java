@@ -1,4 +1,7 @@
+
+package ok;
 /*
+
 
 https://leetcode.com/problems/remove-element/
 
@@ -11,6 +14,8 @@ public class Solution {
     }
 }
 
+
+7 November 2015 at 8:53:49 pm
  * 
  */
 import java.util.*;

@@ -1,5 +1,8 @@
+package ok;
 /*
  * 
+
+
 https://leetcode.com/problems/binary-tree-preorder-traversal/
 
 Given a binary tree, return the preorder traversal of its nodes' values.
@@ -30,6 +33,8 @@ public class Solution {
         
     }
 }
+
+9 November 2015 at 4:12:06 pm
 
  * 
  */
@@ -64,12 +69,12 @@ Stack
 
 import java.util.*;
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
+//class TreeNode{
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//	TreeNode(int x){val=x;}
+//}
 
 public class BinaryTreePreorderTraversal {
 
@@ -81,8 +86,7 @@ public class BinaryTreePreorderTraversal {
 	 * 		  2   6
 	 *       / \
 	 * 	    9   3
-
- */
+	 */
 	
 	public static void main(String args[]){
 		BinaryTreePreorderTraversal s=new BinaryTreePreorderTraversal();

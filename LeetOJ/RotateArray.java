@@ -1,3 +1,5 @@
+package ok;
+
 /*
 https://leetcode.com/problems/rotate-array/
 
@@ -17,6 +19,7 @@ public class Solution {
         
     }
 }
+7 November 2015 at 8:53:16 pm
  * 
  */
 public class RotateArray {

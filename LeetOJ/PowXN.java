@@ -1,3 +1,5 @@
+package ok;
+
 /*
 https://leetcode.com/problems/powx-n/
 
@@ -8,6 +10,9 @@ public class Solution {
         
     }
 }
+
+12 November 2015 at 9:12:23 pm
+
  * 
  * 
  */

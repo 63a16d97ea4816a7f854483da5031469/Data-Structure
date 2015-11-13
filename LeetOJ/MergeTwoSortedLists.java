@@ -1,3 +1,4 @@
+package ok;
 /*
  * 
 https://leetcode.com/problems/merge-two-sorted-lists/
@@ -18,34 +19,22 @@ public class Solution {
         
     }
 }
+
+7 November 2015 at 8:54:17 pm
+
  * 
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 import java.util.*;
 
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-	
-}
+//class ListNode{
+//	int val;
+//	ListNode next;
+//	ListNode(int x){val=x;}
+//	
+//}
 
 public class MergeTwoSortedLists {
 

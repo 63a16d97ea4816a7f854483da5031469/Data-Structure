@@ -1,3 +1,4 @@
+package ok;
 /*
 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
@@ -18,19 +19,11 @@ public class Solution {
 }
 
 
+6 November 2015 at 12:29:13 pm
+
  */
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 //Given input array nums = [1,1,2],

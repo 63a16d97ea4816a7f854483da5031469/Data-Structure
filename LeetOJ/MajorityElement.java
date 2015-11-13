@@ -1,3 +1,5 @@
+package ok;
+
 
 /*
  * 
@@ -12,6 +14,8 @@ public class Solution {
         
     }
 }
+
+30 October 2015 at 2:26:08 pm
 
  * 
  */

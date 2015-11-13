@@ -1,3 +1,4 @@
+package ok;
 
 /*
 Linked List Cycle II
@@ -26,20 +27,22 @@ public class Solution {
     }
 }
 
+7 November 2015 at 8:54:22 pm
+
  * 
  * 
  */
 
 import java.util.*;
 
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int x) {
-		val = x;
-	}
-}
+//class ListNode {
+//	int val;
+//	ListNode next;
+//
+//	ListNode(int x) {
+//		val = x;
+//	}
+//}
 
 public class LinkedListCycleII {
 
