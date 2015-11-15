@@ -35,13 +35,61 @@ public class Solution {
 //	}
 //}
 
+
+/*
+ * 
+ * 这个问题的解法就是： 复制法。
+ * 但是要考虑删除头节点的情况
+ * 
+ * 
+ */
+
 public class DeleteNodeInAListedList {
 	public static void main(String args[]) {
-
+		
+		 //Though the code is accepted by LeetCode, it is wrong when only contain one node in list:
+		ListNode root=new ListNode(1);
+		DeleteNodeInAListedList l=new DeleteNodeInAListedList();
+//		l.deleteNode(root);
+	
+	
+	
+		//fix the "Delete head node error:"
+		l.deleteNode2(root);
+	
 	}
+	
+	
+	
+	
+	
+	
+	/*
+	 *
+	 * 
+	 * 	fix the "Delete head node error:"
+	 * Considering to delete the head node.
+	 * 
+	 */
+	
+	public void deleteNode2(ListNode node) {
+		
+		if(node==null) return;	
+		
+		if(node.next!=null){
+		node.val=node.next.val;
+		node.next=node.next.next;
+		}else{
+			node=null;
+		}
+	}
+
+	
 
 	/*
 	 * Accepted:
+	 * 
+	 * Though this code is accepted by LeetCode, it is wrong when only contain one node in list:!!!!
 	 * 
 	 */
 	

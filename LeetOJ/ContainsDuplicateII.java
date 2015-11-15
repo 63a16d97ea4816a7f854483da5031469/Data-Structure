@@ -17,6 +17,19 @@ public class Solution {
  * 
  * 
  */
+
+
+/*
+ * 
+ * 这个题目并不难，使用的是HashMap法，
+ * 可是，这里对于test cases考虑不足，
+ * 这反映出，test cases对于做题很重要，
+ * 刚开始可能考虑不会很周全，不过没关系，
+ * 要注意培养这方面的思维。
+ * 
+ */
+
+
 import java.util.*;
 public class ContainsDuplicateII {
 

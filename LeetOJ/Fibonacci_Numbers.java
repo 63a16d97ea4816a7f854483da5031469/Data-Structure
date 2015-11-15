@@ -7,6 +7,15 @@ package ok;
  * 13 November 2015 at 4:56:12 pm
  */
 
+
+/*
+ * 这是一个面试题目，
+ * 求优化改进生成Fibonacci算法
+ * 
+ * 从下面的例子可以看出，事实上，不同算法差异还是很大的。
+ * 
+ */
+
 public class Fibonacci_Numbers {
 	  public static void main(String args[]){
 		  Fibonacci_Numbers fib=new Fibonacci_Numbers();
@@ -58,7 +67,7 @@ System.out.println(l1Str);
 	  
 		public long find_fib2(int n){
 			  
-			  long v3=0;     //using long can reach: 7540113804746346429
+			  long v3=0;     //using long can reach:91 7540113804746346429
 
 			  if(n==0||n==1) return 1;
 

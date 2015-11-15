@@ -26,6 +26,19 @@ Ctrl+D delete the whole line --windows
 
  */
 
+
+
+/*
+	 * （1）Thinking: can you type each word by yourself without compiler's help. 能否摆脱IDE去编程，
+	 * 对于这些基本的东西，应当非常熟练。
+	 * （2）对于解这个道题目，我使用了 Hashmap法和 排序法。
+	 * 如果让你自己去写排序，你会怎么写呢？？
+	 * 
+
+ * 
+ * 
+ */
+
 public class ContainsDuplicate {
 
 	public static void main(String args[]) {
@@ -52,7 +65,7 @@ public class ContainsDuplicate {
 	 * using another array a[nums[i]] ====> Cannot, as you do not know how large
 	 * the number will be....
 	 * 
-	 * Try to see it is test cases.
+	 * Try to see the test cases.
 	 * 
 	 * 
 	 * Special case: the number is negative: Last executed input: [1,5,-2,-4,0]
@@ -182,8 +195,7 @@ public class ContainsDuplicate {
 	 * 
 	 * By using the feature of HashMap
 	 * 
-	 * Thinking: can you type each character by yourself instead of using
-	 * compiler's hint
+	 * Thinking: can you type each word by yourself without compiler's help.
 	 * 
 	 * Accepted.
 	 * 

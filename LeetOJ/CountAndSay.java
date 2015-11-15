@@ -28,6 +28,17 @@ public class Solution {
  */
  
 
+
+/*
+ * 这是一个简单题目，这个解法很单纯，
+ * 就是数数，讲array第一个设值为第一个字母，
+ * 然后，开始逐个数数。
+ * 先手写几个例子，发觉应该是又规律的，
+ * 后来用简单方法打印出序列，分析规律。
+ * 最后写出程序
+ * 
+ */
+
 public class CountAndSay {
 	
 	public static void main(String args[]){
