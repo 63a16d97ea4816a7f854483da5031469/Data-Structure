@@ -76,6 +76,13 @@ import java.util.*;
 //	TreeNode(int x){val=x;}
 //}
 
+
+/*
+ * 这个算法很重要，需要在1-3分钟内写出。
+ * 包括 递归方法 和 非递归实现
+ * 
+ */
+
 public class BinaryTreePreorderTraversal {
 
 	
@@ -118,7 +125,7 @@ public class BinaryTreePreorderTraversal {
 	
 	
 	/*
-	 * if you want to use iterative method, you need to record the status of the whole path.
+	 * if you want to use other iterative method except for stack, you need to record the status of the whole path.
 	 * so after you finish you can return to the previous one.
 	 * 
 	 * Accepted.

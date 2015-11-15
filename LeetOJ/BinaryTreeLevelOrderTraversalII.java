@@ -38,8 +38,19 @@ public class Solution {
 
 28 October 2015 at 9:36:06 pm
 
+
+
+
  * 
  */
+
+
+/*
+ * 这个算法本质就是 二叉树的levelOrderTraversal，
+ * 使用stack进行reverse那个结果list。
+ */
+
+
 import java.util.*;
 
 //class TreeNode {

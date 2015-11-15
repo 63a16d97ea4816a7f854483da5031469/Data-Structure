@@ -48,6 +48,14 @@ import java.util.*;
 //
 //}
 
+
+/*
+ * 这是一个必须熟练记住的，在1-3分钟内能够写出来的算法。
+ * 
+ * 这个遍历对于很重要，可以用于得到二叉树的深度
+ * 
+ */
+
 public class BinaryTreeLevelOrderTraversal {
 	
 	
@@ -121,6 +129,7 @@ public class BinaryTreeLevelOrderTraversal {
         		//reset the list ArrayList.
         		list=new ArrayList<Integer>();
         		if(!que.isEmpty()) que.addLast(null);
+        		
         	}else{
         		
             	list.add(firstNode.val);
