@@ -27,7 +27,6 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 
 
-
 public static int multipleN(int n){
 	if(n==1) return 1;
 
@@ -46,6 +45,29 @@ or using intuition.
  Each time, I have two choices.  So I imaged the binary tree.
 
  */
+
+
+
+
+/*
+ * 
+ * 对于这个问题，起初不是很有思路，但是手写几个例子之后，认为应该是有规律可循。
+ * 所以，使用最简单的，不考虑任何限制的方法打印出一系列结果。
+ * 
+ * 以寻求规律。
+ * 
+ * 在这个过程中，联想到二叉树，画图，很形象的表示了解法，因此成功打印出一系列结果。
+ * 但是时间复杂度比较高，所以需要抽象出公式。
+ * 
+ * 最后根据利用“二叉树”方法得出的一系列数据，抽象出公式，最终成功解题。
+ * 
+ * 经验就是，可以从简单的算法做起，一步一步靠近最终解法。
+ * 要根据题目的特点，联想一些知识，比如说二叉树，因为每次都有两个选择，
+ * 
+ */
+
+
+
 import java.util.*;
 public class ClimbingStairs {
 
@@ -54,6 +76,7 @@ Wrong
 Input: 1 Output: 0 Expected: 1
 	 * 
 	 */
+	
 	public static void main(String args[]) {
 		
 //		for(int i=0;i<1000;i++)
@@ -201,7 +224,6 @@ running time(second):56
 		int result=0;
 		LinkedList<Integer> que=new LinkedList<Integer>();
 		que.add(n);
-		
 		
 		while(!que.isEmpty()){
 			

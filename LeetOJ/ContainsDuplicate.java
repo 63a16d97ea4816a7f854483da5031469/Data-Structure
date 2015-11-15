@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 28 October 2015 at 12:30:05 pm
 
-Thinking: how to speed up to code?
+Thinking: how to speed up？
 
 Ctrl+D delete the whole line --windows
 ⌘ + D delete the whole line --mac
