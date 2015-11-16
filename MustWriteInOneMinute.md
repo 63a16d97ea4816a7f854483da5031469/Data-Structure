@@ -1,5 +1,11 @@
 # Must write within 1
 
+Remember:    String --->  str.length();
+			 Array---> arr.length;
+			 
+			 String.valueOf(char[] ch);
+
+
 ##Binary operation
 	public static String addBinary4(String a, String b){
 
