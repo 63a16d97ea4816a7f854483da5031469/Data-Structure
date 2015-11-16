@@ -100,4 +100,22 @@ Remember:    String --->  str.length();
 
 ##Palindrome Number (回文)
 
-##
+##Permutations (important)
+
+## Find path of Binary Tree
+
+##ReverseBits
+
+##Reverse Integer
+
+##Reverse Linked List
+
+##Rotate Array
+
+##Reverse Array
+
+##Is Same Tree (/same-tree/)
+
+## Symmetric Tree
+
+## valid-anagram (/valid-anagram/)
