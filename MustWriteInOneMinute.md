@@ -6,7 +6,7 @@ Remember:    String --->  str.length();
 			 String.valueOf(char[] ch);
 
 
-##Binary operation
+##Binary operation / Bit operations
 	public static String addBinary4(String a, String b){
 
 	if(a==null&&a.length()==0) return b;
@@ -57,10 +57,10 @@ Remember:    String --->  str.length();
 ##LevelOrder Traversal
 
 
-##CheckDeepth Traversal
+##Deepth of binary tree Traversal
 
 
-##LinkedList Traversal
+##Linked List Traversal
 
 ##Fibonacci Number
 
@@ -70,13 +70,34 @@ Remember:    String --->  str.length();
 
 ##Judge whether has cycle
 
-##find the insection node
+##find the insection node of two single lists
 
-##find the beginning node of cycle
+##find the beginning node of cycle (Linked List)
 
 ##LRU Cache
 
-##MinimumDepth
+##Minimum Depth of Binary Tree
+
+##Maximum Depth of Binary Tree
+
+##Binary Search
+
+##Implement Queue using stacks
+
+##Implement Stack using Queues
+
+##invert binary tree
+
+##Swap two variables without using extra space
+
+##Merge two sorted arrays ===> array operation
+
+##Merge two sorted lists
+
+##O(1) time complexity to get minimum value of stack
+
+##Move-zeroes  ===> array operation
+
+##Palindrome Number (回文)
 
 ##
-
