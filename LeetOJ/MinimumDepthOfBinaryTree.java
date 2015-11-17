@@ -67,7 +67,7 @@ public class MinimumDepthOfBinaryTree {
 	
 	/*
 	 * 
-	 * You must think more than focusing on coding.
+	 * You must think more than focusing on coding.   ----But need to practise programming every day
 	 * 
 	 * 思考，什么时候是终止条件？
 	 * 

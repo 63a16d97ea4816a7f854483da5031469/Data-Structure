@@ -227,7 +227,7 @@ public class MaximumDepthOfBinaryTree {
 
 	/*
 	 * 
-	 * Accepted: This is used the Deep search.
+	 * Accepted: This is using "the Deep search".
 	 * 
 	 * BFS - visit all children, then grandchildren, then great-grandchildren,
 	 * etc..
