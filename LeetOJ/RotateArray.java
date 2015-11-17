@@ -27,7 +27,7 @@ public class RotateArray {
 	public static void main(String args[]){
 		
 		
-		int[] arr={1,2};
+		int[] arr={1,2,3,4,5,6,7};
 		rotate(arr,3);
 		
 	}
@@ -51,20 +51,17 @@ public class RotateArray {
 		
 		int[] n=nums.clone();
 		
-		
+		 
 		if(nums==null) return;
         
 		for(int i=0;i<nums.length;i++){
-			int tmp=n[i];
 			
-			nums[(i+k)%nums.length]=tmp;
+			nums[(i+k)%nums.length]=n[i];
  
- 
-
 		}
 //		
-//		for(int tmp:nums)
-//			System.out.print(tmp+" ");
+		for(int tmp:nums)
+			System.out.print(tmp+" ");
 		
 		
     }

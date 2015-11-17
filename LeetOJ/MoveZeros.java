@@ -22,9 +22,11 @@ public class MoveZeros {
 
 	public static void main(String args[]) {
 
-		int[] num = { 0, 0, 1 };
+//		int[] num = { 0, 0, 1 };
+		int[] num={0, 1, 0, 3, 12};
 
-		moveZeroes4(num);
+//		moveZeroes4(num);
+		moveZero(num);
 	}
 	
 	
@@ -34,8 +36,59 @@ public class MoveZeros {
 			System.out.print(tmp + " ");
 }
 
+/*
+ * Accepted.
+ * 
+ */
+	public static void moveZero(int[] nums){
+		
+		int i=0;
+		while(i<nums.length){
+		
+		int p=0;
+
+		if(nums[i]==0){
+		   p=i+1;
+
+		//find the following non-zero number
+		while(p<nums.length){
+		   if(nums[p]!=0){
+			break;
+		   }
+		   p++;
+		}
+
+	 
+
+	if(p<nums.length&&nums[p]!=0){
+	nums[i]=nums[p];
+	nums[p]=0;
+	}
 
 
+		}
+
+		i++;
+		}
+
+		
+		for(int tmp:nums)
+			System.out.print(tmp+" ");
+
+
+
+
+	}
+
+	
+	
+	
+	
+/*
+ * Accepted.
+ * 
+ * 
+ */
 public static void makeFirstBeRight4(int begin, int[] nums) {
 	
 	/*
@@ -120,18 +173,7 @@ Reason: use below sentence, actually it has defect.
 }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+ 
 	
 	
 
