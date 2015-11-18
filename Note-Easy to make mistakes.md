@@ -4,5 +4,11 @@
 	int[] arr2=null;
 	int n=arr2.length;
 
+
 * Before we use LinkedNode, we need to check whether it is null.
 
+* Remember:    
+
+			String --->  str.length();  
+			Array---> arr.length; 
+			List--->int len=list.size();

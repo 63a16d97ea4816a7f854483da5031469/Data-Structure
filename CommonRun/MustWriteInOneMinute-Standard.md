@@ -3,7 +3,11 @@ Remember:
 
 			String --->  str.length();  
 			Array---> arr.length; 
+			List--->int len=list.size();
+			
 			String.valueOf(char[] ch);
+			
+
 
 ##Binary operation / Bit operations
 	public static String addBinary4(String a, String b){
