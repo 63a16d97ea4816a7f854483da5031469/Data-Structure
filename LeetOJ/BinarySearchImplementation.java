@@ -4,9 +4,19 @@ public class BinarySearchImplementation {
 	public static void main(String args[]){
 		BinarySearchImplementation binary=new BinarySearchImplementation();
 		int[] nums={1,2,3,4,5,6,12};
-		int result=binary.binarySearch4(nums, 12);
+		int result=binary.binarySearchJava(nums, 12);
 		System.out.println("Index:"+result+" Value:"+nums[result]);
 	}
+	
+	
+	public int binarySearchJava(int[] nums,int key){
+		
+		java.util.Arrays.sort(nums);;
+		return java.util.Arrays.binarySearch(nums, key);
+		
+	}
+	
+	
 	
 
 	//Non-recursion implementation 1:	
