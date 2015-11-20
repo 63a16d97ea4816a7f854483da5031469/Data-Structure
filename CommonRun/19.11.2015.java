@@ -243,10 +243,6 @@ public LinkedNode findInsection(LinkedNode l1, LinkedNode l2){
 
 	}
 
-
-
-
-
 return null;
 
 } 
@@ -311,6 +307,8 @@ class TreeNode{
 
 
 public int findMinTreeDepth(TreeNode root){
+
+	if(root==null) return 0;
 	
 	LinkedList<TreeNode> list=new LinkedList<TreeNode>();
 
@@ -659,7 +657,17 @@ return result;
 ##Reverse Integer
 
 
+public int reverseInt(int n){
+	
+	int another=0;
+	while(n!=0){
+		
+	another=another*10+n%10;
+	n/=10;
+	}
 
+return another;
+}
 
 
 
@@ -693,8 +701,6 @@ public void reverseLinkedList(LinkedNode head){
 
 }
 
- 
-
 
 ##Rotate Array
 
@@ -711,11 +717,27 @@ public void rotateArr(int[] nums,int k){
 }
 
 
-
 ##Reverse Array
+
+public void reverseArr(int[] nums){
+	
+	for(int i=0;i<nums.length/2;i++){
+	
+	  int tmp=nums[i];
+	  nums[i]=nums[nums.length-1-i];
+	  nums[nums.length-1-i]=tmp;
+	}
+
+}
 
 ##Is Same Tree (/same-tree/)
 
 ## Symmetric Tree
 
 ## valid-anagram (/valid-anagram/)
+
+
+
+
+
+
