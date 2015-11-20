@@ -469,7 +469,7 @@ public void invertSubTree(TreeNode node){
  
 		if(root!=null){
 			
-        	if(root.left!=null||root.right!=null){
+        if(root.left!=null||root.right!=null){
 			TreeNode tmp=root.left;
 			root.left=root.right;
 			root.right=tmp;
