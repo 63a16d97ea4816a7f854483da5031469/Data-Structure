@@ -82,3 +82,9 @@ Remember:
 ## Symmetric Tree
 
 ## valid-anagram (/valid-anagram/)
+
+##HashSet iteration
+
+##HashMap iteration
+
+##HashTable iteration

@@ -13,3 +13,6 @@ https://apollozhao.wordpress.com/2011/05/20/zz%E5%90%84%E5%A4%A7%E5%85%AC%E5%8F%
 
 
 http://rosettacode.org/wiki/Combinations
+
+
+http://blog.csdn.net/earbao/article/details/20375865
