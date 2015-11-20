@@ -61,6 +61,126 @@ http://www.ericleschinski.com/c/java_permutations_recursion/
 	}
 	
 	
+====> Modified: 	
+	
+	public static void permutation(String str) { 
+	    permutation("", str); 
+	}
+
+	private static void permutation(String prefix, String str) {
+ 
+	    int n = str.length();
+	    if (n == 0) System.out.println(prefix);
+	    else {
+	        for (int i = 0; i < n; i++){
+	        	System.out.println(prefix +" || "+ str.charAt(i)+" || "+ str.substring(0, i)+ " || "+ str.substring(i+1, n));
+	        	
+	        	
+	            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+	        }
+	    }
+	}
+	
+
+	        	System.out.println(prefix +" || "+ str.charAt(i)+" || "+ str.substring(0, i)+ " || "+ str.substring(i+1, n));
+
+	  || a ||  || bc
+	a || b ||  || c
+	ab || c ||  || 
+	abc
+	a || c || b || 
+	ac || b ||  || 
+	acb
+	 || b || a || c
+	b || a ||  || c
+	ba || c ||  || 
+	bac
+	b || c || a || 
+	bc || a ||  || 
+	bca
+	 || c || ab || 
+	c || a ||  || b
+	ca || b ||  || 
+	cab
+	c || b || a || 
+	cb || a ||  || 
+	cba
+
+	
+	
+	System.out.println(prefix +""+ str.charAt(i)+" || "+ str.substring(0, i)+ ""+ str.substring(i+1, n));
+	        	
+
+	a || bc
+	ab || c
+	abc || 
+	abc
+	ac || b
+	acb || 
+	acb
+	b || ac
+	ba || c
+	bac || 
+	bac
+	bc || a
+	bca || 
+	bca
+	c || ab
+	ca || b
+	cab || 
+	cab
+	cb || a
+	cba || 
+	cba
+
+	
+	
+		
+ 	substring(a,b);     ===>  [a,b);            a=<x<b
+
+
+
+
+
+    /**
+     * Returns a new string that is a substring of this string. The
+     * substring begins at the specified <code>beginIndex</code> and
+     * extends to the character at index <code>endIndex - 1</code>.
+     * Thus the length of the substring is <code>endIndex-beginIndex</code>.
+     * <p>
+     * Examples:
+     * <blockquote><pre>
+     * "hamburger".substring(4, 8) returns "urge"
+     * "smiles".substring(1, 5) returns "mile"
+     * </pre></blockquote>
+     *
+     * @param      beginIndex   the beginning index, inclusive.
+     * @param      endIndex     the ending index, exclusive.
+     * @return     the specified substring.
+     * @exception  IndexOutOfBoundsException  if the
+     *             <code>beginIndex</code> is negative, or
+     *             <code>endIndex</code> is larger than the length of
+     *             this <code>String</code> object, or
+     *             <code>beginIndex</code> is larger than
+     *             <code>endIndex</code>.
+ 
+    public String substring(int beginIndex, int endIndex) {
+        if (beginIndex < 0) {
+            throw new StringIndexOutOfBoundsException(beginIndex);
+        }
+        if (endIndex > value.length) {
+            throw new StringIndexOutOfBoundsException(endIndex);
+        }
+        int subLen = endIndex - beginIndex;
+        if (subLen < 0) {
+            throw new StringIndexOutOfBoundsException(subLen);
+        }
+        return ((beginIndex == 0) && (endIndex == value.length)) ? this
+                : new String(value, beginIndex, subLen);
+    }
+
+	
+	
 	
 ##Using set to filter repeated strings.
 

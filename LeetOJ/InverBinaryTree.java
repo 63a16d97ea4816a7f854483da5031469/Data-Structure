@@ -1,5 +1,6 @@
 package ok;
 
+import java.util.LinkedList;
 
 /*
  * https://leetcode.com/problems/invert-binary-tree/
@@ -76,28 +77,81 @@ public class InverBinaryTree {
 	 */
 
 	public static void main(String args[]){
-		TreeNode root=new TreeNode(1);
-		TreeNode sec=new TreeNode(2);
-		TreeNode secLeft=new TreeNode(3);
-		TreeNode secRight=new TreeNode(4);
-		sec.left=secLeft;
-		sec.right=secRight;
-		root.left=sec;
+//		TreeNode root=new TreeNode(1);
+//		TreeNode sec=new TreeNode(2);
+//		TreeNode secLeft=new TreeNode(3);
+//		TreeNode secRight=new TreeNode(4);
+//		sec.left=secLeft;
+//		sec.right=secRight;
+//		root.left=sec;
+		
+		
+		/*
+		 * 
+			4
+		   / \
+		  1   null
+		 / \
+		2   null
+	   /
+	  3
+		 * 
+		 */
+		
+		TreeNode root=new TreeNode(4);
+		 
+		TreeNode secLeft=new TreeNode(1);
+		TreeNode thirdLeft=new TreeNode(2);
+		TreeNode fourthLeft=new TreeNode(3);
+		secLeft.left=thirdLeft;
+		thirdLeft.left=fourthLeft;
+		root.left=secLeft;
+		
+		levelLoopTree(root);
+		
+
+		
 		TreeNode result=invertTree(root);
 		
-		loopTree(root);
+		System.out.println("------");
+		
+		levelLoopTree(root);
 		
 		
 	}
+	
+ 
+	
+  public static void levelLoopTree(TreeNode root){
+	  
+	  LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+	  
+	  que.add(root);
+	  
+	  while(!que.isEmpty()){
+		  	
+		  TreeNode firstNode=que.removeFirst();
+		  
+		  if(firstNode!=null){
+			  System.out.print(firstNode.val+" ");
+			  
+			  que.addLast(firstNode.left);
+			  que.addLast(firstNode.right);
+		  }else{
+			  System.out.print(" null ");
+		  }
+		  
+		  
+	  }
+	  
+  }
+	
+
+	
+	
 
     public static void loopTree(TreeNode root) {
  
-//    	if(root.left!=null||root.right!=null){
-//        	TreeNode tmp=root.right;
-//    		root.right=root.left;
-//    		root.left=tmp;
-//    	}
-    	
     	
     	if(root!=null){
     		System.out.println(root.val);
@@ -122,7 +176,7 @@ public class InverBinaryTree {
     
     public static TreeNode invertTree(TreeNode root){
     	
-    	if(root==null||(root.left==null&&root.right==null)) return root;	
+//    	if(root==null||(root.left==null&&root.right==null)) return root;	  //no need this one
     	
     	
     	if(root!=null){
@@ -144,8 +198,6 @@ public class InverBinaryTree {
     	return root;
     	
     }
-    
-    
 	
 	
 }

@@ -1071,7 +1071,21 @@ Another method 2:
 		return true;
 	}
 
-##Permutations (important)
+##Permutations [排列 (important)]
+
+	private static void permutation(String prefix, String str) {
+ 
+	    int n = str.length();
+	    if (n == 0) System.out.println(prefix);
+	    else {
+	        for (int i = 0; i < n; i++){
+	        	System.out.println(prefix + str.charAt(i)+" || "+ str.substring(0, i) " || "+ str.substring(i+1, n));
+	        	
+	            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+	        }
+	    }
+	}
+
 
 ## Find path of Binary Tree
 

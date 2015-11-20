@@ -23,7 +23,7 @@ public class Solution {
 public class PalindromeNumber {
 	public static void main(String args[]){
 		PalindromeNumber p=new PalindromeNumber();
-		System.out.println(p.isPalindrome3(2147447412));
+		System.out.println(p.isPalindrome2(2147447412));
 	}
 	
 	// reference to the link: http://blog.csdn.net/sgbfblog/article/details/7799244
@@ -57,11 +57,28 @@ public class PalindromeNumber {
 			div*=10;
 		}
 		
+		/*
+		Input:
+		2147447412
+			
+		Output:	
+		14744741 14744741 1000000000
+		474474 474474 10000000
+		7447 7447 100000
+		44 44 1000
+		0 0 10
+		true
+		 * 
+		 */
+		
+		
 		while(x!=0){
 			int l=x/div;
 			int r=x%10;
 			if(l!=r) return false;
+			//remove the first postion's number and remove the last position's number (in order)
 			x=(x%div)/10;
+			System.out.println(x+" "+(x%div)+" "+div);
 			div/=100;
 		}
  

@@ -359,88 +359,8 @@ Recursion implementation:
 ##Implement Stack using Queues
 
 ##invert binary tree
-
-Input:
-[4,1,null,2,null,3]
-Output:
-[4,null,1,null,2,3]
-Expected:
-[4,null,1,null,2,null,3]
-
-4 1  null 2  null 3  null  null  null ------
-4  null 1  null 2  null 3  null  null 
-
-
-		TreeNode root=new TreeNode(4);
  
-		TreeNode secLeft=new TreeNode(1);
-		TreeNode thirdLeft=new TreeNode(2);
-		TreeNode fourthLeft=new TreeNode(3);
-		secLeft.left=thirdLeft;
-		thirdLeft.left=fourthLeft;
-
-		root.left=secLeft;
-		
- 
-
-			4
-		   / \
-		  1   null
-		 / \
-		2   null
-	   /
-	  3
-			
-			 4
-		   /   \
-		 null   1
-		       / \
-            null  2
-                 /  \
-				null 3
-
-
-Input:
-[4,1,null,2,null,3]
-Output:
-[4,null,1,null,2,3]
-Expected:
-[4,null,1,null,2,null,3]
-
-4 1  null 2  null 3  null  null  null ------
-4  null 1  null 2 3  null  null  null 
-
-
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
-public void invertBinary(TreeNode root){
-	if(root!=null){
-		if(root.left!=null) invertSubTree(root.left);
-		if(root.right!=null) invertSubTree(root.right);
-		invertSubTree(root);
-	}
-}
-
-
-public void invertSubTree(TreeNode node){
-	if(node==null) return;
-	if(node!=null){
-		TreeNode tmp=node.left;
-		node.left=node.right;
-		node.right=tmp;
-	}
-}
- 
-
-
     public static TreeNode invertTree(TreeNode root){
-    	
-    	if(root==null||(root.left==null&&root.right==null)) return root;	
     	
     	
     	if(root!=null){
@@ -504,9 +424,125 @@ public void swap(int a,int b){
 
 ##Move-zeroes  ===> array operation
 
+
+	public void moveZero(int[] nums){
+	
+
+	// find the first zero number
+
+	// move the zero to the first non-zero number's postion
+
+
+	int p=0;
+	while(p<nums.length){
+	   if(nums[p]==0){
+		
+		//find the following the first non-zero number
+		 for(int j=p+1;j<nums.length;j++){
+			if(nums[j]!=0) {
+				nums[p]=nums[j];
+				nums[j]=0;
+				break;
+			}
+		 }
+
+
+	   }
+	   p++;
+	}
+
+
+
+
+
+	}
+
+
+
+
+
+
+
 ##Palindrome Number (回文)
 
+method 1:
+
+public void palindromeNumber(int n){
+	
+ 	int x=0;
+	while(n!=0){
+ 	  x=x*10+(n%10);
+ 	  n/=10;
+	}
+	return x==n;
+}
+
+method 2:
+
+ public void palindrome(int n){
+	
+	if(x<0) return false;
+
+		int div=1;
+		while(n/div>=0){
+	 		div*=10;
+		}
+
+	 
+	  while(n!=0){
+		int l=x/div;
+		int r=x%10;
+		if(l!=r) return false;
+
+		x=(x%div)/10;
+		div/=100;
+
+	  }
+
+	  return true;
+}
+
+
+public void palindrome(int n){
+	
+	if(n<0) return false;
+
+	int div=1;
+	while(n/div>=0){
+	div*=10;
+	}
+
+	while(n!=0){
+	int l=x/div;
+	int r=x%10;
+	if(l!=r) return false;
+
+	x=(x%div)/10;
+	div/100;
+	}
+
+
+}
+
+
+ 
+
 ##Permutations (important)
+
+public static void permutation(String prefix, String str){
+	
+	int n=str.length();
+	if(n==0) System.out.println(prefix);
+	else{
+	
+	for(int i=0;i<n;i++){
+	   permutation(prefix+str.charAt(i),str.substring(0,i)+str.substring(i+1,n));
+	}
+
+	}
+
+}
+
 
 ## Find path of Binary Tree
 
