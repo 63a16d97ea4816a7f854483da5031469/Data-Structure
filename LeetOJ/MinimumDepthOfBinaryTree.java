@@ -53,16 +53,72 @@ public class MinimumDepthOfBinaryTree {
 
 	public static void main(String args[]) {
 		TreeNode root = new TreeNode(1);
-		// root.right=new TreeNode(4);
-		// TreeNode sec=new TreeNode(2);
-		// root.left=sec;
-		// TreeNode third=new TreeNode(4);
-		// sec.left=third;
+		 root.right=new TreeNode(4);
+		 TreeNode sec=new TreeNode(2);
+		 root.left=sec;
+		 TreeNode third=new TreeNode(4);
+		 sec.left=third;
 		System.out.println(minDepth2(root));
+		System.out.println(findMinTreeDepth5(root));
 
 	}
 
+ 
+	/*
+	 * 
+	 * Accepted.
+	 * 
+	 */
+	public static int findMinTreeDepth5(TreeNode root){
+		
+		if(root==null) return 0;
+		 
+		LinkedList<TreeNode> list=new LinkedList<TreeNode>();
 
+		list.addLast(root);
+		list.addLast(null);
+
+		int count=1;
+
+
+		while(!list.isEmpty()){
+		
+		TreeNode firstNode=list.removeFirst();
+		if(firstNode==null){
+		   
+		   count++;
+
+
+		if(!list.isEmpty()){
+		     list.addLast(null);
+		}	
+
+
+		}else{
+
+
+		if(firstNode.left==null&&firstNode.right==null) return count;		
+		
+		if(firstNode.left!=null) {
+		    list.addLast(firstNode.left);
+		}
+
+		if(firstNode.right!=null){
+			list.addLast(firstNode.right);
+		}
+
+		}
+
+
+
+
+		}
+		return count;
+
+
+	}
+	
+	
 	
 	
 	/*

@@ -301,6 +301,63 @@ return null;
 
 ##Minimum Depth of Binary Tree
 
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+
+}
+
+
+public int findMinTreeDepth(TreeNode root){
+	
+	LinkedList<TreeNode> list=new LinkedList<TreeNode>();
+
+	list.addLast(root);
+	list.addLast(null);
+
+	int count=0;
+
+
+	while(!list.isEmpty()){
+	
+	TreeNode firstNode=list.removeFirst();
+	if(firstNode==null){
+	   
+	   count++;
+
+
+	if(!list.isEmpty()){
+	     list.addLast(null);
+	}	
+
+
+	}else{
+
+
+	if(firstNode.left==null&&firstNode.right==null) return count;		
+	
+	if(firstNode.left!=null) {
+	    list.addLast(firstNode.left);
+	}
+
+	if(firstNode.right!=null){
+		list.addLast(firstNode.right);
+	}
+
+	}
+
+
+
+
+	}
+
+
+}
+
+
+
 ##Maximum Depth of Binary Tree
 
 ##Binary Search
