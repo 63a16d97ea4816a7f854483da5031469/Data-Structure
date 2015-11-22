@@ -460,6 +460,8 @@ public boolean palindrome2(int n){
 	tmp/=10;
 	}
 
+	div/=10;
+
 	tmp=n;
 
 	while(tmp!=0){
@@ -550,9 +552,49 @@ public boolean reverse(int n){
 
 ##Reverse Linked List
 
+public ListNode reverseList(ListNode head){
+	
+	ListNode prev=null;
+	ListNode curr=head;
+	ListNode nextNext=head.next;
+
+	while(curr!=null){
+		nextNext=curr.next;
+
+		curr.next=prev;
+		prev=curr;
+		curr=nextNext;
+	}
+
+return head;
+
+}
+
+
+
+
+
 ##Rotate Array
 
+public void rotate(int[] nums){
+	int[] tmp=nums.clone();
+
+	for(int i=0;i<nums.length;i++){
+		nums[i]=tmp[(i+k)%nums.length];
+	}
+}
+
+
 ##Reverse Array
+
+public void reverseArr(int[] nums){
+	for(int i=0;i<nums.length/2;i++){
+	int tmp=nums[i];
+	nums[i]=nums[nums.length-1-i];
+	nums[nums.length-1-i]=tmp;
+	}
+}
+
 
 ##Is Same Tree (/same-tree/)
 
