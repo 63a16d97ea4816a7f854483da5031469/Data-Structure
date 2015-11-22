@@ -105,12 +105,13 @@ public class SymmetricTree {
 		TreeNode root=new TreeNode(1);
 		TreeNode secleft=new TreeNode(2);
 		TreeNode secright=new TreeNode(2);
-		secright.right=new TreeNode(3);
-//		secleft.left=new TreeNode(3);
+		secleft.right=new TreeNode(3);
+		secright.left=new TreeNode(3);
+
 		root.left=secleft;
 		root.right=secright;
 		System.out.println(isSymmetric2(root));
-		
+		levelTraversal(root);
 		for(String tmp:list){
 			System.out.print(tmp+" ");
 		}
@@ -124,7 +125,89 @@ public class SymmetricTree {
 	
 	
 	
+	public static void levelTraversal(TreeNode root){
+		
+		if(root!=null){
+
+		LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+		que.add(root);
+
+		while(!que.isEmpty()){
+
+			TreeNode firstNode=que.removeFirst();
+	 		if(firstNode!=null){
+	 			System.out.print(" "+firstNode.val);
+	 		     que.addLast(firstNode.left);
+	 		     que.addLast(firstNode.right);
+	 		}else
+	 			System.out.print(" "+null);
+		}
+
+		}
+	}
 	
+	
+	//use recursion:
+	/*
+	 * Accepted
+	 * 
+	 */
+	public static boolean isSymmetricTree(TreeNode p,TreeNode q){
+	     if(p == null&&q == null)
+	        return true;
+	     if(p == null||q == null)
+	        return false;
+	     return (p.val == q.val) && isSymmetricTree(p.left, q.right) && isSymmetricTree(p.right, q.left);
+	}
+
+	public static boolean isSymmetric4(TreeNode root) {
+	    if(root==null) 
+	        return true;
+	        
+	    return isSymmetricTree(root.left,root.right);
+	}
+	
+	
+	//do not use recursion:
+	/*
+	 * Accepted
+	 * 
+	 */
+	
+	public static boolean isSymmetric3(TreeNode root) {
+	    if(root == null)
+	        return true;
+	    if(root.left == null && root.right == null)
+	        return true;
+	    if(root.left == null || root.right == null)
+	        return false;
+	    LinkedList<TreeNode> q1 = new LinkedList<TreeNode>();
+	    LinkedList<TreeNode> q2 = new LinkedList<TreeNode>();
+	    q1.add(root.left);
+	    q2.add(root.right);
+	    while(!q1.isEmpty() && !q2.isEmpty()){
+	        TreeNode n1 = q1.poll();
+	        TreeNode n2 = q2.poll();
+	        
+	        if(n1.val != n2.val)
+	            return false;
+	        if((n1.left == null && n2.right != null) || (n1.left != null && n2.right == null))
+	            return false;
+	        if((n1.right == null && n2.left != null) || (n1.right != null && n2.left == null))
+	            return false;
+	        
+	        if(n1.left != null && n2.right != null){
+	            q1.add(n1.left);
+	            q2.add(n2.right);
+	        }
+	        
+	        if(n1.right != null && n2.left != null){
+	            q1.add(n1.right);
+	            q2.add(n2.left);
+	        }            
+	    }
+	    return true;
+	}
 	
 	
 	
@@ -132,6 +215,11 @@ public class SymmetricTree {
 	 * Use another method:
 	 * 
 	 * Accepted
+	 * 
+	 * 
+	 *
+	 * 
+	 * 
 	 * 
 	 */
 	
@@ -152,8 +240,8 @@ public class SymmetricTree {
     	
     	if(left.val!=right.val) return false;
     	
-    	if(!symmSubTree(left.left,left.right)) return false;
-    	if(!symmSubTree(right.right,right.left)) return false;
+    	if(!symmSubTree(left.left,right.right)) return false;  
+    	if(!symmSubTree(left.right,right.left)) return false;
     	
     	
     	return true; 	

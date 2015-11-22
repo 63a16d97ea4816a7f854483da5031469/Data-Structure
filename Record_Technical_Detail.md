@@ -3,6 +3,65 @@
 http://www.tutorialspoint.com/codingground.htm
 
 
+##difference between HashMap and Hashtable(not "T" it is "t"):
+
+java.util.Hashtable
+java.util.HashMap
+
+<img src="./Screenshots/HashTable_HashMap.png">
+
+
+#Difference Between Iterator And Enumeration 
+http://javahungry.blogspot.com/2013/06/difference-between-iterator-and-enumeration-collections-java-interview-question-with-example.html
+
+The most common interview question in Collections is What is the difference between iterator and enumeration.
+
+Iterator
+
+Iterator is the interface and found in the java.util package.
+It has three methods
+
+*hasNext()
+*next()
+*remove()
+
+Enumeration
+
+Enumeration is also an interface and found in the java.util package .
+An enumeration is an object that generates elements one at a time. It is used for passing through a collection, usually of unknown size.
+The traversing of elements can only be done once per creation.
+It has following methods
+
+*hasMoreElements()
+*nextElement()
+
+An iterator over a collection. Iterator takes the place of Enumeration in the Java collections framework.
+
+Iterators differ from enumerations in two ways:
+
+Iterators allow the caller to remove elements from the underlying collection during the iteration with well-defined semantics.
+Method names have been improved.
+
+
+**Why not use for(int i=0; i< v.size();i++){}?**
+
+For loops are expensive to the processor when the collection reaches large sizes, as many operations are done just to compute the first line:
+
+
+int i = 0 is an assignment and creation (2 operations)
+i get size, check value of i, and compare (3 operations)
+i++ gets i then adds 1 to it [++i is only 2 operations] this one (3 operations)
+*7/8 operations in total, each time the loop runs through
+
+where an enumeration or iterator uses a while(){}
+while(v.hasNext()) has next true or false (1 operation)
+while(v.hasMoreElements()) has more true or false (1 operation)
+*Only one operation per repeat of this loop
+
+
+
+
+
 ##Eclipse color theme plugin:
 http://eclipsecolorthemes.org/?view=plugin
 

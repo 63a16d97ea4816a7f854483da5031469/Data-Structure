@@ -60,7 +60,7 @@ public void levelTraversal(TreeNode root){
 		TreeNode firstNode=que.removeFirst();
  		if(firstNode!=null){
  		   if(firstNode.left!=null) que.addLast(firstNode.left);
- 		   if(firstNode.right!=null) que.addLast(firstNode.right)
+ 		   if(firstNode.right!=null) que.addLast(firstNode.right);
  		}
 	}
 
@@ -553,6 +553,8 @@ public boolean reverse(int n){
 ##Reverse Linked List
 
 public ListNode reverseList(ListNode head){
+
+if(head==null) return head;
 	
 	ListNode prev=null;
 	ListNode curr=head;
@@ -603,7 +605,57 @@ public void reverseArr(int[] nums){
 ## valid-anagram (/valid-anagram/)
 
 ##HashSet iteration
+ 
+public void setIteration(){
+	
+	Set set=new HashSet();
+	set.add("fds");
+	set.add("fds");
+
+	for(Iterator it=set.iterator();it.hasNext();){
+	 	System.out.println(it.next());
+	}
+
+}
 
 ##HashMap iteration
 
+for(Entry<Integer,String> enty:map.entrySet()){
+	System.out.println(entry.getKey()+"=>"+entry.getValue());
+}
+
+
+for(Entry<Integer,String> entry:map.entrySet()){
+	System.out.println(entry.getKey()+"=>"+entry.getValue());
+}
+
+
 ##HashTable iteration
+
+ 
+Hashtable table=new Hashtable();
+
+Enumeration keys=table.keys();
+
+while(keys.hasMoreElements()){
+
+	   str = (String) keys.nextElement();   //if the name is String.
+	   System.out.println(str + ": " + table.get(str));
+ 
+}
+
+
+ 
+Enumeration keys=table.keys();
+
+while(keys.hasMoreElements()){
+
+	Str=(String) keys.nextElement();
+	System.out.println(str+": "+ table.get(str));
+
+}
+
+
+
+
+
