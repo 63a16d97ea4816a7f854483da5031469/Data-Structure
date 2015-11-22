@@ -33,6 +33,14 @@ http://www.acmerblog.com/category/basis
 
 搜索：BFS搜索，DFS搜索，回溯和剪枝，记忆化搜索
 
+经典问题：KMP问题
+
+
+
+
+KMP问题
+http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html
+
 
 
 
@@ -42,3 +50,4 @@ http://www.acmerblog.com/category/basis
 
 
 图论：图的遍历，最小生成树，最短路径，网络流，连通性问题，二分图
+
