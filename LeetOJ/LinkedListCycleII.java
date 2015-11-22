@@ -47,19 +47,19 @@ import java.util.*;
 public class LinkedListCycleII {
 
 	public static void main(String args[]) {
-		ListNode head = new ListNode(3);
-		head.next = new ListNode(2);
-//		head.next.next = head;
-		 head.next.next=new ListNode(0);
-		 head.next.next.next=new ListNode(7);
-		 head.next.next.next.next=new ListNode(-4);
-		 head.next.next.next.next.next=head.next;
+//		ListNode head = new ListNode(3);
+//		head.next = new ListNode(2);
+////		head.next.next = head;
+//		 head.next.next=new ListNode(0);
+//		 head.next.next.next=new ListNode(7);
+//		 head.next.next.next.next=new ListNode(-4);
+//		 head.next.next.next.next.next=head.next;
 		
-//	     ListNode head = new ListNode(-1);
-//	     head.next=new ListNode(-7);
-//	     head.next.next=new ListNode(7);
-//	     head.next.next.next=new ListNode(-4);
-//	     head.next.next.next.next=new ListNode(19);
+	     ListNode head = new ListNode(-1);
+	     head.next=new ListNode(-7);
+	     head.next.next=new ListNode(7);
+	     head.next.next.next=new ListNode(-4);
+	     head.next.next.next.next=new ListNode(19);
 	     /*
 	      * 	    ListNode sLoop=head.next.next.next.next.next;
 	     			sLoop=new ListNode(6);
@@ -67,18 +67,83 @@ public class LinkedListCycleII {
 	      * 
 	      */
 	     
-//	     ListNode sLoop=head.next.next.next.next.next=new ListNode(6);
-//	     sLoop.next=new ListNode(-9);
-//	     sLoop.next.next=new ListNode(-5);
-//	     sLoop.next.next.next=new ListNode(-2);
-//	     sLoop.next.next.next.next=new ListNode(-5);
-//	     sLoop.next.next.next.next.next=sLoop;
+	     ListNode sLoop=head.next.next.next.next.next=new ListNode(6);
+	     sLoop.next=new ListNode(-9);
+	     sLoop.next.next=new ListNode(-5);
+	     sLoop.next.next.next=new ListNode(-2);
+	     sLoop.next.next.next.next=new ListNode(-5);
+	     sLoop.next.next.next.next.next=sLoop;
 
 		
 		
 		
-		System.out.println(detectCycle5(head).val);
+		System.out.println(findStartNode4(head).val);
 	}
+	
+	
+	
+	
+	public static ListNode findStartNode4(ListNode head){
+		
+		if (head == null)
+			return null; // when head==null
+		if (head.next == null)
+			return null; // when only contain head node.
+		if (head.next == head)
+			return head;
+		
+		
+		ListNode fast=head;
+		ListNode slow=head;
+
+		while(fast!=null){
+
+			if(fast.next!=null) 
+			fast=fast.next.next;
+
+			slow=slow.next;
+
+			if(slow==fast) break;
+		}
+
+		fast=head;
+
+		while(fast!=null&&slow!=null){
+			
+			if(fast==slow) return fast;
+			
+			fast=fast.next;
+			slow=slow.next;
+			//if(fast==slow) return fast;  if put this sentence here, you need to modify the previous condition:
+			/*
+			 * from 
+			 * 		if (head.next == head)
+					return head;
+			 * 
+			 * to:
+			 * 		if (head.next.next == head)
+						return head;
+						
+Because this testing case:						
+Input:
+[1,2]
+tail connects to node index 0
+Output:
+tail connects to node index 1
+Expected:
+tail connects to node index 0		
+						
+					The sequence of the your code does matter a lot. Be careful.	
+			 */
+			
+		}
+
+
+	return null;
+	}
+
+	
+	
 	
 	
 	/*
@@ -86,7 +151,7 @@ public class LinkedListCycleII {
 	 * Accepted:
 	 * 
 	 */
-	
+
 	public static ListNode detectCycle5(ListNode head) {
 
 		ListNode first = head, second = head;
@@ -95,36 +160,36 @@ public class LinkedListCycleII {
 			return null; // when head==null
 		if (head.next == null)
 			return null; // when only contain head node.
-		if(head.next.next==head) return head;
+		if (head.next.next == head)
+			return head;
 
 		boolean adjustFlag = false;
 		// when contain more than one node
- 
-		int meetTime=0;
- 
-		while (first!=null&&first.next != null) {
- 
-			if(!adjustFlag){
-			first = first.next.next;
-			second=second.next;
-			}else{
-				first=first.next;
-				second=second.next;
+
+		int meetTime = 0;
+
+		while (first != null && first.next != null) {
+
+			if (!adjustFlag) {
+				first = first.next.next;
+				second = second.next;
+			} else {
+				first = first.next;
+				second = second.next;
 			}
-			if(first==second&&first!=null&&meetTime!=2){
-				System.out.println("meet:"+first.val);
+			if (first == second && first != null && meetTime != 2) {
+				System.out.println("meet:" + first.val);
 				meetTime++;
-				if(meetTime==2) return second;	
-				adjustFlag=true;
-				second=head;
+				if (meetTime == 2)
+					return second;
+				adjustFlag = true;
+				second = head;
 			}
- 
 
 		}
 
 		return null;
 	}
-	
 	
 	/*
 Wrong Answer More Details 

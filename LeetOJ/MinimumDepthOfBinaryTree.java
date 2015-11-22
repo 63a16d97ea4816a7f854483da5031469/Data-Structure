@@ -63,6 +63,52 @@ public class MinimumDepthOfBinaryTree {
 
 	}
 
+	
+		/*
+		 * 
+		 * Accepted.
+		 * 
+		 */
+	
+	public int findMinTreeDepth6(TreeNode root){
+		
+		if(root==null) return 0;
+
+		int depth=0;    
+		TreeNode tmp=root;
+		LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+		que.addLast(root);
+		que.addLast(null);
+
+		while(!que.isEmpty()){
+
+		TreeNode firstNode=que.removeFirst();
+
+		if(firstNode==null){
+			depth++;
+
+			if(!que.isEmpty()){
+				que.addLast(null);
+			}
+		}else{
+			if(firstNode.left==null&&firstNode.right==null) {
+				   depth++;
+				   break;
+				}
+			
+			if(firstNode.left!=null){
+			que.addLast(firstNode.left);
+			}
+			if(firstNode.right!=null){
+			que.addLast(firstNode.right);
+			}
+		}
+
+		}
+		return depth;
+	}
+
+	
  
 	/*
 	 * 
