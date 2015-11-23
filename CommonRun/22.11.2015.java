@@ -710,7 +710,7 @@ for(Entry<Integer,String> entry:map.entrySet()){
 }
 
 
-##HashTable iteration
+##Hashtable iteration
 
  
 Hashtable table=new Hashtable();

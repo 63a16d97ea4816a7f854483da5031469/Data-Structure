@@ -367,7 +367,43 @@ public int binarySearch(int[] nums,int key){
 
 ##invert binary tree
 
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public void invertTree(TreeNode root){
+
+
+	if(root==null) return;
+	
+	if(root!=null){
+	
+	if(root.left!=null||root.right!=null){	
+	TreeNode tmp=root.left;
+	root.left=root.right;
+	root.right=tmp;
+	}
+
+	if(root.left!=null) invertTree(root.left);
+	if(root.right!=null) invertTree(root.right);
+
+	}
+
+}
+ 
 ##Swap two variables without using extra space
+
+pubilc void swap(int a,int b){
+	
+	a=a^b;
+	b=a^b;
+	a=a^b;
+
+}
+
 
 ##Merge two sorted arrays ===> array operation
 
@@ -381,13 +417,140 @@ public int binarySearch(int[] nums,int key){
 
 ##Permutations (important)
 
+public void permu(String str){
+	
+	permutations("",str);
+
+}
+
+
+public void permutations(String pre,String str){
+	
+	if(str.length()==0) {
+	System.out.println(pre);
+	}
+
+	for(int i=0;i<str.length();i++){
+		permutations(pre+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length));
+	}
+}
+
+
 ## Find path of Binary Tree
+
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public List<String> findPath(TreeNode root){
+	
+
+}
+
+
+List<String> result=new ArrayList<String>();
+
+public List<String> findPathSub(TreeNode node,List<TreeNode> list){
+	
+
+
+	if(node!=null){
+	
+	if(node.left==null&&node.right==null){
+		String str="";
+
+		for(TreeNode tmp:list){
+			str+=tmp.val;
+		}
+	list=new ArrayList<TreeNode>();
+		result.add(str);
+	}
+
+	if(node.left!=null) {findPathSub(node.left,list);
+	list.remove(list.size()-1);
+	}
+	if(node.right!=null) {findPathSub(node.right,list);
+	list.remove(list.size()-1);
+	}
+	}
+
+return result;
+
+
+}
+
+
 
 ##ReverseBits
 
+public String reverse(int n){
+	
+	StringBuilder str=new StringBuilder(Integer.toBinaryString(n));
+	
+	str=str.reverse();
+
+	return str.toString();
+
+}
+
+
+
+public String reverse2(int n){
+	
+	String str=Integer.toBinaryString(n);
+	Char[] cstr=str.toCharArray();
+	
+	head=0;
+	end=str.length()-1;
+
+	while(head<end){
+	Char c=cstr[head];
+	cstr[head]=cstr[end];
+	cstr[end]=c;
+	head++;
+	end--;
+	}
+
+return String.valueOf(cstr);
+}
+
+
+
+
 ##Reverse Integer
 
+public int reverseInt(int n){
+	int another=0;
+	while(n!=0){
+		another=another*10+n%10;
+	}
+return another;
+}
+
+
 ##Reverse Linked List
+
+
+public void reverse(ListNode head){
+	
+	ListNode tmp=head;
+	ListNode nextNext=head.next;
+	ListNode prev=null;
+
+	while(tmp!=null){
+	nextNext=tmp.next;
+	
+	tmp.next=prev;
+	prev=tmp;
+	tmp=nextNext;
+	}
+
+}
+
+
 
 ##Rotate Array
 
@@ -397,10 +560,76 @@ public int binarySearch(int[] nums,int key){
 
 ## Symmetric Tree
 
+
+ public static boolean isSymmetric(TreeNode root) {
+	    if(root==null) 
+	        return true;
+	        
+	    return isSymmetricTree(root.left,root.right);
+ }
+
+public boolean isSymmetricTree(TreeNode p,TreeNode q){
+ 
+	if(p==null&&q==null) return true;
+	if(q==null||q==null) return false;
+ 
+return (p.val==q.val)&&isSymmetric(p.left,q.right)&&isSymmetric(p.right,q.left);
+ 
+}
+
+
+
+
 ## valid-anagram (/valid-anagram/)
 
 ##HashSet iteration
 
+HashSet set=new HashSet();
+
+set.add("f");
+set.add("f");
+
+for(Iterator it=set.iterator;it.hasNext;){
+	System.out.println(it.next());
+}
+
+
+
+
 ##HashMap iteration
 
+for(Entry<Integer,String> entry:map.entrySet()){
+	System.out.println(entry.getKey()+"="+entry.getValue());
+}
+
+
+
+
 ##HashTable iteration
+
+
+Enumeration keys=table.keys();
+
+while(keys.hasMoreElements()){
+
+	   str = (String) keys.nextElement();   //if the name is String.
+	   System.out.println(str + ": " + table.get(str));
+ 
+}
+
+
+Hashtable table=new Hashtable()
+
+table.put("dfs","fds");
+
+Enumeration keys=table.keys();
+
+while(keys.hasMoreElements()){
+	str=(String) keys.nextElement();
+	System.out.println(str+":"+table.get(str));
+}
+
+
+
+
+
