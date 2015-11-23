@@ -381,6 +381,8 @@ public int binarySearch(int[] nums,int key){
 		low=curr+1;
 	}
 	}
+
+	return -1;
 }
 
 
