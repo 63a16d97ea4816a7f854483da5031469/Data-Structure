@@ -150,8 +150,8 @@ public void fibonacci(int n){
 	int b=1;
 	int sum=a+b;
 	for(int i=2;i<=n;i++){
-	  a=b;
 	  sum=a+b;
+	  a=b;
 	  b=sum;
 	}
 	return sum;
