@@ -46,6 +46,39 @@ public class LinkedListCycle {
 		head.next.next.next=null;
 		System.out.println(hasCycle(head));
 	}
+
+
+
+	/*
+		Accepted.
+	*/
+	public static boolean hasCycle2(ListNode head){
+		ListNode fast=head;
+		ListNode slow=head;
+
+		if(head==null) return false;
+		if(head.next==null) return false;
+
+		while(fast!=null){
+
+			if(fast.next!=null)
+				fast=fast.next.next;
+			else{
+				fast=fast.next;
+			}
+
+			slow=slow.next;
+
+			if(fast==slow) return true;
+
+		}
+
+	return false;
+	}
+
+
+
+
 	
 	
 	/*
