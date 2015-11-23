@@ -371,6 +371,8 @@ public int binarySearch(int[] nums,int key){
 	while(low<=high){
 	int curr=(low+high)/2;
 
+	if(nums[curr]==key) return curr;
+
 	if(nums[curr]>key){
 		high=curr-1;
 	}
