@@ -1,3 +1,4 @@
+package ok;
 /*
  * 
 https://leetcode.com/problems/bulls-and-cows/
@@ -29,7 +30,7 @@ public class Solution {
     }
 }
 
-
+22 November 2015 at 10:27:56 pm
  *
  *
  */

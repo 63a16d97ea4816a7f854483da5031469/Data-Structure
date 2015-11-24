@@ -1,3 +1,5 @@
+package ok;
+
 /*
 https://leetcode.com/problems/permutations/
 
@@ -12,6 +14,8 @@ public class Solution {
         
     }
 } 
+
+24 November 2015 at 4:14:35 pm
 
  * 
  */

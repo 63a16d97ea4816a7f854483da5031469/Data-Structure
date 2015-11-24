@@ -1,3 +1,4 @@
+package ok;
 /*
 https://leetcode.com/problems/valid-palindrome/
 
@@ -14,7 +15,7 @@ public class Solution {
     }
 }
 
-
+22 November 2015 at 4:50:15 pm
  */
 public class ValidPalindrome {
 	
