@@ -54,19 +54,20 @@ public class Permutations {
 		public void permuteSub(int[] arr,int i, int n){
 			
 			int j;
-			if(i==n)
+			if(i==n)// If we've chosen all the characters then:
 				{
 				    List<Integer> list=new ArrayList<Integer>();
-				    for(int tmp:arr)
+				    for(int tmp:arr) // we're done, so save it into the list
 				    {
 		                list.add(tmp);
 				    }
 	                result.add(list);
 				}else{
-					for(j=i;j<=n;j++){
-					   swap(arr,i,j);
-					   permuteSub(arr,i+1,n);
-					   swap(arr,i,j);
+					for(j=i;j<=n;j++)   // Otherwise, we've chosen characters a[0] to a[j-1]
+					{				    // so let's try all possible characters for a[j]
+					   swap(arr,i,j);   // Choose which one out of a[j] to a[n] you will choose
+					   permuteSub(arr,i+1,n);  // Choose the remaining letters
+					   swap(arr,i,j);   // Undo the previous swap so we can choose the next possibility for a[j]
 					}
 				}
 			

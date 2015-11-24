@@ -347,3 +347,34 @@ The graph was made with graphviz.
 	n7 -> n8 [label="swap(1, 1)"];
 	n7 -> n9 [label="swap(1, 2)"];
 	}
+	
+	
+Implementation of Java:
+
+	public void permute(int[] nums){
+		permuteSub(nums,0,nums.length-1);
+	}
+	
+	public void permuteSub(int[] arr,int i, int n){
+		
+		int j;
+		if(i==n)
+			{for(int tmp:arr)
+				System.out.print(tmp+" ");
+			System.out.println();
+			}else{
+				for(j=i;j<=n;j++){
+				   swap(arr,i,j);
+				   permuteSub(arr,i+1,n);
+				   swap(arr,i,j);
+				}
+			}
+		
+	}
+	
+	public void swap(int[] nums,int i,int j){
+		int tmp=nums[i];
+		nums[i]=nums[j];
+		nums[j]=tmp;
+	}
+	
