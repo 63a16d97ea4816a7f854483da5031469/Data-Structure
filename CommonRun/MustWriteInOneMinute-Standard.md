@@ -1516,3 +1516,20 @@ Method 2:
 	  System.out.println( e.nextElement() );
 	
 	  }
+	  
+	  
+	  
+	  
+	  
+	Hashtable table=new Hashtable()
+	
+	table.put("dfs","fds");
+	
+	Enumeration keys=table.keys();
+	
+	while(keys.hasMoreElements()){
+		str=(String) keys.nextElement();
+		System.out.println(str+":"+table.get(str));
+	}
+		  
+		  

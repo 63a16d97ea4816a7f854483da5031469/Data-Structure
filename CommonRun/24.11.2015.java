@@ -2,7 +2,7 @@
 
 
 
-# Must write within 1
+# Must write within 1 minute
 Remember:    
 
 			String --->  str.length();  
@@ -487,33 +487,161 @@ public void findPathSub(TreeNode root,List<TreeNode> list){
 			findPathSub(root.right,list);
 			list.remove(list.size()-1);
 		}
-
-
 	}
- 
+}
+
+##ReverseBits
+
+public String reverseBit(int n){
+	StringBuilder sb=new StringBuilder(Integer.toBinaryString(n));
+	return sb.reverse().toString();
+}
+
+public String reverseBit2(int n){
+	String str=Integer.toBinaryString(n);
+	
+	int head=0;
+	int end=str.length()-1;
+
+	Char[] cstr=str.toCharArray();
+	while(head<end){
+		Char c=str.charAt(head);
+		cstr[head]=cstr[end];
+		cstr[end]=c;
+	}
+
+	return String.valueOf(cstr);
+}
+
+##Reverse Integer
+
+
+##Reverse Linked List
+
+class ListNode{
+	int val;
+	ListNode next;
+	ListNode(int x){val=x;}
+}
+
+public ListNode reverse(ListNode head){
+	ListNode prev=null;
+	ListNode curr=head;
+	ListNode nextNext=head.next;
+
+	while(curr!=null){
+		nextNext=curr.next;
+
+		curr.next=prev;
+		prev=curr;
+		curr=nextNext;
+	}
+
+	return prev;
+}
+
+
+
+##Rotate Array
+
+rotate k steps.
+
+public void rotateArr(int[] nums){
+	int[] c=nums.clone();
+
+	while(int i=0;i<nums.length;i++){
+		nums[i]=c[(i+k)%nums.length];
+	}
+}
+
+
+
+##Reverse Array
+
+public void reverse(int[] arr){
+	
+	int low=0;
+	int high=arr.length;
+
+	while(low<high){
+		int tmp=arr[low];
+		arr[low]=arr[high];
+		arr[high]=tmp;
+	}
 
 }
 
 
 
-##ReverseBits
-
-##Reverse Integer
-
-##Reverse Linked List
-
-##Rotate Array
-
-##Reverse Array
-
 ##Is Same Tree (/same-tree/)
 
 ## Symmetric Tree
+
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public boolean isSymmetric(TreeNode root){
+	if(root==null) return true;
+
+	return isSymme(root.left,root.right);
+}
+
+public boolean isSymme(TreeNode p,TreeNode q){
+	
+	if(p==null&&q==null) return true;
+	if(p!=null||q!=null) return false;
+
+	if(p!=null&&q!=null){
+		return p==q&&isSymme(p.left,q.right)&&isSymme(p.right,q,left);
+	}
+return null;
+}
+
 
 ## valid-anagram (/valid-anagram/)
 
 ##HashSet iteration
 
+Set set=new HashSet();
+
+set.add("fds");
+set.add("fdsfds");
+
+for(Iterator it=set.iterator;it.hasNext();){
+	System.out.println(it.next());
+}
+
+
+
 ##HashMap iteration
 
+HashMap<Integer,String> map=new HashMap<Integer,String>();
+
+map.put(1,"fds");
+
+map.put(2,"fdsf");
+
+
+for(Entry<Integer,String> entry:map.entrySet()){
+	System.out.println(entry.getKey()+"="+entry.getValue());
+}
+
+
 ##HashTable iteration
+
+Hashtable table=new Hashtable();
+table.put("21","32");
+
+Enumeration
+
+Enumeration e=table.elements();
+
+while(e.hasMoreElements()){
+	str=(String)e.nextElement();
+	System.out.println(str+":"+table.get(str));
+}
+
