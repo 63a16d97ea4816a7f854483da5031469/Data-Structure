@@ -285,29 +285,29 @@ Thus entire permutation:
 	
 ##how to understand the method:
 
-void permute(char a[], int i, int n)
-{
-    int j;
-    if (i == n)                  // If we've chosen all the characters then:
-       cout << a << endl;        // we're done, so output it
-    else
-    {
-        for (j = i; j <= n; j++) // Otherwise, we've chosen characters a[0] to a[j-1]
-        {                        // so let's try all possible characters for a[j]
-            swap(a[i], a[j]);    // Choose which one out of a[j] to a[n] you will choose
-            permute(a, i+1, n);  // Choose the remaining letters
-            swap(a[i], a[j]);    // Undo the previous swap so we can choose the next possibility for a[j]
-        }
-    }
-} 
-
-int main()
-{
-   char a[] = "ABCD";
-   permute(a, 0, 3);
-   getchar();
-   return 0;
-}
+	void permute(char a[], int i, int n)
+	{
+	    int j;
+	    if (i == n)                  // If we've chosen all the characters then:
+	       cout << a << endl;        // we're done, so output it
+	    else
+	    {
+	        for (j = i; j <= n; j++) // Otherwise, we've chosen characters a[0] to a[j-1]
+	        {                        // so let's try all possible characters for a[j]
+	            swap(a[i], a[j]);    // Choose which one out of a[j] to a[n] you will choose
+	            permute(a, i+1, n);  // Choose the remaining letters
+	            swap(a[i], a[j]);    // Undo the previous swap so we can choose the next possibility for a[j]
+	        }
+	    }
+	} 
+	
+	int main()
+	{
+	   char a[] = "ABCD";
+	   permute(a, 0, 3);
+	   getchar();
+	   return 0;
+	}
 
 
 PaulR has the right suggestion. You have to run through the code by "hand" (using whatever tools you want - debuggers, paper, logging function calls and variables at certain points) until you understand it. For an explanation of the code I'll refer you to quasiverse's excellent answer.
