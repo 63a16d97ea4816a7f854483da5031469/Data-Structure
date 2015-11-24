@@ -5,7 +5,7 @@
 	int n=arr2.length;
 
 
-* Before we use LinkedNode, we need to check whether it is null.
+* Before we use ListNode, we need to check whether it is null.
 
 * Remember:    
 
