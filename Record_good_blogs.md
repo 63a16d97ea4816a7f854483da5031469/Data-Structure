@@ -5,6 +5,8 @@ This folder is for saving all the Data Structure Code
 > Hour after hour  
 > Day after day  
 
+http://zhaonanleetcode.blogspot.sg/2014/07/leetcode-implement-strstr.html
+
 www.matrix67.com/blog/
 
 
