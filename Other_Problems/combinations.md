@@ -430,4 +430,84 @@ Use Generic implementation:
 		nums[i]=nums[j];
 		nums[j]=tmp;
 	}
+
+
+Print out the process:
+
+		public <E>void permute(E[] nums){
+			permuteSub(nums,0,nums.length-1);
+		}
+		
+		public <E>void permuteSub(E[] nums,int i, int n){
 	
+			int j;
+			if (i == n) {
+				System.out.print("i="+i+" ");
+				printArr(nums);
+	//			for (E tmp : nums)
+	//				System.out.print(tmp + " ");
+	//			System.out.println();
+			} else {
+				for (j = i; j <= n; j++) {
+					swap(nums, i, j);
+					System.out.print("i="+i+" j="+j+" ");
+					printArr(nums);
+					permuteSub(nums, i + 1, n);
+					swap(nums, i, j);
+				}
+			}
+			
+		}
+		
+		public <E>void swap(E[] nums,int i,int j){
+			E tmp=nums[i];
+			nums[i]=nums[j];
+			nums[j]=tmp;
+		}
+		
+	i=0 j=0 a b c 
+	i=1 j=1 a b c 
+	i=2 a b c 
+	i=1 j=2 a c b 
+	i=2 a c b 
+	i=0 j=1 b a c 
+	i=1 j=1 b a c 
+	i=2 b a c 
+	i=1 j=2 b c a 
+	i=2 b c a 
+	i=0 j=2 c b a 
+	i=1 j=1 c b a 
+	i=2 c b a 
+	i=1 j=2 c a b 
+	i=2 c a b 
+
+reOrder the print out result:
+	
+	Loop all the swap(0,i)   i-->n cases:
+	i=0 j=0 a b c 
+	i=0 j=1 b a c 
+	i=0 j=2 c b a 
+	
+	Loop Sub-process: swap(1,i) for swap(0,0) case extends from previous loop i-->n cases:
+	ABC:
+	i=1 j=1 a b c 
+	i=1 j=2 a c b
+	
+	Loop Sub-process: swap(1,i) for swap(0,1) case extends from previous loop i-->n cases:
+	BAC: 
+	i=1 j=1 b a c 
+	i=1 j=2 b c a
+	
+	Loop Sub-process: swap(1,i) for swap(0,2) case extends from previous loop i-->n cases:
+	CBA: 
+	i=1 j=1 c b a 	
+	i=1 j=2 c a b 	
+	
+	i=2 a c b 
+	i=2 a b c
+	i=2 b a c 
+	i=2 b c a 
+	i=2 c b a 
+	i=2 c a b 
+
+<img src="./screenshots/recursion.png">	
