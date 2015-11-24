@@ -5,6 +5,10 @@ This folder is for saving all the Data Structure Code
 > Hour after hour  
 > Day after day  
 
+www.matrix67.com/blog/
+
+
+
 http://blog.csdn.net/zinss26914/article/category/1236025
 
 
@@ -51,3 +55,30 @@ http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algori
 
 图论：图的遍历，最小生成树，最短路径，网络流，连通性问题，二分图
 
+
+
+	谁能看出这是个文科生？——关于matrix67
+	认识matrix67是在去年暑假，他是我认识的第一个学OI的文科生。也是认识的OIers里面交往较多较深入的一个。
+	
+	他是表面上的color_wolf，然而我了解他其实真的不是。属于受打击了以后然后就在别人面前开始表现得玩世不恭那种类型。（此为推测）
+	
+	他的个人网站是：www.matrix67.com
+	
+	他的blog是：www.matrix67.com/blog/
+	
+	看看下面的他这些blog文章，谁能看出这是个文科生？
+	
+	《数据结构与算法分析》5000字缩写（上）
+	《数据结构与算法分析》5000字缩写（中）
+	《数据结构与算法分析》5000字缩写（下）
+	
+	Matrix67的OI点滴（序篇）：我为什么要写这个？
+	Matrix67的OI点滴（一）：澄清P问题、NP问题、NPC问题的概念
+	Matrix67的OI点滴（二）：什么是离散化？
+	Matrix67的OI点滴（三）：KMP算法
+	Matrix67的OI点滴（四）：König定理的证明
+	Matrix67的OI点滴（五）：生成函数
+	Matrix67的OI点滴（六）：可能有用的概率学知识
+	
+	无限小却无限大的集合 & 阶梯状的连续函数
+	
