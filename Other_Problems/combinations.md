@@ -483,31 +483,42 @@ Print out the process:
 
 reOrder the print out result:
 	
-	Loop all the swap(0,i)   i-->n cases:
+	Loop all the swap(0,k)   k-->n cases:
 	i=0 j=0 a b c 
 	i=0 j=1 b a c 
 	i=0 j=2 c b a 
 	
-	Loop Sub-process: swap(1,i) for swap(0,0) case extends from previous loop i-->n cases:
+	Loop Sub-process: swap(1,k) for swap(0,0) case extends from previous loop k-->n cases:
 	ABC:
 	i=1 j=1 a b c 
 	i=1 j=2 a c b
 	
-	Loop Sub-process: swap(1,i) for swap(0,1) case extends from previous loop i-->n cases:
+	Loop Sub-process: swap(1,k) for swap(0,1) case extends from previous loop k-->n cases:
 	BAC: 
 	i=1 j=1 b a c 
 	i=1 j=2 b c a
 	
-	Loop Sub-process: swap(1,i) for swap(0,2) case extends from previous loop i-->n cases:
+	Loop Sub-process: swap(1,k) for swap(0,2) case extends from previous loop k-->n cases:
 	CBA: 
 	i=1 j=1 c b a 	
 	i=1 j=2 c a b 	
 	
-	i=2 a c b 
+	ABC swap(2,2) for swap(1,1) extends from previous loop:
 	i=2 a b c
+	
+	ABC swap(2,2) for swap(1,2) extends from previous loop:
+	i=2 a c b 
+	
+	BAC	swap(2,2) for swap(1,1) extends from previous loop::
 	i=2 b a c 
+	
+	BAC swap(2,2) for swap(1,2) extends from previous loop:
 	i=2 b c a 
-	i=2 c b a 
+	
+	CBA	swap(2,2) for swap(1,1) extends from previous loop::
+	i=2 c b a
+	
+	CBA	swap(2,2) for swap(1,2) extends from previous loop:: 
 	i=2 c a b 
 
 <img src="./screenshots/recursion.png">	
