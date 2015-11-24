@@ -3,6 +3,10 @@
 http://www.tutorialspoint.com/codingground.htm
 
 
+http://www.runoob.com/java/java-generics.html
+
+
+
 ##difference between HashMap and Hashtable(not "T" it is "t"):
 
 java.util.Hashtable
