@@ -378,3 +378,56 @@ Implementation of Java:
 		nums[j]=tmp;
 	}
 	
+	
+##by using generics to modify the above method:
+http://www.runoob.com/java/java-generics.html
+
+	     Integer[] intArray = { 1, 2, 3, 4, 5 };
+        Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4 };
+        Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };
+        
+     Take care you need to convert int[], char[].... to Integer[], Character[]...
+    
+    How to convert:
+    
+	  Integer[] newArray = new Integer[ids.length];
+	     for (int i = 0; i < ids.length; i++) {
+	       newArray[i] = Integer.valueOf(ids[i]);
+	     }
+	 
+ 
+ 	char[] cArr="abc".toCharArray();
+		Character[] newArr=new Character[cArr.length];
+		for(int i=0;i<cArr.length;i++){
+			newArr[i]=Character.valueOf(cArr[i]);
+		}
+	    
+Use Generic implementation:
+
+	public <E>void permute(E[] nums){
+		permuteSub(nums,0,nums.length-1);
+	}
+	
+	public <E>void permuteSub(E[] nums,int i, int n){
+		
+		int j;
+		if(i==n)
+			{for(E tmp:nums)
+				System.out.print(tmp+" ");
+			System.out.println();
+			}else{
+				for(j=i;j<=n;j++){
+				   swap(nums,i,j);
+				   permuteSub(nums,i+1,n);
+				   swap(nums,i,j);
+				}
+			}
+		
+	}
+	
+	public <E>void swap(E[] nums,int i,int j){
+		E tmp=nums[i];
+		nums[i]=nums[j];
+		nums[j]=tmp;
+	}
+	
