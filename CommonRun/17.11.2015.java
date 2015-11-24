@@ -600,13 +600,24 @@ class TreeNode{
  List<List<TreeNode>> result=new ArrayList<ArrayList<TreeNode>>();
  ArrayList<TreeNode> tmp=new ArrayList<TreeNode>();
 
+public List<List<TreeNode>> findPath(TreeNode root){
+	
+	getPath(root);
+	return result;
+
+}
+
+
+
+
+
 public void getPath(TreeNode root){
 	
 	if(root!=null){
 		tmp.addLast(root);
-	}
 
-	if(root!=null&&root.left==null&&root.right==null) {
+
+	if(root.left==null&&root.right==null) {
 	result.add(tmp);
 	tmp=new ArrayList<TreeNode>();
 		}
@@ -614,10 +625,14 @@ public void getPath(TreeNode root){
 
 	if(root.left!=null){
 		getPath(root.left);
+		tmp.remove(tmp.size()-1);
 	}
 
 	if(root.right!=null){
 		getPath(root.right);
+		tmp.remove(tmp.size()-1);
+	}
+
 	}
 }
 

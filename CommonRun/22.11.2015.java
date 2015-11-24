@@ -509,7 +509,18 @@ public void permutation(String prev,String str){
 
  List<String> result=new ArrayList<String>();
 
- public List<TreeNode> binaryTree(TreeNode root,List<Integer> list){
+
+ public List<String> findPath(TreeNode root){
+
+ 	binaryTree(root,new ArrayList<TreeNode>());
+ 	return result;
+
+ }
+
+
+
+
+ public void binaryTree(TreeNode root,List<Integer> list){
 
  	if(root!=null){
  		list.add(root);
@@ -525,16 +536,16 @@ public void permutation(String prev,String str){
  		}
  	
  		if(root.left!=null){
- 			list.add(root.left,list);
+ 			binaryTree(root.left,list);
  			list.remove(list.size()-1);
  		}
 
  		if(root.right!=null){
- 			list.add(root.right,list);
+ 	 		binaryTree(root.right,list);
  			list.remove(list.size()-1);
  		}
  	}
-	return result;
+ 
  }
 
 ##ReverseBits

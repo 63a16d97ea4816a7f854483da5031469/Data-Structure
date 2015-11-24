@@ -444,20 +444,23 @@ class TreeNode{
 	TreeNode right;
 	TreeNode(int x){val=x;}
 }
+List<String> result=new ArrayList<String>();
 
 public List<String> findPath(TreeNode root){
 	
-
+	findPathSub(root,new ArrayList<TreeNode>());
+	return result;
 }
 
 
-List<String> result=new ArrayList<String>();
 
-public List<String> findPathSub(TreeNode node,List<TreeNode> list){
+
+public void findPathSub(TreeNode node,List<TreeNode> list){
 	
 
 
 	if(node!=null){
+		list.add(node);
 	
 	if(node.left==null&&node.right==null){
 		String str="";
@@ -477,7 +480,7 @@ public List<String> findPathSub(TreeNode node,List<TreeNode> list){
 	}
 	}
 
-return result;
+ 
 
 
 }

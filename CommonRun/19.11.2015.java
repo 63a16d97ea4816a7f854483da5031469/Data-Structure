@@ -612,13 +612,14 @@ List<List<Integer>> result=new ArrayList<ArrayList<Integer>>();
 
 
 public List<List<Integer>> getTreePath(TreeNode root){
-	return getPath(root,new ArrayList<Integer>());
+	getPath(root,new ArrayList<Integer>());
+	return result;
 }
 
 
 
 
-public List<List<Integer>> getPath(TreeNode root,List<Integer> list){
+public void getPath(TreeNode root,List<Integer> list){
 
   
   if(root!=null){
@@ -642,8 +643,7 @@ public List<List<Integer>> getPath(TreeNode root,List<Integer> list){
 	}
 
   }
-
-return result;
+ 
 
 }
 
