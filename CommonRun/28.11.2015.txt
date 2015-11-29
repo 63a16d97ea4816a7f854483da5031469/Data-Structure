@@ -255,6 +255,18 @@ public ListNode findCycle(ListNode head){
 
 	}
 
+	fast=head;
+
+	while(fast!=null&&slow!=null){
+
+	fast=fast.next;
+	slow=slow.next;
+
+	if(fast==slow) return fast;
+	}
+
+
+return null;
 }
 
 
@@ -263,15 +275,103 @@ public ListNode findCycle(ListNode head){
 
 ##Minimum Depth of Binary Tree
 
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public int findDepth(TreeNode root){
+	
+	int depth=0;
+	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+
+	que.addLast(root);
+	que.addLast(null);
+
+	if(root!=null){
+
+	 TreeNode firstNode=que.removeFirst();
+
+	 if(firstNode==null){
+	 	depth++;
+
+	 	if(!que.isEmpty()){
+	 		que.addLast(null);
+	 	}
+	 }else{
+
+	 	if(firstNode.left==null&&firstNode.right==null){
+	 		return depth+1;
+	 	}
+
+	 	if(firstNode.left!=null){
+	 		que.addLast(firstNode.left);
+	 	}
+	 	
+	 	if(firstNode.right!=null){
+	 		que.addLast(firstNode.right);
+	 	}
+	 }
+
+
+
+	}
+
+
+return depth;
+}
+
+
 ##Maximum Depth of Binary Tree
 
 ##Binary Search
+
+public int binarySearch(int[] nums,int key){
+	
+	int low=0;
+	int high=nums.length-1;
+
+	while(low<=high){
+		int middle=(low+high)/2;
+
+		if(nums[middle]==key) return middle;
+
+		if(nums[middle]>key){
+			high=middle-1;
+		}
+
+		if(nums[middle]<key){
+			low=middle+1;
+		}
+	}
+
+return -1;
+}
+
 
 ##Implement Queue using stacks
 
 ##Implement Stack using Queues
 
 ##invert binary tree
+
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public void invertBinaryTree(TreeNode root){
+	
+	if(root!=null){
+	
+	}
+
+}
+
 
 ##Swap two variables without using extra space
 
