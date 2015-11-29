@@ -715,9 +715,10 @@ Hashtable table=new Hashtable();
 table.put("fds","fds");
 
 
-Emuneration e=table.elements();
+Emuneration e=table.keys();
 
-while(e.hasMoreElement()){
+while(e.hasMoreElements()){
  String str=(String)e.nextElement();
  System.out.println(str+" "+table.get(str));
 }
+

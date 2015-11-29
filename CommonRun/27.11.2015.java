@@ -645,7 +645,7 @@ public boolean isSymm(TreeNode root){
 
 public boolean isSymmSub(TreeNode p,TreeNode q){
 	if(p==null||q==null) return true;
-	if(p!=null||q!=null) return false;
+	if(p==null||q==null) return false;
 
 
 	if(p!=null&&q!=null){
@@ -690,7 +690,7 @@ Hashtable table=new Hashtable();
 table.put("fds","fds");
 
 
-Enumeration e=table.elements();
+Enumeration e=table.keys();
 
 while(e.hasMoreElements()){
 	String str=(String)e.nextElement();

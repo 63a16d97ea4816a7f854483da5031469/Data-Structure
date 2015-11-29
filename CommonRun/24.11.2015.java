@@ -638,7 +638,7 @@ table.put("21","32");
 
 Enumeration
 
-Enumeration e=table.elements();
+Enumeration e=table.keys();
 
 while(e.hasMoreElements()){
 	str=(String)e.nextElement();

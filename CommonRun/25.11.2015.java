@@ -781,7 +781,7 @@ for(Entry<String,String> entry:map.entrySet();){
 Hashtable table=new Hashtable();
 table.put("fds","fds");
 
-Enumeration e=table.elements();
+Enumeration e=table.keys();
 
 while(e.hasMoreElements()){
 	str=(String)e.nextElement();
@@ -790,7 +790,7 @@ while(e.hasMoreElements()){
 
 
 
-Enumeration e=table.elements();
+Enumeration e=table.keys();
 while(e.hasMoreElements()){
 	str=(String)e.nextElement();
 	System.out.println(str+":"+table.get(str));
@@ -800,7 +800,7 @@ while(e.hasMoreElements()){
 
 
 
-Enumeration e=table.elements();
+Enumeration e=table.keys();
 while(e.hasMoreElements()){
 	str=(String)e.nextElement();
 	System.out.prinltn(str+":"+table.get(str));
