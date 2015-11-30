@@ -1,4 +1,4 @@
-# Must write within 1
+# Must write within 1 minute
 Remember:    
 
 			String --->  str.length();  
