@@ -32,7 +32,6 @@ public void preOrder(TreeNode root){
 	}
 }
 
-
 ##InOrder Traversal
 
 
@@ -373,6 +372,13 @@ public void inverseTree(TreeNode root){
 
 ##Swap two variables without using extra space
 
+public void swap(int a,int b){
+	a=a^b;
+	b=a^b;
+	a=a^b;
+}
+
+
 ##Merge two sorted arrays ===> array operation
 
 ##Merge two sorted lists
@@ -381,11 +387,61 @@ public void inverseTree(TreeNode root){
 
 ##Move-zeroes  ===> array operation
 
+public void moveZero(int[] nums){
+  
+  int p=0;
+
+  while(p<nums.length){
+    if(nums[p]==0){
+        for(int i=p+1;i<nums.length;i++){
+           if(nums[i]!=0){
+              nums[p]=nums[i];
+              nums[i]=0;
+              break;
+           }
+        }
+    }
+  }
+}
+
 ##Palindrome Number (回文)
+
+public boolean palindrom(int n){
+	
+	int div=1;
+	int tmp=n;
+
+	while(tmp/10>0){
+		div*=10;
+		tmp/=10;
+	}
+
+	tmp=n;
+
+	while(tmp>0){
+		
+		int l=tmp/div;
+		int r=tmp%10;
+
+		if(l!=r) return false;
+		
+		tmp=(tmp%div)/10;
+		div/=100;
+	}
+
+return true;
+}
+
+
 
 ##Permutations (important)
 
 method 1:
+
+public void permutations(){
+	permu(nums,0,nums.length-1);
+}
+
 
 public void permu(int[] nums,int i,int n){
 
@@ -478,7 +534,39 @@ public void findPath(TreeNode root){
 
 ##ReverseBits
 
+public void reverseBit(int n){
+	String str=Integer.toBinaryString(n);
+
+	int low=0;
+	int high=str.length();
+	Char[] c=str.toCharArray();
+	while(low<high){
+		Char tmp=c[low];
+		c[low]=c[high];
+		c[high]=tmp;
+	}
+
+	return String.valueOf(c);
+}
+
+public void reverseInt(int n){
+	StringBuilder sb=new StringBuilder(Integer.toBinaryString(n));
+
+	return sb.reverse().toString();
+}
+
 ##Reverse Integer
+
+public void reverseInt(int n){
+	int another=0;
+	int tmp=n;
+		while(tmp!=0){
+			another=another*10+tmp%10;
+			tmp/=10;
+		}
+}
+
+
 
 ##Reverse Linked List
 
@@ -521,6 +609,9 @@ public void reverseArr(int[] arr){
 }
 
 ##Is Same Tree (/same-tree/)
+
+levelTraversal two trees and see whether the result is matched.
+
 
 ## Symmetric Tree
 
