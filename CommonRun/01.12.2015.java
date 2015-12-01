@@ -1,10 +1,6 @@
-
-
 /*
 
-
-
-# Must write within 1
+# Must write within 1 minute
 Remember:    
 
 			String --->  str.length();  
@@ -14,7 +10,8 @@ Remember:
 			String.valueOf(char[] ch);
 
 ##Binary operation / Bit operations
-	 
+
+Integer.toBinaryString(n);
 
 ##PreOrder Traversal
 
@@ -24,38 +21,66 @@ Remember:
 
 ##PostOrder Traversal
 
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+
+public void postOrder(TreeNode root){
+	
+	if(root!=null){
+	
+	if(root.left!=null){
+	postOrder(root.left);
+	}
+
+	if(root.right!=null){
+	postOrder(root.right);
+	}
+
+	System.out.println(root.val);
+
+	}
+
+}
+
+
 
 ##LevelOrder Traversal
-
 
 class TreeNode{
 	int val;
 	TreeNode left;
 	TreeNode right;
-	TreeNode(int x){
-	val=x;
-	}
+	TreeNode(int x){val=x;}
 }
 
-
-public void levelTraversal(TreeNode root){
+public void levelOrderTraversal(TreeNode root){
+	
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+
 	que.addLast(root);
 
 	while(!que.isEmpty()){
 		TreeNode firstNode=que.removeFirst();
-		if(firstNode==null){
-	
-		}else{
+
+		if(firstNode!=null){
+			
 			System.out.println(firstNode.val);
+
 			if(firstNode.left!=null) que.addLast(firstNode.left);
 			if(firstNode.right!=null) que.addLast(firstNode.right);
+
 		}
 	}
 
-
 }
- 
+
+
+
 ##Deepth of binary tree Traversal
 
 class TreeNode{
@@ -65,63 +90,34 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-
-List<String> list=new ArrayList<String>();
-
-
-
-
 public int findDepth(TreeNode root){
 	
-LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+	int depth=0;
+
+	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+
 	que.addLast(root);
 	que.addLast(null);
 
-	int depth=0;
-
 	while(!que.isEmpty()){
+		TreeNode firstNode=que.removeFirst();
+
+		if(firstNode==null){
+			depth++;
+
+			if(!que.isEmpty()){
+				que.addLast(null);
+			}
+		}else{
 	
-	TreeNode firstNode=que.removeFirst();
-
-	if(firstNode==null){
-	depth++;
-	if(!que.isEmpty()){
-		que.addLast(null);
-	}
-	}else{
-
-	if(firstNode.left!=null){
-		que.addLast(firstNode.left);
-	}
-
-	if(firstNode.right!=null){
-		que.addLast(firstNode.right);
-	}
-	
-	}
-
+			if(firstNode.left!=null) que.addLast(firstNode.left);
+			if(firstNode.right!=null) que.addLast(firstNode.right);
+		}
 
 	}
 
-	return depth;
-
+return depth;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -133,50 +129,39 @@ class ListNode{
 	ListNode(int x){val=x;}
 }
 
-
 public void loopList(ListNode head){
-	
 	ListNode tmp=head;
 	while(tmp!=null){
 	System.out.println(tmp.val);
 	tmp=tmp.next;
-
 	}
-
 }
-
 
 
 ##Fibonacci Number
 
+public int findN(int n){
+	if(n==0||n==1) return 1;
+	return findN(n-1)+findN(n-2);
+}
 
-public int getF(int n){
+
+public int findFibonacci(int n){
 	
 	if(n==0||n==1) return 1;
 
-	return getF(n-1)+getF(n-2);
-
-}
-
-public int getF(int n){
-	
 	int a=1;
 	int b=1;
 	int sum=a+b;
-
 
 	for(int i=2;i<=n;i++){
 		sum=a+b;
 		a=b;
 		b=sum;
 	}
+	return sum;
 
-return sum;
 }
-
-
-
-
 ##BFS
 
 ##DFS
@@ -190,37 +175,31 @@ class ListNode{
 }
 
 public boolean isCycle(ListNode head){
-	ListNode tmp=head;
+	ListNode fast=head;
 	ListNode slow=head;
-	while(tmp!=null){
-	if(tmp.next!=null){
-	tmp=tmp.next.next;
+
+	while(fast!=null){
+	
+	if(fast.next!=null){
+	fast=fast.next.next;
 	}else{
-	tmp=tmp.next;
+	fast=fast.next;
 	}
 
 	slow=slow.next;
 
-	if(fast==slow) return true;
-
-	
+	if(fast==slow)  return true;
 	}
-
 	return false;
 }
 
-
-
-
 ##find the insection node of two single lists
-
 
 class ListNode{
 	int val;
 	ListNode next;
 	ListNode(int x){val=x;}
 }
-
 
 public ListNode findInsection(ListNode head1, ListNode head2){
 	
@@ -246,44 +225,30 @@ public ListNode findInsection(ListNode head1, ListNode head2){
 	int diff=0;
 
 	if(len1>len2){
-	
-	diff=len1-len2;
-
-	while(diff>0){
-	tmp1=tmp1.next;
-	diff--;
-	}
-
+		diff=len1-len2;
+		while(diff>0){
+		tmp1=tmp1.next;
+		diff--;
+		}
 	}
 
 	if(len2>len1){
-	
-	diff=len2-len1;
-
-	while(diff>0){
-	
-	tmp2=tmp2.next;
-	diff--;
+		diff=len2-len1;
+		while(diff>0){
+		tmp2=tmp2.next;
+		diff--;
+		}
 	}
-
-
-	}
-	
 
 	while(tmp1!=null&&tmp2!=null){
 		if(tmp1.val==tmp2.val) return tmp1;
 
+		tmp1=tmp1.next;
+		tmp2=tmp2.next;
 	}
-
 
 return null;
 }
-
-
-
-
-
-
 
 
 ##find the beginning node of cycle (Linked List)
@@ -294,34 +259,34 @@ class ListNode{
 	ListNode(int x){val=x;}
 }
 
-public ListNode findCycle(ListNode head){
-	ListNode tmp=head;
+public ListNode findCycleNode(ListNode head){
+	ListNode fast=head;
 	ListNode slow=head;
 
-	while(tmp!=null){
-		
-		if(tmp.next!=null){
-		tmp=tmp.next.next;
-		}else{
-		tmp=tmp.next;
-		}
+	while(fast!=null){
+	
+	if(fast.next!=null){
+	fast=fast.next.next;
+	}else{
+	fast=fast.next;
+	}
 
 	slow=slow.next;
 
-	if(slow=tmp) break;
+
+	if(fast==slow) break;
+
 	}
 
-	tmp=head;
+	fast=head;
 
-	while(tmp!=null&&slow!=null){
+	while(fast!=null&&slow!=null){
 		
-		tmp=tmp.next;
+	if(fast==slow) return fast;
+		fast=fast.next;
 		slow=slow.next;
-		if(tmp==slow) return tmp;
+
 	}
-
-
-
 	return null;
 }
 
@@ -337,37 +302,41 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-public int findMinDepth(TreeNode root){
+public int findMin(TreeNode root){
+		
+		int depth=0;
+
+		LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+		que.addLast(root);
+
+		que.addLast(null);
+
+		while(!que.isEmpty()){
 	
-	int depth=0;
+			TreeNode firstNode=que.removeFirst();
+
+			if(firstNode==null){
+				depth++;
+				if(!que.isEmpty()){
+					que.addLast(null);
+				}
+			}else{
 	
-	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
-	que.addLast(root);
-	que.addLast(null);
+				if(firstNode.left==null&&fristNode.right==null){
+	
+					return depth+1;
+				}
 
-	while(!que.isEmpty()){
-		TreeNode firstNode=que.removeFirst();
+				if(firstNode.left!=null) que.addLast(firstNode.left);
 
-		if(firstNode==null) {
-			depth++;
-			if(!que.isEmpty()){
-				que.addLast(null);
-			}
-		}else{
-			if(firstNode.left==null&&firstNode.right==null){
-				return detph+1;
+				if(firstNode.right!=null) que.addLast(firstNode.right);
+
 			}
 
-			if(firstNode.left!=null) que.addLast(firstNode.left);
-			if(firstNode.right!=null) que.addLast(firstNode.right);
 		}
-
-	}
 
 return depth;
 }
-
-
 
 
 ##Maximum Depth of Binary Tree
@@ -375,27 +344,25 @@ return depth;
 ##Binary Search
 
 public int binarySearch(int[] nums,int key){
+	
 	int low=0;
 	int high=nums.length-1;
+
 	while(low<=high){
-	int middle=(low+high)/2;
-	
-	if(nums[middle]==key){
-		return middle;
-	}
+		int middle=(low+high)/2;
 
-	if(nums[middle]>key){
-	 high=middle-1;
-	}
+		if(nums[middle]==key) return middle;
 
-	if(nums[middle]<key){
-	 low=middle+1;
-	}
-	}
+		if(nums[middle]>key){
+			high=middle-1;
+		}
 
-return -1;
+		if(nums[middle]<key){
+			low=middle+1;
+		}
+	}
+	return -1;
 }
-
 
 
 ##Implement Queue using stacks
@@ -411,33 +378,26 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-public void invertBinaryTree(TreeNode root){
+public void invertTree(TreeNode root){
 	
 	if(root!=null){
-	
-	if(root.left!=null||root.right!=null){
-		TreeNode tmp=root.left;
-		root.left=root.right;
-		root.right=tmp;
-	}
+		
+		if(root.left!=null||root.right!=null){
+			TreeNode tmp=root.left;
+			root.left=root.right;
+			root.right=tmp;
+		}
 
-
-	if(root.left!=null) invertBinaryTree(root.left);
-	if(root.right!=null) invertBinaryTree(root.right);
-
+		if(root.left!=null) invertTree(root.left);
+		if(root.right!=null) invertTree(root.right);
 	}
 
 }
+
 
 
 
 ##Swap two variables without using extra space
-
-public void swap(int a,int b){
-	a=a^b;
-	b=a^b;
-	a=a^b;
-}
 
 ##Merge two sorted arrays ===> array operation
 
@@ -453,68 +413,94 @@ public void moveZero(int[] nums){
 
 	while(p<nums.length){
 		if(nums[p]==0){
-	
+			
 			for(int i=p+1;i<nums.length;i++){
 				if(nums[i]!=0){
-					nums[p]=nums[i];
-					nums[i]=0;
-					break;
+				nums[p]=nums[i];
+				nums[i]=0;
+				break;
 				}
 			}
 		}
 		p++;
 	}
+
+
 }
+
 
 ##Palindrome Number (回文)
 
-public boolean isPalindrome(int n){
-		
-	int div=1;
+public boolean palindrome(int n){
+	
+	int another=0;
+
 	int tmp=n;
-	while(tmp/10>0){
-		div=div*10;
+
+	while(tmp!=null){
+	
+		another=another*10+tmp%10;
 		tmp/=10;
 	}
-
-	
-	while(n!=0){
-		int l=n%10;
-		int h=n/div;
-
-	if(l!=h) return false;
-
-
-		div/=100;
-		n=n%div/10;
-	}
-
-return true;
+return another==n;
 }
+
+
+
+
 
 
 
 ##Permutations (important)
 
-public void permut(String str){
+method 1:
+
+public void permutate(String str){
 	permutations("",str);
 }
 
-public void permutations(String prev,String str){
+public void permutations(String pre,String str){
 	
-	if(str.length()==0) {
-	System.out.println(prev);
+	if(str.length()==0){
+	System.out.println(pre);
+	}else{
+		for(int i=0;i<str.length();i++){
+			permutations(pre+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length()));
+		}
 	}
 
-	for(int i=0;i<str.length();i++){
-		permutations(prev+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length()));
-	}
 
 }
 
 
-## Find path of Binary Tree
 
+
+
+
+
+
+method 2:
+
+public void permutation(int[] nums,int i,int n){
+	
+	if(i==n){
+		for(int tmp:nums)
+		 System.out.print(tmp+" ");
+
+		 System.out.println();
+	}else{
+		
+		for(int j=i;j<nums.length;j++){
+			swap(nums,i,j);
+			permutation(nums,i+1,n);
+			swap(nums,i,j);
+		}
+	}
+}
+
+
+
+## Find path of Binary Tree
 class TreeNode{
 	int val;
 	TreeNode left;
@@ -525,19 +511,14 @@ class TreeNode{
 List<String> result=new ArrayList<String>();
 List<TreeNode> list=new ArrayList<TreeNode>();
 
-
-public List<String> findPath(TreeNode root){
-	findPahtSub(root);
-	return result;
-}
-
-
-public void findPathSub(TreeNode root){
+public void findPath(TreeNode root){
 	
 	if(root!=null){
+	
 		list.add(root);
 
 		if(root.left==null&&root.right==null){
+	
 			String str="";
 
 			for(TreeNode tmp:list){
@@ -550,62 +531,43 @@ public void findPathSub(TreeNode root){
 		}
 
 		if(root.left!=null){
-			findPathSub(root.left);
+			findPath(root.left);
 			list.remove(list.size()-1);
 		}
 
 		if(root.right!=null){
-			findPathSub(root.right);
+			findPath(root.right);
 			list.remove(list.size()-1);
 		}
-	}	
+
+	}
 
 }
-
-
-
-
 
 
 ##ReverseBits
 
-public String reverseStr(int n){
+public String reverseBit(int n){
 	StringBuilder sb=new StringBuilder(Integer.toBinaryString(n));
+
 	return sb.reverse().toString();
 }
 
-public String reverseBit(int n){
+public String reverseInt(int n){
 	String str=Integer.toBinaryString(n);
-
 	Char[] c=str.toCharArray();
 
-	int head=0;
-	int end=c.length;
-	while(head<end){
-	int tmp=c[head];
-	c[head]=c[end];
-	c[end]=tmp;
-	head++;
-	end--;
+	for(int i=0;i<c.length;i++){
+		Char tmp=c[i];
+		c[i]=c[c.length-1-i];
+		c[c.length-1-i]=tmp;
 	}
-	return String.valueOf(c);
 }
+
 
 
 
 ##Reverse Integer
-
-public int reverseInt(int n){
-	
-	int tmp=n;
-	int another=0;
-	while(tmp!=0){
-	another=another*10+tmp%10;
-	tmp/10;
-	}
-return another;
-
-}
 
 ##Reverse Linked List
 
@@ -615,82 +577,79 @@ class ListNode{
 	ListNode(int x){val=x;}
 }
 
-public void reverse(ListNode head){
-		
-		ListNode tmp=head;
-
+public void reverseArr(ListNode head){
+		ListNode curr=head;
+		ListNode nextNext=curr.next;
 		ListNode prev=null;
-		ListNode nextNext=tmp.next;
-	while(tmp!=null){
-		nextNext=tmp.next;
 
-		tmp.next=prev;
-		prev=tmp;
-		tmp=nextNext;
-	}
+		while(tmp!=null){
+	
+		nextNext=curr.next;
 
-
+		curr.next=prev;
+		prev=curr;
+		curr=nextNext;
+		}
 
 }
 
-
-
-
-
-
 ##Rotate Array
 
-public void rotate(int[] arr){
-    int[] c=arr.clone();
+public void rotate(int[] nums){
+	
+	int[] c=nums.clone();
 
-    for(int i=0;i<c.length;i++){
-        arr[i]=c[(i+k)%length];
-    }
+	for(int i=0;i<nums.length;i++){
+		nums[i]=c[(i+k)%nums.length];
+	}
+
 }
 
 
 ##Reverse Array
 
+public void reverseArr(int[] nums){
+	
+	int low=0;
+	int high=nums.length-1;
+
+	while(low<high){
+		int tmp=nums[low];
+		nums[low]=nums[high];
+		nums[high]=tmp;
+		low++;
+		high--;
+	}
+
+}
+
+
 ##Is Same Tree (/same-tree/)
 
 ## Symmetric Tree
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
 public boolean isSymm(TreeNode root){
-	if(root==null) return true;
-	return isSymmTwo(root.left,root.right);
+	
+	return isSymmSub(root.left,root.right);
 }
 
-public boolean isSymmTwo(TreeNode p, TreeNode q){
+public boolean isSymmSub(TreeNode p, TreeNode q){
+	
 	if(p==null&&q==null) return true;
 	if(p==null||q==null) return false;
 
 	if(p!=null&&q!=null){
 	
-	return (p.val==q.val)&&isSymmTwo(p.right,q.left)&&isSymmTwo(q.left,p.right);
+		return (p.val==q.val)&&isSymmSub(p.right,q.left)&&isSymmSub(p.left,q.right);
+
 	}
 
 
 }
 
-
 ## valid-anagram (/valid-anagram/)
 
-Use hashMap.
- 
-
 ##HashSet iteration
-
-HashSet set=new HashSet();
-
-set.add("fds");
-
 
 for(Iterator it=set.iterator;it.hasNext();){
 	System.out.println(it.next());
@@ -699,27 +658,18 @@ for(Iterator it=set.iterator;it.hasNext();){
 
 ##HashMap iteration
 
-HashMap<Integer,String> map=new HashMap<Integer,String>();
-
-map.put("dfsfd","fdsf");
-
-for(Entry<Integer,String> entry:map.entrySet()){
+for(Entry<String,String> entry:map.entrySet()){
 	System.out.println(entry.getKey()+":"+entry.getValue());
 }
 
-
 ##HashTable iteration
 
-
 Hashtable table=new Hashtable();
-
 table.put("fds","fds");
 
-
-Emuneration e=table.keys();
+Enumeration e=table.keys();
 
 while(e.hasMoreElements()){
- String str=(String)e.nextElement();
- System.out.println(str+" "+table.get(str));
+	String str=e.nextElement();
+	System.out.println(str+"="+table.get(str));
 }
-

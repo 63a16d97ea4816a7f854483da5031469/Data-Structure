@@ -460,7 +460,7 @@ public void moveZero(int[] nums){
 		}
 
 	}
-
+	p++;
 
 	}
 
