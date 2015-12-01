@@ -4,7 +4,6 @@
 几个比较好奇的问题：
 **背包问题，动态规划**
 
-
 ACM之家：
 http://www.acmerblog.com/category/basis
 
@@ -26,4 +25,11 @@ http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algori
 讲解最透彻的KMP：
 http://www.matrix67.com/blog/archives/115
 
- 
+最长公共字串
+
+Maximum subarray problem：
+https://en.wikipedia.org/wiki/Maximum_subarray_problem
+
+Dynamic programming
+https://en.wikipedia.org/wiki/Dynamic_programming
+
