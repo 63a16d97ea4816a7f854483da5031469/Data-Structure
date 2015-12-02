@@ -342,7 +342,7 @@ public int binarySearch(int[] nums,int key){
 	int low=0;
 	int high=nums.length-1;
 
-	while(low<high){
+	while(low<=high){
 	  int curr=(low+high)/2;
 	  if(nums[curr]==key) return curr;
 
