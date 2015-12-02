@@ -692,7 +692,7 @@ HashSet set=new HashSet();
 set.add("fds");
 
 
-for(Iterator it=set.iterator;it.hasNext();){
+for(Iterator it=set.iterator();it.hasNext();){
 	System.out.println(it.next());
 }
 

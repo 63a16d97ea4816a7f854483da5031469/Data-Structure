@@ -543,7 +543,7 @@ public boolean isSymmSub(TreeNode p, TreeNode q){
 Set set=new HashSet();
 set.add("dfs");
 
-for(Iterator it=set.iterator;it.hasNext();){
+for(Iterator it=set.iterator();it.hasNext();){
 	System.out.println(it.next());
 }
 

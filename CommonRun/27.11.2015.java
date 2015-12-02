@@ -667,7 +667,7 @@ Set set=new HashSet();
 
 set.add("Dfs");
 
-for(Iterator it=set.iterator;it.hasNext();){
+for(Iterator it=set.iterator();it.hasNext();){
 	System.out.println(it.next());
 }
 

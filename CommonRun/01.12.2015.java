@@ -651,7 +651,7 @@ public boolean isSymmSub(TreeNode p, TreeNode q){
 
 ##HashSet iteration
 
-for(Iterator it=set.iterator;it.hasNext();){
+for(Iterator it=set.iterator();it.hasNext();){
 	System.out.println(it.next());
 }
 
