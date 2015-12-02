@@ -90,3 +90,22 @@ Remember:
 ##HashMap iteration
 
 ##HashTable iteration
+
+##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+
+##MaximumSubarray
+
+
+##LinkRightNode
+
+Link all the same level node from left to right by using "Right" field.
+
+class Node
+{
+    public Node[] Children;
+    public Node Right;
+    public int val;
+    Node(int x){val=x;}
+}
+
