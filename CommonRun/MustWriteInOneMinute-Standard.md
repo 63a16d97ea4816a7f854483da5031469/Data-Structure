@@ -1532,4 +1532,161 @@ Method 2:
 		System.out.println(str+":"+table.get(str));
 	}
 		  
+##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.--KMP
+
+
+	
+	    public int strStr3(String haystack, String needle) {
+	        // Input validation.
+	        if (haystack == null || needle == null) return -1;
+	        if (haystack.length() < needle.length()) return -1;
+	//	        if (needle.length() == 0) return haystack;
+		        if(needle.equals("")&&haystack.equals("")) return 0;
+		        if(needle.length()==0) return -1;
+		        
+	//	        if(needle.length()==0) return 0; // according to leetcode: Input: "" "" Expect: 0
+
+	        // KMP.
+	        int firstMatchedIndex = KMP(haystack, needle);
+
+	        // Return result.
+	        if (firstMatchedIndex < 0) return -1;
+	//	        else return haystack.substring(firstMatchedIndex, haystack.length());
+		        else return firstMatchedIndex;
+		    }
+
+	    public int[] getNextArr(String pat) {
+	        int pat_len = pat.length();
+
+	        int[] next = new int[pat_len];
+	        next[0] = -1;
+
+	        int prefix_index = -1;
+	        int suffix_index = 0;
+
+	        while (suffix_index < pat_len) {
+	            if (prefix_index == -1 || 
+	                pat.charAt(prefix_index) == pat.charAt(suffix_index)) {
+
+	                int numMatched_prefix_and_suffix = prefix_index + 1;
+
+	                if (suffix_index + 1 >= pat_len) break;
+	                next[suffix_index + 1] = numMatched_prefix_and_suffix;
+
+	                prefix_index ++;
+	                suffix_index ++;
+
+	            } else {
+	                // Let next array guide use how to reset the prefix_index.
+	                prefix_index = next[prefix_index];
+
+	            }
+	        }
+
+	        return next;
+	    }
+
+	    public int KMP(String str, String pat) {
+	        int str_len = str.length();
+	        int pat_len = pat.length();
+
+	        int[] next = getNextArr(pat);
+
+	        int str_start = 0;
+	        int pat_start = 0;
+
+	        while (str_start < str_len && pat_start < pat_len) {
+	            // Since if the pat_start = next[0], the pat_start == -1,
+	            // so we need check whether pat_start == -1,
+	            // if that we just keep move forward.
+	            if (pat_start == -1 || str.charAt(str_start) == pat.charAt(pat_start)) {
+
+	                str_start ++;
+	                pat_start ++;
+
+	            } else {
+	                // Let next array guide us how to reset the pat_start.
+	                pat_start = next[pat_start];
+
+	            }
+	        }
+
+	        if (pat_start >= pat_len) {
+	            // The current str_start is point to,
+	            // the end of the matched part in the str,
+	            // and we know the matched length is pat_len,
+	            // so we use str_start - pat_len to get,
+	            // the matched start point in str.
+	            return str_start - pat_len;
+	        } else return -1;
+	    }
+ 
+ 
+	    
+
+
+
+##MaximumSubarray
+
+    public int maxSubArray3(int[] nums) {
+        int max_ending_here=nums[0];
+        int max_so_far=nums[0];
+        
+        for(int i=1;i<nums.length;i++){
+            max_ending_here=Math.max(nums[i], max_ending_here+nums[i]);
+            max_so_far=Math.max(max_so_far,max_ending_here);
+        }
+        
+        return max_so_far;
+    }
+	
+
+##LinkRightNode
+
+Link all the same level node from left to right by using "Right" field.
+
+	class Node
+	{
+	    public Node[] Children;
+	    public Node Right;
+	    public int val;
+	    Node(int x){val=x;}
+	}
+
+
+	public Node linkRightNode(Node rootNode){
+		
+		if(rootNode==null) return null;
+		
+		LinkedList<Node> que=new LinkedList<Node>();
+		
+		que.addLast(rootNode);
+		que.addLast(null);
+		
+		Node prev=null;
+		
+		while(!que.isEmpty()){
+			Node firstNode=que.removeFirst();
+			
+			if(firstNode==null){
+				prev=null;
+				if(!que.isEmpty()){
+					que.addLast(null);
+				}
+			}else{
+				
+				if(prev!=null){
+					prev.Right=firstNode;
+				}
+				
+				if(firstNode.Children!=null)
+				for(Node tmp:firstNode.Children){
+					que.addLast(tmp);
+				}
+				prev=firstNode;
+			}
+		}
+		return rootNode;
+	}
+	
 		  
