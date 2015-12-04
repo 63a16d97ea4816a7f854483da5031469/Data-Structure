@@ -1,6 +1,6 @@
 
-
 /*
+
 
 
 # Must write within 1 minute
@@ -13,14 +13,9 @@ Remember:
 			String.valueOf(char[] ch);
 
 ##Binary operation / Bit operations
-
-Integer.toBinaryString(n);
+	 
 
 ##PreOrder Traversal
-
-##InOrder Traversal
-
-##PostOrder Traversal
 
 class TreeNode{
 	int val;
@@ -29,25 +24,30 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-
-public void postOrder(TreeNode root){
+public void preOrder(TreeNode root){
 	
 	if(root!=null){
 	
+	System.out.println(root.val);
+
 	if(root.left!=null){
-	postOrder(root.left);
+	preOrder(root.left);
 	}
 
 	if(root.right!=null){
-	postOrder(root.right);
+	preOrder(root.right);
 	}
 
-	System.out.println(root.val);
 	}
-
 }
 
 
+
+
+##InOrder Traversal
+
+
+##PostOrder Traversal
 
 
 ##LevelOrder Traversal
@@ -59,19 +59,21 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-
-public void levelTree(TreeNode root){
-
+public void levelOrder(TreeNode root){
+	
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
 
 	que.addLast(root);
 
 	while(!que.isEmpty()){
+	
 		TreeNode firstNode=que.removeFirst();
+
+		if(firstNode==null){
 		
-		if(firstNode!=null){
+		}else{
 			System.out.println(firstNode.val);
-			
+		
 			if(firstNode.left!=null){
 				que.addLast(firstNode.left);
 			}
@@ -79,9 +81,12 @@ public void levelTree(TreeNode root){
 			if(firstNode.right!=null){
 				que.addLast(firstNode.right);
 			}
+
 		}
 	}
 }
+
+
 
 ##Deepth of binary tree Traversal
 
@@ -95,36 +100,35 @@ class TreeNode{
 public int findDepth(TreeNode root){
 	
 	int depth=0;
-	
+
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
 	que.addLast(root);
 	que.addLast(null);
 
-	if(root!=null){
-		
+	while(!que.isEmpty()){
+	
 		TreeNode firstNode=que.removeFirst();
 
-		if(firstNode==null){
-			depth++;
-			if(!que.isEmpty()){
-				que.addLast(null);
+			if(firstNode==null){
+				depth++;
+
+				if(!que.isEmpty()){
+					que.addLast(null);
+				}
+			}else{
+				
+				if(firstNode.left==null&&firstNode.right==null){
+					return depth+1;
+				}
+
+				if(firstNode.left!=null) que.addLast(firstNode.left);
+				if(firstNode.right!=null) que.addLast(firstNode.right);
+
 			}
-		}else{
-			
-			if(firstNode.left!=null){
-				que.addLast(firstNode.left);
-			}
-
-			if(firstNode.right!=null){
-				que.addLast(firstNode.right);
-			}
-
-		}
-
-
 	}
-return depth;
+
 }
+
 
 ##Linked List Traversal
 
@@ -135,22 +139,36 @@ class ListNode{
 }
 
 public void loopList(ListNode head){
-	
+		
 	ListNode tmp=head;
 
 	while(tmp!=null){
 	System.out.println(tmp.val);
 	tmp=tmp.next;
 	}
+
 }
 
 ##Fibonacci Number
 
-public int findN(int n){
-	
+public int findN(int n)
+{
+	if(n==0||n==1) return 1;
+	return findN(n-1)+findN(n-2);
+}
+
+public int findFibonacci(int n){
 	if(n==0||n==1) return 1;
 
-	return findN(n-1)+findN(n-2);
+	int a=1;
+	int b=1;
+	int sum=a+b;
+	for(int i=2;i<=n;i++{
+		sum=a+b;
+		a=b;
+		b=sum;
+	}
+	return sum;
 }
 
 ##BFS
@@ -162,8 +180,9 @@ public int findN(int n){
 class ListNode{
 	int val;
 	ListNode next;
-	ListNode(int x){val=x;}
+	LitNode(int x){val=x;}
 }
+
 
 public boolean isCycle(ListNode head){
 
@@ -171,24 +190,31 @@ public boolean isCycle(ListNode head){
 	ListNode slow=head;
 
 	while(fast!=null){
-	
-	if(fast.next!=null){
-	fast=fast.next.next;
-	}else{
-	fast=fast.next;
+		if(fast.next!=null){
+			fast=fast.next.next;
+		}else{
+			fast=fast.next;
+		}
+
+		slow=slow.next;
+
+		if(fast==slow) return true;
 	}
 
-	slow=slow.next;
-
-	if(fast==slow) return true;
-	}
-	
-return false;
+	return false;
 }
+
+
 
 ##find the insection node of two single lists
 
-public ListNode findInsection(ListNode head1, ListNode head2){
+class ListNode{
+	int val;
+	ListNode next;
+	ListNode(int x){val=x;}
+}
+
+public ListNode findInsection(ListNode head1,ListNode head2){
 	
 	ListNode tmp1=head1;
 	ListNode tmp2=head2;
@@ -213,6 +239,7 @@ public ListNode findInsection(ListNode head1, ListNode head2){
 
 	if(len1>len2){
 		diff=len1-len2;
+
 		while(diff>0){
 			tmp1=tmp1.next;
 			diff--;
@@ -221,6 +248,7 @@ public ListNode findInsection(ListNode head1, ListNode head2){
 
 	if(len2>len1){
 		diff=len2-len1;
+
 		while(diff>0){
 			tmp2=tmp2.next;
 			diff--;
@@ -229,11 +257,9 @@ public ListNode findInsection(ListNode head1, ListNode head2){
 
 	while(tmp1!=null&&tmp2!=null){
 	
-	tmp1=tmp1.next;
-	tmp2=tmp2.next;
-	
-	if(tmp1.val==tmp2.val) return tmp1;
-	
+		tmp1=tmp1.next;
+		tmp2=tmp2.next;
+		if(tmp1.val==tmp2.val) return tmp1;
 	}
 
 return null;
@@ -242,41 +268,44 @@ return null;
 
 ##find the beginning node of cycle (Linked List)
 
+
 class ListNode{
 	int val;
 	ListNode next;
 	ListNode(int x){val=x;}
 }
 
+
 public ListNode findBegin(ListNode head){
 	ListNode fast=head;
 	ListNode slow=head;
 
 	while(fast!=null){
-	
-	if(fast.next!=null){
-		fast=fast.next.next;
-	}else{
-		fast=fast.next;
-	}
+			if(fast.next!=null){
+			fast=fast.next.next;
+			}else{
+			fast=fast.next;
+			}
 
-	slow=slow.next;
+			slow=slow.next;
 
-	if(fast==slow) break;
+			if(fast==slow) break;
 
 	}
 
 	fast=head;
 
 	while(fast!=null&&slow!=null){
+	
+
 		fast=fast.next;
 		slow=slow.next;
-
 		if(fast==slow) return fast;
 	}
-
 return null;
 }
+
+
 
 ##LRU Cache
 
@@ -292,65 +321,64 @@ class TreeNode{
 public int findMinDepth(TreeNode root){
 	
 	int depth=0;
+	
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
-
 	que.addLast(root);
 	que.addLast(null);
 
 	while(!que.isEmpty()){
-	
 		TreeNode firstNode=que.removeFirst();
 
-		if(firstNode==null){
-			depth++;
-			if(!que.isEmpty()){
-				que.addLast(null);
-			}
-		}else{
-		
-			if(firstNode.left==null&&firstNode.right==null){
-				return depth+1;
-			}
+			if(firstNode==null){
+				depth++;
+				if(!que.isEmpty()){
+					que.addLast(null);
+				}
+			}else{
+				if(firstNode.left==null&&firstNode.right==null){
+					return depth+1;
+				}
 
-			if(firstNode.left!=null){
-				que.addLast(firstNode.left);
+				if(firstNode.left!=null){
+					findDepth(firstNode.left);
+				}
+
+				if(firstNode.right!=null){
+					findDepth(firstNode.right);
+				}
+
+
 			}
-
-			if(firstNode.right!=null){
-				que.addLast(firstNode.right);
-			}
-
-		}
-
 	}
-
 return depth;
 }
+
 
 ##Maximum Depth of Binary Tree
 
 ##Binary Search
 
-public int binarySearch(int[] nums,int key){
+public int Search(int[] nums,int key){
+    
+    int low=0;
+    int high=nums.length-1;
 
-	int low=0;
-	int high=nums.length-1;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(nums[mid]==key) return mid;
 
-	while(low<=high){
-		
-		int middle=(low+high)/2;
+        if(nums[mid]>key){
+            high=mid-1;
+        }
 
-		if(nums[middle]>key){
-			high=middle-1;
-		}
+        if(nums[mid]<key){
+            low=mid+1;
+        }
 
-		if(nums[middle]<key){
-			low=middle+1;
-		}
-
-	}
+    }
 return -1;
 }
+
 
 ##Implement Queue using stacks
 
@@ -366,32 +394,25 @@ class TreeNode{
 }
 
 public void invertTree(TreeNode root){
-		
-	if(root!=null){
 	
+	if(root!=null){
+		
 		if(root.left!=null||root.right!=null){
 			TreeNode tmp=root.left;
 			root.left=root.right;
 			root.right=tmp;
-		}
+		}		
 
 		if(root.left!=null){
 			invertTree(root.left);
 		}
-
 		if(root.right!=null){
 			invertTree(root.right);
 		}
-	}	
-}
 
+	}
+}
 ##Swap two variables without using extra space
-
-public void swap(int a,int b){
-	a=a^b;
-	b=a^b;
-	a=a^b;
-}
 
 ##Merge two sorted arrays ===> array operation
 
@@ -402,19 +423,18 @@ public void swap(int a,int b){
 ##Move-zeroes  ===> array operation
 
 public void moveZero(int[] nums){
-	
 	int p=0;
 
 	while(p<nums.length){
 		if(nums[p]==0){
-		
-		for(int i=p+1;i<nums.length;i++){
-			if(nums[i]!=0){
-				nums[p]=nums[i];
-				nums[i]=0;
-				break;
+			
+			for(int i=p+1;i<nums.length;i++){
+				if(nums[i]!=0){
+					nums[p]=nums[i];
+					nums[i]=0;
+					break;
+				}
 			}
-		}
 		}
 	p++;
 	}
@@ -422,15 +442,9 @@ public void moveZero(int[] nums){
 
 ##Palindrome Number (回文)
 
-
-
-
-
-
 ##Permutations (important)
 
-
-public void Permutations(int[] nums,int i,int n){
+public void permutations(int[] nums,int i,int n){
 	
 	if(i==n){
 		for(int tmp:nums)
@@ -438,22 +452,13 @@ public void Permutations(int[] nums,int i,int n){
 
 		System.out.println();
 	}else{
-		
 		for(int j=i;j<nums.length;j++){
 			swap(nums,i,j);
-			Permutations(nums,i+1,n);
+			permutations(nums,i+1,n);
 			swap(nums,i,j);
 		}
 	}
 }
-
-public void swap(int[] nums,int i,int j){
-	int tmp=nums[i];
-	nums[i]=nums[j];
-	nums[j]=tmp;
-}
-
-
 
 ## Find path of Binary Tree
 
@@ -463,46 +468,35 @@ class TreeNode{
 	TreeNode right;
 	TreeNode(int x){val=x;}
 }
-
-List<String> result=new ArrayList<String>();
 List<TreeNode> list=new ArrayList<TreeNode>();
+List<String> result=new ArrayList<String>();
+
 
 public void findPath(TreeNode root){
 	
-	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+	if(root!=null){
+		
+		list.add(root);
 
-	que.addLast(root);
+		if(root.left==null&&root.right==null){
+			String str="";
+			for(TreeNode tmp:list)
+				str+=tmp.val;
 
-	while(!que.isEmpty()){
-		TreeNode firstNode=que.removeFirst();
-
-		if(firstNode==null){
-			
-		}else{
-
-		list.add(firstNode);
-
-			if(firstNode.left==null&&firstNode.right==null){
-	
-				String str="";
-
-				for(TreeNode tmp:list)
-				   str+=tmp.val;
-				result.add(str);
-				list=new ArrayList<TreeNode>();
-			}
-
-
-			if(firstNode.left!=null){
-				que.addLast(firstNode.left);
-				list.remove(list.size()-1);
-			}
-
-			if(firstNode.right!=null){
-				que.addLast(firstNode.right);
-				list.remove(list.size()-1);
-			}
+			result.add(str);
+			list=new ArrayList<TreeNode>();
 		}
+
+		if(root.left!=null){
+			findPath(root.left);
+			list.remove(list.size()-1);
+		}
+		
+		if(root.right!=null){
+			findPath(root.right);
+			list.remove(list.size()-1);
+		}
+
 	}
 
 }
@@ -513,7 +507,6 @@ public void findPath(TreeNode root){
 ##Reverse Integer
 
 ##Reverse Linked List
-
 class ListNode{
 	int val;
 	ListNode next;
@@ -525,13 +518,15 @@ public void reverseList(ListNode head){
 	ListNode nextNext=head.next;
 	ListNode prev=null;
 	ListNode curr=head;
-	
+
 	while(curr!=null){
 		nextNext=curr.next;
+
 		curr.next=prev;
 		prev=curr;
 		curr=nextNext;
 	}
+
 }
 
 ##Rotate Array
@@ -539,19 +534,14 @@ public void reverseList(ListNode head){
 ##Reverse Array
 
 public void reverseArr(int[] nums){
-	
 	int low=0;
 	int high=nums.length-1;
 
-	for(int i=0;i<nums.length;i++){
+	while(low<high){
 		int tmp=nums[low];
 		nums[low]=nums[high];
 		nums[high]=tmp;
-
-		low++;
-		high--;
 	}
-
 }
 
 
@@ -566,61 +556,63 @@ public boolean isSymm(TreeNode root){
 public boolean isSymmSub(TreeNode p,TreeNode q){
 	
 	if(p==null&&q==null) return true;
-
 	if(p==null||q==null) return false;
 
 	if(p!=null&&q!=null){
-	return (p.val==q.val)&&isSymmSub(p.right,q.left)&&isSymmSub(p.left,q.right);
+		return (p.val==q.val)&&isSymmSub(p.right,q.left)&&isSymmSub(p.left,q.right);
 	}
-}
 
+}
 
 
 ## valid-anagram (/valid-anagram/)
 
 ##HashSet iteration
 
-Set set=new HashSet();
-
-set.add("fsd");
-set.add("fdsfds");
-
-for(Iterator it=set.iterator();it.hasNext();){
+for(Iterator it=set.iterator;it.hasNext();){
 	System.out.println(it.next());
 }
 
 
 ##HashMap iteration
 
-HashMap<String,String> map=new HashMap<String,String>();
-
-map.put("fds","Fds");
 
 for(Entry<String,String> entry:map.entrySet()){
 	System.out.println(entry.getKey()+"="+entry.getValue());
 }
 
-
 ##HashTable iteration
 
-
 Hashtable table=new Hashtable();
-table.put("fds","fds");
+table.put("fds","fdsf");
 
 Enumeration e=table.keys();
 
 while(e.hasMoreElements()){
-	String str=(String)e.nextElement();
-	System.out.println(str+"=>"+table.get(str));
+	String str=e.nextElement();
+	System.out.println(str+"->"+table.get(str));
 }
 
 
 ##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
 
+
+
 ##MaximumSubarray
 
+public int findMaxSubArray(int[] nums){
+	
+	int max_ending_here=nums[0];
+	int max_so_far=nums[0];
+	
+	for(int i=1;i<nums.length;i++){
+		max_ending_here=Math.max(max_ending_here,max_ending_here+nums[i]);
+		max_so_far=Math.max(max_so_far,max_ending_here);
+	}
 
+	return max_so_far;
+}
 
 
 ##LinkRightNode
@@ -635,44 +627,39 @@ class Node
     Node(int x){val=x;}
 }
 
-public void linkRight(TreeNode root){
+public void linkRightNode(TreeNode root){
 	
-	LinkedList<Node> que=new LinkedList<Node>();
-	que.add(root);
-	que.add(null);
+	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+	que.addLast(root);
+	que.addLast(null);
+	TreeNode linkRight=null;
 
-	Node linkRight=null;
+	while(!que.isEmpty()){
+		TreeNode firstNode=que.removeFirst();
+			if(firstNode==null){
+				linkRight=null;
+				if(!que.isEmpty()){
+					que.addLast(null);
+				}
+			}else{
+	
+				if(linkRight!=null){
+					linkRight.Right=firstNode;
+				}
 
-	if(root!=null){
-		
-		Node firstNode=que.removeFirst();
-
-		if(firstNode==null){
-			
-			linkRight=null;
-
-			if(!que.isEmpty()){
-				que.addLast(null);
+				if(firstNode.Children!=null){
+					for(TreeNode tmp:firstNode.Children){
+						que.addLast(tmp);
+					}
+				}
+				linkRight=firstNode;
 			}
-		}else{
-		
-			if(linkRight!=null){
-				linkRight.Right=firstNode;
-			}
- 				
+	}
 
- 			if(firstNode.Children!=null){
- 					for(TreeNode tmp:firstNode.Children)
- 						que.addLast(tmp);
- 			}	
 
-			linkRight=firstNode;
-		
-		}
-
-	}	
 
 }
+
 
 
 
