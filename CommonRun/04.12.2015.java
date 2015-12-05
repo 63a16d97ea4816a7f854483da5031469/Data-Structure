@@ -13,7 +13,12 @@ Remember:
 ##Binary operation / Bit operations
 
 Integer.toBinaryString(n);
-	 
+
+public String reverseBit(int n){
+	StringBuilder sb=new StringBuilder(Integer.toBinaryString(n));
+	return sb.reverse().toString();
+}
+
 
 ##PreOrder Traversal
 
@@ -348,8 +353,6 @@ public int findMin(TreeNode root){
 
 	}
 
-		
-
 	}
 return depth;
 }
@@ -533,7 +536,39 @@ public void findPath(TreeNode root){
 
 ##ReverseBits
 
+public String reverseBit(int n){
+	StringBuilder sb=new StringBuilder(Integer.toBinaryString(n));
+	return sb.reverse().toString();
+}
+
+
+public String reverseInt(int n){
+	String str=Integer.toBinaryString(n);
+
+	Char[] c=str.toCharArray();
+
+	for(int i=0;i<c.length;i++){
+		int tmp=c[i];
+		c[i]=c[c.length-1-i];
+		c[c.length-1-i]=tmp;
+	}
+
+	return String.valueOf(c);
+}
+
+
 ##Reverse Integer
+
+public void reverseInt(int n){
+	int another=0;
+	int tmp=n;
+	while(tmp!=0){
+		another=another*10+tmp%10;
+		tmp/=10;
+	}
+}
+
+
 
 ##Reverse Linked List
 
@@ -565,6 +600,16 @@ public void reverseList(ListNode head){
 
 
 ##Rotate Array
+
+k steps:
+
+public void rotateArr(int[] nums){
+	int[] c=nums.clone();
+
+	for(int i=0;i<nums.length;i++){
+		nums[i]=c[(i+k)%nums.length];
+	}
+}
 
 ##Reverse Array
 
