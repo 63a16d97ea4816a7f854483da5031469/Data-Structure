@@ -1,5 +1,5 @@
 
-Coding Practice 1
+##Coding Practice 1
 
 Rules  
 1. It is important to solve the challenge without referring to existing solutions. Don't search for solutions online.  

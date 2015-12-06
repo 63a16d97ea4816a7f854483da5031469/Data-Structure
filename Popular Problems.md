@@ -33,3 +33,4 @@ https://en.wikipedia.org/wiki/Maximum_subarray_problem
 Dynamic programming
 https://en.wikipedia.org/wiki/Dynamic_programming
 
+最长上升子序列LIS(Longest Increasing Subsequence)
