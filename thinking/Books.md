@@ -1,0 +1,16 @@
+## July' PDF
+- 《支持向量机通俗导论（理解SVM的三层境界）》Latex排版精细版：http://vdisk.weibo.com/s/zrFL6OXKgnlcp ；Latex版本②：https://raw.githubusercontent.com/liuzheng712/Intro2SVM/master/Intro2SVM.pdf 。
+- 原《程序员编程艺术第一~三十七章PDF》：http://download.csdn.net/detail/v_july_v/6694053 ，本github上的文章已经对此PDF进行了极大的优化和改进。
+- 《微软面试100题系列之PDF》：http://download.csdn.net/detail/v_july_v/4583815
+- 《十五个经典算法研究与总结之PDF》：http://download.csdn.net/detail/v_july_v/4478027
+- 编程艺术HTML网页版：http://taop.marchtea.com/
+- 2014年4月29日《武汉华科大第5次面试&算法讲座PPT》：http://pan.baidu.com/s/1hqh1E9e ；
+- 新书初稿的4个PDF
+ - B树的PDF：http://yun.baidu.com/s/1jGwup5k ；
+ - 海量数据处理的PDF：http://yun.baidu.com/s/1dDreICL ；
+ - 支持向量机的PDF：http://yun.baidu.com/s/1ntwof7j ；
+ - KMP的PDF：http://yun.baidu.com/s/1eQel3PK ；
+- 2014年9月3日西电第8次面试&算法讲座视频：http://v.youku.com/v_show/id_XNzc2MDYzNDg4.html ；PPT：http://pan.baidu.com/s/1pJ9HFqb ；
+- 北京10月机器学习班的所有上课PPT：http://yun.baidu.com/share/home?uk=4214456744&view=share#category/type=0；
+- 截止到2014年12月9日，结构之法算法之道blog所有155篇博文集锦CHM文件下载地址：http://pan.baidu.com/s/1gdrJndp ；
+- 持续更新..
