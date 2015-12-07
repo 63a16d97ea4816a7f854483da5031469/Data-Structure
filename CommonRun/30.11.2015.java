@@ -629,7 +629,7 @@ public boolean isSymmSub(TreeNode p,TreeNode q){
 	if(p!=null&&q!=null){
 	  return (p.val==q.val)&&isSymmSub(p.right,q.left)&&isSymmSub(p.left,q.right);
 	}
-
+return false;
 }
 
 ## valid-anagram (/valid-anagram/)

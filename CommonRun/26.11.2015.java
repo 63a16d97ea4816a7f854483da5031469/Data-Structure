@@ -675,8 +675,7 @@ public boolean isSymmTwo(TreeNode p, TreeNode q){
 	
 	return (p.val==q.val)&&isSymmTwo(p.right,q.left)&&isSymmTwo(q.left,p.right);
 	}
-
-
+return false;
 }
 
 

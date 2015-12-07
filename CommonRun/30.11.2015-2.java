@@ -553,6 +553,8 @@ public boolean isSymmSub(TreeNode p, TreeNode q){
 	return (p.val==q.val)&&isSymmSub(p.right,q.left)&&isSymmSub(p.left,q.right);
 	}
 
+	return false;
+
 }
 
 
