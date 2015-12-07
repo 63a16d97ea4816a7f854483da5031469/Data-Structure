@@ -8,6 +8,38 @@ Remember:
 			String.valueOf(char[] ch);
 			
 
+##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)
+
+		LinkedList<Integer> list1=new LinkedList<Integer>();
+		
+		
+		public void find_factor(int sum,int n){
+			
+			if(n<=0||sum<=0) return;
+			if(sum==n){
+			  
+				//reverse the list:
+				Collections.reverse(list1);
+	//			for(int i=0;i<list1.size();i++){
+	//				int tmp=list1.get(i);
+	//				list1.set(i, list1.get(list1.size()-1-i));
+	//				list1.set(list1.size()-1-i, tmp);
+	//			}
+	//			
+				for(int tmp:list1)
+					System.out.print(tmp+"+");
+				
+				System.out.println(n);
+			}
+			
+			list1.push(n);
+			find_factor(sum-n,n-1);
+			list1.pop();
+			find_factor(sum,n-1);
+			
+		}
+	}
+
 
 ##Binary operation / Bit operations
 	public static String addBinary4(String a, String b){

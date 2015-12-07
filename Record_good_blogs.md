@@ -5,6 +5,10 @@ This folder is for saving all the Data Structure Code
 > Hour after hour  
 > Day after day  
 
+The Code Sample让积累变成一种习惯
+http://thecodesample.com/
+
+
 结构之法 算法之道: http://blog.csdn.net/v_JULY_v/article/category/823516
 
 

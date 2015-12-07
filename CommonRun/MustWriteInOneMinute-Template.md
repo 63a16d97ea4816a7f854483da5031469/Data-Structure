@@ -7,6 +7,25 @@ Remember:
 			
 			String.valueOf(char[] ch);
 
+##MaximumSubarray
+
+
+##LinkRightNode
+
+Link all the same level node from left to right by using "Right" field.
+
+class Node
+{
+    public Node[] Children;
+    public Node Right;
+    public int val;
+    Node(int x){val=x;}
+}
+
+##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)
+
+
+
 ##Binary operation / Bit operations
 	 
 
@@ -93,19 +112,4 @@ Remember:
 
 ##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
-
-##MaximumSubarray
-
-
-##LinkRightNode
-
-Link all the same level node from left to right by using "Right" field.
-
-class Node
-{
-    public Node[] Children;
-    public Node Right;
-    public int val;
-    Node(int x){val=x;}
-}
 
