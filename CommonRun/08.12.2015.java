@@ -16,7 +16,7 @@ Remember:
 
 int[] nums;
 	public void findSum(int[] nums,int sum){
-		Arrays.sort(nums);
+	//	Arrays.sort(nums);
 		this.nums=nums;
 		combine(sum);
 	}
@@ -30,7 +30,7 @@ int[] nums;
 	}
 
 	public void getCombination(int m, ArrayList<Integer> arr){
-		if(m==0 && arr.size>=1){
+		if(m==0 && arr.size()>=1){
 			for(int i=0;i<arr.size();i++){
 				System.out.print(arr.get(i)+" ");
 			}

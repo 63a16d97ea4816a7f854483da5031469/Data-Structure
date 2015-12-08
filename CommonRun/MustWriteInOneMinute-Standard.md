@@ -19,7 +19,7 @@ Remember:
 	 int[] nums;
 		public void findSum(int[] nums,int sum){
 			
-			Arrays.sort(nums);
+			// Arrays.sort(nums);     // no need sort
 			this.nums=nums;
 			combine(sum);
 		}

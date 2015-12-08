@@ -1,3 +1,7 @@
+
+/*
+
+
 # Must write within 1 minute
 Remember:    
 
@@ -10,6 +14,39 @@ Remember:
 
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)
 
+int[] nums;
+
+public void findSum(int[] nums,int sum){
+	this.nums=nums;
+	combine(sum);
+}
+
+public void combine(int m){
+	if(m<1) return;
+	ArrayList<Integer> arr=new ArrayList<Integer>();
+	getCombination(m,arr);
+}
+
+public void getCombination(int m,ArrayList<Integer> arr){
+	if(m==0 && arr.size()>=1){
+		for(int tmp:arr)
+		System.out.print(tmp+" ");
+
+		System.out.println();
+		return;
+	}
+
+	if(m<0) return;
+
+	for(int i=0;i<nums.length;i++){
+		if(!arr.isEmpty()&&nums[i]<arr.get(arr.size()-1))
+		continue;
+
+		arr.add(nums[i]);
+		getCombination(m-nums[i],arr);
+		arr.remove(arr.size()-1);
+	}
+}
 
 ##MaximumSubarray
 
