@@ -1,4 +1,7 @@
 # 0/1 bag
+http://love-oriented.com/pack/
+背包问题九讲
+
 
 https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/02.03.md
 

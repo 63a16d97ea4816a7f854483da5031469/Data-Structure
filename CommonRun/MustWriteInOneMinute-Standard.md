@@ -32,13 +32,27 @@ Remember:
 				System.out.println(n);
 			}
 			
-			list1.push(n);
-			find_factor(sum-n,n-1);
-			list1.pop();
-			find_factor(sum,n-1);
+			list1.push(n);  // save the current try
+			find_factor(sum-n,n-1);  // 将改值的Wi 放入背包，减少当前容量，并在n-1范围内再试，看能否到满足条件临界。 
+			list1.pop();// 还原状态，不将当前值放入背包
+			find_factor(sum,n-1); // 尝试 不将当前值放入背包，在n-1范围内再试。
 			
 		}
-	}
+
+Output:
+	
+	s.find_factor(10,20);
+				
+	10
+	9+1
+	8+2
+	7+3
+	7+2+1
+	6+4
+	6+3+1
+	5+4+1
+	4+3+2
+	4+3+2+1
 
 
 ##Binary operation / Bit operations
