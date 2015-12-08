@@ -7,6 +7,121 @@ Remember:
 			
 			String.valueOf(char[] ch);
 			
+			
+##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)
+
+		public static void main(String[] args){
+			Solution3 robot = new Solution3();
+			int[] a = {1,2,3,6,7,3,4,10};
+			robot.findSum(a,10);			
+		}
+	 
+	 int[] nums;
+		public void findSum(int[] nums,int sum){
+			
+			Arrays.sort(nums);
+			this.nums=nums;
+			combine(sum);
+		}
+		
+		
+	 
+			public void combine(int m) {
+				
+				if(m < 1 )
+					return;
+				
+				ArrayList<Integer> arr = new ArrayList<Integer>();
+				getCombination(m, arr);
+			}
+			public void getCombination(int m, ArrayList<Integer> arr) {
+				
+				if (m == 0 && arr.size() >= 1) {
+					for (int i = 0; i < arr.size(); i++) {
+						
+						System.out.print(arr.get(i) + " ");
+					}
+					System.out.println();
+					return;
+				}
+				
+				if(m<0) return;
+				
+				for (Integer i = 0; i <nums.length; i++) {
+					if (!arr.isEmpty() && nums[i] < arr.get(arr.size() - 1))//使集合内元素递增，防止重复
+						continue;
+			
+					arr.add(nums[i]);
+					getCombination(m - nums[i], arr);
+					if(!arr.isEmpty())
+					arr.remove(arr.size()-1);
+				}
+			}
+			
+	 
+		
+		
+ 
+	1 1 1 1 1 1 1 1 1 1 
+	1 1 1 1 1 1 1 1 2 
+	1 1 1 1 1 1 1 3 
+	1 1 1 1 1 1 1 3 
+	1 1 1 1 1 1 2 2 
+	1 1 1 1 1 1 4 
+	1 1 1 1 1 2 3 
+	1 1 1 1 1 2 3 
+	1 1 1 1 2 2 2 
+	1 1 1 1 2 4 
+	1 1 1 1 3 3 
+	1 1 1 1 3 3 
+	1 1 1 1 3 3 
+	1 1 1 1 3 3 
+	1 1 1 1 6 
+	1 1 1 2 2 3 
+	1 1 1 2 2 3 
+	1 1 1 3 4 
+	1 1 1 3 4 
+	1 1 1 7 
+	1 1 2 2 2 2 
+	1 1 2 2 4 
+	1 1 2 3 3 
+	1 1 2 3 3 
+	1 1 2 3 3 
+	1 1 2 3 3 
+	1 1 2 6 
+	1 1 4 4 
+	1 2 2 2 3 
+	1 2 2 2 3 
+	1 2 3 4 
+	1 2 3 4 
+	1 2 7 
+	1 3 3 3 
+	1 3 3 3 
+	1 3 3 3 
+	1 3 3 3 
+	1 3 6 
+	1 3 3 3 
+	1 3 3 3 
+	1 3 3 3 
+	1 3 3 3 
+	1 3 6 
+	2 2 2 2 2 
+	2 2 2 4 
+	2 2 3 3 
+	2 2 3 3 
+	2 2 3 3 
+	2 2 3 3 
+	2 2 6 
+	2 4 4 
+	3 3 4 
+	3 3 4 
+	3 7 
+	3 3 4 
+	3 3 4 
+	3 7 
+	4 6 
+	10			
+			
 
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)
 
