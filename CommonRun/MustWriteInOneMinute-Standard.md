@@ -47,7 +47,7 @@ Remember:
 				
 				if(m<0) return;
 				
-				for (Integer i = 0; i <nums.length; i++) {
+				for (int i = 0; i <nums.length; i++) {
 					if (!arr.isEmpty() && nums[i] < arr.get(arr.size() - 1))//使集合内元素递增，防止重复
 						continue;
 			
