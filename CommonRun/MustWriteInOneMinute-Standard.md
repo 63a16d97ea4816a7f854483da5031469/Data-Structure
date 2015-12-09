@@ -6,6 +6,46 @@ Remember:
 			List--->int len=list.size();
 			
 			String.valueOf(char[] ch);
+
+
+##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. --can repeat pick up numbers
+
+		public void runPermutation(int[] a) {
+			
+			if(null == a || a.length == 0)
+				return;
+				
+			int[] b = new int[a.length];//辅助空间，保存待输出排列数
+			getAllPermutation(a, b, 0);
+		}
+
+		public void getAllPermutation(int[] a, int[] b, int index) {
+			
+			if(index == a.length){
+				for(int i = 0; i < index; i++){
+					System.out.print(b[i] + " ");
+				}
+				System.out.println();
+				return;
+			}
+				
+			for(int i = 0; i < a.length; i++){
+				
+				b[index] = a[i];
+				getAllPermutation(a, b, index+1);
+			}
+			
+		}
+		
+		public static void main(String[] args){
+			
+			Solution3 robot = new Solution3();
+			
+			int[] a = {1,2,3};
+			robot.runPermutation(a);
+
+		}
+
 			
 			
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)

@@ -6,6 +6,10 @@ Remember:
 			List--->int len=list.size();
 			
 			String.valueOf(char[] ch);
+			
+			
+##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. --can repeat pick up numbers			
+			
 
 
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)
