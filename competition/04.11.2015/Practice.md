@@ -69,7 +69,21 @@ overflow, etc.
 
 2. Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
 
-
+		public void convert(int[] nums,int left,int right){
+		
+			if(left>right){
+			return null;
+			}
+	
+			int middle=low+((right-low)>>1)
+		
+			TreeNode root=new TreeNode(nums[middle]);
+			
+			root.left=convert(nums,left,middle-1);
+			root.right=convert(nums,middle+1,right);
+		
+			return root;
+		}
 
 
 3. Given a value N, if we want to make change for N cents, and we have infinite supply of each of S = {
