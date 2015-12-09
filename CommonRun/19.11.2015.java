@@ -67,9 +67,11 @@ public List<TreeNode> levelTraversal{
 		if(firstNode!=null) {
 			result.add(firstNode);
 		
-		if(firstNode.left!=null) que.addLast(firstNode.left);
-		if(firstNode.right!=null) que.addLast(firstNode.right);
+		que.addLast(firstNode.left);
+		que.addLast(firstNode.right);
 
+		}else{
+			result.add(null);
 		}
 	}
 

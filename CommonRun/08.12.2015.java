@@ -197,15 +197,13 @@ public void levelOrder(TreeNode root){
 			TreeNode firstNode=que.removeFirst();
 
 			if(firstNode==null){
-				
+				System.out.print(null+" ");
 			}else{
-				System.out.println(firstNode.val);
-				if(firstNode.left!=null){
+				System.out.print(firstNode.val+" ");
+	
 					levelOrder(firstNode.left);
-				}
-				if(firstNode.right!=null){
 					levelOrder(firstNode.right);
-				}
+
 			}
 		}
 }

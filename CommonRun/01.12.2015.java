@@ -69,11 +69,13 @@ public void levelOrderTraversal(TreeNode root){
 
 		if(firstNode!=null){
 			
-			System.out.println(firstNode.val);
+			System.out.print(firstNode.val+" ");
 
-			if(firstNode.left!=null) que.addLast(firstNode.left);
-			if(firstNode.right!=null) que.addLast(firstNode.right);
+			que.addLast(firstNode.left);
+			que.addLast(firstNode.right);
 
+		}else{
+			System.out.print(null+" ");
 		}
 	}
 

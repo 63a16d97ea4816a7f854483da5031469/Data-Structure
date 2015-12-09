@@ -61,11 +61,11 @@ public void levelTraversal(TreeNode root){
 		TreeNode firstNode=que.removeFirst();
 		
 		if(firstNode==null){
-			
+			System.out.println(null);
 		}else{
 			System.out.println(firstNode.val);
-			if(firstNode.left!=null) levelTraversal(firstNode.left);
-			if(firstNode.right!=null) levelTraversal(firstNode.right);
+			levelTraversal(firstNode.left);
+			levelTraversal(firstNode.right);
 		}
 	
 	}

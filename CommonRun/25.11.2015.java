@@ -69,12 +69,12 @@ public void levelTraversal(TreeNode root){
 
 		TreeNode firstNode=que.removeFisrt();
 		if(firstNode==null){
-			
+			System.out.print(null+" ");
 		}else{
-			System.out.println(firstNode.val);
+			System.out.println(firstNode.val+" ");
 
-			if(firstNode.left!=null) que.addLast(firstNode.left);
-			if(firstNode.right!=null) que.addLast(firstNode.right);
+			que.addLast(firstNode.left);
+			que.addLast(firstNode.right);
 		}
 	  }
 

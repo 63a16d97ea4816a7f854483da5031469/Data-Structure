@@ -56,18 +56,19 @@ public void levelTraversal(TreeNode root){
 
 	que.addLast(root);
 
-	if(root!=null){
+		while(!que.isEmpty()){
 	
-		System.out.println(root.val);
+			if(firstNode!=null){
+					System.out.print(root.val+" ");
 
-		if(root.left!=null){
-			que.addLast(root.left);
-		}	
+					que.addLast(root.left);
 
-		if(root.right!=null){
-			que.addLast(root.right);
+					que.addLast(root.right);
+			}else{
+				System.out.print(null+" ");
+			}
+
 		}
-	}
 
 }
 

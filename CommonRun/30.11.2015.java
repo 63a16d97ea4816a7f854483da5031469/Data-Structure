@@ -47,9 +47,7 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-List<String> result=new ArrayList<String>();
-List<TreeNode> list=new ArrayList<TreeNode>();
-
+ 
 public void levelTraversal(TreeNode root){
 	
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
@@ -57,15 +55,15 @@ public void levelTraversal(TreeNode root){
 	
 	while(!que.isEmpty()){
 		TreeNode firstNode=que.removeFirst();
+
 		if(firstNode==null){
-			
+			System.out.println(null);
+
 		}else{
-		if(firstNode.left!=null){
+			System.out.println(firstNode.val);
+
 			que.addLast(firstNode.left);
-		}
-		if(firstNode.right!=null){
 			que.addLast(firstNode.right);
-		}
 		}
 
 	}

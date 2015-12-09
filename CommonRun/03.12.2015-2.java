@@ -70,15 +70,16 @@ public void levelTree(TreeNode root){
 		TreeNode firstNode=que.removeFirst();
 		
 		if(firstNode!=null){
-			System.out.println(firstNode.val);
+			System.out.print(firstNode.val+" ");
 			
-			if(firstNode.left!=null){
-				que.addLast(firstNode.left);
-			}
 
-			if(firstNode.right!=null){
+				que.addLast(firstNode.left);
+
+
+
 				que.addLast(firstNode.right);
-			}
+		}else{
+			System.out.print(null+" ");
 		}
 	}
 }

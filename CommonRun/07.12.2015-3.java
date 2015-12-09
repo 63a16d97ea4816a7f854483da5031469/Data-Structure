@@ -55,33 +55,28 @@ class TreeNode{
 	TreeNode(int x){val=x;}
 }
 
-public int findDepth(TreeNode root){
+public void findDepth(TreeNode root){
 	
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
 	que.addLast(root);
-	que.addLast(null);
-
-	int depth=0;
+ 
 
 	while(!que.isEmpty()){
 		TreeNode firstNode=que.removeFirst();
 
 		if(firstNode==null){
-			depth++;
-			if(!que.isEmpty()){
-				que.addLast(null);
-			}
+ 			System.out.print(null+" ");
 		}else{
-			if(firstNode.left!=null){
+ 
+ 			System.out.print(firstNode.val+" ");
 				que.addLast(firstNode.left);
-			}
-
-			if(firstNode.right!=null){
+ 
+ 
 				que.addLast(firstNode.right);
-			}
+ 
 		}
 	}
-return depth;
+ 
 }
 
 
