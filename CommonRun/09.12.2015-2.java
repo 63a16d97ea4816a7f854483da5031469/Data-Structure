@@ -1,4 +1,4 @@
-/*
+/* 
 
 # Must write within 1 minute
 Remember:    
@@ -387,9 +387,66 @@ return null;
 
 ##Minimum Depth of Binary Tree
 
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public int findMin(TreeNode root){
+	int depth=0;
+
+	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+	que.addLast(root);
+	que.addLast(null);
+
+	while(!que.isEmpty()){
+		TreeNode firstNode=que.removeFirst();
+
+		if(firstNode==null){
+			depth++;
+			if(!que.isEmpty()){
+				que.addLast(null);
+			}
+		}else{
+			if(firstNode.left==null&&firstNode.right==null){
+				return depth+1;
+			}
+
+			if(firstNode.left!=null){
+				findMin(firstNode.left);
+			}
+
+			if(firstNode.right!=null){
+				findMind(firstNode.right);
+			}
+		}
+	}
+	return depth;
+}
+
+
 ##Maximum Depth of Binary Tree
 
 ##Binary Search
+
+public int binarySearch(int[] nums,int key){
+	int low=0;
+	int high=nums.length-1;
+
+	while(low<=high){
+		int middle=low+((high-low)>>1);
+
+		if(nums[middle]>key){
+			high=middle-1;
+		}else if(nums[middle]<key){
+			low=middle+1;
+		}else 
+		return middle;
+	}
+}
+
 
 ##Implement Queue using stacks
 
@@ -397,7 +454,35 @@ return null;
 
 ##invert binary tree
 
+public void invertTree(TreeNode root){
+	
+	if(root!=null){
+		
+		if(root.left!=null||root.right!=null){
+			TreeNode tmp=root.left;
+			root.left=root.right;
+			root.right=tmp;
+		}
+
+		if(root.left!=null){
+			invertTree(root.left);
+		}
+
+		if(root.right!=null){
+			invertTree(root.right);
+		}
+	}
+}
+
+
 ##Swap two variables without using extra space
+
+public void swap(int a,int b){
+	a=a^b;
+	b=a^b;
+	a=a^b;
+}
+
 
 ##Merge two sorted arrays ===> array operation
 
@@ -407,33 +492,203 @@ return null;
 
 ##Move-zeroes  ===> array operation
 
+public void moveZero(int[] nums){
+	int p=0;
+
+	while(p<nums.length){
+	
+		if(nums[p]==0){
+			for(int i=p+1;i<nums.length;i++){
+				if(nums[i]!=0){
+					nums[p]=nums[i];
+					nums[i]=0;
+					break;
+				}
+			}
+		}
+
+	p++;
+	}
+}
+
 ##Palindrome Number (回文)
 
 ##Permutations (important)
 
+method 1:
+
+public void permutations(int[] nums,int i,int n){
+	
+	if(i==n){
+		for(int tmp:nums)
+		System.out.print(tmp+" ");
+
+		System.out.println();
+	}else{
+		
+		for(int j=i;j<nums.length;j++){
+			swap(nums,i,j);
+			permutations(nums,i+1,n);
+			swap(nums,i,j);
+		}
+	}
+
+}
+
+
+method 2:
+
+public void permuta(String pre,String str){
+	if(str.length()==0){
+		System.out.println(pre);
+	}else{
+	
+		for(int i=0;i<str.length();i++){
+			permuta(pre+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length()));
+		}
+
+	}
+}
+
+
 ## Find path of Binary Tree
+
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+List<String> result=new ArrayList<String>();
+List<TreeNode> list=new ArrayList<TreeNode>();
+
+public void findPath(TreeNode root){
+	
+	if(root!=null){
+		list.add(root);
+
+
+		if(root.left==null&&root.right==null){
+			String str="";
+			for(TreeNode tmp:list)
+			str+=tmp.val;
+
+			result.add(str);
+			list=new ArrayList<TreeNode>();
+		}
+
+		if(root.left!=null){
+			findPath(root.left);
+			list.remove(list.size()-1);
+		}
+
+		if(root.right!=null){
+			findPath(root.right);
+			list.remove(list.size()-1);
+		}
+	}
+ 
+}
+
+
 
 ##ReverseBits
 
 ##Reverse Integer
 
+public int reverseInt(int n){
+	int tmp=n;
+	int another=0;
+
+	while(tmp!=0){
+		another=another*10+tmp%10;
+		tmp/=10;
+	}
+}
+
+
 ##Reverse Linked List
+
+public void reverseList(ListNode head){
+	ListNode nextNext=head.next;
+	ListNode curr=head;
+	ListNode prev=null;
+	
+	while(curr!=null){
+	
+	  nextNext=curr.next;
+	  curr.next=prev;
+	  prev=curr;
+	  curr=nextNext;
+	}
+}
 
 ##Rotate Array
 
 ##Reverse Array
 
+public void reverseArr(int[] nums){
+	int low=0;
+	int high=nums.length-1;
+
+	while(low<high){
+		int tmp=nums[low];
+		nums[low]=nums[high];
+		nums[high]=tmp;
+
+		low++;
+		high--;
+	}
+}
+
+
 ##Is Same Tree (/same-tree/)
 
 ## Symmetric Tree
+
+public boolean isSymm(TreeNode root){
+	return isSymmSub(root.left,root.right);
+}
+
+public boolean isSymmSub(TreeNode p,TreeNode q){
+	if(p==null&&q==null) return true;
+	if(p==null||q==null) return false;
+
+	if(p!=null&&q!=null){
+		return (p.val==q.val)&&isSymmSub(p.right,q.left)&&isSymmSub(p.left,q.right);
+	}
+
+	return false;
+}
+
 
 ## valid-anagram (/valid-anagram/)
 
 ##HashSet iteration
 
+for(Iterator it=set.iterator();it.hasNext();){
+	System.out.println(it.next());
+}
+
 ##HashMap iteration
 
+for(Entry<String,Integer> entry:map.entrySet()){
+	System.out.println(entry.getKey()+":"+entry.getValue());
+}
+
 ##HashTable iteration
+
+Hashtable table=new Hashtable();
+table.put("fds","fds");
+
+Enumeration e=table.keys();
+
+while(e.hasMoreElements()){
+	String str=(String)e.nextElement();
+	System.out.println(str+"="+table.get(str));
+}
+
 
 ##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
