@@ -34,7 +34,7 @@ class Node
 
 
 
-##Binary operation / Bit operations
+##Binary operation / Bit operations  --- The sum of two binary numbers
 	 
 
 ##PreOrder Traversal

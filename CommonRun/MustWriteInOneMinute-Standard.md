@@ -193,6 +193,27 @@ Remember:
 			find_factor(sum,n-1); // 尝试 不将当前值放入背包，在n-1范围内再试。
 			
 		}
+		
+		
+====> another way to write the code:		
+			
+	List<Integer> list=new ArrayList<Integer>();
+	
+	public void find_factor(int sum,int n){
+		if(sum<=0 ||n<=0) return;
+	
+		if(sum==n){
+			for(int i=list.size()-1;i>0;i--)
+			System.out.print(list.get(i)+" ");
+			System.out.println();
+		}
+		list.push(n);
+		find_factor(sum-n,n-1);
+		list.pop();
+		find_factor(sum,n-1);
+	}
+
+		
 
 Output:
 	
@@ -213,9 +234,9 @@ Output:
 ##Binary operation / Bit operations  --- The sum of two binary numbers
 
 	public static String addBinary4(String a, String b){
-		if (a == null && a.length() == 0)
+		if (a == null || a.length() == 0)
 			return b;
-		if (b == null && b.length() == 0)
+		if (b == null || b.length() == 0)
 			return a;
 
 		int currA = a.length() - 1;
