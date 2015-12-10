@@ -165,31 +165,31 @@ Remember:
 
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)
 
-		LinkedList<Integer> list1=new LinkedList<Integer>();
+		LinkedList<Integer> list=new LinkedList<Integer>();
 		
 		
 		public void find_factor(int sum,int n){
 			
-			if(n<=0||sum<=0) return;
+			if(n<=0||sum<=0) return;  //递归退出条件
 			if(sum==n){
 			  
 				//reverse the list:
-				Collections.reverse(list1);
-	//			for(int i=0;i<list1.size();i++){
+				Collections.reverse(list);
+	//			for(int i=0;i<list.size();i++){
 	//				int tmp=list1.get(i);
 	//				list1.set(i, list1.get(list1.size()-1-i));
 	//				list1.set(list1.size()-1-i, tmp);
 	//			}
 	//			
-				for(int tmp:list1)
+				for(int tmp:list)
 					System.out.print(tmp+"+");
 				
 				System.out.println(n);
 			}
 			
-			list1.push(n);  // save the current try
+			list.push(n);  // save the current try
 			find_factor(sum-n,n-1);  // 将改值的Wi 放入背包，减少当前容量，并在n-1范围内再试，看能否到满足条件临界。 
-			list1.pop();// 还原状态，不将当前值放入背包
+			list.pop();// 还原状态，不将当前值放入背包
 			find_factor(sum,n-1); // 尝试 不将当前值放入背包，在n-1范围内再试。
 			
 		}
@@ -210,7 +210,8 @@ Output:
 	4+3+2+1
 
 
-##Binary operation / Bit operations
+##Binary operation / Bit operations  --- The sum of two binary numbers
+
 	public static String addBinary4(String a, String b){
 		if (a == null && a.length() == 0)
 			return b;
@@ -1274,6 +1275,8 @@ Another method 2:
 
 ##Permutations [排列 (important)]
 
+method 1:
+
 	private static void permutation(String prefix, String str) {
  
 	    int n = str.length();
@@ -1287,10 +1290,68 @@ Another method 2:
 	    }
 	}
 
+method 2:   ----> int[] nums should contain non-repeated numbers
+
+	public void permutations(int[] nums,int i,int n){
+		if(i==n){
+			for(int tmp:nums)
+			System.out.print(tmp+" ");
+	
+			System.out.println();
+		}else{
+			for(int j=i;j<nums.length;j++){
+				swap(nums,i,j);
+				permutations(nums,i+1,n);
+				swap(nums,i,j);
+			}
+		}
+	}
+	
+
 
 ## Find path of Binary Tree
+	
+	class TreeNode{
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x){val=x;}
+	}
+	
+	List<String> result=new ArrayList<String>();
+	List<TreeNode> list=new ArrayList<TreeNode>();
+	
+	public void findPath(TreeNode root){
+		
+		if(root!=null){
+			list.add(root);
+			
+			if(root.left==null&&root.right==null){
+				String str="";
+				for(TreeNode tmp:list)
+				str+=tmp.val;
+				result.add(str);
+				list=new ArrayList<TreeNode>();
+			}
+	
+			if(root.left!=null){
+				findPath(root.left);
+				list.remove(list.size()-1);
+			}
+	
+			if(root.right!=null){
+				findPath(root.right);
+				list.remove(list.size()-1);
+			}
+	
+		}
+	
+	}
 
-path-sum
+
+
+
+The sum of path:
 
 	boolean flag=false;
 	int sum=0;
@@ -1302,7 +1363,6 @@ path-sum
 		
 		this.sum=sum;
  
-		
 		
 		return loopTree(root,0);
 	}
