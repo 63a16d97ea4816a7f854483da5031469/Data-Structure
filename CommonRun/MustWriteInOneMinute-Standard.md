@@ -197,7 +197,7 @@ Remember:
 		
 ====> another way to write the code:		
 			
-	List<Integer> list=new ArrayList<Integer>();
+	LinkedList<Integer> list=new LinkedList<Integer>();
 	
 	public void find_factor(int sum,int n){
 		if(sum<=0 ||n<=0) return;
