@@ -171,6 +171,7 @@ Remember:
 		public void find_factor(int sum,int n){
 			
 			if(n<=0||sum<=0) return;  //递归退出条件
+			
 			if(sum==n){
 			  
 				//reverse the list:
