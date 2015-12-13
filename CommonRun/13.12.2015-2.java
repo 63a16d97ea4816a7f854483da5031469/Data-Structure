@@ -9,6 +9,31 @@ Remember:
 			List--->int len=list.size();
 			
 			String.valueOf(char[] ch);
+
+
+##Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
+
+	class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+	}
+
+
+	public TreeNode convert(int[] nums,int low,int high){
+
+		if(low>high) return null;
+
+
+		int middle=low+(high-low)>>1;
+		TreeNode root=new TreeNode(nums[middle]);
+		root.left=convert(nums,low,middle-1);
+		root.right=convert(nums,middle+1,high);
+
+		return root;
+	}
+
 			
 			
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. --can repeat pick up numbers			

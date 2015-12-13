@@ -6,6 +6,8 @@ Remember:
 			List--->int len=list.size();
 			
 			String.valueOf(char[] ch);
+
+## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
 			
 			
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. --can repeat pick up numbers			
