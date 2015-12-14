@@ -24,6 +24,16 @@ Remember:
 
 
 
+
+	public TreeNode convert2(int[] nums,int low,int high){
+		int middle=low+((high-low)>>1);
+
+		TreeNode root=new TreeNode(nums[middle]);
+		root.left=convert2(nums,low,middle-1);
+		root.right=convert2(nums,middle+1,high);
+
+		return root;
+	}
 			
 			
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. --can repeat pick up numbers			
@@ -250,10 +260,45 @@ public void levelOrder(TreeNode root){
 
 }
 
-
-
 ##Deepth of binary tree Traversal
 
+class TreeNode{
+	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x){val=x;}
+}
+
+public int findDepth(TreeNode root){
+	
+	int depth=0;
+
+	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+	que.addLast(root);
+	que.addLast(null);
+
+	while(!que.isEmpty()){
+		TreeNode firstNode=que.removeFirst();
+
+		if(firstNode==null){
+			depth++;
+			if(!que.isEmpty()){
+				que.addLast(null);
+			}
+		}else{
+			
+			if(firstNode.left!=null){
+				que.addLast(firstNode.left);
+			}
+
+			if(firstNode.right!=null){
+				que.addLast(firstNode.right);
+			}
+		}
+
+	}
+return depth;
+}
 
 ##Linked List Traversal
 
