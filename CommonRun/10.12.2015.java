@@ -172,6 +172,7 @@ public static String addBinary(String a,String b){
 			flag=1;
 		}else{
 			sb.append(sum);
+			flag=0;
 		}
 	}
 

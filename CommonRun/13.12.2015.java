@@ -183,6 +183,7 @@ public void linksRight(TreeNode root){
 				flag=1;
 			}else{
 				sb.append(sum);
+				flag=0;
 			}
 		}
 

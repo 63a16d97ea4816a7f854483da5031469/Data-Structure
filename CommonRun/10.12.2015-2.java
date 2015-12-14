@@ -174,6 +174,7 @@ public String addBinaryString(String a,String b){
 			flag=1;
 		}else{
 			sb.append(sum);
+			flag=0;
 		}
 	}
 

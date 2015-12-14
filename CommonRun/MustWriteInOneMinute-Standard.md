@@ -287,7 +287,7 @@ Output:
 				flag = 1;
 			} else {
 				sb.append(sum);
-				// flag=0;
+				flag=0;
 			}
 
 		}

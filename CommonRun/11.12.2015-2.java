@@ -175,6 +175,7 @@ public void binarySum(String a, String b){
 			flag=1;
 		}else {
 			sb.append(sum);
+			flag=0;
 		}
 	}
 		if(flag==1){

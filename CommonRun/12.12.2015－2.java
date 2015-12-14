@@ -176,6 +176,7 @@ public void linksRight(Node root){
 				flag=1;
 			}else{
 				sb.append(sum);
+				flag=0;
 			}
 
 		}
