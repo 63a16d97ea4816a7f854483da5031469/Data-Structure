@@ -159,12 +159,12 @@ public void linksRight(Node root){
 
 
 			if(currA>=0){
-				va=a.charAt(currA)==0?0:1;
+				va=a.charAt(currA)=='0'?0:1;
 				currA--;	
 			}
 
 			if(currB>=0){
-				vb=b.charAt(currB)==0?0:1;
+				vb=b.charAt(currB)=='0'?0:1;
 				currB--;
 			}
 
