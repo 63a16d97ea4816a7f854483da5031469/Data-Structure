@@ -6,7 +6,7 @@ These two questions are appeared in one competition around One North.
 
 <img src="./page2.JPG">
 
-<img src="./page3.png">
+<img src="./page3.png"> 
 
 
 Questions:
