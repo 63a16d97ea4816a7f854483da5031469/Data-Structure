@@ -251,7 +251,7 @@ class TreeNode{
 			TreeNode firstNode=que.removeFirst();
 
 			if(firstNode==null){
-				
+				System.out.println(null);
 			}else{
 				System.out.println(firstNode.val);
 
