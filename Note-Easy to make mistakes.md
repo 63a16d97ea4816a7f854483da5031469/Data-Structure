@@ -1,5 +1,6 @@
 ##Easy to make mistakes
 
+###Input validation.  ---> Very important for functions.
 * When functions get parameters, we need to consider the extreme cases. (null, 0, memory status.)
 
 * Before using the array (it is an object), we need to check the whether this array (object) is null.

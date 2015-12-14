@@ -42,6 +42,9 @@ Remember:
 			if(prefix_index==-1 || strItself.charAt(prefix_index)==strItself.charAt(suffix_index)){
 				int numMatched_prefix_and_suffix=prefix_index+1;
 
+				if(suffix_index+1>=strItself_len) break;
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
 				prefix_index++;
 				suffix_index++;
 			}else{
@@ -76,6 +79,501 @@ Remember:
 
 
 
+	Second:
+
+	public int findSubStrBeginIndex(String str,String subStr){
+	   // Input validation.
+	   if(str==null || subStr==null) return -1;
+	   if(str.length()<subStr.length()) return -1;
+
+	   if(subStr.equals("")&&str.equals("")) return 0;
+	   if(subStr.length()==0) return -1;
+
+	   //KMP
+		int firstMatchedIndex=KMP(str,subStr);
+
+		//Return result;
+		if(firstMatchedIndex<0) return -1;
+		else return firstMatchedIndex;
+	}
+
+	public int[] getNextArr(String subStr){
+		int subStr_len=subStr.length();
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1||subStr.charAt(prefix_index) == subStr.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+
+				if(suffix_index+1>=subStr_len) break;
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+		return next;
+	}
+
+	public int KMP(String str,String subStr){
+		int str_len=str.length();
+		int subStr_len=subStr.length();
+		int[] next=getNextArr(subStr);
+
+		int str_start=0;
+		int subStr_start=0;
+
+		while(str_start<str.len && subStr_start<subStr_len){
+			if(subStr_start==-1 || str.charAt(str_start)==subStr.charAt(subStr_start)){
+				str_start++;
+				subStr_start++;
+			}else{
+				subStr_start=next[subStr_start];
+			}
+		}
+
+		if(subStr_start>=subStr_len){
+			return str_start-subStr_len;
+		}else return -1;
+	}
+
+
+	Third:
+
+	public int findSubStrBeginIndex(String str,String subStr){
+		//Input validation.
+
+		if(str==null ||subStr==null) return -1;
+		if(str.length()<subStr.length()) return -1;
+
+		if(subStr.equals("")&&str.equals("")) return 0;
+		if(subStr.length()==0) return -1;
+
+		//KMP
+		int firstMatchedIndex=KMP(str,subStr);
+
+		//Return result;
+		if(firstMatchedIndex<0) return -1;
+		else return firstMatchedIndex;
+	}
+
+	public int[] getNextArr(String subStr){
+		int subStr_len=subStr.length();
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1||subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+				if(suffix_index+1>=subStr_len) break;
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+		return next;
+	}
+
+
+	public int KMP(String str,String subStr){
+		int str_len=str.length();
+		int subStr_len=subStr.length();
+
+		int[] next=getNextArr(subStr);
+
+		int str_start=0;
+		int subStr_start=0;
+
+		while(str_start<str_len && subStr_start<subStr_len){
+			if(subStr_start==-1 || str.charAt(str_start)==subStr.charAt(subStr_start)){
+				str_start++;
+				subStr_start++;
+			}else{
+				subStr_start=next[subStr_start];
+			}
+		}
+
+		if(subStr_start>=subStr_len){
+		return str_start-subStr_len;
+		}else return -1;
+	}
+
+
+	Third:
+
+
+public int findSubStrBeginIndex(String str,String subStr){
+	// Input validation
+	if(str==null || subStr==null) return -1;
+	if(str.length()<subStr.length()) return -1;
+
+	if(subStr.equals("")&&str.equals("")) return 0;
+	if(subStr.length()==0) return -1;
+
+
+	//KMP
+	int firstMatchedIndex=KMP(str,subStr);
+
+	if(firstMatchedIndex<0) return -1;
+	else return firstMatchedIndex;
+}
+
+	public int[] getNextArr(String subStr){
+		int subStr_len=subStr.length();
+
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1||subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+				
+				if(suffix_index+1>=subStr_len) break;
+
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
+				prefix_index++;
+				suffix_index++;
+
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+		return next;
+	}
+
+
+	public int KMP(String str,String subStr){
+			int str_len=str.length();
+			int subStr_len=subStr.length();
+
+			int[] next=getNextArr(subStr);
+
+			int str_start=0;
+			int subStr_start=0;
+
+			while(str_start<str_len && subStr_start<subStr_len){
+				if(subStr_start==-1|| str.charAt(str_start)==subStr.charAt(subStr_start)){
+					str_start++;
+					subStr_start++;
+				}else{
+					subStr_start=next[subStr_start];
+				}
+			}
+
+			if(subStr_start>=subStr_len){
+				return str_start-subStr_len;
+			}else return -1;
+	}
+
+
+
+   Four:
+
+   public int findSubStrBeginIndex(String str,String subStr){
+	//Input validation
+
+	if(str==null || subStr==null) return -1;
+	if(str.length()<subStr.length()) return -1;
+
+	if(str.equals("")&&subStr.equals("")) return 0;
+	if(subStr.length()==0) return -1;
+
+	//KMP
+	int firstMatchedIndex=KMP(str,subStr);
+
+	//Return result
+	if(firstMatchedIndex<0){
+		return -1;
+	}else
+	return firstMatchedIndex;
+
+   }
+
+   public int[] getNextArr(Stirng subStr){
+		int subStr_len=subStr.length();
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1 || subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+
+				if(suffix_index+1>=subStr_len) break;
+
+
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+
+		return next;
+   }
+
+
+	public int KMP(String str,String subStr){
+		int str_len=str.length();
+		int subStr_len=subStr.length();
+
+		int[] next=getNextArr(subStr);
+
+		int str_start=0;
+		int subStr_start=0;
+
+		while(str_start<str_len && subStr_start<subStr_len){
+				if(subStr_start==-1 || str.charAt(str_start)==subStr.charAt(subStr_start)){
+					str_start++;
+					subStr_start++;
+				}else{
+					subStr_start=next[subStr_start];
+				}
+		}
+
+		if(subStr_start>=subStr_len){
+			return subStr_start-subStr_len;
+		}else{
+			return -1;
+		}
+	}
+
+
+	final:
+
+	public int findSubStrBeginIndex(String str,String subStr){
+		//Input validation.
+		if(str==null || subStr==null) return -1;
+		if(str.length()<subStr.length()) return -1;
+
+		if(str.equals("")&&subStr.equals("")) return 0;
+		if(subStr.length()==0) return -1;
+
+		//KMP
+		int firstMatchedIndex=KMP(str,subStr);
+
+		//Return result.
+		if(firstMatchedIndex<0){
+			return -1;
+		}else{
+			return firstMatchedIndex;
+		}
+
+		// can use one sentence:     return firstMatchedIndex<0?-1:firstMatchedIndex;
+
+
+	}
+
+	public int[] getNextArr(String subStr){
+		int subStr_len=subStr.length();
+
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1|| subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+
+				if(suffix_index+1>=subStr_len) break;
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+		return next;
+	}
+
+	public int KMP(String str,String subStr){
+			int str_len=str.length();
+			int subStr_len=subStr.length();
+
+			int[] next=getNextArr(subStr);
+
+			int str_start=0;
+			int subStr_start=0;
+		
+			while(str_start<str_len && subStr_start<subStr_len){
+				if(subStr_start==-1 || str.charAt(str_start)==subStr.charAt(subStr_start)){
+					str_start++;
+					subStr_start++;
+				}else{
+				subStr_start=next[subStr_start];
+				}
+			}
+			
+			if(subStr_start>=subStr_len){
+				return str_start-subStr_len;
+			}else return -1;
+	}
+
+
+	repeat:
+
+	public int findSubStrBeginIndex(String str,String subStr){
+		
+		//input validation.
+		if(str==null || subStr==null) return -1;
+		if(str.length()<subStr.length()) return -1;
+
+		if(str.equals("")&&subStr.equals("")) return 0;
+
+		if(subStr.length()==0) return -1;
+	
+		//KMP:
+		int firstMatchedIndex=KMP(str,subStr);
+
+		//Return result
+
+		return firstMatchedIndex<0?-1:firstMatchedIndex;
+	}
+
+	public int[] getNextArr(String subStr){
+		int subStr_len=subStr.length();
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1 || subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+
+				if(suffix_index+1>=subStr_len) break;
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+				
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+		return next;
+	}
+
+	public int KMP(String str,String subStr){
+		
+		int str_len=str.length();
+		int subStr_len=subStr.length();
+
+		int[] next=getNextArr(subStr);
+
+		int str_start=0;
+		int subStr_start=0;
+
+
+
+		while(str_start<str_len&&subStr_start<subStr_len){
+			if(subStr_start==-1 || str.charAt(str_start)==subStr.charAt(subStr_start)){
+				str_start++;
+				subStr_start++;
+			}else{
+				subStr_start=next[subStr_start];
+			}
+		}
+
+		if(subStr_start>=subStr_len){
+			return str_start-subStr_len;
+		}else return -1;
+
+	}
+
+	
+---> next:
+
+	public int findMatchedIndex(String str,String subStr){
+
+		//input validation
+		if(str==null || subStr==null) return -1;
+		if(str.length()<subStr.length()) return -1;
+		if(str.equals("")&&subStr.equals("")) return 0;
+
+		if(subStr.length()==0) return -1;
+		
+		//KMP
+		int firstMatchedIndex=KMP(str,subStr);
+
+
+		//Return result:
+		return firstMatchedIndex<0?-1:firstMatchedIndex;
+	}
+
+	public int[] getNextArr(String subStr){
+		int subStr_len=subStr.length();
+		int prefix_index=-1;
+		int suffix_index=0;
+		
+		int[] next=new int[subStr_len];
+		next[0]=-1;
+
+
+		while(suffix_index<subStr.length()){
+				if(prefix_index==-1 || subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+					int numMatched_prefix_and_suffix=prefix_index+1;
+
+					if(suffix_index+1>=subStr_len) break;
+					next[suffix_index+1]=numMatched_prefix_and_suffix;
+					
+					prefix_index++;
+					suffix_index++;
+				}else{
+					prefix_index=next[prefix_index];
+				}
+		}
+
+	return next;
+	}
+
+	public int KMP(String str,String subStr){
+		int str_len=str.length();
+		int subStr_len=subStr.length();
+		
+		int str_start=0;
+		int subStr_start=0;
+
+		while(str_start<str_len && subStr_start<subStr_len){
+			if(subStr_start==-1 || subStr.charAt(subStr_start)==str.charAt(str_start)){
+				str_start++;
+				subStr_start++;
+			}else{
+				subStr_start=next[subStr_start];
+			}
+		}			
+
+		if(subStr_start>=subStr_len){
+			return subStr_start-subStr_len;
+		}else return -1;
+
+	}
+
+
+ 
 
 ## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
 

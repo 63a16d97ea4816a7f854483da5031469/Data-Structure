@@ -101,8 +101,8 @@ Remember:
  
  Format the code to be readable:
  
-	 
-	    public int strStr(String str, String subStr) {
+  
+	    public int findSubStrBeginIndex(String str, String subStr) {
 	        // Input validation.
 	        if (str == null || subStr == null) return -1;
 	        if (str.length() < subStr.length()) return -1;
@@ -118,71 +118,63 @@ Remember:
 	        else return firstMatchedIndex;
 	    }
 	
-	    public int[] getNextArr(String strItself) {
-	        int strItself_len = strItself.length();
-	
-	        int[] next = new int[strItself_len];
-	        next[0] = -1;
-	
-	        int prefix_index = -1;
-	        int suffix_index = 0;
-	
-	        while (suffix_index < strItself_len) {
-	            if (prefix_index == -1 || 
-	                strItself.charAt(prefix_index) == strItself.charAt(suffix_index)) {
-	
-	                int numMatched_prefix_and_suffix = prefix_index + 1;
-	
-	                if (suffix_index + 1 >= strItself_len) break;
-	                next[suffix_index + 1] = numMatched_prefix_and_suffix;
-	
-	                prefix_index ++;
-	                suffix_index ++;
-	
-	            } else {
-	                // Let next array guide use how to reset the prefix_index.
-	                prefix_index = next[prefix_index];
-	
-	            }
-	        }
-	
-	        return next;
-	    }
-	
-	    public int KMP(String str, String strItself) {
+  	 public int[] getNextArr(String subStr) {
+        int subStr_len = subStr.length();
+
+        int[] next = new int[subStr_len];
+        next[0] = -1;
+
+        int prefix_index = -1;
+        int suffix_index = 0;
+
+        while (suffix_index < subStr_len) {
+            if (prefix_index == -1 || 
+            		subStr.charAt(prefix_index) == subStr.charAt(suffix_index)) {
+
+                int numMatched_prefix_and_suffix = prefix_index + 1;
+
+                if (suffix_index + 1 >= subStr_len) break;
+                next[suffix_index + 1] = numMatched_prefix_and_suffix;
+
+                prefix_index ++;
+                suffix_index ++;
+
+            } else {
+                // Let next array guide use how to reset the prefix_index.
+                prefix_index = next[prefix_index];
+
+            }
+        }
+
+        return next;
+    }
+	    
+	  public int KMP(String str, String subStr) {
 	        int str_len = str.length();
-	        int strItself_len = strItself.length();
+	        int subStr_len = subStr.length();
 	
-	        int[] next = getNextArr(strItself);
+	        int[] next = getNextArr(subStr);
 	
 	        int str_start = 0;
-	        int strItself_start = 0;
+	        int subStr_start = 0;
 	
-	        while (str_start < str_len && strItself_start < strItself_len) {
-	            // Since if the strItself_start = next[0], the strItself_start == -1,
-	            // so we need check whether strItself_start == -1,
-	            // if that we just keep move forward.
-	            if (strItself_start == -1 || str.charAt(str_start) == strItself.charAt(strItself_start)) {
+	        while (str_start < str_len && subStr_start < subStr_len) {
+	            if (subStr_start == -1 || str.charAt(str_start) == subStr.charAt(subStr_start)) {
 	
 	                str_start ++;
-	                strItself_start ++;
+	                subStr_start ++;
 	
 	            } else {
-	                // Let next array guide us how to reset the strItself_start.
-	                strItself_start = next[strItself_start];
+	            	subStr_start = next[subStr_start];
 	
 	            }
 	        }
 	
-	        if (strItself_start >= strItself_len) {
-	            // The current str_start is point to,
-	            // the end of the matched part in the str,
-	            // and we know the matched length is strItself_len,
-	            // so we use str_start - strItself_len to get,
-	            // the matched start point in str.
-	            return str_start - strItself_len;
+	        if (subStr_start >= subStr_len) {
+	            return str_start - subStr_len;
 	        } else return -1;
 	    }
+
 			
 			
 ## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
