@@ -1,3 +1,5 @@
+package ok;
+
 /*
  * https://leetcode.com/problems/add-binary/
 Given two binary strings, return their sum (also a binary string).
@@ -20,7 +22,7 @@ import java.util.*;
 public class AddBinary {
 
 	public static void main(String args[]){
-		System.out.println(addBinary4("11","1"));
+		System.out.println(addBinary4("0","0"));
 //		System.out.println('1'=='1');
 //		System.out.println((byte)'1');		
 		
@@ -39,52 +41,48 @@ public class AddBinary {
 
 public static String addBinary4(String a, String b){
 
-	if(a==null&&a.length()==0) return b;
-	if(b==null&&b.length()==0) return a;
+		if (a == null && a.length() == 0)
+			return b;
+		if (b == null && b.length() == 0)
+			return a;
 
+		int currA = a.length() - 1;
+		int currB = b.length() - 1;
+		int flag = 0;
+		StringBuilder sb = new StringBuilder();
 
-	int currA=a.length()-1;
-	int currB=b.length()-1;
-	int flag=0;
-	StringBuilder sb=new StringBuilder();
-	
-	while(currA>=0||currB>=0){
+		while (currA >= 0 || currB >= 0) {
 
-	int va=0;
-	int vb=0;
+			int va = 0;
+			int vb = 0;
 
+			if (currA >= 0) {
+				va = a.charAt(currA) == '0' ? 0 : 1;
+				currA--;
+			}
 
-	if(currA>=0){
-	va=a.charAt(currA)==0?0:1;
-	currA--;
-	}
+			if (currB >= 0) {
+				vb = b.charAt(currB) == '0' ? 0 : 1;
+				currB--;
+			}
 
-	if(currB>=0){
-	vb=b.charAt(currB)==0?0:1;
-	currB--;
-	}
-	
-	int sum=va+vb+flag;
+			int sum = va + vb + flag;
 
-	if(sum>=2){
-	sb.append(sum-2);
-	flag=1;
-	}else{
-	sb.append(sum);
-	//flag=0;
-	}
+			if (sum >= 2) {
+				sb.append(sum - 2);
+				flag = 1;
+			} else {
+				sb.append(sum);
+				 flag=0;
+			}
 
+		}
 
+		if (flag == 1) {
+			sb.append("1");
+		}
 
-
-	}
-
-	if(flag==1){
-	sb.append("1");
-	}
-	
-	return sb.reverse().toString();
-
+		return sb.reverse().toString();
 
 }
 	
@@ -254,25 +252,7 @@ Last executed input:
 		
 		return "";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+ 
 	public static String addBinary(String a, String b) {
 		long aInt=Long.parseLong(a,2);
 		long bInt=Integer.parseInt(b,2);
