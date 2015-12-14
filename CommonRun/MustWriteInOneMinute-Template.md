@@ -7,6 +7,10 @@ Remember:
 			
 			String.valueOf(char[] ch);
 
+
+##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.(KMP)
+
+
 ## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
 			
 			
@@ -120,6 +124,6 @@ class Node
 
 ##HashTable iteration
 
-##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
 
 

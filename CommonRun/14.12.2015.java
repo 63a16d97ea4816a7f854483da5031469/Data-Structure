@@ -10,6 +10,73 @@ Remember:
 			
 			String.valueOf(char[] ch);
 
+
+##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.(KMP)
+
+	public int strStr(String haystack,String needle){
+		if(str==null ||subStr==null) return -1;
+		if(str.length()<subStr.length()) return -1;
+
+		if(subStr.equals("")&&str.equals("")) return 0;
+
+		if(subStr.length()==0) return -1;
+
+		//KMP
+		int firstMatchedIndex=KMP(str,subStr);
+
+		//Return result
+		if(firstMatchedIndex<0) return -1;
+		else return fistMatchedIndex;
+	}
+
+	public int[] getNextArr(String strItself){
+		int strItself_len=strItself.length();
+
+		int[] next=new int[strItself_len];
+		next[0]=-1;
+
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<strItself_len){
+			if(prefix_index==-1 || strItself.charAt(prefix_index)==strItself.charAt(suffix_index)){
+				int numMatched_prefix_and_suffix=prefix_index+1;
+
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+		}
+		return next;
+	}
+
+	public int KMP(String str,String strItself){
+		int str_len=str.length();
+		int strItself_len=strItself.length();
+
+		int[] next=getNextArr(strItself);
+
+		int str_start=0;
+		int strItself_start=0;
+
+		while(str_start<str_len && strItself_start<strItself_len){
+		if(strItself_start==-1 || str.charAt(str_start)== strItself.charAt(strItself_start)){
+			str_start++;
+			strItself_start++;
+		}else{
+			strItself_start=next[strItself_start];
+		}
+		}
+
+		if(strItself_start>=strItself_len){
+			return str_start-strItself_len;
+		}else return -1;
+	}
+
+
+
+
 ## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
 
 	public TreeNode convert(int[] nums,int begin,int end){
@@ -736,8 +803,5 @@ while(it.hasMoreElements()){
 	System.out.println(str+"="+table.get(str));
 }
 
-
-
-##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
 
