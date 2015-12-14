@@ -88,6 +88,9 @@ class Node
 }
 
 public void linksRight(Node root){
+
+	if(root==null) return;
+
 	LinkedList<Node> que=new LinkedList<Node>();
 	que.addLast(root);
 	que.addLast(null);

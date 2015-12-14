@@ -63,6 +63,42 @@ class Node
     Node(int x){val=x;}
 }
 
+	public void linksRight(Node root){
+		if(root==null) return; // consider the null case.
+
+		LinkedList<Node> que=new LinkedList<Node>();
+		que.addLast(root);
+		que.addLast(null);
+
+		Node linksRightNode=null;
+		while(!que.isEmpty()){
+			Node firstNode=que.removeFirst();
+			if(firstNode==null){
+				linksRightNode=null;
+				if(!que.isEmpty()){
+					que.addLast(null);
+				}
+			}else{
+				if(linksRightNode!=null){
+					linksRightNode.Right=firstNode;
+				}
+
+				if(firstNode.Children!=null){
+					for(Node tmp:firstNode.Children){
+						que.addLast(tmp);
+					}
+				}
+
+				linksRightNode=firstNode;
+			}
+		}
+
+	}
+
+
+
+
+
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)
 
 

@@ -715,6 +715,9 @@ class Node
 
 public void linkRightNode(TreeNode root){
 
+	if(root==null) return;//consider the null case.
+
+
 	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
 	que.addLast(root);
 	que.addLast(null);

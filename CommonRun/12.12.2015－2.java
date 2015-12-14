@@ -102,6 +102,9 @@ class Node
 }
 
 public void linksRight(Node root){
+
+	if(root==null) return; // consider the null case.
+
 	LinkedList<Node> que=new LinkedList<Node>();
 
 	que.addLast(root);

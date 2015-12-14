@@ -1959,7 +1959,7 @@ Link all the same level node from left to right by using "Right" field.
 
 	public Node linkRightNode(Node rootNode){
 		
-		if(rootNode==null) return null;
+		if(rootNode==null) return null;  //consider the null case.
 		
 		LinkedList<Node> que=new LinkedList<Node>();
 		
