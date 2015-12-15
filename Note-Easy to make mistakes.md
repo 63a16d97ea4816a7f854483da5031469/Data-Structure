@@ -19,7 +19,7 @@
 
 * List:
 
-when you are using all kinds of "List", if you remove element from it, the list.size() will be changed at the same time.
+when you are using all kinds of "List", if you remove element from it, the list.size() will be changed at the same time. **Be careful!!**
 
 	for(int i=0;i<list.size();i++){
 		list.remove(list.size()-1); // list.size() is changed.
@@ -27,16 +27,16 @@ when you are using all kinds of "List", if you remove element from it, the list.
 	
  ==> you can use this way to avoid this mistake:
  
- int i=0;
- while(i<list.size()){
- 	if(xxxx){  // loop the element but not delete
- 	
- 	xxxxx
- 	
- 	i++;
- 	
- 	}else{
- 		list.remove(i);  // delete one element
- 	}
- }
- 
+	 int i=0;
+	 while(i<list.size()){
+	 	if(xxxx){  // loop the element but not delete
+	 	
+	 	xxxxx
+	 	
+	 	i++;
+	 	
+	 	}else{
+	 		list.remove(i);  // delete one element
+	 	}
+	 }
+	 

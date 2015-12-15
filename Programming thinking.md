@@ -6,3 +6,13 @@
 4. 要考虑可扩展性
 5. Reuse的可能性
 6. 
+
+
+
+
+
+
+1. Input validation.
+2. Implement the main function.
+3. Return condition.  ---> exit out(Especially for recursion or loop).
+3. Return the result or save the data.
