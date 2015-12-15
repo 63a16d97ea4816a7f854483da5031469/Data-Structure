@@ -192,6 +192,11 @@ class Node
 }
 
 	public void linksRight(Node root){
+	
+		//input validation
+		if(root==null) return;
+
+
 		LinkdedList<Node> que=new LinkedList<Node>();
 		que.addLast(root);
 		que.addLast(null);
