@@ -8,7 +8,8 @@ Remember:
 			String.valueOf(char[] ch);
 
 
-##Undirected graph. 
+##Clone the Undirected graph. 
+http://n00tc0d3r.blogspot.sg/2013/09/clone-graph.html
 
 Each node in the graph contains a label and a list of its neighbors.
 
