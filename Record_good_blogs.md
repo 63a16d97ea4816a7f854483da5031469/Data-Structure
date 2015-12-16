@@ -11,6 +11,8 @@ http://thecodesample.com/
 
 结构之法 算法之道: http://blog.csdn.net/v_JULY_v/article/category/823516
 
+http://n00tc0d3r.blogspot.sg/
+
 
 http://zhaonanleetcode.blogspot.sg/2014/07/leetcode-implement-strstr.html
 

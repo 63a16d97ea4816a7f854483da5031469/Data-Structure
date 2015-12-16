@@ -8,6 +8,21 @@ Remember:
 			String.valueOf(char[] ch);
 
 
+
+##Undirected graph. 
+
+Each node in the graph contains a label and a list of its neighbors.
+
+class UndirectedGraphNode {
+      int label;
+      ArrayList neighbors;
+      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
+  };
+  
+Implementation with DFS
+
+Implementation with BFS
+
 ##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.(KMP)
 
 

@@ -8,6 +8,70 @@ Remember:
 			String.valueOf(char[] ch);
 
 
+##Undirected graph. 
+
+Each node in the graph contains a label and a list of its neighbors.
+
+class UndirectedGraphNode {
+      int label;
+      ArrayList neighbors;
+      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
+  };
+  
+Implementation with DFS
+	
+	   private UndirectedGraphNode cloneDFS(UndirectedGraphNode root, HashMap<UndirectedGraphNode, UndirectedGraphNode> visited) {  
+	     if (root == null) return root;  
+	     UndirectedGraphNode node = new UndirectedGraphNode(root.label);  
+	     visited.put(root, node);  
+	   
+	     // DFS  
+	     for (UndirectedGraphNode nb : root.neighbors) {  
+	       if (visited.containsKey(nb)) {  
+	         node.neighbors.add(visited.get(nb));  
+	       } else {  
+	         node.neighbors.add(cloneDFS(nb, visited));  
+	       }  
+	     }  
+	   
+	     return node;  
+	   }  
+	
+	   public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {  
+	     return cloneDFS(node, new HashMap<UndirectedGraphNode, UndirectedGraphNode>());  
+	   }  
+
+Implementation with BFS
+
+	   public UndirectedGraphNode cloneBFS(UndirectedGraphNode root) {  
+	     if (root == null) return root;  
+	   
+	     ArrayDeque<UndirectedGraphNode> que = new ArrayDeque<UndirectedGraphNode>();  
+	     que.addLast(root);  
+	   
+	     HashMap<UndirectedGraphNode, UndirectedGraphNode> visited = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();  
+	     UndirectedGraphNode rootCopy = new UndirectedGraphNode(root.label);  
+	     visited.put(root, rootCopy);  
+	   
+	     // BFS  
+	     while (!que.isEmpty()) {  
+	       root = que.removeFirst();  
+	       UndirectedGraphNode node = visited.get(root);  
+	       for (UndirectedGraphNode nb : root.neighbors) {  
+	         if (visited.containsKey(nb)) {  
+	           node.neighbors.add(visited.get(nb));  
+	         } else {  
+	           UndirectedGraphNode n = new UndirectedGraphNode(nb.label);  
+	           node.neighbors.add(n);  
+	           visited.put(nb, n);  
+	           que.addLast(nb);  
+	         }  
+	       }  
+	     }  
+	   
+	     return rootCopy;  
+	   }  
+
 			
 ##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.--KMP
 
