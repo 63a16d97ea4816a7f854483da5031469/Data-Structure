@@ -13,11 +13,11 @@ http://n00tc0d3r.blogspot.sg/2013/09/clone-graph.html
 
 Each node in the graph contains a label and a list of its neighbors.
 
-class UndirectedGraphNode {
-      int label;
-      ArrayList neighbors;
-      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
-  };
+	class UndirectedGraphNode {
+	      int label;
+	      ArrayList<UndirectedGraphNode> neighbors;
+	      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
+	  };
   
 Implementation with DFS
 	
@@ -55,21 +55,21 @@ Implementation with BFS
 	     visited.put(root, rootCopy);  
 	   
 	     // BFS  
-	     while (!que.isEmpty()) {  
-	       root = que.removeFirst();  
-	       UndirectedGraphNode node = visited.get(root);  
-	       for (UndirectedGraphNode nb : root.neighbors) {  
-	         if (visited.containsKey(nb)) {  
-	           node.neighbors.add(visited.get(nb));  
-	         } else {  
-	           UndirectedGraphNode n = new UndirectedGraphNode(nb.label);  
-	           node.neighbors.add(n);  
-	           visited.put(nb, n);  
-	           que.addLast(nb);  
-	         }  
-	       }  
-	     }  
-	   
+		while (!que.isEmpty()) {
+			root = que.removeFirst();
+			UndirectedGraphNode node = visited.get(root);
+
+			for (UndirectedGraphNode nb : root.neighbors) {
+				if (visited.containsKey(visited.get(nb))) {
+					node.neighbors.add(visited.get(nb));
+				} else {
+					UndirectedGraphNode n = new UndirectedGraphNode(nb.label);
+					node.neighbors.add(n);
+					visited.put(nb, n);
+					que.addLast(nb);
+				}
+			}
+		}
 	     return rootCopy;  
 	   }  
 

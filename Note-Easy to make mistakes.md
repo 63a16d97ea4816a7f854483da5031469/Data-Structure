@@ -39,4 +39,12 @@ when you are using all kinds of "List", if you remove element from it, the list.
 	 		list.remove(i);  // delete one element
 	 	}
 	 }
+
+* mutiply array:
+
+		for(int i=0;i<nums.length;i++)
+			for(int j=0;j<nums[i].length;j++)
+			{
+				
+			}
 	 
