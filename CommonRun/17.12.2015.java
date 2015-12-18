@@ -550,16 +550,103 @@ TreeNode(int x){val=x;}
 ##LRU Cache
 
 ##Minimum Depth of Binary Tree
+ class TreeNode{
+ int val;
+ TreeNode left;
+ TreeNode right;
+ TreeNode(int x){val=x;}
+ }
+ 
+ public int findDepth(TreeNode root){
+     int depth=0;
+     
+     LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+     que.addLast(root);
+     que.addLast(null);
+     
+     while(!que.isEmpty()){
+         TreeNode firstNode=que.removeFirst();
+         if(firstNode==null){
+             depth++;
+             if(!que.isEmpty()){
+                 que.addLast(null);
+             }
+         }else{
+             if(firstNode.left==null && firstNode.right==null){
+                 return depth+1;
+             }
+             
+             if(firstNode.left!=null){
+                 que.addLast(firstNode.left);
+             }
+             
+             if(firstNode.right!=null){
+                 que.addLast(firstNode.right);
+             }
+         }
+         
+     }
+ return depth;
+ }
+
+
 
 ##Maximum Depth of Binary Tree
 
 ##Binary Search
+    
+    public int binarySearch(int[] nums,int key){
+        int low=0;
+        int high=nums.length-1;
+        
+        while(low<=high){
+            int middle=low+((high-low)>>1);
+            
+            if(nums[middle]>key){
+                high=middle-1;
+            }else if(nums[middle]<key){
+                low=middle+1;
+            }else
+            return middle;
+        }
+        return -1;
+    }
+
 
 ##Implement Queue using stacks
 
 ##Implement Stack using Queues
 
 ##invert binary tree
+
+class TreeNode{
+int val;
+TreeNode left;
+TreeNode right;
+TreeNode(int x){val=x;}
+}
+
+public void invertTree(TreeNode root){
+    if(root!=null){
+        
+        if(root.left!=null || root.right!=null){
+            TreeNode tmp=root.left;
+            root.left=root.right;
+            root.right=tmp;
+        }
+        
+        if(root.left!=null){
+            invertTree(root.left);
+        }
+        
+        if(root.right!=null){
+            invertTree(root.right);
+        }
+        
+    }
+}
+
+
 
 ##Swap two variables without using extra space
 
@@ -574,6 +661,52 @@ TreeNode(int x){val=x;}
 ##Palindrome Number (回文)
 
 ##Permutations (important)
+
+    Method 1:
+    
+    public void permutations(int[] nums,int i,int n){
+    
+        if(i==n){
+            for(int tmp:nums)
+            System.out.print(tmp+" ");
+            
+            System.out.println();
+        }else{
+            for(int j=i;j<nums.length;j++){
+                swap(nums,i,j);
+                permutations(nums,i+1,n);
+                swap(nums,i,j);
+            }
+        }
+    
+    }
+    
+    public void swap(int[] nums,int i,int j){
+        int tmp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=tmp;
+    }
+    
+    Method 2:
+    
+    public void permuta(String pre,String str){
+        if(str.length()==0){
+            System.out.println(pre);
+        }else{
+        
+            for(int i=0;i<str.length();i++){
+            
+            permuta(pre+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length());
+            
+            }
+        
+        }
+        
+    
+    
+    }
+
+
 
 ## Find path of Binary Tree
 
