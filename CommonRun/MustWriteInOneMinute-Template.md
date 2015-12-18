@@ -7,6 +7,9 @@ Remember:
 			
 			String.valueOf(char[] ch);
 
+			Arrays.sort(xxxx[]);
+			Collections.sort(List<xxxx>);
+
 
 
 ##Clone Undirected graph. 
