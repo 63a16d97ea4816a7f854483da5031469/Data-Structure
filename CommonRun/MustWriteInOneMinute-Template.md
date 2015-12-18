@@ -1,4 +1,7 @@
 # Must write within 1 minute
+
+http://collabedit.com/yjege
+
 Remember:    
 
 			String --->  str.length();  
