@@ -16,6 +16,11 @@
 			String --->  str.length();  
 			Array---> arr.length; 
 			List--->int len=list.size();
+			
+			
+			Arrays.sort(xx[]...);
+			Collections.sort(List<xxxx>);
+			
 
 * List:
 
@@ -40,7 +45,7 @@ when you are using all kinds of "List", if you remove element from it, the list.
 	 	}
 	 }
 
-* mutiply array:
+* multiple array:
 
 		for(int i=0;i<nums.length;i++)
 			for(int j=0;j<nums[i].length;j++)
