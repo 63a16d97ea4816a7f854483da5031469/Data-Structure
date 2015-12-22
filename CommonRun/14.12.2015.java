@@ -1261,6 +1261,8 @@ return str;
 ## Symmetric Tree
 
 public boolean isSymm(TreeNode root){
+	if(root==null) return true;
+
 	return isSymmSub(root.left,root.right);
 }
 

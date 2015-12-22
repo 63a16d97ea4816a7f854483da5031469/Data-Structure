@@ -615,6 +615,9 @@ levelTraversal two trees and see whether the result is matched.
 ## Symmetric Tree
 
 public boolean isSymm(TreeNode root){
+	//input validation
+	if(root==null) return true;
+
 	return (root.left,root.right);
 }
 

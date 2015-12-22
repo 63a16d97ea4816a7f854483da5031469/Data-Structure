@@ -705,7 +705,10 @@ Method 2:
 ## Symmetric Tree
 
     public boolean isSymm(TreeNode root){
+        if(root!=null)
         return isSymmSub(root.left,root.right);
+
+    return true;
     }    
     
     public boolean isSymmSub(TreeNode p, TreeNode q){

@@ -533,7 +533,9 @@ public void reverse(int[] nums){
 ## Symmetric Tree
 
 public boolean isSymm(TreeNode root){
-	return (root.left,root.right);
+	if(root==null) return true;
+
+	return isSymmSub(root.left,root.right);
 }
 
 

@@ -524,7 +524,10 @@ public void reveseArr(int[] nums){
 ## Symmetric Tree
 
 public boolean isSymm(TreeNode root){
-	
+	//input validation
+	if(root==null) return true;
+
+	return isSymmSub(root.left,root.right);
 }
 
 public boolean isSymmSub(TreeNode p,TreeNode q){

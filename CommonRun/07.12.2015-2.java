@@ -610,6 +610,9 @@ public void reverseArr(int[] nums){
 ## Symmetric Tree
 
 public boolean isSymm(TreeNode root){
+	//input validation
+	if(root==null) return true;
+
 	return isSymmSub(root.left,root.right);
 }
 

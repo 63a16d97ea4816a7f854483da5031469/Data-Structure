@@ -522,6 +522,9 @@ class ListNode{
 }
 
 public boolean isSymm(TreeNode root){
+	//input validation
+	if(root==null) return true;
+
 	return isSymmSub(root.left,root.right);
 }
 
