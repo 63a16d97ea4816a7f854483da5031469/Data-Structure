@@ -488,6 +488,44 @@ class Node
 
 ##Permutations (important)
 
+    Method 1:
+    
+    public void permutations(int[] nums,int i,int n){
+        if(i==n){
+            for(int tmp:nums)
+            System.out.print(tmp+" ");
+        }
+        System.out.println();
+    }else{
+    
+    for(int j=i;j<nums.length;j++){
+        swap(nums,i,j);
+        permutations(nums,i+1,n);
+        swap(nums,i,j);
+    }
+        
+    }
+    
+    public void swap(int[] nums,int i,int j){
+        int tmp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=tmp;
+    }
+    
+    Method 2:
+    
+    public void permutations(String pre,String str){
+        if(str.length()==0){
+            System.out.println(pre);
+        }else{
+            for(int i=0;i<str.length();i++)
+            {
+                permutations(pre+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length());
+            }
+        }
+    }
+
+
 ## Find path of Binary Tree
     
     class TreeNode{
