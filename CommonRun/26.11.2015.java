@@ -1,10 +1,7 @@
+# Must write within 1 minute
 
+http://collabedit.com/yjege
 
-/*
-
-
-
-# Must write within 1
 Remember:    
 
 			String --->  str.length();  
@@ -13,7 +10,216 @@ Remember:
 			
 			String.valueOf(char[] ch);
 
-##Binary operation / Bit operations
+			Arrays.sort(xxxx[]);
+			Collections.sort(List<xxxx>);
+
+
+
+##Clone Undirected graph. 
+
+Each node in the graph contains a label and a list of its neighbors.
+
+class UndirectedGraphNode {
+      int label;
+      ArrayList neighbors;
+      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
+  };
+  
+Implementation with DFS
+
+Implementation with BFS
+
+##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.(KMP)
+	public int findIndex(String str,String subString){
+
+		//input validation
+		if(str==null || subStr==null) return -1;
+		if(str.length()<subStr.length()) return -1;
+		if(subStr.length()==0) return -1;
+		if(str.equals("")&&subStr.equals("")) return 0;
+
+		//KMP
+		int firstMatchedIndex=KMP(str,subStr);
+
+		return firstMatchedIndex<0?-1:firstmatchedIndex;
+	}
+
+	public int[] getNextArr(String subStr){
+
+		int subStr_len=subStr.length();
+		int[] next=new int[subStr_len];
+		int prefix_index=-1;
+		int suffix_index=0;
+
+		while(suffix_index<subStr_len){
+			if(prefix_index==-1 || subStr.charAt(prefix_index)==str.charAt(suffix_index)){
+
+				int numMatched_prefix_and_suffix=prefix_index+1;
+				if(suffix_index+1>=subStr_len) break;
+				next[suffix_index+1]=numMatched_prefix_and_suffix;
+
+				prefix_index++;
+				suffix_index++;
+			}else{
+				prefix_index=next[prefix_index];
+			}
+
+		}
+		return next;
+	}
+
+	public int KMP(String str,String subStr){
+
+		int str_len=str.length();
+		int subStr_len=subStr.length();
+
+		int str_start=0;
+		int subStr_start=0;
+
+		while(str_start<str_len&&subStr_start<subStr_len){
+			if(subStr_start==-1 || subStr.charAt(subStr_start)==str.charAt(str_start)){
+
+					str_start++;
+					subStr_start++;
+
+			}else{
+
+				subStr_start=next[subStr_start];
+			}
+
+		}
+
+		if(subStr_start>=subStr_len){
+			return subStr_start-subStr_len;
+		}else return -1;
+
+	}
+
+
+
+## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
+			
+			int[] nums;
+			public void findSum(int[] nums,int sum){
+				this.nums=nums;
+				combine(sum);
+			}
+			public void combine(int m){
+				if(m<1) return;
+				ArrayList<Integer> arr=new ArrayList<Integer>();
+				getCombination(m,arr);
+			}
+
+			public void getCombination(int m,ArrayList<Integer> arr){
+				if(m==0 && arr.size()>=1){
+					for(int tmp:arr)
+						System.out.print(tmp+" ");
+					System.out.println();
+
+				}
+				if(m<0) return;
+
+				for(int i=0;i<nums.length;i++){
+
+					if(!arr.isEmpty() && nums[i]<arr.get(arr.size()-1)){
+						continue;
+					}
+
+					arr.add(nums[i]);
+					getCombination(sum-nums[i],arr);
+					if(!arr.isEmpty()){
+						arr.remove(arr.size()-1);
+					}
+
+				}
+
+			}
+
+
+
+			
+##Input m and an input Array,    Pick up some numbers from the input array, to fulfill the sum of them is equal to m. --can repeat pick up numbers
+
+	LinkedList<Integer> list=new LinkedList<Integer>();
+
+	public void findSum(int sum,int n){
+		if(sum<=0 || n<=0) return;
+		if(sum==n){
+
+			for(int i=list.size()-1;i>0;i--){
+				System.out.print(list.get(i)+" ");
+			}
+			System.out.println();
+		}else{
+
+			list.push(n);
+			findSum(sum-n,n-1);
+			list.pop();
+			findSum(sum,n-1);
+		}
+	}
+
+
+##MaximumSubarray
+
+	public void findMax(int[] nums){
+		int max_ending_here=nums[0];
+		int max_so_far=nums[0];
+		for(int i=1;i<nums.length;i++){
+			max_ending_here=Math.max(nums[i],max_ending_here);
+			max_so_far=Math.max(max_ending_here,max_so_far);
+		}
+		return max_so_far;
+	}
+
+
+##LinkRightNode
+
+Link all the same level node from left to right by using "Right" field.
+
+class Node
+{
+    public Node[] Children;
+    public Node Right;
+    public int val;
+    Node(int x){val=x;}
+}
+
+	public void linksRight(Node root){
+
+		LinkedList<Node> que=new LinkedList<Node>();
+		que.addLast(root);
+		que.addLast(null);
+
+		Node linksRightNode=null;
+
+		while(!que.isEmpty()){
+			Node firstNode=que.removeFirst();
+			if(firstNode==null){
+				linksRightNode=null;
+				if(!que.isEmpty()){
+						que.addLast(null);
+				}
+			}else{
+
+				if(linksRightNode!=null){
+						linksRightNode.Right=firstNode;
+				}
+
+				if(firstNode.Children!=null){
+						for(Node tmp:firstNode.Children){
+								que.addLast(tmp);
+						}
+				}
+
+				linksRightNode=firstNode;
+			}
+		}
+
+	}
+
+
+##Binary operation / Bit operations  --- The sum of two binary numbers
 	 
 
 ##PreOrder Traversal
@@ -28,154 +234,12 @@ Remember:
 ##LevelOrder Traversal
 
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){
-	val=x;
-	}
-}
-
-
-public void levelTraversal(TreeNode root){
-	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
-	que.addLast(root);
-
-	while(!que.isEmpty()){
-		TreeNode firstNode=que.removeFirst();
-		if(firstNode==null){
-			System.out.print(null);
-		}else{
-			System.out.print(firstNode.val+" ");
-			que.addLast(firstNode.left);
-			que.addLast(firstNode.right);
-		}
-	}
-
-
-}
- 
 ##Deepth of binary tree Traversal
-
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
-
-List<String> list=new ArrayList<String>();
-
-
-
-
-public int findDepth(TreeNode root){
-	
-LinkedList<TreeNode> que=new LinkedList<TreeNode>();
-	que.addLast(root);
-	que.addLast(null);
-
-	int depth=0;
-
-	while(!que.isEmpty()){
-	
-	TreeNode firstNode=que.removeFirst();
-
-	if(firstNode==null){
-	depth++;
-	if(!que.isEmpty()){
-		que.addLast(null);
-	}
-	}else{
-
-	if(firstNode.left!=null){
-		que.addLast(firstNode.left);
-	}
-
-	if(firstNode.right!=null){
-		que.addLast(firstNode.right);
-	}
-	
-	}
-
-
-	}
-
-	return depth;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ##Linked List Traversal
 
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
-
-
-public void loopList(ListNode head){
-	
-	ListNode tmp=head;
-	while(tmp!=null){
-	System.out.println(tmp.val);
-	tmp=tmp.next;
-
-	}
-
-}
-
-
-
 ##Fibonacci Number
-
-
-public int getF(int n){
-	
-	if(n==0||n==1) return 1;
-
-	return getF(n-1)+getF(n-2);
-
-}
-
-public int getF(int n){
-	
-	int a=1;
-	int b=1;
-	int sum=a+b;
-
-
-	for(int i=2;i<=n;i++){
-		sum=a+b;
-		a=b;
-		b=sum;
-	}
-
-return sum;
-}
-
-
-
 
 ##BFS
 
@@ -183,220 +247,17 @@ return sum;
 
 ##Judge whether has cycle
 
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
-
-public boolean isCycle(ListNode head){
-	ListNode tmp=head;
-	ListNode slow=head;
-	while(tmp!=null){
-	if(tmp.next!=null){
-	tmp=tmp.next.next;
-	}else{
-	tmp=tmp.next;
-	}
-
-	slow=slow.next;
-
-	if(fast==slow) return true;
-
-	
-	}
-
-	return false;
-}
-
-
-
-
 ##find the insection node of two single lists
 
-
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
-
-
-public ListNode findInsection(ListNode head1, ListNode head2){
-	
-	ListNode tmp1=head1;
-	ListNode tmp2=head2;
-
-	int len1=0;
-	int len2=0;
-
-	while(tmp1!=null){
-	len1++;
-	tmp1=tmp1.next;
-	}
-
-	while(tmp2!=null){
-	len2++;
-	tmp2=tmp2.next;
-	}
-
-	tmp1=head1;
-	tmp2=head2;
-
-	int diff=0;
-
-	if(len1>len2){
-	
-	diff=len1-len2;
-
-	while(diff>0){
-	tmp1=tmp1.next;
-	diff--;
-	}
-
-	}
-
-	if(len2>len1){
-	
-	diff=len2-len1;
-
-	while(diff>0){
-	
-	tmp2=tmp2.next;
-	diff--;
-	}
-
-
-	}
-	
-
-	while(tmp1!=null&&tmp2!=null){
-		if(tmp1.val==tmp2.val) return tmp1;
-
-	}
-
-
-return null;
-}
-
-
-
-
-
-
-
-
 ##find the beginning node of cycle (Linked List)
-
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
-
-public ListNode findCycle(ListNode head){
-	ListNode tmp=head;
-	ListNode slow=head;
-
-	while(tmp!=null){
-		
-		if(tmp.next!=null){
-		tmp=tmp.next.next;
-		}else{
-		tmp=tmp.next;
-		}
-
-	slow=slow.next;
-
-	if(slow=tmp) break;
-	}
-
-	tmp=head;
-
-	while(tmp!=null&&slow!=null){
-		
-		tmp=tmp.next;
-		slow=slow.next;
-		if(tmp==slow) return tmp;
-	}
-
-
-
-	return null;
-}
-
 
 ##LRU Cache
 
 ##Minimum Depth of Binary Tree
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
-public int findMinDepth(TreeNode root){
-	
-	int depth=0;
-	
-	LinkedList<TreeNode> que=new LinkedList<TreeNode>();
-	que.addLast(root);
-	que.addLast(null);
-
-	while(!que.isEmpty()){
-		TreeNode firstNode=que.removeFirst();
-
-		if(firstNode==null) {
-			depth++;
-			if(!que.isEmpty()){
-				que.addLast(null);
-			}
-		}else{
-			if(firstNode.left==null&&firstNode.right==null){
-				return detph+1;
-			}
-
-			if(firstNode.left!=null) que.addLast(firstNode.left);
-			if(firstNode.right!=null) que.addLast(firstNode.right);
-		}
-
-	}
-
-return depth;
-}
-
-
-
-
 ##Maximum Depth of Binary Tree
 
 ##Binary Search
-
-public int binarySearch(int[] nums,int key){
-	int low=0;
-	int high=nums.length-1;
-	while(low<=high){
-	int middle=(low+high)/2;
-	
-	if(nums[middle]==key){
-		return middle;
-	}
-
-	if(nums[middle]>key){
-	 high=middle-1;
-	}
-
-	if(nums[middle]<key){
-	 low=middle+1;
-	}
-	}
-
-return -1;
-}
-
-
 
 ##Implement Queue using stacks
 
@@ -404,40 +265,7 @@ return -1;
 
 ##invert binary tree
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
-public void invertBinaryTree(TreeNode root){
-	
-	if(root!=null){
-	
-	if(root.left!=null||root.right!=null){
-		TreeNode tmp=root.left;
-		root.left=root.right;
-		root.right=tmp;
-	}
-
-
-	if(root.left!=null) invertBinaryTree(root.left);
-	if(root.right!=null) invertBinaryTree(root.right);
-
-	}
-
-}
-
-
-
 ##Swap two variables without using extra space
-
-public void swap(int a,int b){
-	a=a^b;
-	b=a^b;
-	a=a^b;
-}
 
 ##Merge two sorted arrays ===> array operation
 
@@ -447,207 +275,55 @@ public void swap(int a,int b){
 
 ##Move-zeroes  ===> array operation
 
-public void moveZero(int[] nums){
-	
-	int p=0;
-
-	while(p<nums.length){
-		if(nums[p]==0){
-	
-			for(int i=p+1;i<nums.length;i++){
-				if(nums[i]!=0){
-					nums[p]=nums[i];
-					nums[i]=0;
-					break;
-				}
-			}
-		}
-		p++;
-	}
-}
-
 ##Palindrome Number (回文)
-
-public boolean isPalindrome(int n){
-		
-	int div=1;
-	int tmp=n;
-	while(tmp/10>0){
-		div=div*10;
-		tmp/=10;
-	}
-
-	
-	while(n!=0){
-		int l=n%10;
-		int h=n/div;
-
-	if(l!=h) return false;
-
-
-		div/=100;
-		n=n%div/10;
-	}
-
-return true;
-}
-
-
 
 ##Permutations (important)
 
-public void permut(String str){
-	permutations("",str);
-}
-
-public void permutations(String prev,String str){
-	
-	if(str.length()==0) {
-	System.out.println(prev);
-	}
-
-	for(int i=0;i<str.length();i++){
-		permutations(prev+str.charAt(i),str.substring(0,i)+str.substring(i+1,str.length()));
-	}
-
-}
-
-
 ## Find path of Binary Tree
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
-List<String> result=new ArrayList<String>();
-List<TreeNode> list=new ArrayList<TreeNode>();
+	class TreeNode{
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x){val=x;}
+	}
 
 
-public List<String> findPath(TreeNode root){
-	findPahtSub(root);
-	return result;
-}
+	List<String> result=new ArrayList<String>();
+	List<TreeNode> list=new ArrayList<TreeNode>();
 
+	public void findPath(TreeNode root)
+{
+		if(root!=null){
+			list.add(root);
 
-public void findPathSub(TreeNode root){
-	
-	if(root!=null){
-		list.add(root);
-
-		if(root.left==null&&root.right==null){
-			String str="";
-
-			for(TreeNode tmp:list){
-				str+=tmp.val;
+			if(root.left==null && root.right==null){
+					String str="";
+					for(TreeNode tmp:list)
+						str+=tmp.val;
+					result.add(str);
+					list=new ArrayList<TreeNode>();
 			}
 
-			result.add(str);
+			if(root.left!=null){
+				findPath(root.left);
+				list.remove(list.size()-1);
 
-			list=new ArrayList<TreeNode>();
+			}
+			if(root.right!=null){
+				findPath(root.right);
+				list.remove(list.size()-1);
+			}
 		}
-
-		if(root.left!=null){
-			findPathSub(root.left);
-			list.remove(list.size()-1);
-		}
-
-		if(root.right!=null){
-			findPathSub(root.right);
-			list.remove(list.size()-1);
-		}
-	}	
-
 }
-
-
-
-
-
 
 ##ReverseBits
 
-public String reverseStr(int n){
-	StringBuilder sb=new StringBuilder(Integer.toBinaryString(n));
-	return sb.reverse().toString();
-}
-
-public String reverseBit(int n){
-	String str=Integer.toBinaryString(n);
-
-	Char[] c=str.toCharArray();
-
-	int head=0;
-	int end=c.length;
-	while(head<end){
-	int tmp=c[head];
-	c[head]=c[end];
-	c[end]=tmp;
-	head++;
-	end--;
-	}
-	return String.valueOf(c);
-}
-
-
-
 ##Reverse Integer
-
-public int reverseInt(int n){
-	
-	int tmp=n;
-	int another=0;
-	while(tmp!=0){
-	another=another*10+tmp%10;
-	tmp/10;
-	}
-return another;
-
-}
 
 ##Reverse Linked List
 
-class ListNode{
-	int val;
-	ListNode next;
-	ListNode(int x){val=x;}
-}
-
-public void reverse(ListNode head){
-		
-		ListNode tmp=head;
-
-		ListNode prev=null;
-		ListNode nextNext=tmp.next;
-	while(tmp!=null){
-		nextNext=tmp.next;
-
-		tmp.next=prev;
-		prev=tmp;
-		tmp=nextNext;
-	}
-
-
-
-}
-
-
-
-
-
-
 ##Rotate Array
-
-public void rotate(int[] arr){
-    int[] c=arr.clone();
-
-    for(int i=0;i<c.length;i++){
-        arr[i]=c[(i+k)%length];
-    }
-}
-
 
 ##Reverse Array
 
@@ -655,70 +331,35 @@ public void rotate(int[] arr){
 
 ## Symmetric Tree
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){val=x;}
-}
-
-public boolean isSymm(TreeNode root){
-	if(root==null) return true;
-	return isSymmTwo(root.left,root.right);
-}
-
-public boolean isSymmTwo(TreeNode p, TreeNode q){
-	if(p==null&&q==null) return true;
-	if(p==null||q==null) return false;
-
-	if(p!=null&&q!=null){
-	
-	return (p.val==q.val)&&isSymmTwo(p.right,q.left)&&isSymmTwo(q.left,p.right);
-	}
-return false;
-}
-
-
 ## valid-anagram (/valid-anagram/)
-
-Use hashMap.
- 
 
 ##HashSet iteration
 
-HashSet set=new HashSet();
-
-set.add("fds");
-
-
-for(Iterator it=set.iterator();it.hasNext();){
-	System.out.println(it.next());
-}
+	for(Iterator it=set.iterator();it.hasNext();){
+		System.out.println(it.next());
+	}
 
 
 ##HashMap iteration
 
-HashMap<Integer,String> map=new HashMap<Integer,String>();
-
-map.put("dfsfd","fdsf");
-
-for(Entry<Integer,String> entry:map.entrySet()){
-	System.out.println(entry.getKey()+":"+entry.getValue());
-}
+	for(Entry<String,String> entry:entrySet()){
+		System.out.println(entry.getKey()+"="+entry.getValue());
+	}
 
 
 ##HashTable iteration
 
-
 Hashtable table=new Hashtable();
-
 table.put("fds","fds");
 
-
-Emuneration e=table.keys();
-
+Enumeration e=table.keys();
 while(e.hasMoreElements()){
- String str=(String)e.nextElement();
- System.out.println(str+" "+table.get(str));
+	String str=(String)e.nextElement();
+	System.out.println(str+"="+table.get(str));
 }
+
+
+
+
+
 
