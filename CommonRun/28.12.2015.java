@@ -4,14 +4,14 @@ http://collabedit.com/yjege
 
 Remember:    
 
-			String --->  str.length();  
-			Array---> arr.length; 
-			List--->int len=list.size();
-			
-			String.valueOf(char[] ch);
+            String --->  str.length();  
+            Array---> arr.length; 
+            List--->int len=list.size();
+            
+            String.valueOf(char[] ch);
 
-			Arrays.sort(xxxx[]);
-			Collections.sort(List<xxxx>);
+            Arrays.sort(xxxx[]);
+            Collections.sort(List<xxxx>);
 
 
 
@@ -31,16 +31,125 @@ Implementation with BFS
 
 ##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.(KMP)
 
+     public int findSubStrIndex(String str, String subStr){
+         if(str==null || subStr==null) return -1;
+         if(str.length()<subStr.length()) return -1;
+         if(subStr.length()==0) return -1;
+         if(subStr.equals("") && str.equals("")) return 0;
+         
+         //KMP
+         int firstMatchedIndex=KMP(str,subStr);
+         
+         return firstMatchedIndex<0?-1:firstMatchedIndex;
+     }
+     
+     
+     public int[] getNextArr(String subStr){
+         int subStr_len=subStr.length();
+         int[] next=new int[subStr_len];
+         int prefix_index=-1;
+         int suffix_index=0;
+         
+         while(suffix_index<subStr_len){
+             if(prefix_index==-1||subStr.charAt(prefix_index)==subStr.charAt(suffix_index)){
+                 int numMatched_prefix_and_suffix=prefix_index+1;
+                 if(suffix_index+1>=subStr_len) break;
+                 next[suffix_index+1]=numMatched_prefix_and_suffix;
+                 
+                 prefix_index++;
+                 suffix_index++;
+             }else{
+                 prefix_index=next[prefix_index];
+             }
+         }
+     }
+
 
 ## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
-			
-			
+            
+           public void convert(int[] nums,int low,int high){
+               int middle=low+((high-low)>>1);
+               
+               TreeNode root=new TreeNode(nums[middle]);
+               root.left=convert(nums,low,middle-1);
+               root.right=convert(nums,middle+1,high);
+
+               return root;
+           }
+            
+            
 ##Input m and an input Array,    Pick up some numbers from the input array, to fulfill the sum of them is equal to m. --can repeat pick up numbers
 
+    int[] nums;
+    
+    public void findSum(int[] nums,int sum){
+        this.nums=nums;
+        combine(sum);
+    }
+    
+    public void combine(int m){
+        if(m<1) return;
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        getCombination(m,arr);
+    }
+    
+    public void getCombination(int m,ArrayList<Integer> arr){
+        if(m==0 && !arr.isEmpty()){
+            for(int tmp:arr)
+            System.out.print(tmp+" ");
+            System.out.println();
+        }
+        
+        if(m<0) return;
+        
+        for(int i=0;i<nums.length;i++){
+            if(!arr.isEmpty() && nums[i]<arr.get(arr.size()-1)){
+                continue;
+            }
+            
+            arr.add(nums[i]);
+            getCombination(m-nums[i],arr);
+            if(!arr.isEmpty()){
+                arr.remove(arr.size()-1);
+            }
+            
+        }
+    }
+
+
 ##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)
+    LinkedList<Integer> list=new LinkedList<Integer>();
+    
+    public void findSum(int sum,int n){
+        if(sum<=0 || n<=0) return;
+        if(sum==n){
+            for(int i=list.size()-1;i>0;i--){
+            System.out.print(list.get(i)+" ");
+            }
+            System.out.println();
+        }else{
+            list.push(n);
+            findSum(sum-n,n-1);
+            list.pop();
+            findSum(sum,n-1);
+        }
+    }
+
 
 
 ##MaximumSubarray
+
+    public int findMax(int[] nums){
+        int max_ending_here=nums[0];
+        int max_so_far=nums[0];
+        
+        for(int i=1;i<nums.length;i++){
+            max_ending_here=Math.max(max_ending_here+nums[i],nums[i]);
+            max_so_far=Math.max(max_ending_here,max_so_far);
+        }
+        return max_so_far;
+    }
+
 
 
 ##LinkRightNode
@@ -55,12 +164,42 @@ class Node
     Node(int x){val=x;}
 }
 
-##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)
-
-
+    public void linksRight(Node root){
+        LinkedList<Node> que=new LinkedList<Node>();        
+        que.addLast(root);
+        que.addLast(null);
+        Node linksRightNode=null;
+    
+        while(!que.isEmpty()){
+            Node firstNode=que.removeFirst();
+            if(firstNode==null){
+                linksRightNode=null;
+                if(!que.isEmpty()){
+                    que.addLast(null);
+                }        
+             }else{
+                 if(linksRightNode!=null){
+                     linksRightNode.Right=firstNode;
+                 }
+                 
+                 if(firstNode.Children!=null){
+                     for(Node tmp:firstNode.Children){
+                         que.addLast(tmp);
+                     }
+                 }
+                 
+                 linksRightNode=firstNode;
+             }   
+        }
+    }
+ 
 
 ##Binary operation / Bit operations  --- The sum of two binary numbers
-	 
+
+    public String binarySum(String a,String b){
+        
+    }
+     
 
 ##PreOrder Traversal
 
