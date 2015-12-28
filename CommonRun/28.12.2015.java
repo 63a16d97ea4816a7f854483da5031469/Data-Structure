@@ -276,12 +276,15 @@ TreeNode(int x){val=x;}
                 System.out.print(firstNode);
             }else{
                 System.out.print(firstNode.val);
-                que.addLast(firstNode.left);
-                que.addLast(firstNode.right);
+                que.addLast(root.left);
+                que.addLast(root.right);
             }
         }
     }
- 
+
+
+
+
 ##Deepth of binary tree Traversal
 
     public int findDepth(TreeNode root){
@@ -300,12 +303,12 @@ TreeNode(int x){val=x;}
                 que.addLast(null);
             }
         }else{
-            if(firstNode.left!=null){
-                que.addLast(firstNode.left);
+            if(root.left!=null){
+                que.addLast(root.left);
             }
             
-            if(firstNode.right!=null){
-                que.addLast(firstNode.right);
+            if(root.right!=null){
+                que.addLast(root.right);
             }
         }
     }
@@ -326,6 +329,41 @@ TreeNode(int x){val=x;}
 ##find the insection node of two single lists
 
 ##find the beginning node of cycle (Linked List)
+
+class ListNode{
+    int val;
+    ListNode next;
+    ListNode(int x){val=x;}
+}
+
+public void findBeginNode(ListNode head){
+    ListNode fast=head;
+    ListNode slow=head;
+
+
+    while(fast!=null){
+        if(fast.next!=null){
+            fast=fast.next.next;
+        }else{
+            fast=fast.next;
+        }
+
+        slow=slow.next;
+        if(fast==slow) break;
+    }
+
+    fast=head;
+    while(fast!=null&&slow!=null){
+        fast=fast.next;
+        slow=slow.next;
+
+        if(fast==slow) return fast;
+    }
+
+return null;
+}
+
+
 
 ##LRU Cache
 
@@ -357,6 +395,44 @@ TreeNode(int x){val=x;}
 
 ## Find path of Binary Tree
 
+    class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x){val=x;}
+    }
+
+    List<String> result=new ArrayList<String>();
+    List<TreeNode> list=new ArrayList<TreeNode>();
+
+    public void findPath(TreeNode root){
+
+        if(root!=null){
+
+            if(root.left==null && root.right==null){
+                    String str="";
+                    for(TreeNode tmp:list){
+                        str+=tmp.val;
+                    }
+                    result.add(str);
+                    list=new ArrayList<TreeNode>();
+            }
+
+            if(root.left!=null){
+                findPath(root.left);
+                list.remove(list.size()-1);
+            }
+
+            if(root.right!=null){
+                findPath(root.right);
+                list.remove(list.size()-1);
+            }
+
+        }
+
+    } 
+
+
 ##ReverseBits
 
 ##Reverse Integer
@@ -375,9 +451,27 @@ TreeNode(int x){val=x;}
 
 ##HashSet iteration
 
+    for(Iterator it=set.iterator();it.hasNext();){
+        System.out.println(it.next());
+    }
+
+
 ##HashMap iteration
+
+    for(Entry<String,Integer> entry=map.entrySet()){
+        System.out.println(entry.getKey()+"="+entry.getValue());
+    }
+
 
 ##HashTable iteration
 
-
+    Hashtable table=new Hashtable();
+    table.put("Fds","fds");
+    
+    Enumeration e=table.keys();
+    
+    while(e.hasMoreElements()){
+        String str=(String)e.nextElemnt();
+        System.out.print(str+"="+table.get(str));
+    }
 
