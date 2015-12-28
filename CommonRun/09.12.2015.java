@@ -194,12 +194,11 @@ public void levelOrder(TreeNode root){
 		if(firstNode!=null){
 		System.out.println(firstNode.val);
 
-		if(firstNode.left!=null){
 			que.addLast(firstNode.left);
-		}
-		if(firstNode.right!=null){
+
+
 			que.addLast(firstNode.right);
-		}
+
 		}
 	}
 

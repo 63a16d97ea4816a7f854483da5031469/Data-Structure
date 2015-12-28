@@ -295,7 +295,7 @@ public int findMin(TreeNode root){
 
 			if(firstNode.left==null&&firstNode.right==null) return depth+1;
 
-			if(fristNode.left!=null) que.addLast(firstNode.left);
+			if(firstNode.left!=null) que.addLast(firstNode.left);
 			if(firstNode.right!=null) que.addLast(firstNode.right);
 		}
 	}

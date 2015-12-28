@@ -251,8 +251,8 @@ public void levelTraversal(TreeNode root){
 				System.out.println(null);
 			}else{
 				System.out.println(firstNode.val);
-				levelTraversal(firstNode.left);
-				levelTraversal(firstNode.fight);
+				que.addLast(firstNode.left);
+				que.addLast(firstNode.fight);
 			}
 	}
 

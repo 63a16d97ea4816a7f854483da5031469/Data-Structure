@@ -330,8 +330,8 @@ public void levelOrder(TreeNode root){
 		TreeNode firstNode=que.removeFirst();
 		if(firstNode!=null){
 			System.out.print(firstNode.val);
-			levelOrder(firstNode.left);
-			levelOrder(firstNode.right);
+			que.addLast(firstNode.left);
+			que.addLast(firstNode.right);
 		}else{
 			System.out.print(null);
 		}

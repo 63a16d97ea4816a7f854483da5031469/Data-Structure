@@ -307,8 +307,8 @@ TreeNode(int x){val=x;}
                 }
             }else{
                 System.out.println(firstNode.val);
-                levelOrder(firstNode.left);
-                levelOrder(firstNode.right);
+                que.addLast(firstNode.left);
+                que.addLast(firstNode.right);
             }
         }
     }
@@ -338,12 +338,12 @@ TreeNode(int x){val=x;}
                     que.addLast(null);
                 }
             }else{
-                if(root.left!=null){
-                    que.addLast(root.left);
+                if(firstNode.left!=null){
+                    que.addLast(firstNode.left);
                 }
                 
-                if(root.right!=null){
-                    que.addLast(root.right);
+                if(firstNode.right!=null){
+                    que.addLast(firstNode.right);
                 }
             }
         }

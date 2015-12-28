@@ -197,7 +197,42 @@ class Node
 ##Binary operation / Bit operations  --- The sum of two binary numbers
 
     public String binarySum(String a,String b){
-        
+        if(a==null || a.length()==0) return b;
+        if(b==null || b.length()==0) return a;
+       
+         int currA=a.length()-1;
+         int currB=b.length()-1;
+         int flag=0;
+         
+         StringBuilder sb=new StringBuilder();
+         
+         while(currA>=0||currB>=0){
+             int va=0;
+             int vb=0;
+             
+             if(currA>=0)
+             {
+                 va=a.charAt(currA)=='0'?0:1;
+                 currA--;
+             }
+             
+             if(currB>=0){
+                 vb=b.charAt(currB)=='0'?0:1;
+                 currB--;
+             }
+             int sum=va+vb+flag;
+             if(sum>=2){
+                 sb.append(sum-2);
+                 flag=1;
+             }else{
+                 sb.append(sum);
+                 flag=0;
+             }     
+         }
+       if(flag==1){
+           sb.append("1");
+       }
+       return sb.reverse().toString();
     }
      
 
@@ -205,15 +240,77 @@ class Node
 
 
 ##InOrder Traversal
-
+    
+    public void inOrder(TreeNode root){
+        if(root!=null){
+            if(root.left!=null){
+                inOrder(root.left);
+            }
+            System.out.println(root.val);
+            if(root.right!=null){
+                inOrder(root.right);
+            }
+        }
+    }
 
 ##PostOrder Traversal
 
 
 ##LevelOrder Traversal
 
+class TreeNode{
+int val;
+TreeNode left;
+TreeNode right;
+TreeNode(int x){val=x;}
+}
 
+    public void levelOrder(TreeNode root){
+        
+    LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+    que.addLast(root);
+        while(!que.isEmpty()){
+            TreeNode firstNode=que.removeFirst();
+            
+            if(firstNode==null){
+                System.out.print(firstNode);
+            }else{
+                System.out.print(firstNode.val);
+                que.addLast(firstNode.left);
+                que.addLast(firstNode.right);
+            }
+        }
+    }
+ 
 ##Deepth of binary tree Traversal
+
+    public int findDepth(TreeNode root){
+    
+    LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+    que.addLast(root);
+    que.addLast(null);
+    int depth=0;
+    
+    while(!que.isEmpty()){
+        TreeNode firstNode=que.removeFirst();
+        
+        if(firstNode==null){
+        depth++;
+            if(!que.isEmpty()){
+                que.addLast(null);
+            }
+        }else{
+            if(firstNode.left!=null){
+                que.addLast(firstNode.left);
+            }
+            
+            if(firstNode.right!=null){
+                que.addLast(firstNode.right);
+            }
+        }
+    }
+    return depth;
+    }
 
 
 ##Linked List Traversal
@@ -281,7 +378,6 @@ class Node
 ##HashMap iteration
 
 ##HashTable iteration
-
 
 
 

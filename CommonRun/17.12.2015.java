@@ -339,8 +339,8 @@ class Node
                 System.out.print(null);
             }else{
                System.out.print(firstNode.val);
-               levelOrder(firstNode.left);
-               levelOrder(firstNode.right);
+               que.addLast(firstNode.left);
+               que.addLast(firstNode.right);
             }
             
         }

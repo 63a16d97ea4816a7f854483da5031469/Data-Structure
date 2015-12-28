@@ -829,14 +829,8 @@ public void levelOrder(TreeNode root){
 
 		if(firstNode!=null){
 			System.out.println(firstNode.val);
-
-			if(firstNode.left!=null){
-				levelOrder(firstNode.left);
-			}
-
-			if(firstNode.right!=null){
-				levelOrder(firstNode.right);
-			}
+ 			que.addLast(firstNode.left);
+ 			que.addLast(firstNode.right);
 
 		}else{
 			System.out.println(null);

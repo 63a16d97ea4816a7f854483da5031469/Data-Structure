@@ -221,8 +221,8 @@ public void levelOrder(TreeNode root){
 
 		if(firstNode!=null){
 			System.out.println(firstNode.val);
-			levelOrder(firstNode.left);
-			levelOrder(firstNode.right);
+			que.addLast(firstNode.left);
+			que.addLast(firstNode.right);
 		}else{
 			System.out.println(null);
 		}

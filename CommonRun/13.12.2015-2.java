@@ -256,13 +256,13 @@ class TreeNode{
 			}else{
 				System.out.println(firstNode.val);
 
-				if(firstNode.left!=null){
-					que.addLast(firstNode.left);
-				}
 
-				if(firstNode.right!=null){
+					que.addLast(firstNode.left);
+
+
+
 					que.addLast(firstNode.right);
-				}
+
 			}
 		}
 	}

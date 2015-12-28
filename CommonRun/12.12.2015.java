@@ -259,8 +259,8 @@ public void levelOrder(TreeNode root){
 		}else{
 			System.out.println(root.val);
 
-			levelOrder(root.left);
-			levelOrder(root.right);
+			que.addLast(root.left);
+			que.addLast(root.right);
 		}
 	}
 }

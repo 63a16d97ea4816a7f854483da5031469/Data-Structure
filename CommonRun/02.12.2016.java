@@ -68,8 +68,6 @@ public void levelTraversal(TreeNode root){
 			System.out.print(firstNode.val+" ");
 
 				que.addLast(firstNode.left);
-
-
 				que.addLast(firstNode.right);
 		}
 

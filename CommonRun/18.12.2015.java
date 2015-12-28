@@ -289,11 +289,11 @@ class Node
             }else{
             
             System.out.println(firstNode.val);
-                if(root.left!=null)
-                que.addLast(root.left)
+                if(firstNode.left!=null)
+                que.addLast(firstNode.left)
                 
-                if(root.right!=null)
-                que.addLast(root.right);
+                if(firstNode.right!=null)
+                que.addLast(firstNode.right);
             }
         }
     

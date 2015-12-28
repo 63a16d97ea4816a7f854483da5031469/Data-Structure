@@ -286,8 +286,8 @@ class Node
                         System.out.print(null);
                     }else{
                         System.out.print(firstNode.val+" ");
-                        que.addLast(root.left);
-                        que.addLast(root.right);
+                        que.addLast(firstNode.left);
+                        que.addLast(firstNode.right);
                     }
                 
                 }
@@ -321,12 +321,12 @@ class Node
                         que.addLast(null);
                     }
                 }else{
-                    if(root.left!=null){
-                        findDepth(root.left);
+                    if(firstNode.left!=null){
+                        findDepth(firstNode.left);
                     }
                     
-                    if(root.right!=null){
-                        findDepth(root.right);
+                    if(firstNode.right!=null){
+                        findDepth(firstNode.right);
                     }
                 }
             
