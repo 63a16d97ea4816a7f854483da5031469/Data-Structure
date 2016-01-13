@@ -250,7 +250,7 @@ Implementation with BFS
 			return null;
 			}
 	
-			int middle=low+((right-low)>>1)
+			int middle=low+((right-left)>>1)
 		
 			TreeNode root=new TreeNode(nums[middle]);
 			
@@ -302,7 +302,7 @@ Implementation with BFS
 
 			
 			
-##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)
+## Input m and an input Array, pick up some numbers from specfic array, to fulfill the sum of them is equal to m. (can repeat)
 
 		public static void main(String[] args){
 			Solution3 robot = new Solution3();

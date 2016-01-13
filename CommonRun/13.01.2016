@@ -1,0 +1,378 @@
+# Must write within 1 minute
+
+http://collabedit.com/yjege
+
+Remember:    
+
+            String --->  str.length();  
+            Array---> arr.length; 
+            List--->int len=list.size();
+            
+            String.valueOf(char[] ch);
+
+            Arrays.sort(xxxx[]);
+            Collections.sort(List<xxxx>);
+
+
+
+##Clone Undirected graph. 
+
+Each node in the graph contains a label and a list of its neighbors.
+
+class UndirectedGraphNode {
+      int label;
+      ArrayList neighbors;
+      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
+  };
+  
+Implementation with DFS
+
+Implementation with BFS
+
+##Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.(KMP)
+
+    public int findSubIndex(String str, String subStr){
+        
+        //input validation
+        if(str==null || subStr==null) return -1;
+        if(str.length()<subStr.length()) return -1;
+        if(subStr.length()==0) return -1;
+        if(subStr.equals("")&&str.equals("")) return 0;
+        
+        //KMP
+        int firstIndex=KMP(str,subStr);
+        
+        return firstIndex<0?-1:firstIndex;        
+    }
+    
+    
+    public int[] getNextArr(String subStr){
+        int subStr_len=subStr.length();
+        int[] next=new int[subStr_len];
+        next[0]=-1;
+        
+        int prefix_index=-1;
+        int suffix_index=0;
+        
+        
+        while(suffix_index<subStr_len){
+            if(prefix_index==-1||subStr.charAt(prefix_inde)==subStr.charAt(suffix_index)){
+                     int numMatched_prefix_and_suffix=prefix_index+1;
+                     if(suffix_index+1>=subStr_len) break;
+                     next[suffix_index+1]=numMatched_prefix_and_suffix;
+                     
+                     prefix_index++;
+                     suffix_index++;   
+            }else{
+                prefix_index=next[prefix_index];
+            }
+ 
+        }
+        return next;
+        
+    }
+    
+    
+    public int KMP(String str,String subStr){
+        int str_len=str.length();
+        int subStr_len=subStr.length();
+        int str_index=0;
+        int subStr_index=0;
+        
+        int[] next=getNextArr(subStr);
+        
+        while(str_index<str_len&&subStr_index<subStr_len){
+            
+            if(subStr_index==-1||str.charAt(str_index)==subStr.charAt(subStr_index)){
+            
+                str_index++;
+                subStr_index++;
+            
+            }else{
+                subStr_index=next[subStr_index];
+            }
+            
+        }
+        
+        if(subStr_index>subStr_len){
+            return subStr_index-subStr_len;
+        }else return -1;
+    
+    }
+
+
+
+## Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.  
+            public TreeNode createTree(int[] nums,int left,int right){
+                
+               if(left>right) return null;
+                         int middle=left+(right-left)>>1;
+                TreeNode root=new TreeNode(nums[middle]);
+  
+            root.left=createTree(nums,left,middle-1);
+            root.right=createTree(nums,middle+1,right);
+            
+            }
+            
+##Input m and an input Array,    Pick up some numbers from the input array, to fulfill the sum of them is equal to m. --can repeat pick up numbers
+        
+        int[] nums;
+        public void findSum(int[] nums,int m){
+        
+        this.nums=nums;
+        combine(m);
+        }
+        
+        public void combine(int m){
+            if(m<1){
+                return;
+            }
+
+            ArrayList<Integer> arr=new ArrayList<Integer>();
+            getCombination(m,arr);
+        }
+        
+        public void getCombination(int m,ArrayList<Integer> arr){
+            if(m==0 && arr.size()>=1){
+                for(int i=0;i<arr.size();i++){
+                    System.out.print(arr.get(i)+" ");
+                }
+                System.out.println();
+                return;
+            }
+            
+            if(m<0) return;
+            
+            for(int i=0;i<nums.length;i++){
+            if(arr.size()!=0&&nums[i]<arr.get(arr.size()-1)){
+                arr.add(nums[i]);
+                getCombination(m-nums[i],arr);
+                if(arr.size()!=0){
+                    arr.remove(arr.size()-1);
+                }
+            }
+            
+            }
+        
+        }
+        
+
+##Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (can repeat)
+
+    LinkedList<Integer> list=new LinkedList<Integer>();
+
+    public void findSum(int sum,int n){
+        
+        if(sum<=0 ||n<=0) return;
+        
+        if(sum==n){
+            for(int tmp:list)
+            System.out.print(tmp+" ");
+            
+            System.out.println();
+        }else{
+            
+ 
+            list.push(n);
+            findSum(sum-n,n-1);
+            list.pop();
+            findSum(sum,n-1);
+        
+        }
+        
+    
+    
+    }
+
+    
+
+##MaximumSubarray
+
+
+##LinkRightNode
+
+Link all the same level node from left to right by using "Right" field.
+
+class Node
+{
+    public Node[] Children;
+    public Node Right;
+    public int val;
+    Node(int x){val=x;}
+}
+ 
+
+##Binary operation / Bit operations  --- The sum of two binary numbers
+     
+
+##PreOrder Traversal
+
+
+##InOrder Traversal
+
+
+##PostOrder Traversal
+
+
+##LevelOrder Traversal
+    
+    public void level(TreeNode root){
+    
+    LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+        
+        que.addLast(root);
+        
+        while(!que.isEmpty()){
+            TreeNode firstNode=que.removeFirst();
+            
+            if(firstNode==null){
+                System.out.print(" ");
+            }else{
+                System.out.print(firstNode.val);
+                que.addLast(firstNode.left);
+                que.addLast(firstNode.right);   
+            }
+        }
+    
+    }
+
+##Deepth of binary tree Traversal
+
+    public int findDepth(TreeNode root){
+        LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+        que.addLast(root);
+        que.addLast(null);
+        int depth=0;
+
+        while(!que.isEmpty()){
+            TreeNode firstNode=que.removeFirst();
+            
+            if(firstNode==null){
+                depth++;
+                if(!que.isEmpty()){
+                    que.addLast(null);
+                }
+            }else{
+                
+               if(firstNode.left!=null){
+                   que.addLast(firstNode.left);
+               }
+               
+               if(firstNode.right!=null){
+                   que.addLast(firstNode.right);
+               }
+            
+            }
+        
+        }
+    }
+
+
+
+##Linked List Traversal
+
+class ListNode{
+int val;
+ListNode next;
+}
+
+    public void loop(LinkedList head){
+        LinkedList tmp=head;
+        
+        while(tmp!=null){
+            System.out.println(tmp.val);
+            tmp=tmp.next;
+        }
+    }
+
+
+
+##Fibonacci Number
+    
+    public int findN(int n){
+    
+           if(n==0|| n==1) return 1;
+           
+           return findN(n-1)+findN(n-2);    
+    }
+
+
+    public int findN2(int n){
+        if(n==0||n==1) return 1;
+        int a=1;
+        int b=1;
+        int sum=a+b;
+        for(int i=1;i<n;i++){
+         sum=a+b;
+         a=b;
+         b=sum;
+        }
+        
+        return sum;
+    }
+
+
+
+
+##BFS
+
+##DFS
+
+##Judge whether has cycle
+
+##find the insection node of two single lists
+
+##find the beginning node of cycle (Linked List)
+
+##LRU Cache
+
+##Minimum Depth of Binary Tree
+
+##Maximum Depth of Binary Tree
+
+##Binary Search
+
+##Implement Queue using stacks
+
+##Implement Stack using Queues
+
+##invert binary tree
+
+##Swap two variables without using extra space
+
+##Merge two sorted arrays ===> array operation
+
+##Merge two sorted lists
+
+##O(1) time complexity to get minimum value of stack
+
+##Move-zeroes  ===> array operation
+
+##Palindrome Number (回文)
+
+##Permutations (important)
+
+## Find path of Binary Tree
+
+##ReverseBits
+
+##Reverse Integer
+
+##Reverse Linked List
+
+##Rotate Array
+
+##Reverse Array
+
+##Is Same Tree (/same-tree/)
+
+## Symmetric Tree
+
+## valid-anagram (/valid-anagram/)
+
+##HashSet iteration
+
+##HashMap iteration
+
+##HashTable iteration
+
