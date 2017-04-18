@@ -250,7 +250,7 @@ Implementation with BFS
 			return null;
 			}
 	
-			int middle=low+((right-left)>>1)
+			int middle=low+((right-left)>>1);
 		
 			TreeNode root=new TreeNode(nums[middle]);
 			
@@ -584,8 +584,7 @@ Using recustion:
     	
     return null;
     }
-	
-}
+
 	    
 	    
 
@@ -639,11 +638,16 @@ Without using recursion:
 Using recursion:
 
 	public List<Integer> inOrderTraversalRecursion(TreeNode root){
+
+		if(root!=null){
+
 		if(root.left!=null) inOrderTraversalRecursion(root.left);
 		
 		list.add(root.val);
 		
 		if(root.right!=null) inOrderTraversalRecursion(root.right);
+
+		}
 		
 		return list;
 	}

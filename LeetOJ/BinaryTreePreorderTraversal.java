@@ -206,8 +206,6 @@ public class BinaryTreePreorderTraversal {
     		if(root.left!=null) preorderTraversal(root.left);
     		
     		if(root.right!=null) preorderTraversal(root.right);
-    		
-    		
     	}
     	
     	
