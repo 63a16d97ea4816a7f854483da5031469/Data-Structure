@@ -104,7 +104,7 @@ class Solution {
     //思路，先搞出来s1的全排列，然后用在s2中寻找是否有，不过可能超时
     public boolean checkInclusion(String s1, String s2) {
         char[] sc1=s1.toCharArray();
-        findPerm(sc1, 0, s1.length());
+        findPerm(sc1, 0, s1.length()-1);
  
         for(String tmp:list){
             if(s2.contains(tmp)){
@@ -123,7 +123,7 @@ class Solution {
             }
             list.add(new String(s));
         }
-        for(int i=from;i<to;i++){
+        for(int i=from;i<=to;i++){
             
             //想不起来了，这里看了之前的如何做permutation排列的答案
          swap(arr, from, i);
