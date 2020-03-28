@@ -39,10 +39,105 @@ public class Solution {
     }
 }
 
-20 March 2020 at 8:33:31 pm
+28 March 2020 at 2.41pm to 2.51pm
  * 
  */
 
+
+
+
+
+
+class Solution {
+    
+    public int orangesRotting(int[][] grid) {
+        
+        int row=grid.length;
+        int col=grid[0].length;
+        
+        //count the fresh ones 
+        int fresh=0;
+        
+        //how many minutes
+        int minute=0;
+        
+        Queue queue=new LinkedList();
+        
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                
+                if(grid[i][j]==1){
+                    fresh++;
+                }else if(grid[i][j]==2){
+                    queue.add(new int[]{i,j});
+                }
+            }
+        }
+        
+        
+        while(queue.isEmpty()){
+            minute++;
+            
+            int[] curr=queue.poll();
+            
+            int r=curr[0];
+            int c=curr[1];
+            
+            //在四个方向上扩展
+            if(r-1>=0){
+                //在row上可以往左移动
+                
+                if(grid[r-1][c]==1){
+                    //如果是fresh，mark这个为2
+                    grid[r-1][c]=2;
+                    //更新fresh的数量
+                    fresh--;
+                    
+                    //放入队列中
+                    stack
+                }
+                //==2 和 ==0不需要行动
+            }
+            
+            if(r+1<row){
+                //可以在row上往右边行动
+                   if(grid[r+1][c]==1){
+                    //如果是fresh，mark这个为2
+                    grid[r+1][c]=2;
+                    //更新fresh的数量
+                    fresh--;
+                }
+            }
+            
+            if(c-1>=0){
+                   if(grid[r][c-1]==1){
+                    //如果是fresh，mark这个为2
+                    grid[r][c-1]=2;
+                    //更新fresh的数量
+                    fresh--;
+                }
+            }
+            
+            if(c+1<col){
+                    if(grid[r][c+1]==1){
+                    //如果是fresh，mark这个为2
+                    grid[r][c+1]=2;
+                    //更新fresh的数量
+                    fresh--;
+                }
+            }
+            
+            
+            
+        }
+        
+        
+        return fresh>0?-1:minute-1;
+    }
+    
+    
+    
+}
 
 
 
