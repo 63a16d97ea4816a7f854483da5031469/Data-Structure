@@ -15,21 +15,13 @@ Note:
 Given m, n satisfy the following condition:
 1 ≤ m ≤ n ≤ length of list.
 
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
-
 public class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         
     }
 }
 
-20 November 2015 at 8:33:31 pm
+20 March 2020 at 8:33:31 pm
  * 
  */
 
