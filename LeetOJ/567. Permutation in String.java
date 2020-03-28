@@ -48,95 +48,44 @@ public class Solution {
 
 
 
+
+
 class Solution {
     
-    public int orangesRotting(int[][] grid) {
+    //7.20 - 7.36pm
+    public boolean checkInclusion(String s1, String s2) {
+        char[] map1=new char[26];
+        char[] map2=new char[26];
+
+        char[] arr1=s1.toCharArray();
+        char[] arr2=s2.toCharArray();
         
-        int row=grid.length;
-        int col=grid[0].length;
+        for(int i=0;i<arr1.length;i++){
+            map1[arr1[i]-'a']++;
+        }
         
-        //count the fresh ones 
-        int fresh=0;
-        
-        //how many minutes
-        int minute=0;
-        
-        Queue queue=new LinkedList();
-        
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
+        //注意这里是<=，千万不能因为这个少case
+        for(int i=0;i<=arr2.length-arr1.length;i++){
+            map2=new char[26];
+            for(int j=0;j<arr1.length;j++){
+                map2[(arr2[i+j]-'a')]++;
                 
-                if(grid[i][j]==1){
-                    fresh++;
-                }else if(grid[i][j]==2){
-                    queue.add(new int[]{i,j});
+                if(match(map1,map2)){
+                    return true;
                 }
             }
         }
-        
-        
-        while(queue.isEmpty()){
-            minute++;
-            
-            int[] curr=queue.poll();
-            
-            int r=curr[0];
-            int c=curr[1];
-            
-            //在四个方向上扩展
-            if(r-1>=0){
-                //在row上可以往左移动
-                
-                if(grid[r-1][c]==1){
-                    //如果是fresh，mark这个为2
-                    grid[r-1][c]=2;
-                    //更新fresh的数量
-                    fresh--;
-                    
-                    //放入队列中
-                    stack
-                }
-                //==2 和 ==0不需要行动
-            }
-            
-            if(r+1<row){
-                //可以在row上往右边行动
-                   if(grid[r+1][c]==1){
-                    //如果是fresh，mark这个为2
-                    grid[r+1][c]=2;
-                    //更新fresh的数量
-                    fresh--;
-                }
-            }
-            
-            if(c-1>=0){
-                   if(grid[r][c-1]==1){
-                    //如果是fresh，mark这个为2
-                    grid[r][c-1]=2;
-                    //更新fresh的数量
-                    fresh--;
-                }
-            }
-            
-            if(c+1<col){
-                    if(grid[r][c+1]==1){
-                    //如果是fresh，mark这个为2
-                    grid[r][c+1]=2;
-                    //更新fresh的数量
-                    fresh--;
-                }
-            }
-            
-            
-            
-        }
-        
-        
-        return fresh>0?-1:minute-1;
+        return false;
     }
     
-    
-    
+    boolean match(char[] map1, char[] map2){
+        for(int i=0;i<map1.length;i++){
+            if(map1[i]!=map2[i]){
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 
