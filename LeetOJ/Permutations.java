@@ -71,7 +71,7 @@ public class Permutations {
 					{				    // so let's try all possible characters for a[j]
 					   swap(arr,i,j);   // Choose which one out of a[j] to a[n] you will choose
 					   permuteSub(arr,i+1,n);  // Choose the remaining letters
-					   swap(arr,i,j);   // Undo the previous swap so we can choose the next possibility for a[j]
+					   swap(arr,j,i);   // Undo the previous swap so we can choose the next possibility for a[j]
 					}
 				}
 			
