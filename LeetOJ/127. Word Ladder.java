@@ -4,48 +4,38 @@
 https://leetcode.com/problems/word-ladder/
 
 
-127. Word Ladder
-Medium
+717. 1-bit and 2-bit Characters
+Easy
 
-2570
+351
 
-1030
+904
 
 Add to List
 
 Share
-Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:
+We have two special characters. The first character can be represented by one bit 0. The second character can be represented by two bits (10 or 11).
 
-Only one letter can be changed at a time.
-Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
-Note:
+Now given a string represented by several bits. Return whether the last character must be a one-bit character or not. The given string will always end with a zero.
 
-Return 0 if there is no such transformation sequence.
-All words have the same length.
-All words contain only lowercase alphabetic characters.
-You may assume no duplicates in the word list.
-You may assume beginWord and endWord are non-empty and are not the same.
 Example 1:
 
-Input:
-beginWord = "hit",
-endWord = "cog",
-wordList = ["hot","dot","dog","lot","log","cog"]
-
-Output: 5
-
-Explanation: As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
-return its length 5.
+Input: 
+bits = [1, 0, 0]
+Output: True
+Explanation: 
+The only way to decode it is two-bit character and one-bit character. So the last character is one-bit character.
 Example 2:
 
-Input:
-beginWord = "hit"
-endWord = "cog"
-wordList = ["hot","dot","dog","lot","log"]
+Input: 
+bits = [1, 1, 1, 0]
+Output: False
+Explanation: 
+The only way to decode it is two-bit character and two-bit character. So the last character is NOT one-bit character.
+Note:
 
-Output: 0
-
-Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
+1 <= len(bits) <= 1000.
+bits[i] is always 0 or 1.
 
 31 March 2020 at 12:00 pm
  * 
