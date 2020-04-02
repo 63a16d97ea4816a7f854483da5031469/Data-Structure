@@ -55,7 +55,37 @@ Output: "/a/b/c"
  */
 
 
+看题解写的：
 
+class Solution {
+    public String simplifyPath(String path) {
+        String[] arr=path.split("/");
+        
+        Stack<String> stack=new Stack<String>();
+        
+        for(int i=0;i<arr.length;i++){
+            
+            String str=arr[i];
+            
+            if(str.equals("..")&&!stack.isEmpty()){
+                stack.pop();
+            } else if(!str.equals("") && !str.equals(".") && !str.equals("..")){
+                stack.push(str);
+            }
+        }
+        
+        if(stack.isEmpty()){
+            return "/";
+        }
+        
+        StringBuffer sb=new StringBuffer();
+        for(String str:stack){
+            sb.append("/"+str);
+        }
+        
+        return sb.toString();
+    }
+}
 
 
 
