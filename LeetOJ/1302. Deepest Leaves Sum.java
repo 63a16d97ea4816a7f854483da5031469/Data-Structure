@@ -98,6 +98,45 @@ class Solution {
 }
 
 
+看题解后，使用的dfs：
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //11.01pm-11.17pm
+    int maxlevel=0;
+    int max=0;
+    public int deepestLeavesSum(TreeNode root) {
+        if(root==null) return 0;
+        
+        dfs(root,0);
+        
+        return max;
+    }
+    
+    void dfs(TreeNode root, int level){
+            if(root==null) return;
+            if(maxlevel==level) max+=root.val;
+        
+            if(maxlevel<level) {
+                max=root.val;
+                maxlevel=level;
+            }
+            dfs(root.left, 1+level);
+            dfs(root.right, 1+level);
+  
+    }
+    
+    
+    
+}
+
 
 
 刚开始写成求，最深路径的sum了:
