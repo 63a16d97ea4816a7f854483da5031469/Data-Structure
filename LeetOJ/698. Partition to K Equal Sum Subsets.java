@@ -33,9 +33,46 @@ Note:
  */
 
 
+题解：
 
+public boolean canPartitionKSubsets(int[] nums, int k) {
 
+  int total = 0;
+  for(int i = 0; i < nums.length; ++i) {
+      total += nums[i];
+  }
+  if(total%k != 0) {
+      return false;
+  }
+  int avg = total /k ;
 
+  return dfs(k, avg, nums, 0, 0, 0, new boolean[nums.length]);
+}
+
+public boolean dfs(int k, int expected, int[] nums, int from,  int sum, int matchCount, boolean[] used) {
+  if(sum > expected) {
+      return false;
+  }
+  else if(sum == expected) {
+      matchCount++;
+      if(matchCount == k) {
+          return true;
+      }
+      return dfs(k, expected, nums, 0, 0, matchCount, used);
+  }
+
+  for(int i = from; i < nums.length; i++) {
+      if(used[i]) continue;
+
+      used[i] = true;
+      if(dfs(k, expected, nums, i+1, sum + nums[i], matchCount, used)) {
+          return true;
+      }
+
+      used[i] = false;
+  }
+  return false;
+}
 
 
 class Solution {
