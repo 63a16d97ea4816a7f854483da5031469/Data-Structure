@@ -41,10 +41,10 @@ Explanation: There are three ways to climb to the top.
 
  改进到只用三个变量：
 
-class Solution {
+ class Solution {
     //10.45pm- 10.51  over time limit.
     //10.51pm-10.56pm 动态规划解法
-    //10.56pm-
+    //10.56pm-10.57pm 改进只用三个变量方法
     //f(n)=f(n-1)+f(n-2);
     public int climbStairs(int n) {
 
