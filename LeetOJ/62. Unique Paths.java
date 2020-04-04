@@ -50,11 +50,13 @@ It's guaranteed that the answer will be less than or equal to 2 * 10 ^ 9.
 
 
 动态规划走法：
-
 class Solution {
     //11.07pm-11.20pm 搜索耗时太长，超时。
     //DFS 搜索
-    int count=0;
+
+    //动态规划： dp[i][j]表示走到i和j坐标不同的走法数
+    // dp[i][j]=dp[i-1][j]+dp[i][j-1]; 这个方程可以倒着想，在任意i，j那个坐标，只有从其 左侧走过来，和 其 上侧走过来 两种
+    
     public int uniquePaths(int m, int n) {
         if(m==0 || n==0) return 0;
         if(m==1 || n==1) return 1;
@@ -79,11 +81,7 @@ class Solution {
   
         return dp[m-1][n-1];
     }
-    
-     
-    
 }
-
 
 
 
