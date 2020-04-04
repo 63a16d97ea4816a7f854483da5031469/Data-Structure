@@ -38,15 +38,49 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
 
 
+
+根据题解自己写的:
+
+class Solution {
+    public int numDecodings(String s) {
+        if(s==null || s.length()==0) return 0;
+        
+        return dig(s,0);
+    }
+    
+    int dig(String s, int start){
+        
+        if(s.length()==start) return 1;
+        
+        //没有从0开始的翻译，这个是从后向前做的递归，有这个优势，避开了从前向后的讨论10，和20
+        if(s.charAt(start)=='0'){
+            return 0;
+        }
+        
+        int s1=dig(s,start+1);
+        
+        int s2=0;
+        
+        //注意这里是s.length()-1，这样就可以start+2了。
+        if(start<s.length()-1){
+            int ten=(s.charAt(start)-'0')*10;
+            int curr=s.charAt(start+1)-'0';
+            
+            if(ten+curr<=26){
+                s2=dig(s,start+2);
+            }
+        }
+        return s1+s2;
+    }
+}
+
+
+
+
+
+
 Visualizing Recursion
 https://www.coursera.org/lecture/principles-of-computing-2/visualizing-recursion-pubjS
-
-
-
-
-
-
-
 
 
 
