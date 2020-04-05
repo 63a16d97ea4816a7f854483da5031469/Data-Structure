@@ -43,9 +43,84 @@ piles.length is even.
 sum(piles) is odd.
 
 
-20 March 2020 at 8:33:31 pm
+5 April 2020 at 8.01pm
  * 
  */
+
+
+
+
+
+
+
+
+
+
+
+
+动态规划，好久没做动态规划了。三要素：最优子结构、无后效性、子问题重叠。核心思想是记录子问题的解（空间换时间）。具体做法有 自底向上（迭代，规模由小到大），自顶向下（递归，规模由大到小）。
+
+Java代码
+
+自顶向下：
+
+递归的比较好理解一点，状态转移方程：f(n) = {拿左边+f(n-1)左， 拿右边+f(n-1)右}
+
+class Solution {
+    int beginIndex;
+    int endIndex;
+    int[][] dp;
+    public boolean stoneGame(int[] piles) {
+        beginIndex = 0;
+        endIndex = piles.length-1;
+        dp = new int[piles.length][piles.length];
+        for(int i=0;i<dp.length;i++){
+            for(int j=0;j<dp[i].length;j++){
+                dp[i][j]=-1;
+            }
+        }
+        int sum=0;
+        for(int x:piles){
+            sum += x;
+        }
+        return Math.max(piles[beginIndex]+stoneGame(piles, beginIndex+1, endIndex), piles[endIndex]+stoneGame(piles, beginIndex, endIndex-1))>sum/2?true:false;
+    }
+    
+    private int stoneGame(int[] piles, int begin, int end){
+        if(begin>=end){
+            return 0;
+        }
+        if(dp[begin][end]!=-1){
+            return dp[begin][end];
+        }else{
+            dp[begin][end] = Math.max(piles[begin]+stoneGame(piles, begin+1, end), piles[end]+stoneGame(piles, begin, end-1));
+            return dp[begin][end];
+        }
+    }
+}
+
+
+打出了状态方程:
+
+s.stoneGame(new int[] {5,3,4,5});
+
+		
+for(int y=0;y<dp.length;y++) {
+    for(int x=0;x<dp[0].length;x++) {
+        System.out.print(String.format("(%s)%4d   ||   ", x+","+y,dp[x][y]));
+    }
+    System.out.println();
+}
+
+17
+(0,0)  -1   ||   (1,0)  -1   ||   (2,0)  -1   ||   (3,0)  -1   ||   
+(0,1)   5   ||   (1,1)  -1   ||   (2,1)  -1   ||   (3,1)  -1   ||   
+(0,2)   9   ||   (1,2)   4   ||   (2,2)  -1   ||   (3,2)  -1   ||   
+(0,3)  -1   ||   (1,3)   9   ||   (2,3)   5   ||   (3,3)  -1   ||   
+
+
+
+
 
 
 
