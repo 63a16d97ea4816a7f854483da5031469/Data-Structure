@@ -46,6 +46,104 @@ S and all words in words consist only of lowercase letters
 
 
 
+
+
+
+顺序存储S的不同子串，匹配word的不同子串:
+
+Runtime: 6 ms, faster than 17.67% of Java online submissions for Expressive Words.
+Memory Usage: 39.8 MB, less than 5.88% of Java online submissions for Expressive Words.
+
+
+class Solution {
+   
+//     S = "heeellooo"
+//     words = ["hello", "hi", "helo"]
+
+// list==>  h,eee,ll,ooo,
+
+
+    public int expressiveWords(String S, String[] words) {
+        
+        //list: h, eee, ll, ooo
+        ArrayList<String> list = new ArrayList<>();
+        int i = 0, start = 0;
+        for (; i < S.length() - 1; i++) {
+            if (S.charAt(i) != S.charAt(i + 1)) {
+                String s = S.substring(start, i + 1);
+                list.add(s);
+                start = i + 1;
+            }
+        }
+        //add last string 
+        list.add(S.substring(start, i + 1));
+    
+    
+        int result = 0;
+        for (String word : words) {
+            boolean flag = true;
+            int j = 0;
+
+            //检查子串是否配对
+            for (i = 0, start = 0; i < word.length() - 1; i++) {
+    
+                if (j > list.size()) {
+                    flag = false;
+                    break;
+                }
+                //如果相等，则继续前进，知道不等
+                if (word.charAt(i) != word.charAt(i + 1)) {
+                    String s = word.substring(start, i + 1);
+                    if (list.get(j).indexOf(s) == -1) {
+                        flag = false;
+                        break;
+                    }
+    
+                    //如果小于3，那么一定要全部相等，如果不等说明不行.
+                    if (list.get(j).length() < 3 && (list.get(j).length() != s.length())) {
+                        flag = false;
+                        break;
+                    }
+                    //从不等的下一个位开始，其实就是跳到了下一个不一样片段的开始.
+                    start = i + 1;
+                    j++;
+                }
+            }
+            
+            
+            if (flag) {
+                String s = word.substring(start, i + 1);
+                if (list.size() - 1 == j && // j equals index of list，
+                        list.get(j).indexOf(s) != -1 && //s is substring of list's element
+                        (list.get(j).length() >= 3 // 大于3，随便子串的长度是多少
+                                || (list.get(j).length() == s.length() //小于，必须长度相等
+                        ))) {
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+    
+    // 作者：maybrittnelson
+    // 链接：https://leetcode-cn.com/problems/expressive-words/solution/lian-shi-shun-xu-cun-chu-sde-bu-tong-zi-chuan-pi-p/
+    // 来源：力扣（LeetCode）
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 比较相同字母组的长度：
 我们首先将 S 拆分成若干组相同的字母，并存储每组字母的长度。例如当 S 为 abbcccddddaaaaa 时，可以得到 5 组字母，它们分别为 abcda，长度为 [1, 2, 3, 4, 5]。
 
