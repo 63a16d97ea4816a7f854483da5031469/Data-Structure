@@ -46,6 +46,24 @@ S and all words in words consist only of lowercase letters
 
 
 
+比较相同字母组的长度：
+我们首先将 S 拆分成若干组相同的字母，并存储每组字母的长度。例如当 S 为 abbcccddddaaaaa 时，可以得到 5 组字母，它们分别为 abcda，长度为 [1, 2, 3, 4, 5]。
+
+对于 words 中的每个单词 word，如果它可以扩张得到 S，那么它必须和 S 有相同的字母组。对于每一组字母，假设 S 中有 c1 个，word 中有 c2 个，那么会有下面几种情况：
+
+如果 c1 < c2，那么 word 不能扩张得到 S；
+
+如果 c1 >= 3，那么只要添加 c1 - c2 个字母即可；
+
+如果 c1 < 3，由于在扩张时至少需要添加到 3 个字母，所以此时不能添加字母，必须有 c1 == c2。
+
+如果 word 的包含的字母组中的每个字母都满足上述情况，那么 word 可以扩张得到 S。
+
+作者：LeetCode
+链接：https://leetcode-cn.com/problems/expressive-words/solution/qing-gan-feng-fu-de-wen-zi-by-leetcode/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
 
 class Solution {
     
