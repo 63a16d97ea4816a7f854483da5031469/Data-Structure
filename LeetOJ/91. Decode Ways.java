@@ -514,6 +514,10 @@ start: 0 ans1=2  ans2=1 ans1+ans2=3
 动态规划:
 https://www.cnblogs.com/grandyang/p/4313384.html
 
+跟机器人从左上角，走到右下角一样的dp，
+
+这里的dp[i]是第i的字符，他能有的翻译数，在任何一个位置i，都有两种选择，一个是dp[i-1]的那种翻译方法种数，另一种是，如果在[i-2,i]里面的这两个字符组成的数>=10并且<=26，说明其首位不为0，并且可以组成一个可以翻译的模式，这时候就要dp[i]=dp[i-1]+dp[i-2]; 如果不在10-26氛围内，dp[i]=dp[i-1];
+
 class Solution {
     public int numDecodings(String s) {
         if (s.isEmpty() || s.charAt(0) == '0') return 0;
