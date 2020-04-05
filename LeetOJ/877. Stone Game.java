@@ -48,7 +48,10 @@ sum(piles) is odd.
  */
 
 
+自底向上：
 
+把另一个人拿的数当做减。
+求piles[i]到piles[j]的最优解，并存起来。
 	
 for(int y=0;y<dp.length;y++) {
     for(int x=0;x<dp[0].length;x++) {
