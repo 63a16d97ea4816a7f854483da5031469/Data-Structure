@@ -49,10 +49,40 @@ sum(piles) is odd.
 
 
 
+	
+for(int y=0;y<dp.length;y++) {
+    for(int x=0;x<dp[0].length;x++) {
+        System.out.print(String.format("(%s)%4d   ||   ", x+","+y,dp[x][y]));
+    }
+    System.out.println();
+}
+
+}
+
+public boolean stoneGame(int[] piles) {
+    dp = new int[piles.length][piles.length];
+    for(int i=0;i<piles.length;i++){
+        for(int j=i+1;j<piles.length;j++){
+            int parity= (j-i)%2;
+            if(parity==1){
+                dp[i][j] = Math.max(piles[i]+dp[i+1][j], piles[j]+dp[i][j-1]);
+            }else{
+                dp[i][j] = Math.max(-piles[i]+dp[i+1][j], -piles[j]+dp[i][j-1]);
+            }
+        }
+    }
+    return dp[0][piles.length-1]>0;
+}
 
 
+打出了状态方程:
 
+s.stoneGame(new int[] {5,3,4,5});
 
+(0,0)   0   ||   (1,0)   0   ||   (2,0)   0   ||   (3,0)   0   ||   
+(0,1)   5   ||   (1,1)   0   ||   (2,1)   0   ||   (3,1)   0   ||   
+(0,2)   1   ||   (1,2)   4   ||   (2,2)   0   ||   (3,2)   0   ||   
+(0,3)   6   ||   (1,3)  -1   ||   (2,3)   5   ||   (3,3)   0   ||   
 
 
 
