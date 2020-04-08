@@ -77,6 +77,10 @@ public boolean stoneGame(int[] piles) {
     return dp[0][piles.length-1]>0;
 }
 
+0，1
+0，2
+0，3
+
 
 打出了状态方程:
 
