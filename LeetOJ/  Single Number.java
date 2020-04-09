@@ -399,3 +399,52 @@ class Solution {
         return count;
     }
 }
+
+
+
+
+Happy Number
+Solution
+Write an algorithm to determine if a number n is "happy".
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+
+Return True if n is a happy number, and False if not.
+
+Example: 
+
+Input: 19
+Output: true
+Explanation: 
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+
+
+class Solution {
+    //6.16pm - 6.29pm
+    public boolean isHappy(int n) {
+  
+        return judge(n,0);
+    }
+    
+    boolean judge(int n, int round){
+        
+        round++;
+        if(n==0) return false;
+        if(n==1) return true;
+        
+        if(round>200) return false;
+        
+        char[] c=(n+"").toCharArray();
+        int sum=0;
+        for(int i=0;i<c.length;i++){
+            int tmp=Integer.parseInt(c[i]+"");
+            sum+=tmp*tmp;
+        }
+        
+       return judge(sum, round+1);
+    }
+}
