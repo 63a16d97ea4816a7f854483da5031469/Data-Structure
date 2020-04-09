@@ -64,7 +64,8 @@ public class Solution {
         double res = myPow(x, t);
         if(n % 2 == 0) return res * res;
         return res * res * x;
-    }
+	}
+}
 
 ————————————————
 版权声明：本文为CSDN博主「Code_Granker」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
@@ -98,7 +99,12 @@ public class Solution {
  
 }
 
+x=2 n=10
 
+X: 2.0 V: 1.0 N: 1
+X: 2.0 V: 2.0 N: 2
+X: 2.0 V: 4.0 N: 5
+X: 2.0 V: 32.0 N: 10
 
 
 
