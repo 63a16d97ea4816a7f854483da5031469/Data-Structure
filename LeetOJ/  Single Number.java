@@ -1,0 +1,199 @@
+
+/*
+ * 
+https://leetcode.com/problems/reverse-linked-list-ii/
+
+
+
+Single Number
+Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+
+Note:
+
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+Example 1:
+
+Input: [2,2,1]
+Output: 1
+Example 2:
+
+Input: [4,1,2,1,2]
+Output: 4
+
+
+9 April 2020 at 5.15pm
+ * 
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 5.14pm-5.24pm
+// Maximum Subarray
+// Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+
+// Example:
+
+// Input: [-2,1,-3,4,-1,2,1,-5,4],
+// Output: 6
+// Explanation: [4,-1,2,1] has the largest sum = 6.
+// Follow up:
+
+// If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+
+
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        
+        if(nums.length==0) return 0;
+        
+        int curr=nums[0];
+        int max=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(curr<0){
+                curr=nums[i];
+            }else{
+                curr=curr+nums[i];
+            }
+            
+            if(max<curr){
+                max=curr;
+            }
+            
+        }
+        return max;
+    }
+}
+
+
+
+
+
+
+// Group Anagrams
+// Solution
+// Given an array of strings, group anagrams together.
+
+// Example:
+
+// Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+// Output:
+// [
+//   ["ate","eat","tea"],
+//   ["nat","tan"],
+//   ["bat"]
+// ]
+// Note:
+
+// All inputs will be in lowercase.
+// The order of your output does not matter.
+
+
+//5.26pm-5.37pm
+
+class Solution {
+    
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String,List<String>> map=new HashMap<String, List<String>>();
+        
+       List<List<String>> result=new ArrayList<List<String>>();
+        
+        for(int i=0;i<strs.length;i++){
+            String tmp=findUniqueSet(strs[i]);
+            
+            if(map.get(tmp)==null){
+                List<String> list=new ArrayList<String>();
+                list.add(strs[i]);
+                map.put(tmp,list);
+            }else{
+                List<String> list=map.get(tmp);
+                list.add(strs[i]);
+                map.put(tmp,list);
+            }
+        }
+        
+        for(Map.Entry<String,List<String>> set:map.entrySet()){
+            result.add(set.getValue());
+        }
+        return result;
+        
+    }
+    
+    String findUniqueSet(String s){
+        char[] c=s.toCharArray();
+        
+        List<Character> list=new ArrayList<Character>();
+        
+        for(int i=0;i<c.length;i++){
+            list.add(c[i]);
+        }
+        
+        Collections.sort(list);
+        
+        String str="";
+        for(int i=0;i<list.size();i++){
+            str+=list.get(i)+"";
+        }
+        return str;   
+    }    
+}
+
+
+Best Time to Buy and Sell Stock II
+Solution
+Say you have an array prices for which the ith element is the price of a given stock on day i.
+
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).
+
+Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+
+Example 1:
+
+Input: [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Example 2:
+
+Input: [1,2,3,4,5]
+Output: 4
+Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
+             Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are
+             engaging multiple transactions at the same time. You must sell before buying again.
+Example 3:
+
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+ 
+
+Constraints:
+
+1 <= prices.length <= 3 * 10 ^ 4
+0 <= prices[i] <= 10 ^ 4
+
+
+public class Solution {
+    public int maxProfit(int[] prices) {
+        int ans=0;
+     for(int i=1;i<prices.length;i++){
+         if(prices[i]-prices[i-1]>0){
+             ans+=prices[i]-prices[i-1];
+         }
+     }
+        
+        return ans;
+    }
+}
