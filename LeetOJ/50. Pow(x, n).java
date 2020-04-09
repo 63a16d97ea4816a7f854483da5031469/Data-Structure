@@ -75,13 +75,16 @@ public class Solution {
 public class Solution {
     public double power(double x, int n) {
  
+		//递归最边界条件
 		if (n == 0)
 			return 1;
 	 
+		//递归入口
 		double v = power(x, n / 2);
         
         System.out.println(" X: "+x+" V: "+v+" N: "+n);
  
+		//递归回退计算.
 		if (n % 2 == 0) {
 			return v * v;
 		} else {
