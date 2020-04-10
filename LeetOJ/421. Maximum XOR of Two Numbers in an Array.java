@@ -35,6 +35,30 @@ Explanation: The maximum result is 5 ^ 25 = 28.
  * 
  */
 
+
+ 暴力破解: 但是没有到 O(n)
+
+class Solution {
+    
+    public int findMaximumXOR(int[] nums) {
+    int result = 0;
+    for(int i = 0; i < nums.length; i++){
+        for (int j = i + 1; j < nums.length; j ++){
+            result = Math.max(result,nums[i] ^ nums[j]);
+        }
+    }
+    return result;
+    }
+    
+}
+    
+// ————————————————
+// 版权声明：本文为CSDN博主「weixin_kite」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/weixin_37608065/article/details/70183731
+
+
+
+
 class Solution {
     public int findMaximumXOR(int[] nums) {
         int max = 0, mask = 0;
