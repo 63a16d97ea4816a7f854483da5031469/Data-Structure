@@ -102,11 +102,8 @@ class Solution {
     List<List<Integer>> list=new ArrayList<List<Integer>>();
     
     public List<List<Integer>> subsets(int[] nums) {
-
         list.add(new ArrayList<Integer>());
- 
          dfs(nums, new ArrayList<Integer>(), 0,nums.length,new boolean[nums.length]);
-        
         return list;
     }
     
@@ -118,7 +115,6 @@ class Solution {
             //     list.add(new ArrayList<Integer>(pass));
             //     pass=new ArrayList<Integer>();
             // }
-       
             return;
         }
         
@@ -128,20 +124,15 @@ class Solution {
             pass.add(nums[i]);
             //mark this value
             used[i]=true;
-             
             Collections.sort(pass);
             if(!list.contains(pass)){
                 list.add(new ArrayList<Integer>(pass));
             }
-            
-            dfs(nums, pass, curr+1, n, used);
-            
+            dfs(nums, pass, curr+1, n, used);   
             pass.remove(new Integer(nums[i]));
             used[i]=false;
-        }
-        
+        }  
     } 
-    
 }
 
 
