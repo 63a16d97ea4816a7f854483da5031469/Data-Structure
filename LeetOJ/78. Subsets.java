@@ -37,10 +37,119 @@ Output:
  */
 
 
+
+class Solution {
+    //8.50pm -8.59pm
+    
+    List<List<Integer>> list=new ArrayList<List<Integer>>();
+    
+    public List<List<Integer>> subsets(int[] nums) {
+
+        list.add(new ArrayList<Integer>());
+ 
+         dfs(nums, new ArrayList<Integer>(), 0,nums.length,new boolean[nums.length]);
+        
+        return list;
+    }
+    
+    void dfs(int[] nums, List<Integer> pass, int curr, int n, boolean[] used){
+        
+        if(curr==n){
+            // Collections.sort(pass);
+            // if(!list.contains(pass)){
+            //     list.add(new ArrayList<Integer>(pass));
+            //     pass=new ArrayList<Integer>();
+            // }
+       
+            return;
+        }
+        
+        for(int i=curr;i<nums.length;i++){
+            if(used[i]) continue;
+            
+            pass.add(nums[i]);
+            //mark this value
+            used[i]=true;
+             
+            Collections.sort(pass);
+            if(!list.contains(pass)){
+                list.add(new ArrayList<Integer>(pass));
+            }
+            
+            dfs(nums, pass, curr+1, n, used);
+            
+            pass.remove(new Integer(nums[i]));
+            used[i]=false;
+        }
+        
+    } 
+    
+}
+
+
+
+
+
+
+
+
+
+修改后，AC:
+
+class Solution {
+    //8.50pm -8.59pm
+    
+    List<List<Integer>> list=new ArrayList<List<Integer>>();
+    
+    public List<List<Integer>> subsets(int[] nums) {
+
+        list.add(new ArrayList<Integer>());
+ 
+         dfs(nums, new ArrayList<Integer>(), 0,nums.length,new boolean[nums.length]);
+        
+        return list;
+    }
+    
+    void dfs(int[] nums, List<Integer> pass, int curr, int n, boolean[] used){
+        
+        if(curr==n){
+            // Collections.sort(pass);
+            // if(!list.contains(pass)){
+            //     list.add(new ArrayList<Integer>(pass));
+            //     pass=new ArrayList<Integer>();
+            // }
+       
+            return;
+        }
+        
+        for(int i=curr;i<nums.length;i++){
+            if(used[i]) continue;
+            
+            pass.add(nums[i]);
+            //mark this value
+            used[i]=true;
+             
+            Collections.sort(pass);
+            if(!list.contains(pass)){
+                list.add(new ArrayList<Integer>(pass));
+            }
+            
+            dfs(nums, pass, curr+1, n, used);
+            
+            pass.remove(new Integer(nums[i]));
+            used[i]=false;
+        }
+        
+    } 
+    
+}
+
+
+
 class Solution {
  
     public List<List<Integer>> subsets(int[] nums) {
-         int n=nums.length;
+        int n=nums.length;
         ArrayList<Integer> list=new ArrayList<Integer>();
         ArrayList<List<Integer>> result=new ArrayList<List<Integer>>();
         
@@ -48,29 +157,22 @@ class Solution {
             
             findSet(nums, 0, nums.length, i, list, result);
         }
-        
-        
         return result;
     }
      
      void findSet(int[] nums, int start, int end, int m, ArrayList<Integer> pass, ArrayList<List<Integer>> result){
          
          if(m==0) {
+             //使用result.add(pass); 是极端错误的，因为pass这个list还会继续被改变，最后只会是空的
              result.add(new ArrayList<Integer>(pass));
              return;
          }
-         
-         
          for(int i=start;i+m<=end;i++){
              pass.add(nums[i]);
              findSet(nums,i+1, end,m-1, pass, result);
              pass.remove(pass.size()-1);
-         }
-         
+         }   
      }
-     
-     
-     
  }
 
 
