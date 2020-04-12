@@ -33,6 +33,29 @@ s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 
 
 
+对题目易错地方进行总结:
+1. 没有把握住，这个题目，应该使用stack，刚开始我企图使用自己的算法解决，结果无法解决[[]]这种case
+2. 学习如何处理多个num的，我之前的处理方法非常2
+3. 学习如何处理digit，利用Character.isDigit(char) 这个函数，我之前的处理方法比较2
+4. 我在做repeat的叠加的时候，把currRes和tmp变量弄反了，叠加错了
+5. 思维不清晰，看这个题目，人家的实现方法，思路主线多么的清晰
+
+对题目的实现思路进行几句话总结:
+
+1. 使用两个堆栈来分别处理 num和currRes，主要是为了应对多个嵌套括号的情况
+2. 对 首位是数字，首位是【，首位是】，首位是其他字符，进行分类处理
+3. 对repeat的部分进行处理
+
+从这道题目学到了什么，哪些地方需要提升? :
+
+1. 对于Stack这类的题目，使用场景需要更敏感
+2. 对于堆栈，不一定总是想着只使用一个堆栈解决问题，那个是思维定式
+3. 学习如何处理多个数字的技巧
+4. 学习处理丢弃管理（如何丢弃[, ] 等）
+5. 控制idx的技巧
+
+题解：
+
 class Solution {
     //11.23pm- 11.52pm
     //3.02pm-
@@ -74,6 +97,7 @@ class Solution {
 //                     currRes+=tmpStr;
 //                 }
 //                 idx++;
+
                 StringBuilder temp = 
 				new StringBuilder(stackStr.pop());
 			
@@ -92,6 +116,12 @@ class Solution {
         return currRes;
     }
 }
+
+// ————————————————
+// 版权声明：本文为CSDN博主「mine_song」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/mine_song/article/details/71036245ng>  stackStr=new Stack<String>();
+
+
 
 
 错误的实现：
