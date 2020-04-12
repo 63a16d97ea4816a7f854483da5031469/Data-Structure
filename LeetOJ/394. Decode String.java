@@ -33,11 +33,119 @@ s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 
 
 
+class Solution {
+    //11.23pm- 11.52pm
+    //3.02pm-
+    public String decodeString(String s) {
+        char[] c=s.toCharArray();
+        StringBuilder sb=new StringBuilder();
+        
+        Stack<Integer> stackNum=new Stack<Integer>();
+        Stack<String>  stackStr=new Stack<String>();
+        
+        int idx=0;
+        int currNum=0;
+        String currRes="";
+        
+        while(idx<s.length()){
+            
+            char tmpchar=c[idx];
+            
+            if(Character.isDigit(tmpchar)){
+                while(Character.isDigit(s.charAt(idx))){
+                     currNum=(s.charAt(idx++)-'0')+10*currNum;
+                }
+            }else if(tmpchar=='['){
+                
+                stackNum.push(currNum);
+                currNum=0;
+                
+                stackStr.push(currRes);
+                currRes="";
+                
+                idx++;
+                
+            }else if(tmpchar==']'){
+                
+//                 int n=stackNum.pop();
+//                 String tmpStr=stackStr.pop();
+//                 System.out.println(tmpStr+" "+n);
+//                 for(int i=0;i<n;i++){
+//                     currRes+=tmpStr;
+//                 }
+//                 idx++;
+                StringBuilder temp = 
+				new StringBuilder(stackStr.pop());
+			
+                int repeatTimes = stackNum.pop();
+                for (int i = 0; i < repeatTimes; i++) {
+                    temp.append(currRes);
+                }
+                currRes = temp.toString();
+                idx++;
+         
+                
+            }else{
+                currRes+=c[idx++]; 
+            }
+        }
+        return currRes;
+    }
+}
 
 
- 
+错误的实现：
 
-
+class Solution {
+    //11.23pm- 11.52pm
+    //3.02pm-
+    public String decodeString(String s) {
+        char[] c=s.toCharArray();
+        StringBuilder sb=new StringBuilder();
+        
+        Stack<Integer> stackNum=new Stack<Integer>();
+        Stack<String>  stackStr=new Stack<String>();
+        
+        int idx=0;
+        int currNum=0;
+        String currRes="";
+        
+        while(idx<s.length()){
+            
+            char tmpchar=c[idx];
+            
+            if(Character.isDigit(tmpchar)){
+                while(Character.isDigit(s.charAt(idx))){
+                     currNum=(s.charAt(idx++)-'0')+10*currNum;
+                }
+            }else if(tmpchar=='['){
+                
+                stackNum.push(currNum);
+                currNum=0;
+                
+                stackStr.push(currRes);
+                currRes="";
+                
+                idx++;
+                
+            }else if(tmpchar==']'){
+                
+                int n=stackNum.pop();
+                String tmpStr=stackStr.pop();
+                System.out.println(tmpStr+" "+n);
+                for(int i=0;i<n;i++){
+                    currRes+=tmpStr;
+                }
+                idx++;
+                
+            }else{
+                currRes+=c[idx++];
+        
+            }
+        }
+        return currRes;
+    }
+}
 
 
 
