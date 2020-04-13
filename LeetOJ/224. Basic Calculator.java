@@ -119,8 +119,6 @@ class Solution {
 	void computerNow() {
         //对于没有signOp的，直接过，这个很关键，否则会在第一个(1+（3+2）)这种case下报错，因为最外层的 ）没有符号signOp
         if (signOp == ' ') return;
-        
-
 		int right = numStack.pop();
 		int left = numStack.pop();
 		// System.out.println("computer: "+right+" "+left+" "+signOp);
