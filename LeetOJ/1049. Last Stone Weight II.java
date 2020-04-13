@@ -57,8 +57,63 @@ Note:
 
 
 
+class Solution {
+    //5.44pm-5.54pm
+    
+    //转化成背包问题，就是我有 N个数，然后，我有一个sum/2的背包，石头不可以拆分，问我能否在这个状态下，取到最大的value
+
+// #问题可以等效为，一个数组分成两部分，使这两部分的和尽可能的接近
+// #问题可以进一步化为，从一个数组取出一些数，使他们的和尽可能接近整体的1/2
+// #问题进一步化为，从一个数组取出一些数，在不大于sum/2的情况下，尽可能的大#动态规划，dp[i][j]表示 数组 前i 个数 在不大于j的情况下 组合可能的最大值。试一试
+// #dp[i][j] dp[i+1][j]的关系：dp[i+1][j]=max(dp[i][j],stones[i+1]+dp[i][j-stones[i]]) 到了第i+1个的时候判断用不用i+1这个数
+// #dp[i][j]=max(dp[i-1][j],stones[i]+dp[i-1][j-stones[i]])
+// #dp[i][j-n]和 dp[i][j]的关系 在从小到大的石头中，判断 取当前这块 和 dp[i][j-stone[i]]这两个循环比较取最大值
+
+// 作者：wangyaqi
+// 链接：https://leetcode-cn.com/problems/last-stone-weight-ii/solution/pythondong-tai-gui-hua-by-wangyaqi/
+
+// 普通01背包
 
 
+    public int lastStoneWeightII(int[] stones) {
+        
+        int sum=0;
+        for(int stone:stones){
+            sum+=stone;
+        }
+        
+         int[][] dp=new int[stones.length+1][sum/2+1];
+        
+        for(int i=1;i<stones.length+1;i++){
+            for(int j=1;j<sum/2+1;j++){
+                if(stones[i-1]<=j){
+                    //如果能装下，并且没有超过j的量
+                     dp[i][j]= Math.max(dp[i-1][j], dp[i-1][j-stones[i-1]]+stones[i-1]);
+                }else{
+                    //如果装不下，那么就只能等于上次的值
+                    dp[i][j]=dp[i-1][j];
+                }
+               
+            }
+        }
+         
+ 
+        return sum-2* dp[stones.length][sum/2];
+        
+    }
+}
+
+// 作者：user2928m
+// 链接：https://leetcode-cn.com/problems/last-stone-weight-ii/solution/java-01bei-bao-he-ta-de-kong-jian-you-hua-by-user2/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+
+ 
 
 Submission Detail
 74 / 82 test cases passed.
