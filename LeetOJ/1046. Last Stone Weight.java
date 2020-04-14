@@ -57,6 +57,40 @@ Note:
  */
 
 
+使用最大堆：
+
+class Solution {
+    //2.52pm-2.56pm
+    public int lastStoneWeight(int[] stones) {
+        
+        if(stones.length==1) return stones[0];
+        
+        PriorityQueue<Integer> que=new PriorityQueue<Integer>(stones.length, new Comparator<Integer>(){
+            
+            public int compare(Integer a, Integer b){
+                return b-a;
+            }
+        });
+        
+        for(int i=0;i<stones.length;i++){
+            que.add(stones[i]);
+        }
+        
+        int x=0;
+        int y=0;
+            
+        while(que.size()>=2){
+            y=que.poll();
+            x=que.poll();
+            que.add(y-x);
+        }
+        return que.poll();
+    }
+}
+
+
+
+不使用最大堆：
 
 class Solution {
     //5.34pm-5.41pm
