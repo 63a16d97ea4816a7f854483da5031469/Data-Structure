@@ -56,8 +56,91 @@ Return 3. The paths that sum to 8 are:
 
 
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+//1.01pm-2.10pm
+//6.31pm-6.50pm
+class Solution {
+    
+    public int pathSum(TreeNode root, int sum) {
+        
+       if(root==null) return 0;
+        
+       return dfs(root,sum)+dfs(root.left, sum)+dfs(root.right,sum);
+    }
+    
+    int dfs(TreeNode root, int sum){
+        
+        int num=0; 
+        
+        if(root==null) return 0;
+        
+        if(sum==root.val){
+            num++;
+        }
+        
+         num+=dfs(root.left, sum-root.val);
+       
+         num+=dfs(root.right, sum-root.val);
+        
+        return num;
+        
+    }
+     
+}
 
 
+WA:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+//1.01pm-2.10pm
+//6.31pm-
+class Solution {
+    
+    public int pathSum(TreeNode root, int sum) {
+        
+        dfs(root, sum);
+ 
+       return dfs(root,sum)+dfs(root.left, sum)+dfs(root.right,sum);
+    }
+    
+    int dfs(TreeNode root, int sum){
+        
+        int num=0;
+        
+        if(sum==0){
+            num++;
+            return num;
+        }
+        
+        if(root==null) return 0;
+        
+         int left=dfs(root.left, sum-root.val);
+       
+         int right=dfs(root.right, sum-root.val);
+        
+        return left+right;
+        
+    }
+     
+}
 
 
 
