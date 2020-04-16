@@ -85,16 +85,80 @@ class Solution {
 }
 
 
+题解做法：
+
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        int i = 0, j = -1, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+
+        for (int l = 0, r = nums.length-1; r >= 0; l++, r--){
+            max = Math.max(max, nums[l]);
+            if (nums[l] != max) j = l;
+
+            min = Math.min(min, nums[r]);
+            if (nums[r] != min) i = r;
+        }
+
+        return (j - i + 1);
+    }
+}
 
 
 
+刚开始的错误做法:
+class Solution {
+    //12.10pm-
+    public int findUnsortedSubarray(int[] nums) {
+        if(nums.length==0||nums.length==1) return 0;
+        int left=nums.length-1;
+        int right=0;
+        
+        for(int i=0,j=nums.length-1;i<nums.length-1&&j>0&&i<j;){
+            if(nums[i]>nums[i+1]&&i<left){
+                left=i;
+            }else{
+                i++;
+            }
+            
+            if(nums[j]<=nums[j-1]&&j>right){
+                right=j;
+            }else{
+                j--;
+            }
+        }
+        int count=0;
+        for(int i=left;left<right&&i<=right;i++){
+            count++;
+        }
+        
+        return count;
+    }
+}
 
 
+题解中，相同思路的另一个写法：
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        int l = 0, r = nums.length - 1, min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
 
+        while (l < r && nums[l] <= nums[l+1]) l++;
 
+        if (l == r) return 0;
 
+        while (nums[r] >= nums[r-1]) r--;
 
+        for (int k = l; k <= r; k++){
+            max = Math.max(max, nums[k]);
+            min = Math.min(min, nums[k]);
+        }
 
+        while (l >= 0 && min < nums[l]) l--;
+        while (r <= nums.length-1 && max > nums[r]) r++;
+
+        return r-l-1;
+
+    }
+}
 
 
 
