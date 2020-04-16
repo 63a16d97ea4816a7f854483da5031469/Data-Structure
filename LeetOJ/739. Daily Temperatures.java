@@ -40,6 +40,10 @@ Note: The length of temperatures will be in the range [1, 30000]. Each temperatu
 
 题解：
 
+递减栈-[LeetCode] 739. Daily Temperatures 每日温度 - 轻风舞动 - 博客园
+
+https://www.cnblogs.com/lightwindy/p/9881122.html
+
 https://www.cnblogs.com/Dylan-Java-NYC/p/8192500.html
 
 class Solution {
