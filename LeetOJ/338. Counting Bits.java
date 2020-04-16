@@ -1,7 +1,7 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
+https://leetcode.com/problems/counting-bits/
 
 338. Counting Bits
 Medium
@@ -43,13 +43,26 @@ Can you do it like a boss? Do it without using any builtin function like __built
 
 
 
-
  * 
  */
 
-
-
-
+class Solution {
+    //11.35pm-12.06am
+    //题解 递推公式: dp[n]=dp[n>>1]+n&1
+    public int[] countBits(int num) {
+        int[] arr=new int[num+1];
+        
+        for(int i=0;i<=num;i++){
+            // arr[i]=arr[i/2] + (i%2==0?0:1);
+            arr[i]=arr[i/2] + i%2;
+            // arr[i]=arr[i/2] + i%2==0?0:1; 会得到错误答案（在input是4的时候)
+            // System.out.println(i+" "+arr[i/2]+" "+(i%2==0?0:1));
+        }
+        System.out.println(Arrays.toString(arr));
+        
+        return arr;
+    }
+}
 
 
 
