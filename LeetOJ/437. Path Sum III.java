@@ -54,6 +54,14 @@ Return 3. The paths that sum to 8 are:
  */
 
 
+
+
+
+
+
+
+
+WA:
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -64,7 +72,7 @@ Return 3. The paths that sum to 8 are:
  * }
  */
 
-//1.01pm-
+//1.01pm-2.10pm
 class Solution {
     List<List<Integer>> result=new ArrayList<List<Integer>>();
     public int pathSum(TreeNode root, int sum) {
@@ -153,7 +161,7 @@ class Solution {
 
 
 
-
+WA:
 
 不能过这个case:
 
@@ -237,7 +245,7 @@ class Solution {
 
 
 
-
+WA:
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
