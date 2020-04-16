@@ -30,7 +30,7 @@ Note: The length of temperatures will be in the range [1, 30000]. Each temperatu
 
 从这道题目学到了什么，哪些地方需要提升? :
 
-
+栈，递减栈Descending Stack
 
 
  * 
