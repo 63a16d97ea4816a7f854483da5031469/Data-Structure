@@ -136,7 +136,7 @@ class Solution {
 }
 
 
-题解中，相同思路的另一个写法：
+题解中，相同思路的另一个写法（相对与错误思路的正确写法）：
 class Solution {
     public int findUnsortedSubarray(int[] nums) {
         int l = 0, r = nums.length - 1, min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
