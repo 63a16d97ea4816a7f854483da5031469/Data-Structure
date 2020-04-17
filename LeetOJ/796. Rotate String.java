@@ -39,13 +39,14 @@ A and B will have length at most 100.
 
 从这道题目学到了什么，哪些地方需要提升? :
 
-
+刚开始想着是复杂的思路，就是map所有的character，然后shift那个字母试试。绕远了。。。
+其实观察，无论如何，单向移动，肯定可以重叠，如果他们真的是shift得来的。
 
 
  * 
  */
 
- 
+AC:
 class Solution {
     //9.55am-10.05am
     public boolean rotateString(String A, String B) {
