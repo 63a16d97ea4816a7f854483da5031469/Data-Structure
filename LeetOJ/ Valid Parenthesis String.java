@@ -24,7 +24,7 @@ Output: True
 Note:
 The string size will be in the range [1, 100].
 
-12 April 2020 at 10.47pm-11.24pm AC.
+12 April 2020 at 9.15pm-10.10pm 看题解
 
 
 对题目易错地方进行总结:
@@ -35,23 +35,22 @@ The string size will be in the range [1, 100].
 
 从这道题目学到了什么，哪些地方需要提升? :
 
+刚开始想到了使用替换法，将*换掉，但是考虑到多个*，没法使用堆栈加替换方法。
 
+当时没想到回溯方法，如果有回溯，就可以使用替换法。
 
 
  * 
  */
 
 
-
+双堆栈:
 class Solution {
-    //9.15pm-
+    //9.15pm-10.10pm 看题解
     public boolean checkValidString(String s) {
         if(s.length()==0) return true;
-        
         Stack<Integer> bracketStack=new Stack<Integer>();
-        
         Stack<Integer> starStack=new Stack<Integer>();
-        
         for(int i=0;i<s.length();i++){
             char tmp=s.charAt(i);
             if(tmp=='*'){
@@ -68,15 +67,10 @@ class Solution {
                 }
             }
         }
-        
-
-        
         while(!bracketStack.isEmpty()){
- 
                 if(!starStack.isEmpty()){
                     int star=starStack.peek();
                     int left=bracketStack.peek();
-                    
                     if(star<=left){
                         // *(
                         return false;
@@ -84,20 +78,13 @@ class Solution {
                         starStack.pop();
                         bracketStack.pop();
                     }
-                    
                 }else{
                     return false;
                 }
         }
-        
-       
-        
         return bracketStack.isEmpty();
-        
     }
 }
-
-
 
 
 
