@@ -35,7 +35,7 @@ Output: -1->0->3->4->5
 
 从这道题目学到了什么，哪些地方需要提升? :
 
-对nlogn比较敏感，可以一下子理解是什么数据结构。
+对nlogn比较敏感，可以一下子理解是什么数据结构。但是这个题目是constant space，就不能使用min heap，只能使用分治法。
 
 
  * 
@@ -91,9 +91,57 @@ class Solution {
 
 
 
+题解中的最佳，最快solution：
 
-
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode low = head;
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            low = low.next;
+            fast = fast.next.next;
+        }
+        ListNode node = low;
+        low = low.next;
+        node.next = null;
+        ListNode left = sortList(head);
+        ListNode right = sortList(low);
+        return merge(left, right);
+    }
+    public ListNode merge(ListNode left, ListNode right) {
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while(left != null && right != null) {
+            if(left.val < right.val) {
+                cur.next = left;
+                left = left.next;
+            } else {
+                cur.next = right;
+                right = right.next;
+            }
+            cur = cur.next;
+        }
+        cur.next = left != null ? left : right;
+        return dummy.next;
+    } 
+}
 
 
 
