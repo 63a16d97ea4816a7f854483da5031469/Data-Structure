@@ -66,6 +66,36 @@ The integer n is in the range [0, 100].
 // “ABCD”, n=1
 
 
+自己复现的:
+
+class Solution {
+    //12.38am-看完题解开始-12.45am
+    public int leastInterval(char[] tasks, int n) {
+        int[] mapArr=new int[26];
+        
+        for(int i=0;i<tasks.length;i++){
+            mapArr[(int)(tasks[i]-'A')]++;
+        }
+        
+        int max=0;
+        int maxCount=0;
+        
+        for(int i=0;i<mapArr.length;i++){
+            if(mapArr[i]>max){
+                max=mapArr[i];
+                maxCount=1;
+            }else if(mapArr[i]==max){
+                maxCount++;
+            }
+        }
+        
+        int count=(max-1)*(n+1)+maxCount;
+        
+        return Math.max(count, tasks.length);
+        
+    }
+}
+
 
 
 public int leastInterval(char[] tasks, int n) {
