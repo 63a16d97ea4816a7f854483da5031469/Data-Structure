@@ -40,7 +40,7 @@ Explanation: Because the path 1→3→1→1→1 minimizes the sum.
 
 从这道题目学到了什么，哪些地方需要提升? :
 
-
+基本思路是对的，大方向也是对的，但是在实施的时候，想的有问题
 
 
  * 
