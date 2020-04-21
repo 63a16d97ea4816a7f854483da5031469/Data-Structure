@@ -57,7 +57,8 @@ The integer n is in the range [0, 100].
 // 然后再输入n，表示任何一个字符， 后面必须再经过n个其他字符才可以继续这个字符， 如果没有其他字符可以填上，就休息几个字符，直到最后可以填上
 // 解题思路分析
 
-// 这个题目的核心是， 这个长度是由出现最多的字符绝对的， 如果A是出现最多的字符， 那么任意两个A之间就要有n个字符， 无论是空格还是其他。 也就是说，分成长度是n+1的段； 然后， 这里， 需要的是先来(max-1)段， 其中max是这个出现最多的字符的次数。 因为前面必须要这样设置， 但是到最后一段， 不需要长度是n+1了。
+// 这个题目的核心是， 这个长度是由出现最多的字符绝对的， 如果A是出现最多的字符， 那么任意两个A之间就要有n个字符， 无论是空格还是其他。 也就是说，
+// 分成长度是n+1的段； 然后， 这里， 需要的是先来(max-1)段， 其中max是这个出现最多的字符的次数。 因为前面必须要这样设置， 但是到最后一段， 不需要长度是n+1了。
 // 如果频率最大的字符只有一个， 那么最后一段就只放这一个字符就好； 如果有x个， 那么需要放这x个；
 // 而且， 如果有x个， 在之前的段里面假设也是可以放完的。(当然，其实有可能会放不下，这个情况在后面作为特殊情况讨论)
 // 所以， 这里最大的长度是(max-1) * (n+1) + maxcount
@@ -65,7 +66,7 @@ The integer n is in the range [0, 100].
 // “ABCD”, n=1
 
 
-题解1 ：
+
 
 public int leastInterval(char[] tasks, int n) {
     int[] table = new int[26];
@@ -90,7 +91,7 @@ public int leastInterval(char[] tasks, int n) {
 
 
 
-题解2 ：
+// 题解2 ：
 
 class Solution {
     static class Node implements Comparable<Node> {
@@ -156,10 +157,6 @@ class Solution {
                 pq.add(t);
             }
         }
-        // for(char ch: list) {
-        //     System.out.print(ch + " ");
-        // }
-        // System.out.println();
         return list.size();
     }
 }
