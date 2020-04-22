@@ -87,6 +87,55 @@ mat[i] is sorted in a non-decreasing way.
  * };
  */
 
+
+
+/**
+ * // This is the BinaryMatrix's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface BinaryMatrix {
+ *     public int get(int x, int y) {}
+ *     public List<Integer> dimensions {}
+ * };
+ */
+class Solution {
+    //9.18am-9.55am
+    int leftmost=0;
+    public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+        List<Integer> dim=binaryMatrix.dimensions();
+        int row=dim.get(0);
+        int col=dim.get(1);
+        leftmost=dim.get(0);
+        //对任何一行，进行binarySearch，看是否找的到1，然后看是否是最左边的
+        for(int i=0;i<row;i++){
+            binarySearch(binaryMatrix,i,row,1);
+        }
+        if(leftmost==dim.get(0)){
+            return -1;
+        }
+        return leftmost;
+    }
+    int binarySearch(BinaryMatrix mat,int x,int rowLength, int target){
+        //y是在left 和 right之间选的
+        int left=0;
+        int right=rowLength;
+        while(left<right){
+            int mid=(left+right)/2;
+            int midValue=mat.get(x,mid);
+            if(target==midValue){
+                right=mid;  //收缩右侧
+            }else{
+                left=mid+1;
+            }
+        }
+        //updte the leftmost
+        if(leftmost>left){
+            leftmost=left;
+        }
+        return 1;
+    }
+}
+
+
 class Solution {
     //9.18am-9.55am
     
