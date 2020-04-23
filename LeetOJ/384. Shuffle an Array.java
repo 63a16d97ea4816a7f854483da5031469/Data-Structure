@@ -134,3 +134,53 @@ public class Solution {
 版权声明：本文为CSDN博主「五山小新新」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/Al_xin/article/details/52324913
 
+
+
+
+class Solution {
+    
+    //基本思路，将这个数组的所有组合求出来，然后使用random函数来进行选择，使用mod函数进行回旋到数组上
+
+    //这是一个经典算法
+    
+    private int[] oriArr;
+    private int[] res;
+    
+    public Solution(int[] nums) {
+        oriArr=nums.clone();
+        res=nums.clone();
+        
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        return oriArr;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        Random random=new Random();
+        random.nextInt();
+        int len=res.length;
+        
+        for(int i=0;i<len;i++){
+            int change=random.nextInt(len-i);
+            swap(res,change,i);
+        }
+        return res;
+    }
+    
+    void swap(int[] arr, int i, int j){
+        int tmp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=tmp;
+    }
+    
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int[] param_1 = obj.reset();
+ * int[] param_2 = obj.shuffle();
+ */
