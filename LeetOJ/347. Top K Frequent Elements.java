@@ -42,6 +42,8 @@ You can return the answer in any order.
 
 从这道题目学到了什么，哪些地方需要提升? :
 
+然后排序进去，最小堆, 找最大的k个数，用最小堆
+
 
 
 
@@ -53,7 +55,7 @@ You can return the answer in any order.
 
 
 class Solution {
-    //一个思路是：使用优先级队列，做一个独特的数据结构，然后排序进去，最大堆
+    //一个思路是：使用优先级队列，做一个独特的数据结构，然后排序进去，最小堆
     //
     public List<Integer> topKFrequent(int[] nums, int k) {
         
