@@ -70,10 +70,7 @@ class Solution {
     public int firstUniqChar(String s) {
         //处理极端情况
         if(s.length()==0) return -1;
-      
         HashMap<Character, String> map=new HashMap<Character, String>();
-        
-    
         for(int i=0;i<s.length();i++){
             String curr=map.get(s.charAt(i));
             if(curr!=null){
@@ -82,9 +79,7 @@ class Solution {
             }else{
                  map.put(s.charAt(i),i+","+1);
             }
-           
         }
-     
         int min=s.length()+1;
         for(Map.Entry<Character,String> entry:map.entrySet()){
             String str=entry.getValue();
@@ -94,11 +89,9 @@ class Solution {
                 min=Integer.parseInt(strArr[0]);
             }
         }
-        
         if(min>s.length()){
             return -1;
         }
-        
       return min;
     }
 }
