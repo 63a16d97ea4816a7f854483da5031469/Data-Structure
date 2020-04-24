@@ -56,15 +56,31 @@ Constraints:
 
 从这道题目学到了什么，哪些地方需要提升? :
 
-
-
-
  * 
  */
 
 
+ 
 
-
+class Solution {
+    //9.57pm-10.04pm
+    public boolean checkIfExist(int[] arr) {
+        HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
+        
+        for(int i=0;i<arr.length;i++){
+            map.put(arr[i]*2, i);
+        }
+        
+        for(int i=0;i<arr.length;i++){
+            int val=map.getOrDefault(arr[i],-1);
+            if(val!=-1 && val!=i){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}
 
 
 
