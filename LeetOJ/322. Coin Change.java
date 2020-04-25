@@ -44,10 +44,8 @@ You may assume that you have an infinite number of each kind of coin.
  */
 
 
-
-
 class Solution {
-    //1.06pm
+    //1.06pm-1.24pm
     //初步思想为dp
     public int coinChange(int[] coins, int amount) {
         // 解决边界条件
@@ -68,7 +66,6 @@ class Solution {
         return dp[amount]==(amount+1)? -1: dp[amount];
     }
 }
-
 
 
 
