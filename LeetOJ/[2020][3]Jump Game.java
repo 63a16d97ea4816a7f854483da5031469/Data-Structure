@@ -44,7 +44,7 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum
 
 
 class Solution {
-    //11.12am-11.34am
+    //11.12am-11.34am  AC
     public boolean canJump(int[] nums) {
         if(nums.length==0) return false;
         int n=nums.length;
