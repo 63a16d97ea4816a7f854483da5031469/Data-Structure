@@ -1,7 +1,7 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
+https://leetcode.com/problems/jump-game/
 
   Jump Game
 Solution
@@ -35,13 +35,8 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum
 
 从这道题目学到了什么，哪些地方需要提升? :
 
-
-
-
  * 
  */
-
-
 
 class Solution {
     //11.12am-11.34am  AC
