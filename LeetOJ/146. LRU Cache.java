@@ -56,43 +56,32 @@ cache.get(4);       // returns 4
 
 
 
-
-
 import java.util.Hashtable;
-
-
 public class LRUCache {
-
 class DLinkedNode {
   int key;
   int value;
   DLinkedNode pre;
   DLinkedNode next;
 }
-
 /**
  * Always add the new node right after head;
  */
 private void addNode(DLinkedNode node) {
-    
   node.pre = head;
   node.next = head.next;
-
   head.next.pre = node;
   head.next = node;
 }
-
 /**
  * Remove an existing node from the linked list.
  */
 private void removeNode(DLinkedNode node){
   DLinkedNode pre = node.pre;
   DLinkedNode next = node.next;
-
   pre.next = next;
   next.pre = pre;
 }
-
 /**
  * Move certain node in between to the head.
  */
@@ -100,62 +89,45 @@ private void moveToHead(DLinkedNode node){
   this.removeNode(node);
   this.addNode(node);
 }
-
 // pop the current tail. 
 private DLinkedNode popTail(){
   DLinkedNode res = tail.pre;
   this.removeNode(res);
   return res;
 }
-
 private Hashtable<Integer, DLinkedNode> 
   cache = new Hashtable<Integer, DLinkedNode>();
 private int count;
 private int capacity;
 private DLinkedNode head, tail;
-
 public LRUCache(int capacity) {
   this.count = 0;
   this.capacity = capacity;
-
   head = new DLinkedNode();
   head.pre = null;
-
   tail = new DLinkedNode();
   tail.next = null;
-
   head.next = tail;
   tail.pre = head;
 }
-
 public int get(int key) {
-
   DLinkedNode node = cache.get(key);
   if(node == null){
     return -1; // should raise exception here.
   }
-
   // move the accessed node to the head;
   this.moveToHead(node);
-
   return node.value;
 }
-
-
 public void put(int key, int value) {
   DLinkedNode node = cache.get(key);
-
   if(node == null){
-
     DLinkedNode newNode = new DLinkedNode();
     newNode.key = key;
     newNode.value = value;
-
     this.cache.put(key, newNode);
     this.addNode(newNode);
-
     ++count;
-
     if(count > capacity){
       // pop the tail
       DLinkedNode tail = this.popTail();
@@ -168,7 +140,6 @@ public void put(int key, int value) {
     this.moveToHead(node);
   }
 }
-
 }
 
 
@@ -308,6 +279,38 @@ public class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 // 链接：https://leetcode-cn.com/problems/lru-cache/solution/san-chong-fang-fa-dai-ni-shou-si-lrusuan-fa-javaba/
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+class LRUCache {
+    private LinkedHashMap<Integer,Integer> lru;
+    private final int CAPACITY;
+    public LRUCache(int capacity) {
+         CAPACITY = capacity;
+         lru = new LinkedHashMap<Integer,Integer>(capacity,0.75f,true) {
+             protected boolean removeEldestEntry(Map.Entry eldest) 
+                { 
+                    return size() > CAPACITY; 
+                } 
+        }; 
+        
+         
+    }
+    
+    public int get(int key) {
+        return lru.getOrDefault(key, -1);
+    }
+    
+    public void put(int key, int value) {
+        lru.put(key, value);
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
 
 
 
