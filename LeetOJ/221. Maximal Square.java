@@ -1,7 +1,7 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
+https://leetcode.com/problems/maximal-square/
 
 221. Maximal Square
 Medium
@@ -36,7 +36,6 @@ Output: 4
 
 
 从这道题目学到了什么，哪些地方需要提升? :
-
 
 
 
