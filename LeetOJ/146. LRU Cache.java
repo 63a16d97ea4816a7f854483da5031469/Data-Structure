@@ -54,6 +54,104 @@ cache.get(4);       // returns 4
  * 
  */
 
+//有头指针，有尾部指针的design:
+
+class LRUCache {
+    class Node {
+        Node next;
+        Node prev;
+        int value;
+        int key;
+        Node(int key, int value) {
+            this.key=key;
+            this.value=value;
+        }
+    }
+
+    Node head;
+    Node tail;
+    int capacity;
+    Map<Integer, Node> map;
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        map = new HashMap<>();
+    }
+    
+    public int get(int key) {
+        Node node = map.get(key);
+        if(node==null)
+            return -1;
+        
+        updateHead(node);
+        return node.value;
+    }
+    
+    private void updateHead(Node node) {
+        if(node==head)
+            return;
+        Node prev = node.prev;
+        Node next = node.next;
+        
+        if(node == tail) 
+            tail=prev;
+
+        prev.next=next;
+        if(next!=null)
+            next.prev=prev;
+
+        node.next=head;
+        head.prev=node;
+        head=node;
+    }
+    
+    public void put(int key, int value) {
+        if(map.get(key) != null) {
+            if(map.get(key) != head) {
+                Node node = map.get(key);
+                updateHead(node);
+            }
+            map.get(key).value=value;
+        }
+        else {
+            Node node = new Node(key, value);
+            map.put(key,node);
+            node.next=head;
+            if(head==null) {
+                tail=node;
+            }
+            else {
+                head.prev=node;
+            }
+            head=node;
+            if(map.size() > capacity) {
+                map.remove(tail.key);
+                tail.prev.next=null;
+                tail=tail.prev;
+            }
+        }
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 这个画图画，动画的好：  
 https://leetcode-cn.com/problems/lru-cache/solution/ha-xi-biao-shuang-xiang-lian-biao-java-by-liweiw-2/
