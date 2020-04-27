@@ -55,6 +55,50 @@ cache.get(4);       // returns 4
  */
 
 
+// 使用java   LinkedHashMap 来构建：
+
+class LRUCache extends LinkedHashMap<Integer, Integer>{
+    private int capacity;
+    
+    public LRUCache(int capacity) {
+        super(capacity, 0.75F, true);
+        this.capacity = capacity;
+    }
+
+    public int get(int key) {
+        return super.getOrDefault(key, -1);
+    }
+
+    public void put(int key, int value) {
+        super.put(key, value);
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity; 
+    }
+}
+
+/**
+ * LRUCache 对象会以如下语句构造和调用:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+// 作者：LeetCode
+// 链接：https://leetcode-cn.com/problems/lru-cache/solution/lru-huan-cun-ji-zhi-by-leetcode/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,6 +166,43 @@ class LRUCache {
 
 
 
+
+
+//使用内建函数：
+
+class LRUCache extends LinkedHashMap<Integer, Integer>{
+    private int capacity;
+    
+    public LRUCache(int capacity) {
+        super(capacity, 0.75F, true);
+        this.capacity = capacity;
+    }
+
+    public int get(int key) {
+        return super.getOrDefault(key, -1);
+    }
+
+    public void put(int key, int value) {
+        super.put(key, value);
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity; 
+    }
+}
+
+/**
+ * LRUCache 对象会以如下语句构造和调用:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+// 作者：LeetCode
+// 链接：https://leetcode-cn.com/problems/lru-cache/solution/lru-huan-cun-ji-zhi-by-leetcode/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
