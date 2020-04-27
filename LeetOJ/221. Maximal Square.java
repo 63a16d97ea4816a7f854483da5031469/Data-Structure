@@ -44,14 +44,69 @@ Output: 4
  */
 
 
+class Solution {
+	public int maximalSquare(char[][] matrix) {
+		int max = 0;
+		if (matrix == null) return 0;
+		if (matrix.length == 0) return 0; //这一句很关键，否则空数组[]，会出错
+		int m = matrix.length, n = matrix[0].length; //这一句，必须有上面那句保护，否则遇到[]会出错
+		if (m == 0 && n == 0) return 0;
+		// 上面三句可以被替换为这句： if (matrix.length == 0 || matrix[0].length == 0) return 0;
+
+		int[][] dp = new int[m + 1][n + 1];
+
+		for (int i = 1; i<= m; i++) {
+			for (int j = 1; j<= n; j++) {
+                //注意matric是从(0,0)开始，dp是从(1,1)开始
+				dp[i][j] = matrix[i - 1][j - 1] == '1' ? Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + 1 : 0; //注意这里三个数取最小值的写法，另外，只有1的时候，我们才做这个运算，否则为0
+				max = Math.max(max, dp[i][j]); //将最大值存起来，因为这个是求最大的正方形，最大的值不在m,n 位置
+			}
+		}
+		return max * max;
+	}
+}
 
 
+
+
+
+
+
+
+public class Solution {
+    public int maximalSquare(char[][] matrix) {
+        if(matrix.length == 0) return 0;
+        int m = matrix.length, n = matrix[0].length;
+        int max = 0;
+        int[][] dp = new int[m][n];
+        // 第一列赋值
+        for(int i = 0; i < m; i++){
+            dp[i][0] = matrix[i][0] - '0';
+            max = Math.max(max, dp[i][0]);
+        }
+        // 第一行赋值
+        for(int i = 0; i < n; i++){
+            dp[0][i] = matrix[0][i] - '0';
+            max = Math.max(max, dp[0][i]);
+        }
+        // 递推
+        for(int i = 1; i < m; i++){
+            for(int j = 1; j < n; j++){
+                dp[i][j] = matrix[i][j] == '1' ? Math.min(dp[i-1][j-1], Math.min(dp[i-1][j], dp[i][j-1])) + 1 : 0;
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        return max * max;
+    }
+}
 
 
 
 
 
 https://www.cnblogs.com/slontia/p/8709200.html
+
+通过不断的尝试，在以1为点的范围内，进行一个矩形的伸展：
 
 class Solution {
 public:
