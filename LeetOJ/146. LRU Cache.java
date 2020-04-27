@@ -538,3 +538,83 @@ class LRUCache {
  * int param_1 = obj.get(key);
  * obj.put(key,value);
  */
+
+
+
+
+
+
+
+
+
+
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+/**
+ * 在链头放最久未被使用的元素，链尾放刚刚添加或访问的元素
+ */
+class LRUCache {
+    class Node {
+        int key, value;
+        Node pre, next;
+        Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+            pre = this;
+            next = this;
+        }
+    }
+    private final int capacity;// LRU Cache的容量
+    private Node dummy;// dummy节点是一个冗余节点，dummy的next是链表的第一个节点，dummy的pre是链表的最后一个节点
+    private Map<Integer, Node> map;//保存key-Node对，Node是双向链表节点
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        dummy = new Node(0, 0);
+        map = new ConcurrentHashMap<>();
+    }
+    public int get(int key) {
+        Node node = map.get(key);
+        if (node == null) return -1;
+        remove(node);
+        add(node);
+        return node.value;
+    }
+    public void put(int key, int value) {
+        Node node = map.get(key);
+        if (node == null) {
+            if (map.size() >= capacity) {
+                map.remove(dummy.next.key);
+                remove(dummy.next);
+            }
+            node = new Node(key, value);
+            map.put(key, node);
+            add(node);
+        } else {
+            map.remove(node.key);
+            remove(node);
+            node = new Node(key, value);
+            map.put(key, node);
+            add(node);
+        }
+    }
+    /**
+     * 在链表尾部添加新节点  @param node 新节点
+     */
+    private void add(Node node) {
+        dummy.pre.next = node;
+        node.pre = dummy.pre;
+        node.next = dummy;
+        dummy.pre = node;
+    }
+    /**
+     * 从双向链表中删除该节点  @param node 要删除的节点
+     */
+    private void remove(Node node) {
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
+    }
+}
+// ————————————————
+// 版权声明：本文为CSDN博主「LoneRanger66」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/csdlwzy/article/details/95635083
