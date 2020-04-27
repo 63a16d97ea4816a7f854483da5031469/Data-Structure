@@ -1,8 +1,8 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
-
+ * 
+https://leetcode.com/problems/permutations/
 
 46. Permutations
 Medium
@@ -41,8 +41,6 @@ Output:
 从这道题目学到了什么，哪些地方需要提升? :
 
 
-
-
  * 
  */
 
@@ -77,11 +75,6 @@ class Solution {
         nums[j]=tmp;
     }
 }
-
-
-
-
-
 
 
 
