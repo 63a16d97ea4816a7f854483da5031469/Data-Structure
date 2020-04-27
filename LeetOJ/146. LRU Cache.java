@@ -55,6 +55,44 @@ cache.get(4);       // returns 4
  */
 
 
+这个画图画，动画的好：  
+https://leetcode-cn.com/problems/lru-cache/solution/ha-xi-biao-shuang-xiang-lian-biao-java-by-liweiw-2/
+
+
+LRU:
+双向链表的头部，存的是 最新访问 的 
+双向链表的尾部，存的是 最旧访问 的
+
+
+
+public class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
+
+    private int capacity;
+
+    LRULinkedHashMap(int capacity) {
+        // 初始大小，0.75是装载因子，true是表示按照访问时间排序
+        super(capacity, 0.75f, true);
+        //传入指定的缓存最大容量
+        this.capacity = capacity;
+    }
+
+    /**
+     * 实现LRU的关键方法，如果map里面的元素个数大于了缓存最大容量，则删除链表的顶端元素
+     */
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        return size() > capacity;
+    }
+}
+
+// 作者：icecrea
+// 链接：https://leetcode-cn.com/problems/lru-cache/solution/san-chong-fang-fa-dai-ni-shou-si-lrusuan-fa-javaba/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
 // 使用java   LinkedHashMap 来构建：
 
 class LRUCache extends LinkedHashMap<Integer, Integer>{
