@@ -104,6 +104,79 @@ void add(int value) insert value to the queue.
 8.11pm- 
 
 
+// Accept:
+
+class Node {
+    int num, count;
+    Node pre, next;
+    Node(int num, int count) {
+        this.num=num;
+        this.count=count;
+        pre = this;
+        next = this;
+    }
+}
+class FirstUnique {
+    int count=0;
+    HashMap<Integer, Node> map=new HashMap<Integer, Node>();
+    private Node dummy;// dummy节点是一个冗余节点，dummy的next是链表的第一个节点，dummy的pre是链表的最后一个节点
+    public FirstUnique(int[] nums) {
+        dummy = new Node(999, 999);
+        for(int i=0;i<nums.length;i++){
+            Node currNode=map.get(nums[i]);
+            int currCount=currNode==null?0:currNode.count;
+            if(currCount==0){
+                   Node node=new Node(nums[i],currCount+1);
+                   add(node);
+                   map.put(nums[i],node);
+                   count++;
+            }else{
+                Node old=map.get(nums[i]);
+                remove(old);
+                count--;
+            }
+        }
+    }
+    public int showFirstUnique() {
+        if(dummy.next!=null&&dummy.next.num!=999){
+           return dummy.next.num;
+        }
+        return -1;
+    }
+    public void add(int value) {
+            Node currNode=map.get(value);
+            int currCount=currNode==null?0:currNode.count;
+            if(currCount==0){
+                   Node node=new Node(value,currCount+1);
+                   add(node);
+                   map.put(value,node);
+            }else{
+                Node old=map.get(value);
+                remove(old);
+            }
+    }
+     /**
+     * 在链表尾部添加新节点  @param node 新节点
+     */
+    private void add(Node node) {
+        dummy.pre.next = node;
+        node.pre = dummy.pre;
+        node.next = dummy;
+        dummy.pre = node;
+    }
+    /**
+     * 从双向链表中删除该节点  @param node 要删除的节点
+     */
+    private void remove(Node node) {
+        if(node.num==-999) return;
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
+        node.num=-999;
+    }
+}
+
+
+
 
 
 // Accept:
@@ -431,6 +504,84 @@ class FirstUnique {
 
 
 
+
+
+class Node {
+    int num, count;
+    Node pre, next;
+    Node(int num, int count) {
+        this.num=num;
+        this.count=count;
+        pre = this;
+        next = this;
+    }
+}
+
+
+class FirstUnique {
+    int count=0;
+    HashMap<Integer, Node> map=new HashMap<Integer, Node>();
+    private Node dummy;// dummy节点是一个冗余节点，dummy的next是链表的第一个节点，dummy的pre是链表的最后一个节点
+    
+    public FirstUnique(int[] nums) {
+        dummy = new Node(0, 0);
+        for(int i=0;i<nums.length;i++){
+            Node currNode=map.get(nums[i]);
+            int currCount=currNode==null?0:currNode.count;
+            if(currCount==0){
+                   Node node=new Node(nums[i],currCount+1);
+                   add(node);
+                   map.put(nums[i],node);
+                   count++;
+            }else{
+                Node old=map.get(nums[i]);
+                remove(old);
+                count--;
+            }
+        }
+    }
+    
+    public int showFirstUnique() {
+        if(!=0){
+           return dummy.next.num;
+        }
+        return -1;
+    }
+    
+    public void add(int value) {
+            Node currNode=map.get(value);
+            int currCount=currNode==null?0:currNode.count;
+            if(currCount==0){
+                   Node node=new Node(value,currCount+1);
+                   list.add(node);
+                   map.put(value,node);
+            }else{
+                Node old=map.get(value);
+                if(list.contains(old)){
+                    list.remove(old);
+                }
+            }
+    }
+
+
+     /**
+     * 在链表尾部添加新节点  @param node 新节点
+     */
+    private void add(Node node) {
+        dummy.pre.next = node;
+        node.pre = dummy.pre;
+        node.next = dummy;
+        dummy.pre = node;
+    }
+    /**
+     * 从双向链表中删除该节点  @param node 要删除的节点
+     */
+    private void remove(Node node) {
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
+    }
+
+}
 
 
 
