@@ -104,6 +104,147 @@ void add(int value) insert value to the queue.
 8.11pm- 
 
 
+
+// Accept:
+
+class Node {
+    int num, count;
+    Node pre, next;
+    Node(int num, int count) {
+        this.num=num;
+        this.count=count;
+        pre = this;
+        next = this;
+    }
+} 
+
+class FirstUnique {
+    int count=0;
+    HashMap<Integer, Node> map=new HashMap<Integer, Node>();
+    private Node dummy;// dummy节点是一个冗余节点，dummy的next是链表的第一个节点，dummy的pre是链表的最后一个节点
+    public FirstUnique(int[] nums) {
+        dummy = new Node(999, 999);
+        for(int i=0;i<nums.length;i++){
+            Node currNode=map.get(nums[i]);
+            int currCount=currNode==null?0:currNode.count;
+            if(currCount==0){
+                   Node node=new Node(nums[i],currCount+1);
+                   add(node);
+                   map.put(nums[i],node);
+                   count++;
+            }else{
+                Node old=map.get(nums[i]);
+                remove(old);
+                count--;
+            }
+        }
+    }
+    public int showFirstUnique() {
+        if(dummy.next!=null&&dummy.next.num!=999){
+           return dummy.next.num;
+        }
+        return -1;
+    }
+    public void add(int value) {
+            Node currNode=map.get(value);
+            int currCount=currNode==null?0:currNode.count;
+            if(currCount==0){
+                   Node node=new Node(value,currCount+1);
+                   add(node);
+                   map.put(value,node);
+            }else{
+                Node old=map.get(value);
+                remove(old);
+            }
+    }
+   
+    
+    public boolean add(Node node)  
+    {  
+        addBefore(node, dummy);  
+        return true;  
+    }  
+
+     //在某元素之前添加元素
+     private void addBefore(Node newNode, Node node)  
+     {  
+       newNode.pre = node.pre;
+       newNode.next = node;
+       newNode.next.pre = newNode;
+       newNode.pre.next = newNode;
+     }  
+
+     //移除特定元素
+     private void remove(Node node)  
+     { if(node.pre==null&&node.next==null) return; 
+       node.next.pre = node.pre;
+       node.pre.next = node.next;
+       node.pre = null;
+       node.next = null;
+     }  
+
+}
+
+
+
+
+
+
+
+
+
+
+class DoubleLinkedList  
+{  
+private static class Node  
+{  
+  Object value;  
+  Node prev = this;  
+  Node next = this;  
+
+  Node(Object v)  
+  {  
+    value = v;  
+  }  
+}  
+private Node head = new Node(null); // 头节点  
+// 以下是接口方法  
+
+
+public boolean add(Object o)  
+{  
+    addBefore(new Node(o), head);  
+    return true;  
+}  
+
+ //在某元素之前添加元素
+ private void addBefore(Node newNode, Node node)  
+ {  
+   newNode.prev = node.prev;
+   newNode.next = node;
+   newNode.next.prev = newNode;
+   newNode.prev.next = newNode;
+ }  
+
+ //移除特定元素
+ private void removeNode(Node node)  
+ {  
+   node.next.prev = node.prev;
+   node.prev.next = node.next;
+   node.prev = null;
+   node.next = null;
+ }  
+
+
+// ————————————————
+// 版权声明：本文为CSDN博主「罗拙呓」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/as02446418/article/details/47114711
+
+
+
+
+
+
 // Accept:
 
 class Node {
