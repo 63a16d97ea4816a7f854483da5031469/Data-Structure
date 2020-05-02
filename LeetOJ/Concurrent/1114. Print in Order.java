@@ -57,9 +57,49 @@ We do not know how the threads will be scheduled in the operating system, even t
  * 
  */
 
+//  使用volatile
+
+class Foo {
+    private volatile int flag;
+
+    public Foo() {
+        flag = 1;
+    }
+
+    public void first(Runnable printFirst) throws InterruptedException {
+        for(;;) {
+        	if (flag==1) {
+        		printFirst.run();
+                flag = 2;
+                break;
+        	}
+        }
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+    	for(;;) {
+    		if (flag==2) {
+    			printSecond.run();
+                flag=3;
+                break;
+    		}
+    	}
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+    	for(;;) {
+    		if (flag==3) {
+    			printThird.run();
+                flag = 1;
+                break;
+    		}
+    	}
+    }
+}
 
 
-使用信号量：
+
+// 使用信号量：
 
 
 class Foo {
