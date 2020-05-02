@@ -106,7 +106,6 @@ void add(int value) insert value to the queue.
 
 
 // Accept:
-
 class Node {
     int num, count;
     Node pre, next;
@@ -117,7 +116,6 @@ class Node {
         next = this;
     }
 } 
-
 class FirstUnique {
     int count=0;
     HashMap<Integer, Node> map=new HashMap<Integer, Node>();
@@ -157,14 +155,11 @@ class FirstUnique {
                 remove(old);
             }
     }
-   
-    
     public boolean add(Node node)  
     {  
         addBefore(node, dummy);  
         return true;  
     }  
-
      //在某元素之前添加元素
      private void addBefore(Node newNode, Node node)  
      {  
@@ -173,7 +168,6 @@ class FirstUnique {
        newNode.next.pre = newNode;
        newNode.pre.next = newNode;
      }  
-
      //移除特定元素
      private void remove(Node node)  
      { if(node.pre==null&&node.next==null) return; 
@@ -182,10 +176,7 @@ class FirstUnique {
        node.pre = null;
        node.next = null;
      }  
-
 }
-
-
 
 
 
@@ -309,13 +300,13 @@ class FirstUnique {
      * 从双向链表中删除该节点  @param node 要删除的节点
      */
     private void remove(Node node) {
-        if(node.num==-999) return;
+        if(node.pre==null&&node.next==null) return;
         node.pre.next = node.next;
         node.next.pre = node.pre;
-        node.num=-999;
+        node.pre=null;
+        node.next=null;
     }
 }
-
 
 
 
