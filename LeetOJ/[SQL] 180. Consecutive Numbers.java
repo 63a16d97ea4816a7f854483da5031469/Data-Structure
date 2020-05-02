@@ -45,8 +45,7 @@ For example, given the above Logs table, 1 is the only number that appears conse
 
 
 从这道题目学到了什么，哪些地方需要提升? :
-
-
+这道题目一看是 at least 3 容易想错为使用 group by Having count(*)>3
 
 
  * 
@@ -62,10 +61,17 @@ l1.Id = l2.Id - 1 AND l2.Id = l3.Id - 1;
 
 
 
+// 不可以删掉 Distinct,如果删掉会出现下面的错误:
 
 
-
-
+// Wrong Answer
+// Details 
+// Input
+// {"headers": {"Logs": ["Id", "Num"]}, "rows": {"Logs": [[1, 3], [2, 3], [3, 3], [4, 3]]}}
+// Output
+// {"headers": ["ConsecutiveNums"], "values": [[3], [3]]}
+// Expected
+// {"headers":["ConsecutiveNums"],"values":[[3]]}
 
 
 
