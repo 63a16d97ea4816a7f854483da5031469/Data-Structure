@@ -39,6 +39,23 @@ public class Solution {
  */
 
 
+// AC:
+
+class Solution {
+    //8.23pm-8.45pm 看了题解。笨方法比较慢
+   int hammingDistance(int x, int y) {
+       int i=x^y;
+    int count=0;
+    while (i!=0) {
+        if((i&1)==1) ++ count;
+        i=i>>1;
+    }
+    return count;
+  }    
+// ————————————————
+// 版权声明：本文为CSDN博主「styshoo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/styshoo/article/details/54099552
+}
 
 
 
