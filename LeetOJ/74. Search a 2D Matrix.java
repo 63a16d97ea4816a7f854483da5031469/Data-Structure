@@ -57,6 +57,39 @@ Output: false
  */
 
 
+class Solution {
+    //9.44pm-10.06pm
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m=matrix.length;
+        if(m==0) return false; // []
+        int n=matrix[0].length;
+        if(n==0) return false;  // [[]]
+        int[] colArr=new int[m];
+        for(int i=0;i<m;i++){
+            colArr[i]=matrix[i][n-1];
+        }
+        int selectedRow=binarySearch(colArr, target);
+        int foundIndexOnRow=binarySearch(matrix[selectedRow],target);
+        return matrix[selectedRow][foundIndexOnRow]==target?true:false;
+    }
+    int binarySearch(int[] arr, int target){
+        int left=0;
+        int right=arr.length-1;
+        while(left<right){
+            int mid=(right+left)>>1;
+            if(target==arr[mid]){
+                return mid;
+            }else if(target<arr[mid]){
+                right=mid;
+            }else{
+                left=mid+1;
+            }
+        }
+        return right;
+    }
+}
+
+
 //  AC: 
 
 class Solution {
