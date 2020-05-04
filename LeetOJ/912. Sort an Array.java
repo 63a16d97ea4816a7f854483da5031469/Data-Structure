@@ -52,7 +52,7 @@ Constraints:
 
 
 
-
+// AC:
 class Solution {
     public int[] sortArray(int[] nums) {
         Arrays.sort(nums);
@@ -63,18 +63,78 @@ class Solution {
 
 
 
+// AC:
+class Solution {
+	public int[] sortArray(int[] nums) {
+		quickSort(nums, 0, nums.length - 1);
+		return nums;
+	}
+	void quickSort(int[] nums, int left, int right) {
+		if (nums == null || nums.length == 0) return;
+		if (left<right) {
+			int selected = partion(nums, left, right);
+			quickSort(nums, left, selected - 1);
+			quickSort(nums, selected + 1, right);
+		}
+	}
+	int partion(int[] nums, int start, int end) {
+		int tmp = nums[start];
+		while (start<end) {
+			while (nums[end] >= tmp && start<end) end--;
+			if (start<end) {
+				nums[start++] = nums[end]; //把这个找到的end，放到前面
+			}
+			while (nums[start]<tmp && start<end) start++;
+			if (start<end) {
+				nums[end--] = nums[start]; //把这个找到的start，放到后面
+			}
+		}
+		nums[start] = tmp;
+		return start;
+	}
+}
 
 
 
 
 
 
-
-
-
-
-
-
-
+class Solution {
+	public int[] sortArray(int[] nums) {
+		quickSort(nums, 0, nums.length - 1);
+		return nums;
+	}
+    public static void quickSort(int array[],int left,int right)
+    {
+        if(left>=right)
+        {
+            return;
+        }
+        int start=left;
+        int end=right;
+        int key=array[left];
+        while(start<end)
+        {
+            while(start<end&&array[end]>=key)
+            {
+                end--;
+            }
+            array[start]=array[end];
+            //从后往前找到第一个比key小的数与array[start]交换；
+            while(start<end&&array[start]<=key)
+            {
+                start++;
+            }
+            array[end]=array[start];
+            //从前往后找到第一个比key大的数与array[end]交换；
+        }
+        array[start]=key;
+        //一趟快排之后已经将key的位置找到。
+        quickSort(array,left,start-1);
+        //对key左边的进行排序
+        quickSort(array,start+1,right);
+        //对key右边的进行排序
+    }
+}
 
 
