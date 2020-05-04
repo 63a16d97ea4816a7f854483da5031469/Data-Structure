@@ -97,7 +97,7 @@ class Solution {
 
 
 
-
+// AC:
 
 class Solution {
 	public int[] sortArray(int[] nums) {
@@ -115,16 +115,12 @@ class Solution {
         int key=array[left];
         while(start<end)
         {
-            while(start<end&&array[end]>=key)
-            {
-                end--;
-            }
+            while(start<end&&array[end]>=key)  end--;
+            
             array[start]=array[end];
             //从后往前找到第一个比key小的数与array[start]交换；
-            while(start<end&&array[start]<=key)
-            {
-                start++;
-            }
+            while(start<end&&array[start]<=key) start++;
+
             array[end]=array[start];
             //从前往后找到第一个比key大的数与array[end]交换；
         }
