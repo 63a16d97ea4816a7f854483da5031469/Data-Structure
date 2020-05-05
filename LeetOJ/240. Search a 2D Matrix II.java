@@ -86,10 +86,28 @@ class Solution {
 
 
 
+// 从右上角开始找
 
 
-
-
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix == null || matrix.length == 0)
+            return false;
+        int row = 0, col = matrix[0].length - 1;
+        
+        while (row < matrix.length && col >= 0) {
+            int curElem = matrix[row][col];
+            if(curElem == target)
+                return true;
+            else if(curElem < target)
+                row++;
+            else
+                col--;
+        }
+        
+        return false;
+    }
+}
 
 
 
