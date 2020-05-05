@@ -3,6 +3,8 @@
  * 
 https://leetcode.com/explore/featured/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3318/
 
+https://leetcode.com/problems/ransom-note/
+
 
 Ransom Note
 Solution

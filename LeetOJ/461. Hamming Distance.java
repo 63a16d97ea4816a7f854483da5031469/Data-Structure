@@ -1,25 +1,37 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
+https://leetcode.com/problems/hamming-distance/
 
+461. Hamming Distance
+Easy
 
-Reverse a linked list from position m to n. Do it in-place and in one-pass.
+1601
 
-For example:
-Given 1->2->3->4->5->NULL, m = 2 and n = 4,
+152
 
-return 1->4->3->2->5->NULL.
+Add to List
+
+Share
+The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+
+Given two integers x and y, calculate the Hamming distance.
 
 Note:
-Given m, n satisfy the following condition:
-1 ≤ m ≤ n ≤ length of list.
+0 ≤ x, y < 231.
 
-public class Solution {
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        
-    }
-}
+Example:
+
+Input: x = 1, y = 4
+
+Output: 2
+
+Explanation:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+
+The above arrows point to positions where the corresponding bits are different.
 
 3 May 2020 at 8:33: pm
 
