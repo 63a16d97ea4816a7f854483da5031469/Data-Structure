@@ -46,7 +46,7 @@ Note:
 The number of nodes in the tree will be between 2 and 100.
 Each node has a unique integer value from 1 to 100.
 
-12 April 2020 at 8:33: pm
+7 May 2020 at 8:54 pm
 
 
 对题目易错地方进行总结:
@@ -130,6 +130,54 @@ class Solution {
 
 
 
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //9.51pm-10.04pm
+    TreeNode xRoot=null, yRoot=null;
+    int xlevel=-1, ylevel=-2;
+	public boolean isCousins(TreeNode root, int x, int y) {
+		if (root == null) return false;
+		if (root.left == null && root.right == null) return false;
+        xRoot=root;
+        yRoot=root;
+        dfs(root, 0, x, y,root);
+		return (xRoot.val!=yRoot.val&&xlevel==ylevel)?true:false;
+	}
+	void dfs(TreeNode root, int level, int x, int y, TreeNode parent) {
+		if (root == null) return;
+		if (root.val == x) {
+            xRoot=parent;
+            xlevel=level;
+		}
+        
+        if (root.val == y) {
+            yRoot=parent;
+            ylevel=level;
+		}
+        
+		if (root.left == null && root.right == null) {
+			return;
+		}
+		dfs(root.left,level+1,x,y,root);
+        dfs(root.right,level+1,x,y,root);
+	}
+}
 
 
 
