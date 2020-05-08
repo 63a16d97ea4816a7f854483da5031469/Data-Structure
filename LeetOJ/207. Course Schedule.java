@@ -149,6 +149,22 @@ class Solution {
 
 
 
+// 解题思路分析
+
+// BFS做拓扑排序的笔记在这里 http://www.noteanddata.com/leetcode-207-Course-Schedule-Amazon-interview-problem-java-solution-note.html
+// 这里记录一下DFS的做法：
+// a. 建立图， 用Map<Integer, Set > graph表示一个图， 其实里面可以用list 
+// b. 然后对每个节点进行深度优先遍历， 然后遍历的时候要记录和更新状态
+// 要判断一个有向图是否有环， 状态可以定义成三个
+// a. 没有访问过： 所有没有访问过的节点都需要进行一次DFS
+// b. 正在访问： 表示从某一个节点开始DFS的时候，经过某一个节点的时候，设置这个节点为正在访问
+// c. 已经访问过了: 表示某一个节点已经访问完成， 实际在代码里面就是这个节点指向的后序节点都已经访问过了， 这时候就可以把当前节点标记成已经访问过了。
+// 那么，判断环就比较直接。 如果在访问某一个节点的时候, 如果一个节点正在访问，后序在这个遍历的过程中有回到这个正在访问的节点，那么一定是因为出现了环。
+//  因为正常无环的有向图， 在DFS遍历的时候是不会访问到一个节点两次的。 整个遍历过程应该都是单向的.
+
+// Runtime: 440 ms, faster than 5.04% of Java online submissions for Course Schedule.
+// Memory Usage: 40.9 MB, less than 99.23% of Java online submissions for Course Schedule.
+
 
 
 class Solution {
@@ -196,6 +212,62 @@ class Solution {
 
 
 
+
+
+
+
+
+// 解题思路分析
+
+// BFS做拓扑排序的笔记在这里 
+// http://www.noteanddata.com/leetcode-207-Course-Schedule-Amazon-interview-problem-java-solution-note.html
+
+// Runtime: 5 ms, faster than 65.79% of Java online submissions for Course Schedule.
+// Memory Usage: 39.3 MB, less than 100.00% of Java online submissions for Course Schedule.
+
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[] indegrees = new int[numCourses];
+        Map<Integer, Set<Integer>> map = new HashMap<>();
+        for(int[] item: prerequisites) {
+            // item[1]--> item[0]
+            Set<Integer> set = map.get(item[1]);
+            if(null == set) {
+                set = new HashSet<>();
+                map.put(item[1], set);
+            }
+            set.add(item[0]);
+            
+            indegrees[item[0]]++;
+        }
+        
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i = 0; i < indegrees.length; ++i) {  
+            if(indegrees[i] == 0) {
+                queue.add(i);
+            }
+        }
+        int count = 0;
+        while(!queue.isEmpty()) {
+            Queue<Integer> nextQueue = new LinkedList<>();
+            while(!queue.isEmpty()) {
+                int cur = queue.poll();
+                count++;
+                Set<Integer> set = map.get(cur);
+                if(null != set) {
+                    for(int v: set) {
+                        indegrees[v]--;
+                        if(indegrees[v] == 0) {
+                            nextQueue.add(v);
+                        }
+                    }
+                }
+            }
+            queue = nextQueue;
+        }
+        return count == numCourses;
+    }
+}
 
 
 
