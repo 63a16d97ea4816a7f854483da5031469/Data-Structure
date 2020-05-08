@@ -34,7 +34,7 @@ Output: 3
 Explanation: The answer is "wke", with the length of 3. 
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
-12 April 2020 at 8:33: pm
+9 May 2020 at 12:20: pm
 
 
 对题目易错地方进行总结:
@@ -44,8 +44,6 @@ Explanation: The answer is "wke", with the length of 3.
 
 
 从这道题目学到了什么，哪些地方需要提升? :
-
-
 
 
  * 
