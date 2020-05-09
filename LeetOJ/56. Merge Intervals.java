@@ -40,7 +40,10 @@ NOTE: input types have been changed on April 15, 2019. Please reset to default c
 从这道题目学到了什么，哪些地方需要提升? :
 
 
-
+类似题目：
+https://leetcode.com/problems/interval-list-intersections/
+https://leetcode.com/problems/range-module/
+https://leetcode.com/problems/insert-interval/
 
  * 
  */
