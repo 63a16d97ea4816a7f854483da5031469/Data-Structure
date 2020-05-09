@@ -51,9 +51,6 @@ Note: Do not use class member/global/static variables to store states. Your seri
  */
 
 
-
-
-
 // http://www.noteanddata.com/leetcode-297-Serialize-and-Deserialize-Binary-Tree-java-solution-note.html
 
 /**
@@ -65,6 +62,7 @@ Note: Do not use class member/global/static variables to store states. Your seri
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 public class Codec {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -197,9 +195,9 @@ public class Codec {
 
 
 
-import java.io.*;
-import java.util.Base64;
-import java.nio.charset.StandardCharsets;
+// import java.io.*;
+// import java.util.Base64;
+// import java.nio.charset.StandardCharsets;
 
 /**
  * Definition for a binary tree node.
