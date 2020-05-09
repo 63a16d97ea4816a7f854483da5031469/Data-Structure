@@ -38,12 +38,133 @@ Note: Do not use class member/global/static variables to store states. Your seri
 https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
 
+推荐题目：
+https://leetcode.com/problems/find-duplicate-subtrees/
+
 
  * 
  */
 
 
- 
+
+// 使用BST的特性：
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+// https://github.com/praphull27/science-of-happiness/blob/master/leetcode/449-Serialize%20and%20Deserialize%20BST.java
+public class Codec {
+	// Tc: O(M*11), SC: O(M*11)
+	// Encodes a tree to a single string.
+	public String serialize(TreeNode root) {
+		if (root == null) {
+			return "";
+		}
+		StringBuilder sb = new StringBuilder();
+		serializeHelper(root, sb);
+		return sb.toString();
+	}
+	public void serializeHelper(TreeNode root, StringBuilder sb) {
+		if (root != null) {
+			sb.append(root.val).append(",");
+			serializeHelper(root.left, sb);
+			serializeHelper(root.right, sb);
+		}
+	}
+	// TC: O(N+N+M), SC: O(N+M)
+	// Decodes your encoded data to tree.
+	public TreeNode deserialize(String data) {
+		if (data == null || data.length() == 0) {
+			return null;
+		}
+		return deserialize(new LinkedList<>(Arrays.asList(data.split(","))), null, null);
+	}
+	public TreeNode deserialize(Queue<String> queue, Integer min, Integer max) {
+		if (queue.isEmpty()) {
+			return null;
+		}
+		Integer cur = Integer.parseInt(queue.peek());
+		if (min != null && cur.compareTo(min)<0) {
+			return null;
+		}
+		if (max != null && cur.compareTo(max) > 0) {
+			return null;
+		}
+		queue.poll();
+		TreeNode node = new TreeNode((int) cur);
+		node.left = deserialize(queue, min, cur);
+		node.right = deserialize(queue, cur, max);
+		return node;
+	}
+}
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));
+
+
+
+// 书写方式语法值得学习：
+
+ /**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode(int x) { val = x; }
+ * }
+ */
+public class Codec {
+
+	// Encodes a tree to a single string.
+	public String serialize(TreeNode root) {
+		StringBuilder sb = new StringBuilder();
+		preorder(root, sb);
+		return sb.toString();
+	}
+
+	private void preorder(TreeNode root, StringBuilder sb) {
+		if (root == null) {
+			sb.append("#").append(",");
+			return;
+		}
+		sb.append(root.val).append(",");
+		preorder(root.left, sb);
+		preorder(root.right, sb);
+	}
+
+	// Decodes your encoded data to tree.
+	public TreeNode deserialize(String data) {
+		LinkedList<String> que = new LinkedList<String> ();
+		que.addAll(Arrays.asList(data.split(",")));
+		return deserial(que);
+	}
+
+	private TreeNode deserial(LinkedList<String> que) {
+		String str = que.pollFirst();
+		if (str.equals("#")) {
+			return null;
+		}
+		TreeNode root = new TreeNode(Integer.valueOf(str));
+		root.left = deserial(que);
+		root.right = deserial(que);
+		return root;
+	}
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));
+
+
+
+
+
 //  利用BST的特性：
 /**
  * Definition for a binary tree node.
