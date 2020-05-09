@@ -61,8 +61,6 @@ Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 
 
 
-
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -78,7 +76,7 @@ class Solution {
         int[] res = robHelper(root);
         return Math.max(res[0], res[1]);
     }
-
+//注意rob变量和noRob变量是在左右节点之间，连贯的，逻辑一致性的叠加，所以是不存在中间状态的，Math.max()只会选择一种可能
     // [rob this, don't rob this]
     private int[] robHelper(TreeNode root) {
         int rob = root.val, noRob = 0;
@@ -95,8 +93,6 @@ class Solution {
         return new int[]{rob, noRob};
     }
 }
-
-
 
 
 
