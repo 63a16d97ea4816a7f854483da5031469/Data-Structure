@@ -33,7 +33,7 @@ Clarification: The above format is the same as how LeetCode serializes a binary 
 
 Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
 
-12 April 2020 at 8:33: pm
+9 May 2020 at 9:20 pm
 
 
 对题目易错地方进行总结:
@@ -49,12 +49,6 @@ Note: Do not use class member/global/static variables to store states. Your seri
 
  * 
  */
-
-
-
-
-
-
 
 
 
