@@ -1,0 +1,148 @@
+
+/*
+ * 
+https://leetcode.com/problems/serialize-and-deserialize-bst/
+
+449. Serialize and Deserialize BST
+Medium
+
+1140
+
+65
+
+Add to List
+
+Share
+Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+
+Design an algorithm to serialize and deserialize a binary search tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary search tree can be serialized to a string and this string can be deserialized to the original tree structure.
+
+The encoded string should be as compact as possible.
+
+Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+
+9 May 2020 at 10:53 pm
+
+
+对题目易错地方进行总结:
+
+
+对题目的实现思路进行几句话总结:
+
+
+从这道题目学到了什么，哪些地方需要提升? :
+
+
+
+类似题目：
+https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+
+
+
+ * 
+ */
+
+
+
+
+
+
+
+// 这个是标准的任何二叉树都可以的一种方式：
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+//10.38pm-10.52pm (有回看之前的记录)
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuilder sb=new StringBuilder();
+        if(root==null){
+            return "null";
+        }
+       sb.append(root.val+",");
+       sb.append(serialize(root.left)+",");
+       sb.append(serialize(root.right));
+        
+       return sb.toString();
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        String[] sArr=data.split(",");
+        if(sArr.length==0) return null;
+        
+        Queue<String> que=new LinkedList<String>();
+        for(String tmp:sArr){
+            que.add(tmp);
+        }
+        return buildTree(que);
+    }
+    
+    TreeNode buildTree(Queue<String> que){
+        String head=que.poll();
+        if(head.equals("null")) return null;
+        TreeNode root=new TreeNode(Integer.valueOf(head));
+        root.left=buildTree(que);
+        root.right=buildTree(que);
+        return root;
+    }
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));
+
+
+
+
+
+
+
+
+
+// 类似题目:
+// 108. Convert Sorted Array to Binary Search Tree
+// https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //10.55pm-11.05pm
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums.length==0) return null;
+        return buildTree(nums,0,nums.length-1);
+    }
+    TreeNode buildTree(int[] nums, int start, int end){
+        if(start>end) return null;
+        int mid=(start+end+1)/2;
+        TreeNode root=new TreeNode(nums[mid]);
+        root.left=buildTree(nums,start,mid-1);
+        root.right=buildTree(nums,mid+1,end);
+        return root;
+    }
+}
+
+
