@@ -1,7 +1,7 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
+https://leetcode.com/problems/sum-of-square-numbers/
 
 633. Sum of Square Numbers
 Easy
