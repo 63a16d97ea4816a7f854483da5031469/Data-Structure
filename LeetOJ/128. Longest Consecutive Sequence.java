@@ -42,6 +42,38 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
 
 
 
+// TC: (O(N))
+class Solution {
+    //https://blog.csdn.net/liuchonge/article/details/73385561
+     public int longestConsecutive(int[] nums) {
+
+        Set<Integer> set = new HashSet<>();
+        //先将数组中的每个数添加到set中，实现去重；
+        for(int n: nums) set.add(n);
+        int max = 0;
+        //接下来遍历数组
+        for(int n: nums){
+            int count = 0;
+            //如果set已经空，则返回；
+            if(set.isEmpty()) break;
+            //对于数组中的数，将其左右相连的数都remove掉，这样set会越来越小
+            int val = n;
+            while(set.remove(val--))
+                count ++;
+            val = n;
+            while(set.remove(++val))
+                count ++;
+            //判断完每个连续的数块，就更新一次最大值
+            max = Math.max(count,max);
+        }
+        return max;
+    }
+}
+
+
+
+
+
 
 class Solution {
     //5.31pm-5.40pm  AC:
@@ -79,13 +111,6 @@ class Solution {
         return max;
     }
 }
-
-
-
-
-
-
-
 
 
 
