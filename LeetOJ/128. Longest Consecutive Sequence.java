@@ -44,7 +44,7 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
 
 
 class Solution {
-    //5.31pm-5.40pm
+    //5.31pm-5.40pm  AC:
     public int longestConsecutive(int[] nums) {
         if(nums.length==0) return 0;
         if(nums.length==1) return 1;
