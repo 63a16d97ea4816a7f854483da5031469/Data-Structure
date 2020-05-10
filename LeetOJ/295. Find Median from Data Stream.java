@@ -41,7 +41,7 @@ Follow up:
 If all integer numbers from the stream are between 0 and 100, how would you optimize it?
 If 99% of all integer numbers from the stream are between 0 and 100, how would you optimize it?
 
-12 April 2020 at 8:33: pm
+10 May 2020 at 8:09 pm
 
 
 对题目易错地方进行总结:
