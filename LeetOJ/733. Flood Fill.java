@@ -44,6 +44,26 @@ The value of each color in image[i][j] and newColor will be an integer in [0, 65
  */
 
 
+ class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+       if (image==null || image.length==0 || image[sr][sc]==newColor) return image;
+        int srColor= image[sr][sc];
+        dfs(image, sr,sc, srColor,newColor);
+        return image;
+    }
+    
+    private void dfs(int[][] image, int sr, int sc, int srColor,int newColor){
+        if (sr<0 || sr >= image.length || sc<0 || sc>=image[0].length || image[sr][sc]!=srColor)
+            return;
+        if (image[sr][sc]==srColor)
+            image[sr][sc]=newColor;
+        dfs(image,sr-1,sc,srColor,newColor);
+        dfs(image,sr+1,sc,srColor,newColor);
+        dfs(image,sr,sc+1,srColor,newColor);
+        dfs(image,sr,sc-1,srColor,newColor);
+    }
+}
+
 
 
 class Solution {
@@ -104,7 +124,7 @@ class Solution {
 
 
 
-刚开始以为是大于0，0不算，因为没注意到题目说，一定是same color的才继续传播，说明读题很关键。
+// 刚开始以为是大于0，0不算，因为没注意到题目说，一定是same color的才继续传播，说明读题很关键。
 
 
 class Solution {
@@ -160,7 +180,7 @@ class Solution {
 
 
 
-少写了边界等号，导致输入进去，输出的是只有一个中心点被染色。
+// 少写了边界等号，导致输入进去，输出的是只有一个中心点被染色。
 
 class Solution {
     //11.22am- 
@@ -216,7 +236,7 @@ class Solution {
 
 
 
-最开始少写了 &&image[x-1][y]!=newColor，所以访问过的节点又被加到que中，导致超时，无限循环。
+// 最开始少写了 &&image[x-1][y]!=newColor，所以访问过的节点又被加到que中，导致超时，无限循环。
 
 
 class Solution {
