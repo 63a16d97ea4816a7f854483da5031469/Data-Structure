@@ -75,52 +75,34 @@ class Solution {
         bfs(image, sr, sc, newColor);
         return image;
     }
-    
-    
     void bfs(int[][] image, int sr, int sc, int newColor){
-        
         Queue que=new LinkedList();
         que.add(new int[]{sr,sc});
-        
-        
         while(!que.isEmpty()){
-            
             int[] point=(int[])que.poll();
-            
             int x=point[0];
             int y=point[1];
- 
             // set the ori point to new Color;
              image[sr][sc]=newColor;
-            
             if(x-1>=0 &&image[x-1][y]==sameColor &&image[x-1][y]!=newColor){
                 image[x-1][y]=newColor;
                 que.add(new int[]{x-1,y});
             }
-            
             if(x+1<image.length && image[x+1][y]==sameColor&&image[x+1][y]!=newColor){
                 image[x+1][y]=newColor;
                 que.add(new int[]{x+1,y});
             }
-            
             if(y-1>=0 && image[x][y-1]==sameColor&&image[x][y-1]!=newColor){
                 image[x][y-1]=newColor;
                 que.add(new int[]{x,y-1});
             }
-            
             if(y+1<image[0].length && image[x][y+1]==sameColor &&image[x][y+1]!=newColor){
                 image[x][y+1]=newColor;
                 que.add(new int[]{x,y+1});
             }
         }
-        
     }
-    
 }
-
-
-
-
 
 
 
