@@ -57,8 +57,6 @@ The substring with start index = 2 is "ab", which is an anagram of "ab".
 从这道题目学到了什么，哪些地方需要提升? :
 
 
-
-
 题目 leetcode 438 Find All Anagrams in a String
 
 输入字符串s和p，要求返回s中有哪些index开始的子字符串和p是Anagrams, 也就是字符是一样的，只是打乱了。
