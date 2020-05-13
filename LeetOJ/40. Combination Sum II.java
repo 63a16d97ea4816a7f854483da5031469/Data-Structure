@@ -50,45 +50,31 @@ Submissions
  */
 
 
+
 class Solution {
     // 10.18pm - 10.43pm
    //10.53pm-10.55pm 重新回过头来纠正那个小问题   // list.remove(list.size()-1); ===>要用这个，因为sort了 list.remove(new Integer(candidates[i]));
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        
         List<Integer> list=new ArrayList<Integer>();
         List<List<Integer>> flist=new ArrayList<List<Integer>>();
-        
- 
         getCombination(candidates,target,target,new boolean[candidates.length],list,flist);
-        
         return flist;
-        
     }
-    
     void getCombination(int[] candidates, int target, int sum, boolean[] used, List<Integer> list, List<List<Integer>> flist){
-        
         if(sum==0){
-         
             Collections.sort(list);
             if(!flist.contains(list)){
                   flist.add(new ArrayList<Integer>(list));
                   list=new ArrayList<Integer>();
             }
-      
               return;
         }
-        
         if(sum<0) return;
-        
         for(int i=0;i<candidates.length;i++){
-            
             if(used[i]) continue;
-            
             list.add(candidates[i]);
             used[i]=true;
-            
             getCombination(candidates, target, sum-candidates[i], used, list, flist);
-            
             //put back mark
             used[i]=false;
             // list.remove(list.size()-1);
@@ -96,10 +82,6 @@ class Solution {
         }
     }
 }
-
-
-
-
 
 
 Wrong answer:
