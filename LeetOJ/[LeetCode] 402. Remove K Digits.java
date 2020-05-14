@@ -74,7 +74,47 @@ public:
 
 
 
-
+class Solution {
+    //11.51pm-12.15am
+    public String removeKdigits(String num, int k) {
+        if(k==1&&num.length()==1) return "0"; 
+        Stack<Integer> stack=new Stack<Integer>();
+        for(int i=0;i<num.length();i++){
+            int curr=Integer.parseInt(num.charAt(i)+"");
+            if(stack.isEmpty()){
+                stack.push(curr);
+            }else{
+                while(!stack.isEmpty()&&stack.peek()>curr&&k>0){
+                    stack.pop();
+                    k--;
+                }
+                stack.push(curr);
+            }
+        }
+        //解决这种case "1111111"    3
+        while(k>0&&!stack.isEmpty()){
+            stack.pop();
+            k--;
+        }
+        LinkedList<Integer> list=new LinkedList<Integer>();
+        //remove the left 0
+        while(!stack.isEmpty()){
+            list.addFirst(stack.pop());
+        }
+        String str="";
+        boolean isStart=false;
+        for(int i=0;i<list.size();i++){
+            if(list.get(i)!=0){
+               isStart=true;
+            }
+            if(isStart){
+                str+=list.get(i);
+            }
+        }
+        if(str.equals("")) return "0";
+        return str;
+    }
+}
 
 
 
