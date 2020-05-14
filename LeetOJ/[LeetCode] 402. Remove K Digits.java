@@ -5,11 +5,8 @@ https://leetcode.com/problems/remove-k-digits/
 
 402. Remove K Digits
 Medium
-
 1700
-
 88
-
 Add to List
 
 Share
