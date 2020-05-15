@@ -81,14 +81,68 @@ class Solution {
 
 
 
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) 
+    {
+        List <Integer> result = new ArrayList <Integer> ();
+        
+        for (int i = left; i <= right; ++i)
+        {
+            if (isSelfDividing (i))
+            {
+                result.add (i);
+            }
+        }
+        return result;
+    }
+    
+    public boolean isSelfDividing (int num)
+    {
+        int curr = num;
+        int digit = 0;
+        
+        while (curr != 0)
+        {
+            digit = curr % 10;
+            if (digit == 0 || num % digit != 0)
+            {
+                return false;
+            }
+            curr /= 10;
+        }
+        
+        return true;
+    }
+}
 
 
 
 
 
 
-
-
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> list = new ArrayList<Integer>();
+        for(int i = left;i<=right;i++)
+        {
+            int flag = 0;
+            int j =i;
+            while(j!=0)
+            {
+                int k = j%10;
+                if(k == 0 || i%k !=0){
+                    flag = 1;
+                    break;}
+                j = j/10;
+                
+            }
+            if(flag == 0)
+                list.add(i);
+        }
+        return list;
+        
+    }
+}
 
 
 
