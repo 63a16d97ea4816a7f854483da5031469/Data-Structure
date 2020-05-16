@@ -42,7 +42,42 @@ public class Solution {
 
 
 
+class Solution {
+    public boolean circularArrayLoop(int[] nums) {
+        int n = nums.length;
+        
+        for (int i = 0; i < n; ++i) {
+            //修改索引值 保证其 < n
+            nums[i] = nums[i] % n;
+        }
+        
+        for (int i = 0; i < n; ++i) {
+            int f = nums[i];
+            //跳过之前尝试过的
+            if (f >= n) continue;
+            
+            int j = i;
+            int flag = n + i;
+            int last = j;
+            while (nums[j] < n) {
+                //方向不一致 直接退出
+                if (f * nums[j] < 0) break;
+                int next = (j + nums[j] + n) % n;
+                nums[j] = flag;
+                last = j;
+                j = next;
+            }
+            if (nums[j] == flag && j != last) return true;
+        }
+        
+        return false;
+    }
+}
 
+// 作者：nube
+// 链接：https://leetcode-cn.com/problems/circular-array-loop/solution/java-fei-kuai-man-zhi-zhen-jie-fa-by-nube/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
@@ -64,7 +99,6 @@ class Solution {
 			if (isUsed(nums[i])) {
 				continue;
 			}
-			
 			int currentIndex = i;
 			int current = nums[currentIndex];
 			int direction = current > 0 ? 1 : -1;
@@ -92,7 +126,6 @@ class Solution {
 						return true;
 					}
 				}
-				
 				int nextDirection = nextNum > 0 ? 1 : -1;
 				// 方向相反，跳出
 				if (direction != nextDirection) {
