@@ -74,7 +74,33 @@ Note:
 
 
 
-
+class Solution {
+    //11.00pm-11.06pm (有参考答案：https://blog.csdn.net/fuxuemingzhu/article/details/88376629)
+    public int largestSumAfterKNegations(int[] A, int K) {
+        PriorityQueue<Integer> pq=new PriorityQueue<Integer>();
+        for(int i=0;i<A.length;i++){
+            pq.add(A[i]);
+        }
+        int sum=0;
+        while(K>0){
+            int curr=pq.poll();
+            if(curr==0){
+                K=0;
+                break;
+            }else if(curr<0){
+                pq.add(-curr);
+                K--;
+            }else{
+                pq.add(-curr);
+                K--;
+            }
+        }
+      while(!pq.isEmpty()){
+          sum+=pq.poll();
+      }
+        return sum;
+    }
+}
 
 
 
