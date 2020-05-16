@@ -72,6 +72,43 @@ Note:
  */
 
 
+class Solution {
+    public int largestSumAfterKNegations(int[] A, int K) {
+        Arrays.sort(A);
+        int i,n=A.length;
+        i=0;
+        int index=0;
+        for(i=0;i<K;i++){
+            A[index] = 0-A[index];
+            if(index+1<n){
+                if(A[index+1]<A[index]){
+                    index++;
+                }
+            }
+        }
+        int sum=0;
+        for(i=0;i<n;i++){
+            sum+=A[i];
+        }
+        return sum;
+    }
+}
+
+
+class Solution {
+    public int largestSumAfterKNegations(int[] A, int K) {
+      PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+      
+      for(int x: A) pq.add(x);
+      while( K--  > 0) pq.add(-pq.poll());
+
+      int sum  = 0;
+      for(int i = 0; i < A.length; i++){
+          sum += pq.poll();
+      }
+      return sum;
+  }
+}
 
 
 class Solution {

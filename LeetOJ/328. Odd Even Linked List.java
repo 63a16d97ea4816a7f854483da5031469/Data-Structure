@@ -100,6 +100,38 @@ class Solution {
 
 
 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode eitr=new ListNode(-1);
+        ListNode evenlist=eitr;
+        ListNode n=head;
+        while(n!=null&&n.next!=null){
+            ListNode nd=n.next.next;
+            eitr.next=n.next;
+            eitr=n.next;
+            n.next=nd;
+            if(n.next==null){
+                break;
+            }
+            n=n.next;
+        }
+        eitr.next=null;
+        n.next=evenlist.next;
+        return head;
+    }
+}
+
 
 
 
