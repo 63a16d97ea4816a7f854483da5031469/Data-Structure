@@ -153,3 +153,26 @@ class Solution {
 
 
 
+class Solution {
+    public boolean carPooling(int[][] trips, int capacity) {
+    	Arrays.sort(trips, (a, b) -> a[1] - b[1]);
+		
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[2] - b[2]);
+		pq.add(trips[0]);
+		int count = trips[0][0];
+		
+        for (int i = 1; i < trips.length; ++i) {
+        	while (!pq.isEmpty() && trips[i][1] >= pq.peek()[2]) {
+        		count -= pq.peek()[0];
+        		pq.poll();
+        	}
+            count += trips[i][0];
+        	if (count > capacity) {
+        		return false;
+        	}
+        	pq.offer(trips[i]);
+        }
+
+        return true;    
+    }
+}
