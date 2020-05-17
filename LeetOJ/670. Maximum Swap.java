@@ -83,7 +83,6 @@ class Solution {
         for (int i = 0; i < A.length; i++) {
             last[A[i] - '0'] = i;
         }
-
         for (int i = 0; i < A.length; i++) {
             for (int d = 9; d > A[i] - '0'; d--) {
                 if (last[d] > i) {
