@@ -113,6 +113,48 @@ class Solution {
 
 
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    
+    int left = -1, height = 0;
+    
+    public int findBottomLeftValue(TreeNode root) {
+        if (root == null)
+            return -1;
+        helper(root, 1);
+        return left;
+    }
+    
+    public void helper(TreeNode root, int depth) {
+        if (height < depth) {
+            left = root.val;
+            height = depth;
+        }
+        
+        if (root.left != null) 
+            helper(root.left, depth +1);
+        if (root.right !=  null)
+            helper(root.right, depth +1);
+    }
+}
+
+
+
+
 
 
 
