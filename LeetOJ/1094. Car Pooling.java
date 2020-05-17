@@ -117,10 +117,39 @@ class Solution {
 
 
 
-
-
-
-
+class Solution {
+    public boolean carPooling(int[][] trips, int capacity) {
+        // PriorityQueue to sort by startPoint and endPoint
+        PriorityQueue<int[]> queue = new PriorityQueue<>(new Comparator<int[]>(){
+           public int compare(int[] a, int[] b) {
+               if (a[0] == b[0]) {
+                   // 起点和终点一样时 先下车 再上车
+                   return a[1] - b[1];
+               }
+               return a[0] - b[0];
+           }
+        });
+        for (int[] trip : trips) {
+            // 起点是1 终点是0 排序终点在起点前面 避免同一个点先上车导致人数超过限制
+            queue.offer(new int[]{trip[1], 1, trip[0]});
+            queue.offer(new int[]{trip[2], 0, trip[0]});
+        }
+        int num = 0;
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            if (cur[1] == 1) {
+                num += cur[2];
+                if (num > capacity) {
+                    return false;
+                }
+            } else {
+                num -= cur[2];
+            }
+        }
+        return true;
+    }
+}
+// O(nlogn) O(n)
 
 
 
