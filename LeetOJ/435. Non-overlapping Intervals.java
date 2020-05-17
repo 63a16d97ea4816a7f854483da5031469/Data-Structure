@@ -60,6 +60,40 @@ Intervals like [1,2] and [2,3] have borders "touching" but they don't overlap ea
 
 
 
+// Java 8:
+Arrays.sort(intervals,(int[] a, int[] b) -> {
+    return a[1]-b[1];
+});
+
+class Solution {
+    //12.22pm-12.42pm
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if(intervals.length==0) return 0;
+        // Arrays.sort(intervals, new Comparator<int[]>(){
+        //     public int compare(int[] a, int[] b){
+        //         return a[1]-b[1];
+        //     }
+        // });
+        Arrays.sort(intervals,(int[] a, int[] b) -> {
+            return a[1]-b[1];
+        });
+        int[] last=intervals[0];
+        int ans=0;
+        for(int i=1;i<intervals.length;i++){
+            if(last[1]>intervals[i][0]){
+                ans++;
+                //选最小的end的那个区间，删除最长的end的那个区间 （last指向谁，实际上就是保留谁做下一比较）
+                if(last[1]>intervals[i][1]){
+                     last=intervals[i];
+                }
+            }else{
+                last=intervals[i];
+            }
+        }
+        return ans;
+    }
+}
+
 
 
 
