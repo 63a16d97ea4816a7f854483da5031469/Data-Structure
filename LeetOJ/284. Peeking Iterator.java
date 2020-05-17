@@ -46,7 +46,49 @@ Follow up: How would you extend your design to be generic and work with all type
 
 
 
+// Java Iterator interface reference:
+// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
+class PeekingIterator implements Iterator<Integer> {
 
+    private Iterator<Integer> iter;
+    // 相当于与赌一个peek, 存在本地，hasNext(). next()都会判断这个peek的值
+    private Integer peek = null;
+    
+	public PeekingIterator(Iterator<Integer> iterator) {
+	    // 完全利用iterator预先读出一个next，保存在peek中，
+        // 之后的next(), 优先返回peek,然后peek
+        if (iterator != null && iterator.hasNext()) {
+            peek = iterator.next();
+        }
+	    iter = iterator;
+	}
+
+    // Returns the next element in the iteration without advancing the iterator.
+	public Integer peek() {
+        return peek;
+	}
+
+	// hasNext() and next() should behave the same as in the Iterator interface.
+	// Override them if needed.
+	@Override
+	public Integer next() {
+	    // As per the Java Iterator specs, we should throw a NoSuchElementException. if the next element doesn't exist.
+        // if (peek == null) {
+        //     throw new NoSuchElementException();
+        // }
+        Integer res = peek;
+        peek = null;
+        if (iter.hasNext()) {
+            peek = iter.next();
+        }
+        return res;
+	}
+
+	@Override
+	public boolean hasNext() {
+	    return peek != null;
+	}
+}
 
 
 
