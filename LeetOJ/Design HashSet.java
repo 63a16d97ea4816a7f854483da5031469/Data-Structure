@@ -141,9 +141,117 @@ class MyHashSet {
 
 
 
+// Beats 100% Real Java Solution (Not boolean array)
+
+class MyHashSet {
+    private int buckets = 1000;
+    private int itemsPerBucket = 1001;
+    private boolean[][] table;
+    /** Initialize your data structure here. */
+    public MyHashSet() {
+        table = new boolean[buckets][];
+    }
+    public int hash(int key) {
+        return key % buckets;
+    }
+    public int pos(int key) {
+        return key / buckets;
+    }
+    public void add(int key) {
+        int hashkey = hash(key);
+        
+        if (table[hashkey] == null) {
+            table[hashkey] = new boolean[itemsPerBucket];
+        }
+        table[hashkey][pos(key)] = true;
+    }
+    public void remove(int key) {
+        int hashkey = hash(key);
+
+        if (table[hashkey] != null)
+            table[hashkey][pos(key)] = false;
+    }
+    /** Returns true if this set did not already contain the specified element */
+    public boolean contains(int key) {
+        int hashkey = hash(key);
+        return table[hashkey] != null && table[hashkey][pos(key)];
+    }
+}
 
 
 
 
 
+
+class MyHashSet {
+    /** Initialize your data structure here. */
+    int removed = Integer.MAX_VALUE;
+    int [] elements;
+    int size ;
+    public MyHashSet() {
+        elements = new int [100000];
+        for(int k =0; k<elements.length;k++)
+            elements[k] = removed;
+    }
+    public int hash(int key){
+        return Math.abs(key)%elements.length;
+    }
+    public void rehash(){
+        int [] old = elements;
+        
+        elements = new int [2*old.length];
+        size=0;
+        for(int k =0; k<elements.length;k++)
+            elements[k] = removed;
+        for(int value : old){
+            if(value != removed)
+                add(value);
+        }
+    }
+    public void add(int key) {
+        if((double) size/elements.length>=0.75)
+            rehash();
+        if(!contains(key)){
+        
+        int h = hash(key);
+        while(elements[h] !=key && elements [h]!= removed)
+            h = (h+1)%elements.length;
+        if(elements[h]!= key){
+            size++;
+            elements[h] =key;
+        }
+        }
+    }
+    
+    public void remove(int key) {
+        if(contains(key)){
+        int h = hash(key);
+        while(elements[h] != key && elements[h] != removed)
+            h = (h+1)%elements.length;
+        if(elements [h] == key){
+            elements [h] = removed;
+            size--;
+        }
+    }
+    } 
+    /** Returns true if this set contains the specified element */
+    public boolean contains(int key) {
+        int h = hash(key);
+        while(elements[h] != removed  && elements[h] != key ){
+            
+            h = (h+1)%elements.length;
+        }
+        if(elements[h] == key)
+                return true;
+        return false;
+    }
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet obj = new MyHashSet();
+ * obj.add(key);
+ * obj.remove(key);
+ * boolean param_3 = obj.contains(key);
+ */
 
