@@ -60,11 +60,6 @@ Please do not use the built-in HashSet library.
  */
 
 
-
-
-
-
-
 //7.03pm-7.05pm 使用了其他内建的lib:
 class MyHashSet {
     LinkedList<Integer> list=null;
