@@ -143,6 +143,11 @@ class MyHashSet {
 
 // Beats 100% Real Java Solution (Not boolean array)
 
+/*
+All values will be in the range of [0, 1000000].
+The number of operations will be in the range of [1, 10000].
+*/
+
 class MyHashSet {
     private int buckets = 1000;
     private int itemsPerBucket = 1001;
