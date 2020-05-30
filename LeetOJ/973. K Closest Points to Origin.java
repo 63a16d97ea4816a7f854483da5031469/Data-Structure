@@ -91,9 +91,53 @@ class Solution {
 
 
 
+// 最快解法  
 
-
-
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+        if (points == null || points.length == 0) {
+            return points;
+        }
+        
+        int n = points.length;
+        quickSelect(points, K - 1, 0, n - 1);
+        
+        int[][] results = new int[K][2];
+        for (int i = 0; i < K; i++) {
+            results[i] = points[i];
+        }
+        return results;
+    }
+    
+    private void quickSelect(int[][] points, int K, int start, int end) {
+        int left = start, right = end;
+        int pivot = distance(points[left + (right - left) / 2]);
+        while (left <= right) {
+            while (left <= right && distance(points[left]) < pivot) {
+                left++;
+            }
+            while (left <= right && distance(points[right]) > pivot) {
+                right--;
+            }
+            if (left <= right) {
+                int[] temp = points[left];
+                points[left] = points[right];
+                points[right] = temp;
+                left++;
+                right--;
+            }
+        }
+        if (K >= left) {
+            quickSelect(points, K, left, end);
+        } else if (K <= right) {
+            quickSelect(points, K, start, right);
+        }
+    }
+    
+    private int distance(int[] p) {
+        return p[0] * p[0] + p[1] * p[1];
+    }
+}
 
 
 
