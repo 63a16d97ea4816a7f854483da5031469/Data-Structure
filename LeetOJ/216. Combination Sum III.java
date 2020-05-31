@@ -71,6 +71,10 @@ class Solution {
 
 
 
+
+
+
+
 class Solution {
     List<List<Integer>> ret = new ArrayList<>();
     LinkedList<Integer> temp = new LinkedList<>();
@@ -110,8 +114,6 @@ class Solution {
 class Solution {
     List<List<Integer>> res = new ArrayList<>();
 public List<List<Integer>> combinationSum3(int k, int n) {
-    
-  
     helper( 1, n, new ArrayList<Integer>(), k);
     return res;
 }
