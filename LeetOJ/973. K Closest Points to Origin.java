@@ -61,6 +61,47 @@ Note:
  */
 
 
+// 最快方法：
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+        
+        int len = points.length;
+        int left = 0;
+        int right = len - 1;
+        
+        while(left <= right){
+            int partitionIndex = partition(points,left,right);
+            if(partitionIndex == K){
+                break;
+            }
+            if(partitionIndex < K){
+                left = partitionIndex + 1;
+            }else{
+                right = partitionIndex - 1;
+            }
+        }
+        
+        return Arrays.copyOfRange(points,0,K);
+    }
+    
+    public int partition(int[][] points,int left,int right){
+        int[] pivot = points[left];
+        
+        while(left < right){            
+            while(left < right && compare(points[right],pivot) <= 0) right--;
+            points[left] = points[right];
+            while(left < right && compare(points[left],pivot) >= 0) left++;
+            points[right] = points[left];
+        }
+        points[left] = pivot;
+        
+        return left;
+    }
+    
+    public int compare(int[] point1,int[] point2){
+        return (point2[1] * point2[1] + point2[0] * point2[0]) - point1[1] * point1[1] - point1[0] * point1[0];
+    }
+}
 
 
 
@@ -87,6 +128,46 @@ class Solution {
         return list;
     }
 }
+
+
+
+/*
+1.create  a priority queue whcih store ED 
+2.remove all ele till size of heap is k using heap.poll()
+3.convert heap of size k to array 
+4.return array 
+
+*/
+
+
+
+
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+   
+        PriorityQueue<int[]> heap = new PriorityQueue<>((a,b) -> b[0]*b[0] + b[1]*b[1] - a[0]*a[0] - a[1]*a[1]);
+     
+    /*
+    concider given points here and it will be added in PQ as below 
+    
+    first b=[1,3] compared with a=[0,0] so sqrt(10)-sqrt(0) will return +ve so [1,3] will take 1st pos
+    sec   b=[-2,2] compared with a=[1,3] so sqrt(8)-sqrt(10) will return -ve so [-2,2] take 1st pos
+    and [1,3] moved to second pos means in front 
+    
+    as k value is 1 and heap has 2 ele so heap.poll remove [1,3] and keep [-2,2]
+   
+   
+   */
+   
+       for(int[] point : points) {
+           heap.add(point);
+           if(heap.size() > K)
+               heap.poll();
+       }
+   
+       return heap.toArray(new int[0][0]);
+   }
+   }
 
 
 
@@ -147,4 +228,57 @@ class Solution {
 
 
 
+// Quick Select:
 
+
+public class Solution {
+    public int findKthSmallest(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            return Integer.MIN_VALUE;
+        }
+        
+        int len = nums.length;
+        
+        return quickSelect(nums, k, 0, len - 1);
+    }
+    
+    private int quickSelect(int[] nums, int k, int start, int end) {
+        
+        //Choose a pivot randomly
+        Random rand = new Random();
+        int index = rand.nextInt(end - start + 1) + start;
+        int pivot = nums[index];
+        swap(nums, index, end);
+        
+        int left = start, right = end;
+        
+        while(left < right) {
+            if (nums[left++] >= pivot) {
+                swap(nums, --left, --right);
+            }
+        }
+        //left is now pointing to the first number that is greater than or equal to the pivot
+        swap(nums, left, end);
+        
+        //m is the number of numbers that is smaller than pivot
+        int m = left - start;
+        
+        if (m == k - 1) { //in order to find the kth smallest number, there must be k - 1 number smaller than it 
+            return pivot;
+        }
+        else if (k <= m) { //target is in the left subarray
+            return quickSelect(nums, k, start, left - 1);
+        }
+        else { 
+            //target is in the right subarray, but need to update k 
+            //Since we have discarded m numbers smaller than it which is in the right subarray
+            return quickSelect(nums, k - m, left, end);
+        }
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
