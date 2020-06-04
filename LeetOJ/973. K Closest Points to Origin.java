@@ -146,18 +146,6 @@ class Solution {
     public int[][] kClosest(int[][] points, int K) {
    
         PriorityQueue<int[]> heap = new PriorityQueue<>((a,b) -> b[0]*b[0] + b[1]*b[1] - a[0]*a[0] - a[1]*a[1]);
-     
-    /*
-    concider given points here and it will be added in PQ as below 
-    
-    first b=[1,3] compared with a=[0,0] so sqrt(10)-sqrt(0) will return +ve so [1,3] will take 1st pos
-    sec   b=[-2,2] compared with a=[1,3] so sqrt(8)-sqrt(10) will return -ve so [-2,2] take 1st pos
-    and [1,3] moved to second pos means in front 
-    
-    as k value is 1 and heap has 2 ele so heap.poll remove [1,3] and keep [-2,2]
-   
-   
-   */
    
        for(int[] point : points) {
            heap.add(point);
@@ -167,7 +155,7 @@ class Solution {
    
        return heap.toArray(new int[0][0]);
    }
-   }
+}
 
 
 
