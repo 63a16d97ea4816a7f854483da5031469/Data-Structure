@@ -51,32 +51,32 @@ for (int i = m; i < dataStream.length; i++)
 
 
 
+/*
 
-
-// 题目：查询平均成绩大于等于 60 分的同学的学生编号和学生姓名和平均成绩
+题目：查询平均成绩大于等于 60 分的同学的学生编号和学生姓名和平均成绩
 
  
 
-// 这里提到平均分 ，要用到avg  按照学生分组，再求平均分，这里应该是考察group by 与聚合函数的使用  大于60分应该是按照分组后筛选的结果要用having
+这里提到平均分 ，要用到avg  按照学生分组，再求平均分，这里应该是考察group by 与聚合函数的使用  大于60分应该是按照分组后筛选的结果要用having
 
-// group by 与聚合函数  having 的使用 上篇博客已经写过
+group by 与聚合函数  having 的使用 上篇博客已经写过
 
-// 于是写的sql于下：
+于是写的sql于下：
 
    SELECT studentid,AVG(score) AS a FROM student_score GROUP BY studentid HAVING a>60
 
-// 要查询完整的学生信息，应该是要与学生表student 进行join：
+要查询完整的学生信息，应该是要与学生表student 进行join：
 
  
 
-// 完整的sql:
+完整的sql:
 
  SELECT b.id, b.stdentname,a FROM student AS b JOIN
       (SELECT studentid,AVG(score) AS a FROM student_score GROUP BY studentid HAVING a>60)c
 ON b.id = c.studentid
 
 
-
+*/
 
 
 
