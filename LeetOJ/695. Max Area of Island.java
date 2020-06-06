@@ -119,11 +119,36 @@ class Solution {
 
 
 
-
-
-
-
-
+// 最快solution:
+class Solution {
+    int max = 0;
+    int cnt = 0;
+    public int maxAreaOfIsland(int[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+        
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                cnt = 0;
+                if (grid[i][j] == 1) dfs(grid, i, j) ;
+            }
+        }
+        
+        return max;
+    }
+    
+    private void dfs(int[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) return;
+        if (grid[i][j] == 0) return; 
+        grid[i][j] = 0;
+        cnt++;
+        max = Math.max(max, cnt);
+        dfs(grid, i - 1, j);
+        dfs(grid, i + 1, j);
+        dfs(grid, i, j - 1);
+        dfs(grid, i, j + 1);
+                
+    }
+}
 
 
 
