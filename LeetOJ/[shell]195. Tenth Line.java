@@ -119,10 +119,10 @@ head -n 10 file.txt | tail -n +10
 
 
 
+grep -oE '[a-z]+' words.txt | sort | uniq -c | sort -r | awk '{print $2" "$1}'
 
 
-
-
+cat words.txt | tr -s ' ' '\n'| sort | uniq -c | sort -r | awk '{print $2, $1}'
 
 
 
