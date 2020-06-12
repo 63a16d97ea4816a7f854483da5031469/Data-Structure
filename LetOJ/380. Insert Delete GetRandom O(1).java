@@ -110,6 +110,63 @@ class RandomizedSet {
 
 
 
+// 次快答案:
+
+class RandomizedSet {
+
+    private HashMap<Integer, Integer> valueToIndex = new HashMap<>();
+    private HashMap<Integer, Integer> indexToValue = new HashMap<>();
+    private int nextIndex = 0;
+    private Random random = new Random();
+    
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if (valueToIndex.containsKey(val)) {
+            return false;
+        }
+        valueToIndex.put(val, nextIndex);
+        indexToValue.put(nextIndex, val);
+        nextIndex++;
+        return true;
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        Integer index = valueToIndex.remove(val);
+        if (index != null) {
+            indexToValue.remove(index);
+            nextIndex--;
+            // shift the last one into the empty slot if it wasn't last already
+            if (index != nextIndex) {
+                Integer lastValue = indexToValue.remove(nextIndex);
+                indexToValue.put(index, lastValue);
+                valueToIndex.put(lastValue, index);
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    /** Get a random element from the set. */
+    public int getRandom() {
+        int r = random.nextInt(nextIndex);
+        return indexToValue.get(r);
+    }
+}
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet obj = new RandomizedSet();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */
+
+
 
 
 // import java.util.*;
