@@ -63,13 +63,56 @@ randomSet.getRandom();
  */
 
 
+// 最快答案:
+class RandomizedSet {
+    Map<Integer, Integer> map;
+    List<Integer> list;
+    Random random;
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        map = new HashMap<>();
+        list = new ArrayList<>();
+        random = new Random();
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if(!map.containsKey(val)) {
+            map.put(val, list.size());
+            list.add(val);
+            return true;
+        }    
+        return false;
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        if(map.containsKey(val)) {
+            int index = map.remove(val);
+            int lastElement = list.get(list.size() - 1);
+            if(lastElement != val) {
+                list.set(index, lastElement);
+                map.put(lastElement, index);
+            }
+            list.remove(list.size() - 1);
+            return true;
+        }
+        return false;
+    }
+    
+    /** Get a random element from the set. */
+    public int getRandom() {
+        return list.get(random.nextInt(list.size()));
+    }
+}
+
+// 0 -> 0
 
 
 
 
 
- 
-import java.util.*;
+// import java.util.*;
 class RandomizedSet {
     //11.21pm-11.44pm
     /** Initialize your data structure here. */
