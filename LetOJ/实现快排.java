@@ -39,44 +39,101 @@ public class Solution {
  */
 
 
+
+// https://www.programcreek.com/2012/11/quicksort-array-in-java/
+
 public class QuickSort {
-    public static void sort(int arr[], int low, int hight) {
-        int i, j, index;
-        if (low > hight) {
-            return;
-        }
-        i = low;
-        j = hight;
-        index = arr[i]; // 用子表的第一个记录做基准
-        while (i < j) { // 从表的两端交替向中间扫描
-            while (i < j && arr[j] >= index)
-                j--;
-            if (i < j)
-                arr[i++] = arr[j];// 用比基准小的记录替换低位记录
-            while (i < j && arr[i] < index)
-                i++;
-            if (i < j) // 用比基准大的记录替换高位记录
-                arr[j--] = arr[i];
-        }
-        arr[i] = index;// 将基准数值替换回 arr[i]
-        sort(arr, low, i - 1); // 对低子表进行递归排序
-        sort(arr, i + 1, hight); // 对高子表进行递归排序
-
-    }
-
-    public static void quickSort(int arr[]) {
-        sort(arr, 0, arr.length - 1);
-    }
-
+ 
     public static void main(String[] args) {
-
-        int arr[] = { 49, 38, 65, 97, 76, 13, 27, 49 };
-        quickSort(arr);
+        int[] arr = {4, 5, 1, 2, 3, 3};
+        quickSort(arr, 0, arr.length-1);
         System.out.println(Arrays.toString(arr));
+    }
+ 
+    public static void quickSort(int[] arr, int start, int end){
+ 
+        int partition = partition(arr, start, end);
+ 
+        if(partition-1>start) {
+            quickSort(arr, start, partition - 1);
+        }
+        if(partition+1<end) {
+            quickSort(arr, partition + 1, end);
+        }
+    }
+ 
+    public static int partition(int[] arr, int start, int end){
+        int pivot = arr[end];
+ 
+        for(int i=start; i<end; i++){
+            if(arr[i]<pivot){
+                int temp= arr[start];
+                arr[start]=arr[i];
+                arr[i]=temp;
+                start++;
+            }
+        }
+ 
+        int temp = arr[start];
+        arr[start] = pivot;
+        arr[end] = temp;
+ 
+        return start;
     }
 }
 
 
+
+
+// Version 2: Middle element as pivot
+
+public class QuickSort {
+	public static void main(String[] args) {
+		int[] x = { 9, 2, 4, 7, 3, 7, 10 };
+		System.out.println(Arrays.toString(x));
+ 
+		int low = 0;
+		int high = x.length - 1;
+ 
+		quickSort(x, low, high);
+		System.out.println(Arrays.toString(x));
+	}
+ 
+	public static void quickSort(int[] arr, int low, int high) {
+		if (arr == null || arr.length == 0)
+			return;
+ 
+		if (low >= high)
+			return;
+		// pick the pivot
+		int middle = low + (high - low) / 2;
+		int pivot = arr[middle];
+ 
+		// make left < pivot and right > pivot
+		int i = low, j = high;
+		while (i <= j) {
+			while (arr[i] < pivot) {
+				i++;
+			}
+			while (arr[j] > pivot) {
+				j--;
+			}
+			if (i <= j) {
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+				i++;
+				j--;
+			}
+		}
+		// recursively sort two sub parts
+		if (low < j)
+			quickSort(arr, low, j);
+ 
+		if (high > i)
+			quickSort(arr, i, high);
+	}
+}
 
 
 
