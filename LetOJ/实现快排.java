@@ -39,6 +39,51 @@ public class Solution {
  */
 
 
+public static void main(String[] args) {
+	int[] arr = {4, 5, 1, 2, 3, 3};
+	quickSort(arr, 0, arr.length-1);
+	System.out.println(Arrays.toString(arr));
+}
+
+
+public static void quickSort(int[] arr, int low, int high){
+	if(arr==null || arr.length==0) return;
+
+	if(low>=high) return;
+
+	int middle=low+(high-low)/2;
+	int pivot=arr[middle];
+
+	int left=low, right=high;
+
+	while(left<=right){
+		while(arr[left]<pivot){
+			left++;
+		}
+		while(arr[right]>pivot){
+			right--;
+		}
+		if(left<=right){
+			int tmp=arr[left];
+			arr[left]=arr[right];
+			arr[right]=tmp;
+			left++;
+			right--;
+		}
+	}
+
+	if(low<right){
+		quickSort(arr,low,right);
+	}
+
+	if(high>left){
+		quickSort(arr,left,high);
+	}
+}
+
+
+
+
 
 // https://www.programcreek.com/2012/11/quicksort-array-in-java/
 

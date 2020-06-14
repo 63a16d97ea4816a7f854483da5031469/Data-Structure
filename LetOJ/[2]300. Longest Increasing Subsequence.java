@@ -84,11 +84,60 @@ class Solution {
 
 
 
+class Solution {
+    public static int findPositionToReplace(int[] arr, int low, int high, int target) {
+        int mid;
+        while (low <= high) {
+            mid = low + (high - low) / 2;
+            if (target==arr[mid])
+                return mid;
+            else if (target<arr[mid])
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+        return low;
+    }
+
+    public static int lengthOfLIS(int[] nums) {
+        if (nums == null | nums.length == 0)
+            return 0;
+        int n = nums.length, len = 0;
+        int[] increasingSequence = new int[n];
+        increasingSequence[len++] = nums[0];
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > increasingSequence[len - 1])
+                increasingSequence[len++] = nums[i];
+            else {
+                int position = findPositionToReplace(increasingSequence, 0, len - 1, nums[i]);
+                increasingSequence[position] = nums[i];
+            }
+        }
+        return len;
+    }
+}
 
 
-
-
-
+// DP:
+class Solution {
+    //5.11pm-5.37pm 看题解
+      public int lengthOfLIS(int[] nums) {
+        int N = nums.length;
+        if (N == 0) return 0;
+        int[] dp = new int[N];
+        Arrays.fill(dp, 1);
+        int res = 1;
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    dp[i] = Math.max(dp[j] + 1, dp[i]);
+                }
+            }
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
+}
 
 
 
