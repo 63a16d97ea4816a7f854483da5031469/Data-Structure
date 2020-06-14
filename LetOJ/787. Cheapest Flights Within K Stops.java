@@ -70,7 +70,37 @@ There will not be any duplicated flights or self cycles.
 
 
 
-
+class Solution {
+    //时间复杂度：O(K * m) //m 是 number of flights
+       //空间复杂度：O(K * n) //可以优化到O(2n),每次维护两行即可
+       public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+           int[][] dp = new int[K + 1][n];
+           Arrays.fill(dp[0], Integer.MAX_VALUE);
+           dp[0][src] = 0;
+           for (int[] flight:flights) {
+               if (flight[0] == src) {
+                   dp[0][flight[1]] = flight[2];
+               }
+           }
+           // System.out.println(Arrays.toString(dp[0]));
+           for (int i = 1; i <= K; i++) {
+               dp[i] = Arrays.copyOf(dp[i - 1], n);  // 一层一层，有更多的机场可打（不是MAX_VALUE)
+               for (int[] flight:flights) {
+                   if (dp[i - 1][flight[0]] != Integer.MAX_VALUE)
+                       dp[i][flight[1]] = Math.min(dp[i][flight[1]], dp[i - 1][flight[0]] + flight[2]);
+               }
+               // System.out.println(Arrays.toString(dp[i]));
+           }
+           if (dp[K][dst] == Integer.MAX_VALUE) return -1;
+           return dp[K][dst];
+   
+       }
+   }
+   
+   // 作者：LSF
+   // 链接：https://www.acwing.com/solution/leetcode/content/634/
+   // 来源：AcWing
+   // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
