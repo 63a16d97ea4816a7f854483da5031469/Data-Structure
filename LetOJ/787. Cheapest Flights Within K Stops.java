@@ -105,6 +105,82 @@ class Solution {
 
 
 
+//    算法2:BFS + memo
+
+//    虽然加了memo应该和DP时间复杂度差不多，但是LC上面就是要花三倍时间
+   
+//    Java 代码
+   
+   
+   
+//    作者：LSF
+//    链接：https://www.acwing.com/solution/leetcode/content/634/
+//    来源：AcWing
+//    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+// AC:
+class Solution {
+    //    算法2:BFS + memo
+    
+    // 虽然加了memo应该和DP时间复杂度差不多，但是LC上面就是要花三倍时间
+    
+    // Java 代码
+    
+        class Entry implements Comparable<Entry>{
+            int place;
+            int stop;
+            int price;
+            Entry (int place, int stop, int price) {
+                this.place = place; this.stop = stop; this.price = price;
+            }
+            public int compareTo(Entry other) {
+                return price - other.price;
+            }
+        }
+        public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+            PriorityQueue<Entry> pq = new PriorityQueue<>();
+            Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
+            getFlight(flights, map);
+            pq.add(new Entry(src, -1, 0));
+            int[] cost = new int[n];
+            while (!pq.isEmpty()) {
+                Entry curr = pq.poll();
+                // System.out.println(Arrays.toString(cost));
+                cost[curr.place] = curr.price;
+                if (curr.place == dst) {
+                    return curr.price;
+                } if (curr.stop == K) {
+                    continue;
+                }
+                Map<Integer, Integer> next = map.get(curr.place);
+                // System.out.println(next);
+                if (next == null) {
+                    continue;
+                }
+                for (Map.Entry<Integer, Integer> entry:next.entrySet()) {
+                    // if (cost[entry.getKey()] != 0) continue;
+                    pq.add(new Entry(entry.getKey(), curr.stop + 1, curr.price + entry.getValue()));
+                }
+            }
+            return -1;
+        }
+        private void getFlight(int[][] flights, Map<Integer, Map<Integer, Integer>> map) {
+            for (int[] flight:flights) {
+                map.computeIfAbsent(flight[0], k -> (new HashMap<>())).put(flight[1], flight[2]);
+            }
+        }
+    
+     
+    }
+    
+    // 作者：LSF
+    // 链接：https://www.acwing.com/solution/leetcode/content/634/
+    // 来源：AcWing
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
@@ -116,6 +192,63 @@ class Solution {
 
 
 
+// AC:
+class Solution {
+    private class Entry implements Comparable<Entry>{
+          int place;
+          int stop;
+          int price;
+          Entry (int place, int stop, int price) {
+              this.place = place; this.stop = stop; this.price = price;
+          }
+          public int compareTo(Entry other) {
+              return price - other.price;
+          }
+  
+      }
+      public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+          PriorityQueue<Entry> pq = new PriorityQueue<>();
+          Map<Integer, List<Map<Integer, Integer>>> map = new HashMap<>();
+          getFlight(flights, map);
+          pq.add(new Entry(src, -1, 0));
+          int[] cost = new int[n];
+          while (!pq.isEmpty()) {
+              Entry curr = pq.poll();
+            //   System.out.println("Curr: "+curr.place+" "+curr.stop+" "+curr.price);
+            //   System.out.println(Arrays.toString(cost));
+              cost[curr.place] = curr.price;
+              if (curr.place == dst) {
+                  return curr.price;
+              } if (curr.stop == K) {
+                  continue;
+              }
+              List<Map<Integer,Integer>> nextList = map.get(curr.place);
+              // System.out.println(next);
+              if (nextList==null||nextList.size()==0) {
+                  continue;
+              }
+              for(Map<Integer,Integer> next:nextList)
+              for (Map.Entry<Integer, Integer> entry:next.entrySet()) {
+                //   System.out.println("Entry: "+entry.getKey()+" "+entry.getValue());
+                  // if (cost[entry.getKey()] != 0) continue;
+                  pq.add(new Entry(entry.getKey(), curr.stop + 1, curr.price + entry.getValue()));
+              }
+          }
+          return -1;
+      }
+      private void getFlight(int[][] flights,  Map<Integer, List<Map<Integer, Integer>>> map) {
+          for (int[] flight:flights) {
+            //   System.out.println("[init] "+flight[0]+" "+flight[1]+" "+flight[2]);
+             List<Map<Integer,Integer>> list= map.computeIfAbsent(flight[0], k -> (new ArrayList<Map<Integer,Integer>>()));
+              HashMap tmp_map=new HashMap<>();
+              tmp_map.put(flight[1], flight[2]);
+              list.add(tmp_map);
+          }
+      }
+}
 
-
+// 作者：LSF
+// 链接：https://www.acwing.com/solution/leetcode/content/634/
+// 来源：AcWing
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
