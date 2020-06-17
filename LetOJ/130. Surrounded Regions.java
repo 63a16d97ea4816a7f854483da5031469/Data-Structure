@@ -183,7 +183,6 @@ class Solution {
         }
         int row=board.length-1;
         int col=board[0].length-1;
-        
         for(int i=0;i<=col;i++){
             if(board[0][i]=='O'){
                 dfsUtil(board,0,i);
@@ -191,7 +190,6 @@ class Solution {
             if(board[row][i]=='O'){
                 dfsUtil(board,board.length-1,i);
             }    
-                
         }
         for(int i=1;i<=row;i++){
             if(board[i][0]=='O'){
@@ -211,7 +209,6 @@ class Solution {
             }
         }
     }
-    
     private void dfsUtil(char[][] board,int i,int j) {
         if(i<0 || i>=board.length || j<0 || j>=board[0].length || board[i][j]!='O'){
             return;
