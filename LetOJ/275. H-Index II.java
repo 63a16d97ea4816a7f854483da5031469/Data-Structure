@@ -51,11 +51,80 @@ Could you solve it in logarithmic time complexity?
 
  * 
  */
+// 我们求的结果就是求影响力x和不小于该影响力的论文个数的最小值，然后再求这个最小值的最大值。
+
+
+
+
+class Solution {
+    public int hIndex(int[] citations) {
+        int n=citations.length;
+        if(n==0) return 0;
+        
+         if (n== 1) {
+            if (citations[0] == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+        
+        int low=0;
+        int high=n-1;
+        int result=0;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            int h=citations[mid];
+            result = Math.max(result, Math.min(h, n - mid));
+            if(n-h==mid){
+                return n-mid;
+            }else if(n-h<mid){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        
+        return n-low;
+    }
+}
 
 
 
 
 
+
+class Solution {
+    public int hIndex(int[] citations) {
+        int n=citations.length;
+        if(n==0) return 0;
+        
+         if (n== 1) {
+            if (citations[0] == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+        
+        int low=0;
+        int high=n-1;
+        
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            int h=citations[mid];
+            if(n-h==mid){
+                return n-mid;
+            }else if(n-h<mid){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        
+        return n-low;
+    }
+}
 
 
 
