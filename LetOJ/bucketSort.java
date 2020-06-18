@@ -59,10 +59,7 @@ public class bucketSort {
 
         sort();
         sortOut();//输出打印排序
-    }
-
-
-     
+    }     
     /*排序*/
     public static void sort(){
         if(array!=null && array.length>1){
@@ -71,7 +68,6 @@ public class bucketSort {
             }
         }
     }
-    
     /*排序输出*/
     public static void sortOut(){
         //倒序输出数据
