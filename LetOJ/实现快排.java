@@ -39,12 +39,52 @@ public class Solution {
  */
 
 public class QuickSort {
+	public static void quickSort(int[] arr, int low, int high){
+		if(arr==null||arr.length==0) return;
+		if(low>=high) return;
+
+		int mid=low+(high-low)/2;
+		int pivot=arr[mid];
+
+		int l=low;
+		int h=high;
+		
+		while(l<=h){
+			while(pivot>arr[l]){
+				l++;
+			}
+			while(pivot<arr[h]){
+				h--;
+			}
+			if(l<=h){
+				int tmp=arr[l];
+				arr[l]=arr[h];
+				arr[h]=tmp;
+				l++;
+				h--;
+			}
+		}
+		if(l<high){
+			quickSort(arr,l,high);
+		}
+		if(h>low){
+			quickSort(arr,low,h);
+		}
+	}
+}
+
+
+
+
+public class QuickSort {
 
 	public static void main(String[] args) {
 		int[] arr = {4, 5, 1, 2, 3, 3};
 		quickSort(arr, 0, arr.length-1);
 		System.out.println(Arrays.toString(arr));
 	}
+
+	
 
 
 	public static void quickSort(int[] arr, int low, int high){
