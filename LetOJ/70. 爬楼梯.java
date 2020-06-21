@@ -10,10 +10,6 @@ https://leetcode-cn.com/problems/climbing-stairs/
 
 1086
 
-
-
-
-
 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
 
 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
@@ -48,8 +44,6 @@ https://leetcode-cn.com/problems/climbing-stairs/
 从这道题目学到了什么，哪些地方需要提升? :
 
 
-
-
  * 
  */
 
@@ -78,7 +72,22 @@ class Solution {
 
 
 
+class Solution {
+    public int climbStairs(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for(int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+}
 
+// 作者：guanpengchn
+// 链接：https://leetcode-cn.com/problems/climbing-stairs/solution/hua-jie-suan-fa-70-pa-lou-ti-by-guanpengchn/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
