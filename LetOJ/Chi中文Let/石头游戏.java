@@ -53,6 +53,11 @@ sum(piles) 是奇数。
 
 
 
+
+
+
+
+
 // 解动态规划问题的通用思路：要求解什么，就把什么设为状态。虽然一开始可能会抓不到头绪，但最终往往会发现，最平平无奇的思路才是最好的思路。
 
 // 这道题问先行动者能不能获胜，翻译为定量的数学语言，就是问先行动者能不能确保自己游戏结束时获得的石子个数一定超过总个数的一半。
@@ -127,6 +132,9 @@ class Solution {
 
 
 
+
+
+
 class Solution {
     public boolean stoneGame(int[] piles) {
         int i = piles.length-1;
@@ -189,67 +197,43 @@ class Solution {
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
- 
 
 
-// 超时：
+
+
 class Solution {
-	// 6.10pm-6.22pm
-	//如果总是找到最大数，依次拿掉，Alex总是第一首，如果假设每次lee拿次大数，看这个结果是否alex的total能>lee
-	//6.25pm -6.37pm 转换成搜索，每次那前或者后，然后进入下一层 DFS
-    //6.38pm- 优化DFS
+    public boolean stoneGame(int[] piles) {
+    return judge(piles, 0, piles.length - 1, 0, 0, true);
+    }
+    
+    private boolean judge(int[] piles, int left, int right, int yalics, int li, boolean isYalics) {
+        if (left > right) {
+            return yalics < li;
+        }
+        if (isYalics) {
+            boolean res1 = judge(piles, left + 1, right, yalics + piles[left], li, false);
+            if (res1) {
+                return res1;
+            }
+            return judge(piles, left, right - 1, yalics + piles[right], li, false);
+        } else {
+            boolean res1 = judge(piles, left + 1, right, yalics, li + piles[left], false);
+            if (res1) {
+                return res1;
+            }
+            return judge(piles, left, right - 1, yalics, li + piles[right], false);
+        }
+    }
+    }
+    
+    作者：yanghk-2
+    链接：https://leetcode-cn.com/problems/stone-game/solution/hui-su-hao-li-jie-dan-shi-ben-by-yanghk-2/
+    来源：力扣（LeetCode）
+    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-	public boolean stoneGame(int[] piles) {
-		int alex = 0;
-		int lee = 0;
-        
-        //优化方法 如果alex拿到了一半以上的sum，那么接下来的部分就不用走了，因为肯定有把我赢,是不是正确呢？-不正确
-        
-        return true;
-		// return dfs(piles, 0, piles.length - 1, 0, 0, true);
-	}
 
-	boolean dfs(int[] piles, int start, int end, int alex, int lee, boolean isAlex) {
-		if (start == end) {
-			return alex > lee;
-		}
 
-		//如果是alex的turn
-		if (isAlex) {
-			isAlex = !isAlex;
-			//拿第一个
-			if (dfs(piles, start + 1, end, alex += piles[start], lee, isAlex)) {
-				return true;
-			} else {
-				alex -= piles[start];
-			}
-			//拿最后一个    
-			if (dfs(piles, start, end - 1, alex += piles[end], lee, isAlex)) {
-				return true;
-			} else {
-				alex -= piles[end];
-			}
-		} else {
-			//如果是lee的turn
 
-			isAlex = !isAlex;
-			//拿第一个
-			if (dfs(piles, start + 1, end, alex, lee += piles[start], isAlex)) {
-				return true;
-			} else {
-				lee -= piles[start];
-			}
-			//拿最后一个    
-			if (dfs(piles, start, end - 1, alex, lee += piles[end], isAlex)) {
-				return true;
-			} else {
-				lee -= piles[end];
-			}
-		}
-
-		return false;
-	}
-}
 
 
 
