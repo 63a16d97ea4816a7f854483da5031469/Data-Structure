@@ -112,29 +112,22 @@ public class LongestIncreasingPath
         if (matrix == null || matrix.length <= 0 || matrix[0].length <= 0) {
             return 0;
         }
-        
         int max = 0;
-        
         int row = matrix.length;
         int col = matrix[0].length;
-        
         for (int i=0; i<row; i++) {
             for (int j=0; j<col; j++) {
                 max = Math.max(max, getLongestIncreasingPath(matrix, row, col, i, j));
             }
         }
-        
         return max;
     }
     
     // 获取从坐标(i,j)出发的最长路径
     private int getLongestIncreasingPath(int[][] matrix, int row, int col, int i, int j) {
-
         boolean[][] visited = new boolean[row][col];
         int[] maxLen = new int[1];
-        
         getLongestIncreasingPath(matrix, visited, row, col, i, j, new ArrayList<>(), maxLen);
-        
         return maxLen[0];
     }
     
@@ -143,20 +136,17 @@ public class LongestIncreasingPath
         if (illegal(visited, row, col, i, j)) {
             return;
         }
-        
         int cur = matrix[i][j];
         if (cache.isEmpty() || cache.get(cache.size()-1) < cur) {
             // 找到下一个满足条件的递增元素
             cache.add(cur);
             visited[i][j] = true;
             maxLen[0] = Math.max(maxLen[0], cache.size());
-            
             // 寻找下一个
             getLongestIncreasingPath(matrix, visited, row, col, i-1, j, cache, maxLen);
             getLongestIncreasingPath(matrix, visited, row, col, i+1, j, cache, maxLen);
             getLongestIncreasingPath(matrix, visited, row, col, i, j-1, cache, maxLen);
             getLongestIncreasingPath(matrix, visited, row, col, i, j+1, cache, maxLen);
-            
             // 回溯
             cache.remove(cache.size()-1);
             visited[i][j] = false;
@@ -181,9 +171,7 @@ public class LongestIncreasingPath
         if (matrix == null || matrix.length <= 0 || matrix[0].length <= 0) {
             return 0;
         }
-        
         int max = 0;
-        
         int row = matrix.length;
         int col = matrix[0].length;
         int[][] dp = new int[row][col];
@@ -193,7 +181,6 @@ public class LongestIncreasingPath
                 max = Math.max(max, dfs(matrix, dp, row, col, i, j));
             }
         }
-        
         return max;
     }
     
@@ -224,21 +211,7 @@ public class LongestIncreasingPath
                           {2,2,1}};
         System.out.println(new LongestIncreasingPath().longestIncreasingPathII(matrix));
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
