@@ -21,7 +21,7 @@ public class Solution {
     }
 }
 
-12 April 2020 at 8:33: pm
+22 June 2020 at 8:33: pm
 
 
 对题目易错地方进行总结:
@@ -38,6 +38,48 @@ public class Solution {
  * 
  */
 
+public class Solution{
+
+	public void quickSort(int[] arr, int left, int right){
+		if(arr==null||arr.length==0) return;
+		if(left>=right) return;
+
+		int l=left;
+		int h=right;
+		int mid=l+(h-l)/2;
+		int pivot=arr[mid];
+
+		while(l<=h){
+			while(arr[l]<pivot){
+				l++;
+			}
+			while(arr[h]>pivot){
+				h--;
+			}
+
+			if(l<=h){
+				int tmp=arr[l];
+				arr[l]=arr[h];
+				arr[h]=tmp;
+				l++;
+				h--;
+			}
+		}
+
+		if(l<right){
+			quickSort(arr,l,right);
+		}
+		
+		if(h>left){
+			quickSort(arr,left,h);
+		}
+	}
+
+}
+
+
+
+
 public class QuickSort {
 	public static void quickSort(int[] arr, int low, int high){
 		if(arr==null||arr.length==0) return;
@@ -48,7 +90,7 @@ public class QuickSort {
 
 		int l=low;
 		int h=high;
-		
+
 		while(l<=h){
 			while(pivot>arr[l]){
 				l++;
