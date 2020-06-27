@@ -70,6 +70,29 @@ class Solution {
 }
 
 
+class Solution {
+    //滑动窗口
+    //11.22pm-11.32pm
+    public int lengthOfLongestSubstring(String s) {
+        int max=0;
+        HashSet<Character> set=new HashSet<Character>();
+        Queue<Character> que=new LinkedList<Character>();
+            for(int i=0,j=0;i<s.length();i++){
+                if(set.contains(s.charAt(i))){
+                    while(!que.isEmpty()&&set.contains(s.charAt(i))){
+                        set.remove(que.poll());                    
+                    }
+                }
+                    set.add(s.charAt(i));
+                    que.add(s.charAt(i));
+                max=Math.max(max,que.size());
+            }
+        return max;
+    }
+}
+
+
+
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
