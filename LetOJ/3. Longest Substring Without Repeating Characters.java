@@ -50,6 +50,25 @@ Explanation: The answer is "wke", with the length of 3.
  */
 
 
+class Solution {
+    //双指针--滑动窗口
+    //11.22pm-11.32pm
+    public int lengthOfLongestSubstring(String s) {
+        int max=0;
+        HashSet<Character> set=new HashSet<Character>();
+            for(int i=0,j=0;i<s.length();i++){
+                if(set.contains(s.charAt(i))){
+                    while(j<s.length()&&set.contains(s.charAt(i))){
+                        set.remove(s.charAt(j++));                        
+                    }
+                }
+                set.add(s.charAt(i));
+                max=Math.max(max,i-j+1);
+            }
+        return max;
+    }
+}
+
 
 
 class Solution {
