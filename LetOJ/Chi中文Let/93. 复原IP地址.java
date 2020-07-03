@@ -79,7 +79,7 @@ class Solution {
             }
             // 将 s 的子串开始分段
             String segment = s.substring(pos, pos + i);
-            // 剪枝条件：段的起始位置不能为 0，段拆箱成 int 类型的长度不能大于 255
+            // 剪枝条件：段的起始位置不能为 0，段拆箱成 int 类型的长度不能大于 255   segment.length() > 1 是为了情况0000
             if (segment.startsWith("0") && segment.length() > 1 || (i == 3 && Integer.parseInt(segment) > 255)) {
                 continue;
             }
