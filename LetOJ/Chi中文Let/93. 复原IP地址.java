@@ -59,7 +59,6 @@ class Solution {
         back(s, 0, new ArrayList<>(), ans);
         return ans;
     }
-    
     // 中间两个参数解释：pos-当前遍历到 s 字符串中的位置，cur-当前存放已经确定好的 ip 段的数量
     private void back(String s, int pos, List<String> cur,  List<String> ans) {
         if (cur.size() == 4) {
@@ -70,7 +69,6 @@ class Solution {
             }
             return;
         }
-        
         // ip 地址每段最多有三个数字
         for (int i = 1; i <= 3; i++) {
             // 如果当前位置距离 s 末尾小于 3 就不用再分段了，直接跳出循环即可。
