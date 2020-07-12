@@ -2,6 +2,8 @@
 /*
  * 
 link: 
+https://leetcode-cn.com/problems/longest-common-prefix/submissions/
+
 14. 最长公共前缀
 
 2020-7-12 at 11:16 am
