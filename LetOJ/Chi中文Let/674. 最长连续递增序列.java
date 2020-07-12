@@ -118,9 +118,35 @@ class Solution {
 
 
 
+// 思路：
+// 1、记录递增序列的起始位置i
+// 2、j++查找递增序列的结束位置
+// 3、计算递增序列的长度，并且保存最大值
 
+public int findLengthOfLCIS(int[] nums) {
+    //长度为1的时候
+    if (nums.length <= 1){
+        return nums.length;
+    }
+    //记录起始位置
+    int i = 0;
+    //记录最大长度
+    int ans = 0;
+    for (int j = 1; j < nums.length; j++){
+        //递增序列的结尾
+        if (nums[j]<= nums[j-1]){
+            i = j;
+        }
+        //保留最大长度
+        ans = Math.max(ans, j-i+1);
+    }
+    return ans;
+}
 
-
+// 作者：rooki
+// 链接：https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/solution/javazui-chang-lian-xu-di-zeng-xu-lie-by-rooki/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
