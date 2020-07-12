@@ -78,7 +78,30 @@ class Solution {
 
 
 
-
+class Solution {
+    //11.47pm-11.51pm 看过答案
+    public int longestConsecutive(int[] nums) {
+        HashSet<Integer> set=new HashSet<Integer>();
+        for(int tmp:nums){
+            set.add(tmp);
+        }
+        
+        int max=0;
+        
+        for(int tmp:set){
+            if(!set.contains(tmp-1)){
+                int currNumber=tmp;
+                int longthNumber=1;
+                while(set.contains(currNumber+1)){
+                    currNumber++;
+                    longthNumber++;
+                }
+                max=Math.max(max,longthNumber);
+            }
+        }
+        return max;
+    }
+}
 
 
 
