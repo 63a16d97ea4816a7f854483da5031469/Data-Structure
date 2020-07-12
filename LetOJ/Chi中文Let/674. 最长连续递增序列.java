@@ -49,15 +49,71 @@ https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/
 
 
 
+// AC:
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if(nums.length==0) return 0;
+        int max=1;
+        for(int i=nums.length-1;i>=1;i--){
+            int tmp=1;
+            for(int j=i;j>0;j--){
+                if(nums[j]>nums[j-1]){
+                    tmp++;
+                }else{
+                    tmp=0;
+                }
+                max=Math.max(tmp,max);
+            }
+        }
+    return max;
+    }
+}
+
+//更改后AC：
+
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if(nums.length==0) return 0;
+        int max=1;
+        
+        int tmp=1;
+            for(int j=nums.length-1;j>0;j--){
+                if(nums[j]>nums[j-1]){
+                    tmp++;
+                }else{
+                    tmp=1;
+                }
+                max=Math.max(tmp,max);
+            }
+    return max;
+    }
+}
 
 
 
 
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if(nums.length <= 1)
+            return nums.length;
+        int ans = 1;
+        int count = 1;
+        for(int i=0;i<nums.length-1;i++) {
+            if(nums[i+1] > nums[i]) {
+                count++;
+            } else {  
+                count = 1;
+            }
+            ans = count > ans ? count : ans;
+        }
+        return ans;
+    }
+}
 
-
-
-
-
+// 作者：guanpengchn
+// 链接：https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/solution/hua-jie-suan-fa-674-zui-chang-lian-xu-di-zeng-xu-l/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
