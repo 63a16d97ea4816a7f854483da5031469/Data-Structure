@@ -49,6 +49,7 @@ class Solution {
         if(strs.length==0) return "";
         if(strs.length==1) return strs[0];
 
+        //找到最短的那个字符串
         String shortestWord=strs[0];
         int min=Integer.MAX_VALUE;
         for(String tmpStr:strs){
@@ -57,6 +58,7 @@ class Solution {
                 shortestWord=tmpStr;
             }
         }
+        //对最短的那个字符串，以0-长度，来一个一个衡量重新截取的字符串是否是前缀。
         for(int i=0;i<shortestWord.length();i++){
             String tmpStr=shortestWord.substring(0,shortestWord.length()-i);
             boolean isMatchAll=true;
