@@ -6,8 +6,6 @@ https://leetcode-cn.com/problems/permutation-in-string/
 
 2020-7-12 at 12:11 am
 
-
-
 7567. 字符串的排列
 难度
 中等
@@ -116,6 +114,34 @@ public class Solution {
         return true;
     }
 }
+
+
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        int[] s1Arr=new int[26];
+        for(int i=0;i<s1.length();i++){
+            s1Arr[s1.charAt(i)-'a']++;
+        }
+        
+        for(int i=0;i<=s2.length()-s1.length();i++){
+            int[] s2Arr=new int[26];
+            for(int j=0;j<s1.length();j++){
+                s2Arr[s2.charAt(i+j)-'a']++;
+            }
+            if(isMatch(s1Arr,s2Arr)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isMatch(int[] s1Arr, int[] s2Arr){
+        for(int i=0;i<26;i++){
+            if(s1Arr[i]!=s2Arr[i]) return false;
+        }
+        return true;
+    }
+}
+
 
 // 作者：LeetCode
 // 链接：https://leetcode-cn.com/problems/permutation-in-string/solution/zi-fu-chuan-de-pai-lie-by-leetcode/
