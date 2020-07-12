@@ -93,40 +93,74 @@ class Solution {
 
 
 class Solution {
-  public List<String> restoreIpAddresses(String s) {
-  List<String> ret = new ArrayList<>();
+    public List<String> restoreIpAddresses(String s) {
+      List<String> ret = new ArrayList<>();
 
-  StringBuilder ip = new StringBuilder();
-  
-  for(int a = 1 ; a < 4 ; ++ a)
-      for(int b = 1 ; b < 4 ; ++ b)
-          for(int c = 1 ; c < 4 ; ++ c)
-              for(int d = 1 ; d < 4 ; ++ d)
-              {
-                  if(a + b + c + d == s.length() )
+      StringBuilder ip = new StringBuilder();
+      
+      for(int a = 1 ; a < 4 ; ++ a)
+          for(int b = 1 ; b < 4 ; ++ b)
+              for(int c = 1 ; c < 4 ; ++ c)
+                  for(int d = 1 ; d < 4 ; ++ d)
                   {
-                      int n1 = Integer.parseInt(s.substring(0, a));
-                      int n2 = Integer.parseInt(s.substring(a, a+b));
-                      int n3 = Integer.parseInt(s.substring(a+b, a+b+c));
-                      int n4 = Integer.parseInt(s.substring(a+b+c));
-                      if(n1 <= 255 && n2 <= 255 && n3 <= 255 && n4 <= 255)
+                      if(a + b + c + d == s.length() )
                       {
-                          ip.append(n1).append('.').append(n2)
-                                  .append('.').append(n3).append('.').append(n4);
-                          if(ip.length() == s.length() + 3) ret.add(ip.toString());
-                          ip.delete(0, ip.length());
+                          int n1 = Integer.parseInt(s.substring(0, a));
+                          int n2 = Integer.parseInt(s.substring(a, a+b));
+                          int n3 = Integer.parseInt(s.substring(a+b, a+b+c));
+                          int n4 = Integer.parseInt(s.substring(a+b+c));
+                          if(n1 <= 255 && n2 <= 255 && n3 <= 255 && n4 <= 255)
+                          {
+                              ip.append(n1).append('.').append(n2)
+                                      .append('.').append(n3).append('.').append(n4);
+                              if(ip.length() == s.length() + 3) ret.add(ip.toString());
+                              ip.delete(0, ip.length());
+                          }
                       }
                   }
-              }
-  return ret;
+      return ret;
+    }
 }
 
 // 作者：reals
 // 链接：https://leetcode-cn.com/problems/restore-ip-addresses/solution/ke-neng-shi-zui-you-mei-de-bao-li-jie-fa-liao-by-u/
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-}
 
+
+class Solution {
+  public List<String> restoreIpAddresses(String s) {
+      List<String> ans=new ArrayList<String>();
+      if(s==null||s.length()==0) return ans;
+      backtracking(s,0,new ArrayList<String>(), ans);
+      return ans;
+  }
+  public void backtracking(String s, int pos, List<String> curr, List<String> ans){
+      if(curr.size()==4){
+          if(pos==s.length()){
+              ans.add(String.join(".",curr));
+          }
+          return;
+      }
+      //遍历所有的可能
+      for(int i=1;i<=3;i++){
+          if(pos+i>s.length()){
+              break;
+          }
+          //对内容进行分段
+          String segment=s.substring(pos, pos+i);
+          //对分段进行验证,抛弃不适合的解
+          if((segment.length()>1&&segment.startsWith("0"))|| segment.length()==3 &&Integer.parseInt(segment)>255){
+              continue;
+          }
+          //对分段验证通过的，要加入到当前集合，继续下一步
+          curr.add(segment);
+          backtracking(s,pos+i,curr,ans);
+          //回溯
+          curr.remove(curr.size()-1);
+      }
+  }
+}
 
 
 class Solution {
