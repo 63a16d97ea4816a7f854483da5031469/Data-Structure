@@ -77,9 +77,8 @@ class Solution {
 
 
 
-
-class Solution {
     //11.47pm-11.51pm 看过答案
+class Solution {
     public int longestConsecutive(int[] nums) {
         HashSet<Integer> set=new HashSet<Integer>();
         for(int tmp:nums){
