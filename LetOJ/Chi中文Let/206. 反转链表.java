@@ -70,7 +70,39 @@ class Solution {
 
 
 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //11.51pm-12.03pm
+    ListNode finalNode=null;
+    public ListNode reverseList(ListNode head) {
+        if(head==null) return null;
+        reverse(head);
+        head.next=null;
+        return finalNode;
+    }
 
+    public ListNode reverse(ListNode head){
+        if(head==null){
+            return null;
+        }
+
+        ListNode prev=head;
+        ListNode returned=reverse(head.next);
+        if(returned!=null){
+            returned.next=prev;
+        }else{
+            finalNode=prev;
+        }
+        return head;
+    }
+}
 
 
 
