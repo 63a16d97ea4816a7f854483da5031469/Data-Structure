@@ -72,6 +72,10 @@ https://leetcode-cn.com/problems/linked-list-cycle-ii/
  *     }
  * }
  */
+
+// []
+// [-3,1]  0
+
 public class Solution {
     //10.31am-10.41am
     public ListNode detectCycle(ListNode head) {
