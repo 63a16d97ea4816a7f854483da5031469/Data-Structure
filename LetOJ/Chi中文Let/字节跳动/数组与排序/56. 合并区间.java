@@ -99,8 +99,41 @@ class Solution {
 
 
 
+class Solution {
+    //5.43pm-5.53pm
+    public int[][] merge(int[][] intervals) {
+        if(intervals.length<=1) return intervals;
+        Arrays.sort(intervals,(int[] a, int[] b)->a[0]-b[0]);
+   
+       List<int[]> result=new ArrayList<int[]>();
+       int[] left=intervals[0];
+       result.add(left);
+       for(int i=1;i<intervals.length;i++){
+           int[] right=intervals[i];
+           if(left[1]<right[0]){
+               left=right;
+               result.add(left);
+           }else{
+               if(left[1]<right[1]){
+                result.remove(result.size()-1);
+                int[] tmp=new int[]{left[0],right[1]};
+                result.add(tmp);
+                left=tmp;
+               }
+           }
+       }
+       int[][] ans=new int[result.size()][2];
+        for(int i=0;i<result.size();i++){
+            ans[i][0]=result.get(i)[0];
+            ans[i][1]=result.get(i)[1];
+        }
+        return ans;
+    }
+}
 
 
+//T: O(n^2);
+//S: O(n)
 
 
 
