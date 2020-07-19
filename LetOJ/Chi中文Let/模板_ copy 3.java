@@ -89,7 +89,48 @@ class Solution {
 
 
 
+public boolean validUtf8(int[] data) {
+    // 标记位 判断后面还有几个10*开头的常规字符
+    int pre_tag = 0;
+    for(int i=0;i<data.length;i++){
+        if(data[i] >=248){
+            // 前缀是11111**
+            return false;
+        }
+        // 新的一个字符
+        if(pre_tag ==0 ){
+            // 判断后续有几个字符
+            if(data[i] >=240){
+                //  4字节
+                pre_tag = 3;
+            }
+            else if(data[i]>= 224){
+                pre_tag =2;
+            }
+            else if(data[i] >= 192){
+                pre_tag = 1;
+            }
+            else if(data[i] >= 128){
+                return false;
+            }
+        }else{
+            // 多字节情况的后续字节
+            if(data[i] < 128 || data[i] >= 192){
+                return false;
+            }
+            else {
+                pre_tag--;
+            }
+        }
 
+    }
+    return pre_tag==0;
+}
+
+// 作者：xiaoyiyang
+// 链接：https://leetcode-cn.com/problems/utf-8-validation/solution/utf-8-bian-ma-yan-zheng-java-jian-dan-yi-dong-shi-/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
