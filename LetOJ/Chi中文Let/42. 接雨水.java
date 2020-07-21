@@ -102,7 +102,42 @@ class Solution {
 
 
 
-
+class Solution {
+    //9.08am-9.16am (看了答案)
+    public int trap(int[] height) {
+        if(height.length<=2) return 0;
+        int maxHeight=-1;
+        int maxIndex=0;
+        //找到最高的点
+        for(int i=0;i<height.length;i++){
+            if(maxHeight<height[i]){
+                maxHeight=height[i];
+                maxIndex=i;
+            }
+        }
+        int res=0;
+        
+        int maxLeft=height[0];
+        //从左边来看储存的水量
+        for(int i=1;i<maxIndex;i++){
+            if(height[i]<maxLeft){
+                res+=(maxLeft-height[i]);
+            }else{
+                maxLeft=height[i];
+            }
+        }
+        int maxRight=height[height.length-1];
+        //从右边来看储存的水量
+        for(int i=height.length-2;i>maxIndex;i--){
+            if(height[i]<maxRight){
+                res+=(maxRight-height[i]);
+            }else{
+                maxRight=height[i];
+            }
+        }
+        return res;
+    }
+}
 
 
 
