@@ -72,7 +72,15 @@ class Solution {
 
 
 
-
+class Solution {
+    //11.00am-11.06
+    public void rotate(int[] nums, int k) {
+        int[] copy=nums.clone();
+        for(int i=0;i<copy.length;i++){
+            nums[(i+k)%(copy.length)]=copy[i];
+        }
+    }
+}
 
 
 
