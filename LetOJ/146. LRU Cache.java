@@ -253,25 +253,34 @@ LRU:
 
 
 
-public class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
-
+class LRUCache extends LinkedHashMap<Integer, Integer>{
     private int capacity;
-
-    LRULinkedHashMap(int capacity) {
-        // 初始大小，0.75是装载因子，true是表示按照访问时间排序
-        super(capacity, 0.75f, true);
-        //传入指定的缓存最大容量
+    
+    public LRUCache(int capacity) {
+        super(capacity, 0.75F, true);
         this.capacity = capacity;
     }
 
-    /**
-     * 实现LRU的关键方法，如果map里面的元素个数大于了缓存最大容量，则删除链表的顶端元素
-     */
+    public int get(int key) {
+        return super.getOrDefault(key, -1);
+    }
+
+    public void put(int key, int value) {
+        super.put(key, value);
+    }
+
     @Override
-    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        return size() > capacity;
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity; 
     }
 }
+
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/lru-cache/solution/lruhuan-cun-ji-zhi-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
 
 // 作者：icecrea
 // 链接：https://leetcode-cn.com/problems/lru-cache/solution/san-chong-fang-fa-dai-ni-shou-si-lrusuan-fa-javaba/

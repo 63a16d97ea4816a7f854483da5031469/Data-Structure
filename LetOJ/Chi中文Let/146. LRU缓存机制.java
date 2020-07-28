@@ -60,6 +60,93 @@ cache.get(4);       // 返回  4
  * 
  */
 
+import java.util.Hashtable;
+public class LRUCache {
+  class DLinkedNode {
+    int key;
+    int value;
+    DLinkedNode pre;
+    DLinkedNode next;
+  }
+  
+  private Hashtable <Integer,DLinkedNode> cache = new Hashtable <Integer,DLinkedNode> (); //hashtable or hashmap both can.
+  private int count;
+  private int capacity;
+  private DLinkedNode head, tail;
+  public LRUCache(int capacity) {
+    this.count = 0;
+    this.capacity = capacity;
+    head = new DLinkedNode();
+    head.pre = null;
+    tail = new DLinkedNode();
+    tail.next = null;
+    head.next = tail;
+    tail.pre = head;
+  }
+  public int get(int key) {
+    DLinkedNode node = cache.get(key);
+    if (node == null) {
+      return - 1; // should raise exception here.
+    }
+    // move the accessed node to the head;
+    this.moveToHead(node);
+    return node.value;
+  }
+  public void put(int key, int value) {
+    DLinkedNode node = cache.get(key);
+    if (node == null) {
+      DLinkedNode newNode = new DLinkedNode();
+      newNode.key = key;
+      newNode.value = value;
+      this.cache.put(key, newNode);
+      this.addNode(newNode); ++count;
+      if (count > capacity) {
+        // pop the tail
+        DLinkedNode tail = this.popTail();
+        this.cache.remove(tail.key); --count;
+      }
+    } else {
+      // update the value.
+      node.value = value;
+      this.moveToHead(node);
+    }
+  }
+
+  /**
+     * Always add the new node right after head;
+     */
+    private void addNode(DLinkedNode node) {
+        node.pre = head;
+        node.next = head.next;
+        head.next.pre = node;
+        head.next = node;
+      }
+      /**
+         * Remove an existing node from the linked list.
+         */
+      private void removeNode(DLinkedNode node) {
+        DLinkedNode pre = node.pre;
+        DLinkedNode next = node.next;
+        pre.next = next;
+        next.pre = pre;
+      }
+      /**
+         * Move certain node in between to the head.
+         */
+      private void moveToHead(DLinkedNode node) {
+        this.removeNode(node);
+        this.addNode(node);
+      }
+      // pop the current tail. 
+      private DLinkedNode popTail() {
+        DLinkedNode res = tail.pre;
+        this.removeNode(res);
+        return res;
+      }
+}
+
+
+
 import java.util.LinkedHashMap;
 class LRUCache extends LinkedHashMap<Integer, Integer>{
     private int capacity;
@@ -110,6 +197,43 @@ public class LRUCache {
     }
 }
 
+
+这个画图画，动画的好：  
+https://leetcode-cn.com/problems/lru-cache/solution/ha-xi-biao-shuang-xiang-lian-biao-java-by-liweiw-2/
+
+
+LRU:
+双向链表的头部，存的是 最新访问 的 
+双向链表的尾部，存的是 最旧访问 的
+
+
+
+class LRUCache extends LinkedHashMap<Integer, Integer>{
+    private int capacity;
+    
+    public LRUCache(int capacity) {
+        super(capacity, 0.75F, true);
+        this.capacity = capacity;
+    }
+
+    public int get(int key) {
+        return super.getOrDefault(key, -1);
+    }
+
+    public void put(int key, int value) {
+        super.put(key, value);
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity; 
+    }
+}
+
+// 作者：LeetCode-Solution
+// 链接：https://leetcode-cn.com/problems/lru-cache/solution/lruhuan-cun-ji-zhi-by-leetcode-solution/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 public class LRUCache {
