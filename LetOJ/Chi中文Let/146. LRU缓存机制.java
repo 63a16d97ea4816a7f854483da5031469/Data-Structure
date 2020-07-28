@@ -60,7 +60,7 @@ cache.get(4);       // 返回  4
  * 
  */
 
-
+import java.util.LinkedHashMap;
 class LRUCache extends LinkedHashMap<Integer, Integer>{
     private int capacity;
     
@@ -89,6 +89,26 @@ class LRUCache extends LinkedHashMap<Integer, Integer>{
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
+
+// import java.util.LinkedHashMap;
+public class LRUCache {
+    private LinkedHashMap<Integer, Integer> map;
+    private final int CAPACITY;
+    public LRUCache(int capacity) {
+        CAPACITY = capacity;
+        map = new LinkedHashMap<Integer, Integer>(capacity, 0.75f, true){
+            protected boolean removeEldestEntry(Map.Entry eldest) {
+                return size() > CAPACITY;
+            }
+        };
+    }
+    public int get(int key) {
+        return map.getOrDefault(key, -1);
+    }
+    public void set(int key, int value) {
+        map.put(key, value);
+    }
+}
 
 
 
