@@ -48,6 +48,10 @@ GetMinKey() - 返回 key 中值最小的任意一个。如果没有元素存在�
 
 
 
+
+
+
+
 class AllOne {
 
     //设计思路：
@@ -86,13 +90,13 @@ class AllOne {
 
     Node head, tail;
     //将key映射到key所在的层
-    HashMap<String, Node> dictionary;
+    HashMap<String, Node> map;
 
 
 
     /** Initialize your data structure here. */
     public AllOne() {
-        dictionary = new HashMap<String, Node>();
+        map = new HashMap<String, Node>();
         head = new Node(0);
         tail = new Node(0);
         head.next = tail;
@@ -101,8 +105,8 @@ class AllOne {
 
     /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
     public void inc(String key) {
-        if (dictionary.containsKey(key)) {
-            Node node = dictionary.get(key);
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
             int num = node.val;
             //1.key无需到下一层的情况
             if (node.keys.size() == 1 && node.next.val != num + 1) {
@@ -114,10 +118,13 @@ class AllOne {
                 Node newNode = node.next;
                 if (newNode.val != num + 1) {
                     newNode = new Node(num + 1);
+                    //因为是升序的，所以一定出入到post
                     insertPost(node, newNode);
                 }
                 newNode.keys.add(key);
-                dictionary.put(key, newNode);
+                map.put(key, newNode);
+
+                //注意这个处理：
                 if (node.keys.isEmpty()) {
                     deleteNode(node);
                 }
@@ -130,29 +137,32 @@ class AllOne {
                 insertPost(head, node);
             }
             node.keys.add(key);
-            dictionary.put(key, node);
+            map.put(key, node);
         }
     }
 
 
     /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
     public void dec(String key) {
-        if (!dictionary.containsKey(key)) {
+        if (!map.containsKey(key)) {
             return;
         }
-        Node node = dictionary.get(key);
+        Node node = map.get(key);
         int num = node.val;
         //1.当前层只有该key
         if (node.keys.size() == 1) {
+            //如果当前层为1，则减去后，需要删除整层，因为按要求最小值为>=1 (规则： 如果这个 key 的值是 1，那么把他从数据结构中移除掉。)
             if (num-- == 1) {
                 deleteNode(node);
-                dictionary.remove(key);
+                map.remove(key);
             } else {
+                //如果跟前面的层的值相等，则合并
                 if (node.prev.val == num) {
                     node.prev.keys.add(key);
                     deleteNode(node);
-                    dictionary.put(key, node.prev);
+                    map.put(key, node.prev);
                 } else {
+                    //如果跟前面层的值不等，则独立为一层
                     node.val = num;
                 }
             }
@@ -161,7 +171,7 @@ class AllOne {
         else {
             node.keys.remove(key);
             if (num-- == 1) {
-                dictionary.remove(key);
+                map.remove(key);   //删该值only  (规则： 如果这个 key 的值是 1，那么把他从数据结构中移除掉。)
             } else {
                 Node newNode = node.prev;
                 if (newNode.val != num) {
@@ -169,7 +179,7 @@ class AllOne {
                     insertPre(node, newNode);
                 }
                 newNode.keys.add(key);
-                dictionary.put(key, newNode);
+                map.put(key, newNode);
             }
         }
     }
@@ -191,10 +201,6 @@ class AllOne {
 // 链接：https://leetcode-cn.com/problems/all-oone-data-structure/solution/java-an-valzhi-fen-ceng-cun-chu-key-by-iridescent-/
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-
-
-
 
 
 
