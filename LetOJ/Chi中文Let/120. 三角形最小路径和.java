@@ -58,15 +58,129 @@ https://leetcode-cn.com/problems/triangle/
 
 
 
+class Solution {
+  //动态规划
+  public int minimumTotal(List<List<Integer>> triangle) {
+      int n=triangle.size();
+      int[][] dp=new int[n][n];
+      dp[0][0]=triangle.get(0).get(0);
+
+      for(int i=1;i<n;i++){
+          dp[i][0]=dp[i-1][0]+triangle.get(i).get(0);
+          for(int j=1;j<i;j++){
+              dp[i][j]=Math.min(dp[i-1][j-1],dp[i-1][j])+triangle.get(i).get(j);
+          }
+          dp[i][i]=dp[i-1][i-1]+triangle.get(i).get(i);
+      }
+      int minValue=dp[n-1][0];
+      for(int i=1;i<dp[n-1].length;i++){
+          minValue=Math.min(dp[n-1][i],minValue);
+      }
+      return minValue;
+  }
+}
+
+
+
+//自上而下：
+class Solution {
+  public int minimumTotal(List<List<Integer>> triangle) {
+      int n = triangle.size();
+      int[][] f = new int[n][n];
+      f[0][0] = triangle.get(0).get(0);
+      for (int i = 1; i < n; ++i) {
+          f[i][0] = f[i - 1][0] + triangle.get(i).get(0);
+          for (int j = 1; j < i; ++j) {
+              f[i][j] = Math.min(f[i - 1][j - 1], f[i - 1][j]) + triangle.get(i).get(j);
+          }
+          f[i][i] = f[i - 1][i - 1] + triangle.get(i).get(i);
+      }
+      int minTotal = f[n - 1][0];
+      for (int i = 1; i < n; ++i) {
+          minTotal = Math.min(minTotal, f[n - 1][i]);
+      }
+      return minTotal;
+  }
+}
+
+// 作者：LeetCode-Solution
+// 链接：https://leetcode-cn.com/problems/triangle/solution/san-jiao-xing-zui-xiao-lu-jing-he-by-leetcode-solu/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+//自下而上 
+class Solution {
+  public int minimumTotal(List<List<Integer>> triangle) {
+      if(triangle==null || triangle.size()==0) {
+          return 0;
+      }
+      int n = triangle.size();
+      int m = triangle.get(n-1).size();
+      int[][] dp = new int[n+1][m+1];
+      //自下而上推到
+      for(int i=n-1;i>=0;--i) {
+          //对于三角形的每一行，从右向左计算
+          for(int j=triangle.get(i).size()-1;j>=0;--j) {
+              dp[i][j] = Math.min(dp[i+1][j+1],dp[i+1][j]) + triangle.get(i).get(j);
+          }
+      }
+      //最终结果就保存在第一行第一列中
+      return dp[0][0];
+  }
+}
+
+// 作者：wang_ni_ma
+// 链接：https://leetcode-cn.com/problems/triangle/solution/san-chong-jie-fa-duo-tu-xiang-jie-120-san-jiao-xin/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
 
 
-
-
-
-
+//超时：
+class Solution {
+  //搜索算法 9.38am-10.30am
+  int min=Integer.MAX_VALUE;
+  public int minimumTotal(List<List<Integer>> triangle) {
+      if(triangle==null||triangle.size()==0) return 0;
+      dfs(triangle,0,0,new ArrayList<Integer>());
+      return min;
+  }
+  public void dfs(List<List<Integer>> tri, int currLevel, int lastSelect, List<Integer> list){
+      if(list.size()==tri.size()){
+          //count the sum
+          int sum=0;
+          for(int tmp:list){
+              // System.out.print(tmp+" ");
+              sum+=tmp;
+          }
+          // System.out.println();
+          min=Math.min(sum,min);
+          return;
+      }
+      if(currLevel>tri.size()-1){
+          return;
+      }
+      List<Integer> level=tri.get(currLevel);
+      for(int i=0;i<level.size();i++){
+          if(i-lastSelect>=0&&i-lastSelect<=1){
+              list.add(level.get(i));
+          }else{
+              continue;
+          }
+          // for(int tmp:list){
+          //     System.out.print(tmp+" ");
+          // }
+          // System.out.println();
+      //选择同样下标
+          dfs(tri,currLevel+1,i,list);
+          if(list.size()>1)
+          list.remove(list.size()-1); //回溯
+      }
+  }
+}
 
 
 
