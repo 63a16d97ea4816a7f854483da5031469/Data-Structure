@@ -94,7 +94,47 @@ class Solution {
 
 
 
+public int maxEnvelopes(int[][] envelopes) {
+    int len = envelopes.length;
+    if(len == 0 || envelopes[0].length ==0){
+        return 0;
+    }
+    // 排序
+    Arrays.sort(envelopes, new Comparator<int[]>() {
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            if(o1[0] == o2[0]){
+                return o1[1]-o2[1];
+            }else{
+                return o1[0]-o2[0];
+            }
+        }
+    });
+    int max =  1;
+    // 动态数组: 表示以i为结尾的最大信封数，其中i必须有
+    int[] dp = new int[len] ;
+    dp[0] = 1;
+    for(int i=1;i<len;i++){
+        int j = i-1;
+        // 初始化为1，至少有一个信封
+        dp[i] = 1;
+        // 遍历之前的数组
+        while(j>=0){
+            if(envelopes[j][0] < envelopes[i][0] && envelopes[j][1] < envelopes[i][1]){
+                // 更新 dp[i]
+                dp[i] = Math.max(dp[i],dp[j]+1);
+            }
+            j--;
+        }
+        max = Math.max(max,dp[i]);
+    }
+    return max;
+}
 
+// 作者：xiaoyiyang
+// 链接：https://leetcode-cn.com/problems/russian-doll-envelopes/solution/e-luo-si-tao-wa-xin-feng-wen-ti-java-dong-tai-gui-/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
