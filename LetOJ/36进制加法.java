@@ -1,7 +1,6 @@
 
 /*
  * 
-https://leetcode.com/problems/reverse-linked-list-ii/
 
 
 36进制由0-9，a-z，共36个字符表示，最小为’0’, ‘0’、'9’对应十进制的09，‘a’、'z’对应十进制的1035

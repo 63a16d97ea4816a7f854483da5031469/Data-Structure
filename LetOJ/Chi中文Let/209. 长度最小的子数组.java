@@ -38,7 +38,7 @@ https://leetcode-cn.com/problems/minimum-size-subarray-sum/
  * 
  */
 
-//双指针, 滑动窗口，收缩边界
+//双指针, 滑动窗口，收缩边界  类似于 最长不重复子串
 class Solution {
     public int minSubArrayLen(int s, int[] nums) {
         if(nums.length==0) return 0;
