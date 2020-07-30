@@ -79,12 +79,10 @@ class Solution {
     public boolean find132pattern(int[] nums) {
         if (nums.length < 3)
             return false;
-
         int second = Integer.MIN_VALUE;
-        Stack < Integer > stack = new Stack < > ();
+        Stack <Integer> stack = new Stack<> ();
         stack.add(nums[nums.length - 1]);
         for (int i = nums.length - 2; i >= 0; i--) {
-
             if (nums[i] < second) {
                 return true;
             } else {
