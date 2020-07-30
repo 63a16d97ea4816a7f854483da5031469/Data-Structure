@@ -131,10 +131,6 @@ class Solution {
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
-
-
-
-
 //根据答案，重写：
 class Solution {
     public boolean find132pattern(int[] nums) {
