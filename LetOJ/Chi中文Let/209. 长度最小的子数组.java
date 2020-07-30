@@ -38,15 +38,57 @@ https://leetcode-cn.com/problems/minimum-size-subarray-sum/
  * 
  */
 
+//双指针, 滑动窗口，收缩边界
+class Solution {
+    public int minSubArrayLen(int s, int[] nums) {
+        if(nums.length==0) return 0;
+        
+        int n=nums.length;
+        int start=0,end=0;
+        int sum=0;
+        int ans=Integer.MAX_VALUE;
+        while(end<n){
+            sum+=nums[end];
+            while(sum>=s){
+                ans=Math.min(ans,end-start+1);
+                sum-=nums[start++];
+            }
+            end++;
+        }
+        if(ans==Integer.MAX_VALUE&&sum<s){
+            return 0;
+        }
+        return ans;
+    }
+}
 
 
 
 
 
-
-
-
-
+//错误：思路是正确的，但是实现的方式是错的：
+class Solution {
+    public int minSubArrayLen(int s, int[] nums) {
+        int min=Integer.MAX_VALUE;
+        int sum=0;
+        sum+=nums[0];
+        for(int i=1,j=0;i<nums.length;){
+            if(sum>=s){
+                while(j<i&&sum>=s){
+                    min=Math.min(i-j+1,min);
+                    sum-=nums[j];
+                    System.out.println(sum);
+                    j++;
+                }
+            }else{
+                System.out.println(sum+" "+i+" "+j);
+                sum+=nums[i];
+                i++;
+            }
+        }
+        return min;
+    }
+}
 
 
 
