@@ -20,6 +20,29 @@ link:
  * 
  */
 
+import java.util.*;
+
+import java.math.BigInteger;  
+BigInteger a=BigInteger.valueOf("23");
+BigInteger b=BigInteger.valueOf("13");
+a.add(b);
+
+
+String tmp=Integer.toBinaryString(1)
+System.out.println("Binary is " + Integer.toBinaryString(l)); 
+
+public static String toBinaryString(long i)
+System.out.println("Binary is " + Long.toBinaryString(l));
+
+
+Scanner scan=new Sacnner();
+scan.next();
+scan.nextInt();
+scan.nextLong();
+
+
+
+
 二分查找:
 
 public class BinarySearch {
@@ -40,10 +63,6 @@ public class BinarySearch {
         return -1;
     }
 }
-
-
-
-
 
 
 PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size,new Comparactor<Integer>(){
@@ -67,6 +86,10 @@ Arrays.sort(months,
 Or shorter:
 Arrays.sort(months, (a, b) -> a.length() - b.length());
 
+
+Arrays.sort(months, 
+    (String a, String b) -> { return Integer.signum(a.length() - b.length()); }
+);
 
 
 
