@@ -190,10 +190,82 @@ class Solution {
 
 
 
+class Solution {
+	public ListNode mergeKLists(ListNode[] lists) {
+		if(lists==null || lists.length==0) {
+			return null;
+		}
+		//创建一个小根堆，并定义好排序函数
+		PriorityQueue<ListNode> queue = new PriorityQueue(new Comparator<ListNode>() {
+			public int compare(ListNode o1, ListNode o2) {
+				return (o1.val - o2.val);
+			}
+		});
+		ListNode dummy = new ListNode(-1);
+		ListNode cur = dummy;
+		//这里跟上一版不一样，不再是一股脑全部放到堆中
+		//而是只把k个链表的第一个节点放入到堆中
+		for(int i=0;i<lists.length;i++) {
+			ListNode head = lists[i];
+			if(head!=null) {
+				queue.add(head);
+			}
+		}
+		//之后不断从堆中取出节点，如果这个节点还有下一个节点，
+		//就将下个节点也放入堆中
+		while(queue.size()>0) {
+			ListNode node = queue.poll();
+			cur.next = node;
+			cur = cur.next;
+			if(node.next!=null) {
+				queue.add(node.next);
+			}
+		}
+		cur.next = null;
+		return dummy.next;
+	}
+}
+
+// 作者：wang_ni_ma
+// 链接：https://leetcode-cn.com/problems/merge-k-sorted-lists/solution/duo-tu-yan-shi-23-he-bing-kge-pai-xu-lian-biao-by-/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
 
+class Solution {
+	public ListNode mergeKLists(ListNode[] lists) {
+		if(lists==null || lists.length==0) {
+			return null;
+		}
+		//创建一个堆，并设置元素的排序方式
+		PriorityQueue<ListNode> queue = new PriorityQueue(new Comparator<ListNode>() {
+			public int compare(ListNode o1, ListNode o2) {
+				return (o1.val - o2.val);
+			}
+		});
+		//遍历链表数组，然后将每个链表的每个节点都放入堆中
+		for(int i=0;i<lists.length;i++) {
+			while(lists[i] != null) {
+				queue.add(lists[i]);
+				lists[i] = lists[i].next;
+			}
+		}
+		ListNode dummy = new ListNode(-1);
+		ListNode head = dummy;
+		//从堆中不断取出元素，并将取出的元素串联起来
+		while( !queue.isEmpty() ) {
+			dummy.next = queue.poll();
+			dummy = dummy.next;
+		}
+		dummy.next = null;
+		return head.next;
+	}
+}
 
-
+// 作者：wang_ni_ma
+// 链接：https://leetcode-cn.com/problems/merge-k-sorted-lists/solution/duo-tu-yan-shi-23-he-bing-kge-pai-xu-lian-biao-by-/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
