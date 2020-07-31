@@ -25,7 +25,7 @@ import java.util.*;
 import java.math.BigInteger;  
 BigInteger a=BigInteger.valueOf("23");
 BigInteger b=BigInteger.valueOf("13");
-a.add(b);
+BigInteger c=a.add(b);
 
 
 String tmp=Integer.toBinaryString(1)
