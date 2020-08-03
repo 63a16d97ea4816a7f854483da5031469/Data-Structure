@@ -47,14 +47,53 @@ class Solution {
 }
 
 
+//稍微看了一下提示
+class Solution {
+    public String replaceSpace(String s) {
+        char[] c=s.toCharArray();
+        int count=0;
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<c.length;i++){
+            if(c[i]==' '){
+                sb.append('%');
+                sb.append('2');
+                sb.append('0');
+            }else{
+                sb.append(c[i]);
+            }
+        }
+        return sb.toString();
+    }
+}
 
 
 
 
 
+class Solution {
+    public String replaceSpace(String s) {
+        int length = s.length();
+        char[] array = new char[length * 3];
+        int size = 0;
+        for (int i = 0; i < length; i++) {
+            char c = s.charAt(i);
+            if (c == ' ') {
+                array[size++] = '%';
+                array[size++] = '2';
+                array[size++] = '0';
+            } else {
+                array[size++] = c;
+            }
+        }
+        String newStr = new String(array, 0, size);
+        return newStr;
+    }
+}
 
-
-
+// 作者：LeetCode-Solution
+// 链接：https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-by-leetcode-solutio/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
