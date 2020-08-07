@@ -29,8 +29,6 @@ https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
    15   7
 返回它的最大深度 3 。
 
- 
-
 提示：
 
 节点总数 <= 10000
@@ -49,6 +47,7 @@ https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
  * 
  */
 
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -59,7 +58,7 @@ https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
  * }
  */
 class Solution {
-    //10.48pm-11.07pm
+    //10.48pm-11.06pm
     int max=0;
     public int maxDepth(TreeNode root) {
        if(root==null) return 0;
@@ -68,19 +67,14 @@ class Solution {
        return max;
     }
     public int dfs(TreeNode root,int depth){
-
-          if(root==null) {
-            return depth-1;
-          }
-          int left=0,right=0;
-       
-            left=dfs(root.left,depth+1);
-            right=dfs(root.right,depth+1);
-        
-          return Math.max(left,right);
+            if(root==null) {
+                return depth-1;
+            }
+            int left=dfs(root.left,depth+1);
+            int right=dfs(root.right,depth+1);
+            return Math.max(left,right);
     }
 }
-
 
 
 
