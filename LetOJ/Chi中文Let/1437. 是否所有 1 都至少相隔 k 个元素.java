@@ -90,7 +90,23 @@ class Solution {
 
 
 
+public class kLengthApart {
+    public boolean kLengthApart(int[] nums, int k) {
+        for (int pre = -100000, next = 0; next < nums.length; next++) {
+            if (nums[next] == 1) {
+                if (next - pre <= k)
+                    return false;
+                pre = next;
+            }
+        }
+        return true;
+    }
+}
 
+// 作者：ustcyyw
+// 链接：https://leetcode-cn.com/problems/check-if-all-1s-are-at-least-length-k-places-away/solution/5401java-zhi-jie-shuang-zhi-zhen-1ms-hen-jian-dan-/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
