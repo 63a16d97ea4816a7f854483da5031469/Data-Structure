@@ -115,13 +115,85 @@ class Solution {
 
 
 
+class Solution {
+    public int longestSubarray(int[] nums, int limit) {
+        // 两个单调队列分别维护从left到right之间的最大值最小值
+        Deque<Integer> minDeque = new LinkedList<>();
+        Deque<Integer> maxDeque = new LinkedList<>();
+        int result = 0;
+        int left = 0, right = 0;
+        minDeque.offer(0);
+        maxDeque.offer(0);
+        while (right < nums.length) {
+            int minIdx = minDeque.peekFirst();
+            int maxIdx = maxDeque.peekFirst();
+            if (nums[maxIdx] - nums[minIdx] <= limit) {
+                // 最大值与最小值之差小于等于限制的情况下右指针右移
+                result = Math.max(result, right - left + 1);
+                ++right;
+                // 维护两个单调队列
+                while (right < nums.length && minDeque.size() > 0 && nums[right] < nums[minDeque.peekLast()]) {
+                    minDeque.pollLast();
+                }
+                minDeque.offerLast(right);
+                while (right < nums.length && maxDeque.size() > 0 && nums[right] > nums[maxDeque.peekLast()]) {
+                    maxDeque.pollLast();
+                }
+                maxDeque.offerLast(right);
+            }
+            else {
+                // 最大值与最小值之差大于限制的情况下左指针右移
+                left = Math.min(minIdx, maxIdx) + 1;
+                while (minDeque.size() > 0 && minDeque.peekFirst() < left) {
+                    minDeque.pollFirst();
+                }
+                while (maxDeque.size() > 0 && maxDeque.peekFirst() < left) {
+                    maxDeque.pollFirst();
+                }
+            }
+        }
+        return result;
+    }
+}
+
+// 作者：cjjohn
+// 链接：https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/solution/shuang-zhi-zhen-dan-diao-dui-lie-on-by-cjjohn/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
 
 
+class Solution {
+    public int longestSubarray(int[] nums, int limit) {
+        if (nums ==null || nums.length==0)
+            return 0;
+        int curr_max = nums[0]; // 当子数组下最大值 这里初始化为第一个数
+        int curr_min = nums[0]; // 当子数组下最大值 这里初始化为第一个数
+        Queue<Integer> sub_nums = new LinkedList<>();
+        
+        for(int num:nums){
+            if (Math.abs(num - curr_max) <=  limit && Math.abs(num - curr_min) <=  limit && Math.abs(curr_max - curr_min) <= limit) {
+                curr_max = Math.max(num,curr_max);
+                curr_min = Math.min(num,curr_min);
+                sub_nums.offer(num);
+            }else{
+                sub_nums.offer(num);
+                sub_nums.poll();
+                curr_max = Collections.max(sub_nums); // 当子数组最大值
+                curr_min = Collections.min(sub_nums); // 当前子数组最小值
+            }
+        }
 
+        return sub_nums.size();
+    }
+}
 
+// 作者：javaniuniu
+// 链接：https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/solution/hua-dong-chuang-kou-shi-jian-0n-kong-jian-0n-by-ja/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
