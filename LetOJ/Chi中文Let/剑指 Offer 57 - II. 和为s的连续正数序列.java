@@ -52,8 +52,83 @@ https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/
  */
 
 
+// 题目要求的是连续的序列，在给定题目条件是数组时(该题类似于数组)，很可能使用双指针，滑动窗口来进行解题
+
+// min，max分别表示连续序列的上下边界
+// max - min + 1 为连续序列的长度
+// sum 表示连续序列的和
+// 当sum小于目标值，max++，sum += max
+// 当sum大于目标值，sum -= min, min++
+// 当sum等于目标值，进行状态的重置，sum -= min, min ++
+
+class Solution {
+    public int[][] findContinuousSequence(int target) {
+        if(target <= 2){
+            return null;
+        }
+        List<int[]> res = new ArrayList<>();
+        // 使用双指针
+        int min = 1;  
+        int max = 2;
+        int sum = min + max;
+        while(min < max && max < target){
+            if(sum < target){
+                // sum小于目标值，max++，sum += max
+                max++;
+                sum += max;
+            }
+            else if(sum > target){
+                // sum大于目标值，sum -= min, min++
+                sum -= min;
+                min++;
+            }
+            else{
+                // sum == target
+                // 使用temp保存结果
+                int[] temp = new int[max - min + 1];
+                int j = min;
+                for(int i = 0;i < temp.length;i++){
+                    temp[i] = j++;
+                }
+                // 添加结果
+                res.add(temp);
+
+                // 连续序列的头部 min++，sum -= min, 重复上面步骤
+                sum -= min;
+                min++;
+            }
+        }
+        return res.toArray(new int[0][]);
+
+    }
+}
+
+// 作者：sugar-31
+// 链接：https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/bao-li-fa-shuang-zhi-zhen-by-sugar-31/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
+
+
+
+
+
+
+
+
+
+
+
+// 时间复杂度：O(n)
+// 空间复杂度：O(n)
+// 其中 n 为 target 的大小
+
+// 解题思路
+
+// 采用快慢指针的思路，检查它们之间所有整数和 sum 的大小与 target 的关系
+// 若 sum > target，则删除一个较小的值，即慢指针 + 1
+// 若 sum < target，则增加一个较大的值，即快指针 + 1
 
 class Solution {
 
@@ -170,6 +245,64 @@ class Solution {
 
 
 
+// 暴力解法:
+class Solution {
+    public int[][] findContinuousSequence(int target) {
+        List<int[]> res = new ArrayList<>();
+
+        if(target <= 2){
+            return null;
+        }
+
+        for(int i = 1;i < target/2 + 1;i ++){
+            int temp = target;
+            int count = i;
+            while(temp > 0){
+                temp = temp - count;
+                count++;
+            }
+            if(temp == 0){
+                int[] arr = new int[count - i];
+                int a = i;
+                for(int j = 0;j < arr.length;j++){
+                    arr[j] = a;
+                    a++;
+                }
+                res.add(arr);
+            }
+        }
+    
+        return res.toArray(new int[0][]);
+
+    }
+}
+
+// 作者：sugar-31
+// 链接：https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/bao-li-fa-shuang-zhi-zhen-by-sugar-31/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//没写完：
 class Solution {
     //2.21pm-
     List<List<Integer>> ans=new ArrayList<List<Integer>>();
