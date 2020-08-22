@@ -59,7 +59,30 @@ https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lco
 
 
 
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+       return helper(postorder,0,postorder.length-1);
+    }
 
+    public boolean helper(int[] postorder, int start, int end){
+        if(start>=end){
+            return true;
+        }
+        int mid=start;
+        int root=postorder[end];
+        //找到比root大的那个mid
+        while(postorder[mid]<root){
+            mid++;
+        }
+        int tmp=mid;
+        while(tmp<end){
+            if(postorder[tmp++]<root){
+                return false;
+            }
+        }
+        return helper(postorder,start,mid-1) && helper(postorder,mid,end-1);
+    }
+}
 
 
 
