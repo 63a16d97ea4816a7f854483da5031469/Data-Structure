@@ -61,6 +61,66 @@ p、q 为不同节点且均存在于给定的二叉树中。
 
 
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //9.15am-9.30am
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null||root.val==p.val||root.val==q.val) return root;
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+        if(left!=null&&right!=null) return root;
+        if(left==null){
+            return right;
+        }
+        if(right==null){
+            return left;
+        }
+        return root;
+    }
+}
+
+
+
+
+
+
+//变形一下：
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //9.15am-9.30am
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null||root.val==p.val||root.val==q.val) return root;
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+        
+        if(left!=null&&right!=null) return root;
+        if(left!=null){
+            return left;
+        }
+        if(right!=null){
+            return right;
+        }
+        return null;
+    }
+}
+
 
 class Solution {
     TreeNode find;
@@ -74,10 +134,8 @@ class Solution {
     public TreeNode bianli(TreeNode root, TreeNode p, TreeNode q) {
         if(root==null)
         return null;
-
         TreeNode left=bianli(root.left,p,q);
         TreeNode right=bianli(root.right,p,q);       
-        
         //不同层
         if(root.val==p.val||root.val==q.val){
             if(left!=null||right!=null){
@@ -89,27 +147,19 @@ class Solution {
         if(left!=null&&right!=null){
             find=root;
         }
-
         if(left!=null)
         return left;
         if(right!=null)
         return right;
 
         return null;
-
     }
 }
 
-作者：zzz-ai
-链接：https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/quan-wang-du-jia-er-bu-fa-xie-di-gui-ru-he-shui-co/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-
-
-
-
-
+// 作者：zzz-ai
+// 链接：https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/quan-wang-du-jia-er-bu-fa-xie-di-gui-ru-he-shui-co/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
