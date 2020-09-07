@@ -50,7 +50,21 @@ https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/
 
 
 
-
+class Solution {
+    //10.32pm-10.36pm
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> set=new HashSet<Character>();
+        int length=0;
+        for(int i=0,j=0;i<s.length();i++){
+            while(set.contains(s.charAt(i))){
+                set.remove(s.charAt(j++));
+            }
+            length=Math.max(length,i-j+1);
+            set.add(s.charAt(i));
+        }
+        return length;
+    }
+}
 
 
 
