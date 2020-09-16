@@ -60,6 +60,32 @@ https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/
 
 
 
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        char[] words = word.toCharArray();
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board[0].length; j++) {
+                if(dfs(board, words, i, j, 0)) return true;
+            }
+        }
+        return false;
+    }
+    boolean dfs(char[][] board, char[] word, int i, int j, int k) {
+        if(i >= board.length || i < 0 || j >= board[0].length || j < 0 || board[i][j] != word[k]) return false;
+        if(k == word.length - 1) return true;
+        char tmp = board[i][j];
+        board[i][j] = '/';
+        boolean res = dfs(board, word, i + 1, j, k + 1) || dfs(board, word, i - 1, j, k + 1) || 
+                      dfs(board, word, i, j + 1, k + 1) || dfs(board, word, i , j - 1, k + 1);
+        board[i][j] = tmp;
+        return res;
+    }
+}
+
+// 作者：jyd
+// 链接：https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
@@ -74,8 +100,218 @@ https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/
 
 
 
+//错误解法：
+import java.util.*;
+class Solution {
+    String word="";
+    List<Character> result;
+    boolean isTrue=false;
+
+    public boolean exist(char[][] board, String word) {
+        this.word=word;
+        result=new ArrayList<Character>();
+        for(char tmp:word.toCharArray()){
+            result.add(tmp);
+        }
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                System.out.println("[mark]:"+i+" "+j);
+                dfs(board,new boolean[board.length][board[0].length],i,j,new ArrayList<Character>());
+            }
+        }
+        
+        return isTrue;
+    }
+
+    public void dfs(char[][] board, boolean[][] visited, int i, int j,List<Character> list){
+        if(isTrue) return;
+        if(i>=board.length||i<0||j>=board[0].length||j<0) return;
+        if(visited[i][j]) return;
+        if(list.size()>result.size()) {
+            System.out.println("trigger size:"+list.size()+" "+result.size());
+            return;
+        }
+
+        visited[i][j]=true;
+        list.add(board[i][j]);
+        if(list.get(list.size()-1)!=result.get(list.size()-1)) {
+               System.out.println("丢弃==> "+i+" "+j+" "+list.get(list.size()-1)+" "+result.get(list.size()-1));
+            list.remove(list.size()-1);
+            visited[i][j]=false; // 容易忘记
+            return;
+        }
+        System.out.println("judge==> "+i+" "+j+" "+list.get(list.size()-1)+" "+result.get(list.size()-1));
+        for(Character tmp:list){
+            System.out.print(tmp+" ");
+        }
+        System.out.println();
+        if(list.size()==result.size()){
+            isTrue=true;
+            return;
+        }
+        System.out.println("curr: "+i+" "+j);
+        dfs(board,visited,i+1,j,list);
+        dfs(board,visited,i-1,j,list);
+        dfs(board,visited,i,j-1,list);
+        dfs(board,visited,i,j+1,list);
+    }
+}
+
+
+
+//错误解法：
+
+import java.util.*;
+class Solution {
+    String word="";
+    List<Character> result;
+    boolean isTrue=false;
+
+    public boolean exist(char[][] board, String word) {
+        this.word=word;
+        result=new ArrayList<Character>();
+        for(char tmp:word.toCharArray()){
+            result.add(tmp);
+        }
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                System.out.println("[mark]:"+i+" "+j);
+                bfs(board,new boolean[board.length][board[0].length],i,j,new ArrayList<Character>());
+            }
+        }
+        
+        return isTrue;
+    }
+
+    public void bfs(char[][] board, boolean[][] visited, int i, int j, List<Character> list){
+        Queue<int[]> que=new LinkedList<int[]>();
+        que.add(new int[]{i,j});
+
+        while(!que.isEmpty()&&!isTrue){
+            int[] ele=que.remove();
+            int x=ele[0];
+            int y=ele[1];
+
+            if(visited[x][y]) continue;
+            if(list.size()==result.size()){ 
+                isTrue=true;
+                return;
+            }
+            list.add(board[x][y]);
+            for(Character tmp:list){
+                System.out.print(tmp+" ");
+            }
+            System.out.println();
+            visited[x][y]=true;
+
+            if(list.get(list.size()-1)!=result.get(list.size()-1)){
+                visited[x][y]=false;
+                list.remove(list.size()-1);
+                continue;
+            }
+            
+            //1,0
+            if(x+1<board.length){
+                que.add(new int[]{x+1,y});
+            }
+            if(x-1>=0){
+                que.add(new int[]{x-1,y});
+            }
+            if(y+1<board[0].length){
+                que.add(new int[]{x,y+1});
+            }
+            if(y-1>=0){
+                que.add(new int[]{x,y-1});
+            }
+        }
+    }
+   
+}
 
 
 
 
 
+public boolean exist(char[][] board, String word) {
+    char[] words = word.toCharArray();
+    for (int i = 0; i < board.length; i++) {
+        for (int j = 0; j < board[0].length; j++) {
+            //从[i,j]这个坐标开始查找
+            if (dfs(board, words, i, j, 0))
+                return true;
+        }
+    }
+    return false;
+}
+
+boolean dfs(char[][] board, char[] word, int i, int j, int index) {
+    //边界的判断，如果越界直接返回false。index表示的是查找到字符串word的第几个字符，
+    //如果这个字符不等于board[i][j]，说明验证这个坐标路径是走不通的，直接返回false
+    if (i >= board.length || i < 0 || j >= board[0].length || j < 0 || board[i][j] != word[index])
+        return false;
+    //如果word的每个字符都查找完了，直接返回true
+    if (index == word.length - 1)
+        return true;
+    //为了防止分支污染，把board数组复制一份
+    char[][] newArra = copyArray(board);
+    //把newArra[i][j]置为特殊符号，表示已经被使用过了(注意：word中不能包含'.')
+    newArra[i][j] = '.';
+    //从当前坐标的上下左右四个方向查找
+    boolean res = dfs(newArra, word, i + 1, j, index + 1) || dfs(newArra, word, i - 1, j, index + 1) ||
+            dfs(newArra, word, i, j + 1, index + 1) || dfs(newArra, word, i, j - 1, index + 1);
+    return res;
+}
+
+//复制一份新的数组
+private char[][] copyArray(char[][] word) {
+    char[][] newArray = new char[word.length][word[0].length];
+    for (int i = 0; i < word.length; i++) {
+        for (int j = 0; j < word[0].length; j++) {
+            newArray[i][j] = word[i][j];
+        }
+    }
+    return newArray;
+}
+
+// 作者：sdwwld
+// 链接：https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/hui-su-suan-fa-qiu-jie-by-sdwwld/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+public boolean exist(char[][] board, String word) {
+    char[] words = word.toCharArray();
+    for (int i = 0; i < board.length; i++) {
+        for (int j = 0; j < board[0].length; j++) {
+            //从[i,j]这个坐标开始查找
+            if (dfs(board, words, i, j, 0))
+                return true;
+        }
+    }
+    return false;
+}
+
+boolean dfs(char[][] board, char[] word, int i, int j, int index) {
+    //边界的判断，如果越界直接返回false。index表示的是查找到字符串word的第几个字符，
+    //如果这个字符不等于board[i][j]，说明验证这个坐标路径是走不通的，直接返回false
+    if (i >= board.length || i < 0 || j >= board[0].length || j < 0 || board[i][j] != word[index])
+        return false;
+    //如果word的每个字符都查找完了，直接返回true
+    if (index == word.length - 1)
+        return true;
+    //把当前坐标的值保存下来，为了在最后复原
+    char tmp = board[i][j];
+    //然后修改当前坐标的值
+    board[i][j] = '.';
+    //走递归，沿着当前坐标的上下左右4个方向查找
+    boolean res = dfs(board, word, i + 1, j, index + 1) || dfs(board, word, i - 1, j, index + 1) ||
+            dfs(board, word, i, j + 1, index + 1) || dfs(board, word, i, j - 1, index + 1);
+    //递归之后再把当前的坐标复原
+    board[i][j] = tmp;
+    return res;
+}
+
+// 作者：sdwwld
+// 链接：https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/hui-su-suan-fa-qiu-jie-by-sdwwld/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
