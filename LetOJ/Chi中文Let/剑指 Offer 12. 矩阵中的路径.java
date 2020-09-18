@@ -82,8 +82,6 @@ class Solution {
                for(int p=0;p<board.length;p++) {
                    for(int q=0;q<board[0].length;q++) {
                       if(board[p][q]==word.charAt(0) && visited[p][q]==false){
-//		                	System.out.println(i);
-//		                	System.out.println(j);
                            visited[p][q]=true;
                            if(hasPath(board,word,index+1,p,q)){
                                return true;
