@@ -52,7 +52,16 @@ https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/
 
 
 
-
+class Solution {
+    //11.48pm-11.52pm
+    public int search(int[] nums, int target) {
+        HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int tmp:nums){
+            map.put(tmp, map.getOrDefault(tmp,0)+1);
+        }
+        return map.getOrDefault(target,0);
+    }
+}
 
 
 
