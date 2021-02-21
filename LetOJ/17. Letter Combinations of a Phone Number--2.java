@@ -219,7 +219,7 @@ class Solution {
 	public void dfs(String digits, StringBuilder sb, int index) {
 		if (index == digits.length()) {  //注意结束条件
 			result.add(sb.toString()); 
-			return; //注意要挺住
+			return; //注意要停住
 		}
 		String word = mapArr[digits.charAt(index) - '0'];
 		for (int i = 0; i < word.length(); i++) {
