@@ -79,7 +79,50 @@ s 仅含英文字母（大写和小写），数字（0-9），加号 '+' ，减�
  * 
  */
 
-
+class Solution {
+    public boolean isNumber(String s) {
+        s = s.trim();
+        int len = s.length();
+        
+        int countSign = 0;
+        boolean seenNum = false;
+        boolean seenE = false;
+        boolean seenPoint = false;
+        
+        for(int i=0;i<len;i++) {
+            char x = s.charAt(i);
+            
+            if(!isValid(x)) return false;
+            
+            if(x >= '0' && x <= '9') seenNum = true;
+            
+            if(x == 'e' || x == 'E') {
+                if(seenE || !seenNum) return false;
+                if(i == len-1) return false;
+                seenE = true;
+            }
+            
+            if(x == '.') {
+                if(seenPoint || seenE) return false;
+                if(i == len-1 && !seenNum) return false;
+                seenPoint = true;
+            }
+            
+            if(x == '-' || x == '+') {
+                if(countSign == 2) return false;
+                if(i == len-1) return false;
+                if(i > 0 && !(s.charAt(i-1) == 'e' || s.charAt(i-1) == 'E')) return false;
+                countSign++;
+            }
+        }
+        
+        return true;
+    }
+    
+    public boolean isValid(char x) {
+        return x == '.' || x == '+' || x == '-' || x == 'e' || x == 'E' || (x >= '0' && x <= '9');
+    }
+}
 
 
 
@@ -526,7 +569,7 @@ public boolean isNumber(String s) {
 }
 
 
-作者：windliang
-链接：https://leetcode-cn.com/problems/valid-number/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-1-4/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+// 作者：windliang
+// 链接：https://leetcode-cn.com/problems/valid-number/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-1-4/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
