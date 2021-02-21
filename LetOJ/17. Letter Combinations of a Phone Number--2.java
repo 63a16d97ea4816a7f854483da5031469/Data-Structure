@@ -195,7 +195,40 @@ class Solution {
 
 
 
-
+class Solution {
+	List < String > result = new ArrayList < String > ();
+	String[] mapArr = new String[] {
+		"",
+		"",
+		"abc",
+		"def",
+		"ghi",
+		"jkl",
+		"mno",
+		"pqrs",
+		"tuv",
+		"wxyz"
+	};
+	public List < String > letterCombinations(String digits) {
+		if (digits.length() == 0) {
+			return result;
+		}
+		dfs(digits, new StringBuilder(), 0);
+		return result;
+	}
+	public void dfs(String digits, StringBuilder sb, int index) {
+		if (index == digits.length()) {  //注意结束条件
+			result.add(sb.toString()); 
+			return; //注意要挺住
+		}
+		String word = mapArr[digits.charAt(index) - '0'];
+		for (int i = 0; i < word.length(); i++) {
+			sb.append(word.charAt(i)); //记录现有位置
+			dfs(digits, sb, index + 1); //到下一层 
+			sb.deleteCharAt(sb.length() - 1); //删除当前修改
+		}
+	}
+}
 
 
 
