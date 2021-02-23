@@ -52,6 +52,62 @@ Surrounded regions shouldn’t be on the border, which means that any 'O' on the
  */
 
 
+
+
+class Solution {
+    public void solve(char[][] board) {
+        if(board.length==0 || board[0].length==0){
+            return;
+        }
+        int row=board.length-1;
+        int col=board[0].length-1;
+        
+        //先处理最上面的一行，和最下面的一行，将O变成V
+        for(int i=0;i<=col;i++){
+            if(board[0][i]=='O'){
+                dfsUtil(board,0,i);
+            }
+            if(board[row][i]=='O'){
+                dfsUtil(board,board.length-1,i);
+            }    
+                
+        }
+        //再处理最左边的一行，和最右边的一行，将O变成V
+        for(int i=1;i<=row-1;i++){
+            if(board[i][0]=='O'){
+                dfsUtil(board,i,0);
+            }
+            if(board[i][col]=='O') {
+                dfsUtil(board,i,col);
+            }
+        }
+        
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                if(board[i][j]=='v') {
+                    board[i][j]='O';
+                } else if(board[i][j]=='O') {
+                    board[i][j]='X';
+                }
+            }
+        }
+    }
+    
+    private void dfsUtil(char[][] board,int i,int j) {
+        if(i<0 || i>=board.length || j<0 || j>=board[0].length || board[i][j]!='O'){
+            return;
+        }
+            board[i][j]='v';
+            dfsUtil(board,i-1,j);
+            dfsUtil(board,i+1,j);
+            dfsUtil(board,i,j-1);
+            dfsUtil(board,i,j+1);
+    }
+}
+
+
+
+
 class Solution {
     //10.11pm-10.47pm  (36 minutes)
     //优化: 10.50pm-11.07pm AC   (17 minutes)
