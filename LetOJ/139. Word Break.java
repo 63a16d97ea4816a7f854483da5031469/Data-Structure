@@ -54,10 +54,53 @@ Output: false
 
 
 
+class Solution {
+    //一维dp
+    //dp[i] represents if we can form the string, whose index from 0 to i, with words from dict
+    //dp[0] == true;
+    //induction rule:
+    //termination :dp[n]
+    //optimization
+    
+    public boolean wordBreak(String s, List<String> wordDict) {
+        if(wordDict == null || wordDict.size() == 0){
+            throw new IllegalArgumentException();
+        }
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+        for(int i = 1;i <= n; i++){
+            for(int j = 0; j <=i; j++){
+                if(dp[j] == true && wordDict.contains(s.substring(j,i))){
+                    dp[i] = true;
+                    break;
+                }
+            }            
+        }
+        return dp[n];
+    }
+}
 
 
-
-
+class Solution {    
+    public boolean wordBreak(String s, List<String> wordDict) {
+        if(wordDict == null || wordDict.size() == 0){
+            return false;
+        }      
+        //index stores index that (0, index) is true , can be word break
+        List<Integer> index = new ArrayList<>();
+        index.add(0);
+        for(int i = 1;i <= s.length(); i++){
+            for(int id : index){
+                if(wordDict.contains(s.substring(id, i))){
+                    index.add(i);
+                    break;
+                }
+            }            
+        }
+        return index.contains(s.length());
+    }
+}
 
 
 
