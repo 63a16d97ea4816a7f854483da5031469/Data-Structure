@@ -53,7 +53,9 @@ https://leetcode-cn.com/problems/generate-parentheses/
 
 //最简洁代码:
 
-class Solution {
+
+
+class Solution1 {
     public List<String> generateParenthesis(int n) {
        List<String> ans=new ArrayList<>();
         helper(n,ans,"",0,0);
@@ -73,9 +75,7 @@ class Solution {
 
 
 
-import java.util.ArrayList;
-import java.util.List;
-public class Solution {
+public class Solution2 {
     // 做减法
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
@@ -116,10 +116,8 @@ public class Solution {
 
 
 
-
-import java.util.ArrayList;
-import java.util.List;
-public class Solution {
+ 
+public class Solution3 {
     // 做加法
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
@@ -159,14 +157,14 @@ public class Solution {
 
 
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+// import java.util.ArrayDeque;
+// import java.util.ArrayList;
+// import java.util.Deque;
+// import java.util.LinkedList;
+// import java.util.List;
+// import java.util.Queue;
 
-public class Solution {
+public class Solution4 {
 
     class Node {
         /**
@@ -214,10 +212,10 @@ public class Solution {
     }
 }
 
-作者：liweiwei1419
-链接：https://leetcode-cn.com/problems/generate-parentheses/solution/hui-su-suan-fa-by-liweiwei1419/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+// 作者：liweiwei1419
+// 链接：https://leetcode-cn.com/problems/generate-parentheses/solution/hui-su-suan-fa-by-liweiwei1419/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
@@ -228,15 +226,15 @@ public class Solution {
 
 
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
+// import java.util.ArrayDeque;
+// import java.util.ArrayList;
+// import java.util.Deque;
+// import java.util.LinkedList;
+// import java.util.List;
+// import java.util.Queue;
+// import java.util.Stack;
 
-public class Solution {
+public class Solution5 {
 
     class Node {
         /**
@@ -289,10 +287,10 @@ public class Solution {
     }
 }
 
-作者：liweiwei1419
-链接：https://leetcode-cn.com/problems/generate-parentheses/solution/hui-su-suan-fa-by-liweiwei1419/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+// 作者：liweiwei1419
+// 链接：https://leetcode-cn.com/problems/generate-parentheses/solution/hui-su-suan-fa-by-liweiwei1419/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
