@@ -88,6 +88,33 @@ class Solution {
 
 
 
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        char[] chars = s.toCharArray();
+        char[] chart = t.toCharArray();
+        int[] preIndexOfs = new int[256];
+        int[] preIndexOft = new int[256];
+        for (int i = 0; i < chars.length; i++) {
+            if (preIndexOfs[chars[i]] != preIndexOft[chart[i]]) {
+                return false;
+            }
+            preIndexOfs[chars[i]] = i + 1;
+            preIndexOft[chart[i]] = i + 1;
+        }
+        return true;
+    }
+}
+
+// 作者：wang-xue-lei-2
+// 链接：https://leetcode-cn.com/problems/isomorphic-strings/solution/java-zui-qing-xi-jie-fa-si-lu-qiao-miao-ssvmi/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+
 // 时间复杂度：
 // O
 // (
@@ -127,7 +154,19 @@ class Solution {
 
 
 
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        int[] s1=new int[128],t1=new int[128];
+        int i=s.length();
+        for(int x,y;0!=i--&&s1[x=s.charAt(i)]==t1[y=t.charAt(i)];s1[x]=t1[y]=i);
+        return i==-1;        
+    }
+}
 
+作者：akax-n
+链接：https://leetcode-cn.com/problems/isomorphic-strings/solution/ji-jian-by-akax-n-10m6/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
