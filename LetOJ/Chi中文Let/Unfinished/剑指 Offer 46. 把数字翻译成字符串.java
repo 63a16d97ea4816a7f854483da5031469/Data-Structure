@@ -48,10 +48,38 @@ link: https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/
  */
 
 
+public class Solution {
+    int res = 0;
+    List<Integer> list = new ArrayList<>();
 
+    public int translateNum(int num) {
+        while (num > 0) {
+            list.add(0, num % 10);
+            num /= 10;
+        }
+        backtrack(0);
+        return res;
+    }
 
+    public void backtrack(int index) {
+        if (index == list.size()) {
+            res++;
+            return;
+        }
+        backtrack(index + 1);
+        if (list.get(index) == 0 || list.get(index) >= 3 || index >= list.size() - 1) {
+            return;
+        }
+        if (list.get(index) == 1 || (list.get(index) == 2 && list.get(index + 1) <= 5)) {
+            backtrack(index + 2);
+        }
+    }
+}
 
-
+// 作者：1iin
+// 链接：https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/java-bao-li-di-gui-0ms-by-1iin-nm0d/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
