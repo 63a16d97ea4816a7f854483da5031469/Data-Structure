@@ -120,6 +120,12 @@ class Solution {
     }
 }
 
+// 最后还有两个问题要注意：
+
+// 由状态转移方程可知，以上动态规划的解法还可以进行空间上的优化。
+// 注意前导零。举个例子，06只有一种翻译方法，即0和6，不能06一起翻译为6，本题不接受前导零。
+ 
+
 // 作者：tyanyonecancode
 // 链接：https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/marvelzhong-deng-de-xue-xi-bi-ji-jian-zh-uiig/
 // 来源：力扣（LeetCode）
