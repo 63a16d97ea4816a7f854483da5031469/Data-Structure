@@ -44,6 +44,37 @@ Output: "bb"
  */
 
 
+这个方法最优：
+
+class Solution {
+    public String longestPalindrome(String s) {
+        String max = "";
+        for(int i=0;i<s.length();i++){
+            String s1 = extend(s,i,i), s2 = extend(s,i,i+1); //s2 focuses on midpoint betweek 2 letters in case of even letters
+            if(max.length() < Math.max(s1.length(),s2.length()))
+                max = s1.length() > s2.length() ? s1 : s2;
+        }
+        return max;
+    }
+    
+    private String extend(String s, int l, int r){
+
+        while(l >= 0 && r < s.length()){
+            if(s.charAt(l) != s.charAt(r))
+                break;
+            l--;r++;
+        }
+        return s.substring(l+1,r); //handle the extra decrement in the while loop
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -159,4 +190,61 @@ dp[i][j] 表示的是 i 到 j这段是不是回文子串，dp没什么好说的�
         }
 
 
+
+
+
+
+
+
+
+
+
+
+====> 有问题的解法：
+
+class Solution {
+    public String longestPalindrome(String s) {
+        if(s.length()==1) return s;
+        String tmpS=s;
+        if(s.length()%2==0){
+            s=tmpS.substring(0,tmpS.length()/2);
+            s+="*";
+            s+=tmpS.substring(tmpS.length()/2,tmpS.length());
+        }
+        System.out.println(s);
+        int max=0;
+        int maxIndex=0;
+        for(int i=0;i<s.length();i++){
+            int curr=0;
+            for(int j=1;j<=s.length()/2;j++){
+                
+                if(i-j>=0&&i+j<=s.length()-1){
+                    if((i-j)!=(i+j)&&s.charAt(i-j)==s.charAt(i+j)){
+                        System.out.println(s.charAt(i-j)+" "+s.charAt(i+j));
+                        curr++;
+                                max=Math.max(curr,max);
+                                if(max==curr){
+                                    System.out.println(i+" "+j);
+                                    maxIndex=i;
+                                }
+                    }
+                }else{
+                    break;
+                }
+            }
+        }
+     
+        LinkedList<String> list=new LinkedList<String>();
+        list.add(String.valueOf(s.charAt(maxIndex)));
+        for(int i=1;i<=max;i++){
+            list.addFirst(String.valueOf(s.charAt(maxIndex-i)));
+            list.addLast(String.valueOf(s.charAt(maxIndex+i)));
+        }
+        StringBuffer sb=new StringBuffer();
+        for(String tmp:list){
+            sb.append(tmp);
+        }
+        return sb.toString().replace("*","");
+    }
+}
 
