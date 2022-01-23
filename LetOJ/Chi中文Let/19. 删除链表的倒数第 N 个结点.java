@@ -62,7 +62,7 @@ link: https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
  * 
  */
 
-
+====================================================================================================
 
 尝试使用 快节点与慢节点解：，但是有一些case过不了，这种是错误的：
 class Solution {
@@ -74,7 +74,6 @@ class Solution {
             tmp=tmp.next;
         }
         if(length==1&&n==1) return null;
-        if(length==2&&n==2) return head.next;
 
         ListNode fastNode=head;
         ListNode slowNode=head;
@@ -93,6 +92,35 @@ class Solution {
         return head;
     }
 }
+
+
+正确写法：
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode fastNode=head;
+
+        // slowNode要减1,另外要防止倒数n是第一个原始head的那种情况
+        ListNode slowNode=dummy;
+        for(int i=0;i<n;i++){
+            fastNode=fastNode.next;
+        }
+        //move the fastNode and slowNode together.
+        while(fastNode!=null){
+            fastNode=fastNode.next;
+            slowNode=slowNode.next;
+        }
+        slowNode.next=slowNode.next.next;
+
+        return dummy.next;
+    }
+}
+
+====================================================================================================
+
+
+
+
 
 
 
@@ -168,8 +196,29 @@ O(L)，其中 L 是链表的长度。主要为栈的开销。
 
 
 
+快慢指针：
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode first = head;
+        ListNode second = dummy;
+        for (int i = 0; i < n; ++i) {
+            first = first.next;
+        }
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+        second.next = second.next.next;
+        ListNode ans = dummy.next;
+        return ans;
+    }
+}
 
-
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/solution/shan-chu-lian-biao-de-dao-shu-di-nge-jie-dian-b-61/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
