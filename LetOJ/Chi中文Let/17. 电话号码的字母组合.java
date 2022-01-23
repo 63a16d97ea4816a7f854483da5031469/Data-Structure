@@ -158,7 +158,28 @@ public class Solution17_1 {
 
 
 
-
+class Solution {
+    String[] mappingArr=new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    List<String> result=null;
+    public List<String> letterCombinations(String digits) {
+        result=new ArrayList<String>();
+        if(digits.equals("")) return result;
+        findAll(digits, 0, "");
+        return result;
+    }
+    public void findAll(String digits, int index, String s){
+        if(index==digits.length()){
+            result.add(s);
+            return;
+        }
+        Character c=digits.charAt(index);
+        int mapIndex=Integer.parseInt(c+"");
+        String mapped=mappingArr[mapIndex];
+        for(int i=0;i<mapped.length();i++){
+            findAll(digits,index+1,s+mapped.charAt(i));
+        }
+    }
+}
 
 
 
