@@ -76,6 +76,42 @@ class Solution {
 
 
 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    ListNode newHead=null;
+    public ListNode reverseList(ListNode head) {
+        findNext(head);
+        // 切断之前的最初的head与下一个节点的联系, 如果head==null，就不用切了
+        if(head!=null){
+            head.next=null;
+        }
+        return newHead;
+    }
+    public ListNode findNext(ListNode curr){
+        ListNode saved=curr;
+        ListNode returned=null;
+        if(curr!=null){
+            returned=findNext(curr.next);    
+        }else{
+            return null;
+        }
+        if(curr.next==null){
+            // 这个是新的开始点
+            newHead=saved;
+        }else{
+            returned.next=saved;
+        }
+        return saved;
+    }
+
+}
 
 
 
