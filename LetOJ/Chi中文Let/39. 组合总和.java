@@ -149,7 +149,33 @@ class Solution {
 
 
 
+class Solution {
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> path = new ArrayList<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        backtracking(candidates,target,0,0);
+        return res;
+    }
+    void backtracking(int[] candidates,int target,int sum,int startIndex) {
+        if(sum > target) return;
+        if(sum == target){
+            res.add(new ArrayList(path));//一定创建新的，分支污染？
+            return;
+        }
+        for(int i = startIndex;i < candidates.length;i++) {
+            sum += candidates[i];
+            path.add(candidates[i]);//写i
+            backtracking(candidates,target,sum,i);//写i
+            path.remove(path.size()-1);
+            sum -= candidates[i];
+        }
+    }
+}
 
+// 作者：lan-ch
+// 链接：https://leetcode-cn.com/problems/combination-sum/solution/39-zu-he-zong-he-by-lan-ch-xe8g/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
