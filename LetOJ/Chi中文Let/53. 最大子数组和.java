@@ -78,9 +78,11 @@ class Solution {
         int max=nums[0];
         int sum=0;
         for(int i=0;i<nums.length;i++){
+            //向下看一个数，如果整体过去子序列加起来的和小于现在单个元素，则取过去sum,nums[i]中最大的
             if(sum+nums[i]<nums[i]){
                 sum=Math.max(sum,nums[i]);
             }else{
+                // 否则继续连续的加下去
                 sum+=nums[i];
             }
             max=Math.max(sum,max);
@@ -92,9 +94,17 @@ class Solution {
 
 
 
-
-
-
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int max=nums[0];
+        int pre=0;
+        for(int i=0;i<nums.length;i++){
+            pre=Math.max(pre+nums[i],nums[i]);
+            max=Math.max(pre,max);
+        }
+        return max;
+    }
+}
 
 
 
