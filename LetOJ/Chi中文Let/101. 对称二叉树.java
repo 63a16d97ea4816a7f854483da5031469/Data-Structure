@@ -94,10 +94,17 @@ class Solution {
 
 
 
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return isSubSymm(root.left,root.right);
+    }
 
-
-
-
+    public boolean isSubSymm(TreeNode left, TreeNode right){
+        if(left==null&&right==null) return true;
+        if(left==null||right==null) return false;
+        return (left!=null&&right!=null&&left.val==right.val) && isSubSymm(left.left, right.right) && isSubSymm(left.right,right.left);
+    }
+}
 
 
 
