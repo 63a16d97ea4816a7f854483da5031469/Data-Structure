@@ -107,6 +107,7 @@ class Solution {
 
 
 
+
 class Solution {
     ListNode newHead=null;
     public ListNode reverseList(ListNode head) {
@@ -114,6 +115,8 @@ class Solution {
         if(head==null||head.next==null) return head;
 
         reverse(head);
+
+        //注意断开之前的链接，最后一个node
         head.next=null;
         return newHead;
     }
