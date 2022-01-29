@@ -216,10 +216,10 @@ class Solution {
 
 }
 
-作者：sui-ji-guo-cheng-sui-ji-guo
-链接：https://leetcode-cn.com/problems/n-queens/solution/n-huang-hou-java-by-sui-ji-guo-cheng-sui-q0ot/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+// 作者：sui-ji-guo-cheng-sui-ji-guo
+// 链接：https://leetcode-cn.com/problems/n-queens/solution/n-huang-hou-java-by-sui-ji-guo-cheng-sui-q0ot/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
