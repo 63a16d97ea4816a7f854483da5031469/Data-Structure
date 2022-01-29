@@ -148,7 +148,6 @@ class Solution {
                 }else{
                     if(fx==x&&fy==y) continue;
                     if(board[fx][fy]=='.') continue;
-                    System.out.println(x+" "+y+" "+fx+" "+fy+" "+board[fx][fy]);
                     return false;
                 }
             }
