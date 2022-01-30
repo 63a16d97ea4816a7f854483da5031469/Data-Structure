@@ -63,6 +63,21 @@ link: https://leetcode-cn.com/problems/balanced-binary-tree/
 
 
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
 class Solution {
     boolean isBalanced=true;
     public boolean isBalanced(TreeNode root) {
@@ -106,6 +121,7 @@ class Solution {
         int height=0;
         while(!que.isEmpty()){
             TreeNode head=que.removeFirst();
+            //这步很关键
             if(head==null){
                 height++;
             }
@@ -121,7 +137,6 @@ class Solution {
     }
  
 }
-
 
 
 
