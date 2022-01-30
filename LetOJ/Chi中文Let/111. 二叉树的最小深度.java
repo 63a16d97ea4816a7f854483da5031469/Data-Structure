@@ -95,9 +95,26 @@ class Solution {
 
 
 
+class Solution {
+    int min=9999;
+    List<TreeNode> path=new ArrayList<TreeNode>();
+    public int minDepth(TreeNode root) {
+        if(root==null) return 0;
+        preOrder(root);
+        return min;
+    }
 
-
-
+    public void preOrder(TreeNode root){
+        if(root==null) return;
+        path.add(root);
+        if(root.left==null&&root.right==null){
+            min=Math.min(min,path.size());
+        }
+        if(root.left!=null) preOrder(root.left);
+        if(root.right!=null) preOrder(root.right);
+        path.remove(path.size()-1);
+    }
+}
 
 
 
