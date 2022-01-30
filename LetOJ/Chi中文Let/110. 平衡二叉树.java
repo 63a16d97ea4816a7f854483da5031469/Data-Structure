@@ -45,7 +45,7 @@ link: https://leetcode-cn.com/problems/balanced-binary-tree/
 -104 <= Node.val <= 104
 
 
-2022-01-24 at 18:20
+2022-01-30 at 20:04
  
 
 对题目易错地方进行总结:
@@ -63,7 +63,64 @@ link: https://leetcode-cn.com/problems/balanced-binary-tree/
 
 
 
+class Solution {
+    boolean isBalanced=true;
+    public boolean isBalanced(TreeNode root) {
+        if(root==null) return true;
+        preOrder(root);
+        return isBalanced;
+    }
 
+    // 遍历所有节点
+    public void preOrder(TreeNode root){
+        if(root==null) return;
+        if(!isBalancedSub(root)){
+            isBalanced=false;
+            return;
+        }
+        if(root.left!=null) preOrder(root.left);
+        if(root.right!=null) preOrder(root.right);
+    }
+    
+    //判断左右子树高度差是否为1
+    public boolean isBalancedSub(TreeNode root){
+        if(root==null) return true;
+        int l=0,r=0;
+        if(root.left==null&&root.right==null){
+            return true;
+        }
+        if(root.left!=null) {
+            l=getHeight(root.left);
+        }
+        if(root.right!=null){
+            r=getHeight(root.right);
+        }
+        return Math.abs(r-l)<=1;
+    }
+
+    //获得当前节点的高度
+    public int getHeight(TreeNode root){
+        LinkedList<TreeNode> que=new LinkedList<TreeNode>();
+        que.add(root);
+        que.add(null);
+        int height=0;
+        while(!que.isEmpty()){
+            TreeNode head=que.removeFirst();
+            if(head==null){
+                height++;
+            }
+            if(head==null&&!que.isEmpty()){
+                que.add(null);
+            }
+            if(head!=null){
+                if(head.left!=null) que.add(head.left);
+                if(head.right!=null) que.add(head.right);
+            }
+        }
+        return height;
+    }
+ 
+}
 
 
 
