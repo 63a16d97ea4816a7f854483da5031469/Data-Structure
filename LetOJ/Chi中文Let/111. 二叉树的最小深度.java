@@ -99,7 +99,9 @@ class Solution {
     int min=9999;
     List<TreeNode> path=new ArrayList<TreeNode>();
     public int minDepth(TreeNode root) {
+        //特殊情况处理
         if(root==null) return 0;
+        
         preOrder(root);
         return min;
     }
