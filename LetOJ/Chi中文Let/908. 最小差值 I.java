@@ -115,7 +115,54 @@ class Solution {
 
 
 
+class Solution {
+    public int smallestRangeI(int[] A, int K) {
+        int min = A[0], max = A[0];
+        for (int x: A) {
+            min = Math.min(min, x);
+            max = Math.max(max, x);
+        }
+        return Math.max(0, max - min - 2*K);
+    }
+}
 
+// 作者：LeetCode
+// 链接：https://leetcode-cn.com/problems/smallest-range-i/solution/zui-xiao-chai-zhi-i-by-leetcode/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+class Solution {
+    public int smallestRangeI(int[] nums, int k) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        // 最小差值就是最大值-最小值再减去2k
+        for (int num : nums) {
+            if (num < min) {
+                min = num;
+            }
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        int ans = 0;
+        if (max - min - 2 * k < 0) {
+            ans = 0;
+        } else {
+            ans = max - min - 2 * k;
+        }
+
+        return ans;
+    }
+}
+
+// 作者：zyi-m
+// 链接：https://leetcode-cn.com/problems/smallest-range-i/solution/java-xin-shou-xiao-bai-de-jian-dan-si-lu-a8o5/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
