@@ -5,6 +5,7 @@ link:
 https://leetcode-cn.com/problems/top-k-frequent-elements/
 
 2020-8-26 at 10:39 pm
+2022-02-02 a 18:19
 
 347. 前 K 个高频元素
 难度
@@ -267,7 +268,39 @@ class Solution {
 
 
 
+// ===> 自己写的:
 
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        int n=nums.length;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        PriorityQueue<Map.Entry<Integer,Integer>> pq=new PriorityQueue<>(k,(o1,o2)->{
+            return o1.getValue()-o2.getValue();
+        });
+        //构造频率map
+        for(int tmp:nums){
+           map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            if(pq.size()<k){
+                pq.add(entry);
+            }else{
+                if(pq.peek().getValue()<entry.getValue()){
+                    pq.poll();
+                    pq.add(entry);
+                }
+            }
+        }
+        int[] result=new int[pq.size()];
+        int index=0;
+        while(!pq.isEmpty()){
+            result[index++]=pq.poll().getKey();
+        }
+
+        return result;
+    }
+}
 
 
 
