@@ -86,9 +86,33 @@ class Solution {
 
 
 
+执行用时：
+28 ms
+, 在所有 Java 提交中击败了
+8.45%
+的用户:
 
+class Solution {
+    public int[] smallestK(int[] arr, int k) {
+        if(k==0) return new int[0];
+        PriorityQueue<Integer> pq=new PriorityQueue<>(k,(o1,o2)->{
+            return o2-o1;
+        });
 
-
+        for(int tmp:arr){
+            pq.add(tmp);
+            if(pq.size()>k){
+                pq.poll();
+            }
+        }
+        int[] result=new int[pq.size()];
+        int index=pq.size()-1;
+        while(!pq.isEmpty()){
+            result[index--]=pq.poll();
+        }
+        return result;
+    }
+}
 
 
 
