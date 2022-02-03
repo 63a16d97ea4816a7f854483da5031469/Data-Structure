@@ -273,6 +273,7 @@ Leetcode 208 Implement Trie (Prefix Tree)
 Leetcode 211 Design Add and Search Words Data Structure
 Leetcode 1268 Search Suggestions System
 Leetcode 212 Word Search II
+
 单调栈与单调队列（Monotone Stack／Queue）
 
 基础知识：单调栈一般用于解决数组中找出每个数字的第一个大于／小于该数字的位置或者数字；单调队列只见过一道题需要使用；不论单调栈还是单调队列，单调的意思是保留在栈或者队列中的数字是单调递增或者单调递减的
@@ -284,6 +285,9 @@ Leetcode 739 Daily Temperatures
 Leetcode 901 Online Stock Span
 Leetcode 503 Next Greater Element II
 Leetcode 239 Sliding Window Maximum （唯一的单调队列题）
+
+
+
 扫描线算法（Sweep Line）
 
 基础知识：一个很巧妙的解决时间安排冲突的算法，本身比较容易些也很容易理解
@@ -421,34 +425,7 @@ https://zhuanlan.zhihu.com/p/349591952
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------
-
-
-
-
+BigInteger
 
 
 
@@ -516,6 +493,288 @@ https://zhuanlan.zhihu.com/p/349591952
 ------------------------------------------------------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+分类刷题:
+
+import java.math.BigDecimal;
+
+BigDecimal
+
+@Test
+public void whenBigDecimalCreated_thenValueMatches() {
+    BigDecimal bdFromString = new BigDecimal("0.1");
+    BigDecimal bdFromCharArray = new BigDecimal(new char[] {'3','.','1','6','1','5'});
+    BigDecimal bdlFromInt = new BigDecimal(42);
+    BigDecimal bdFromLong = new BigDecimal(123412345678901L);
+    BigInteger bigInteger = BigInteger.probablePrime(100, new Random());
+    BigDecimal bdFromBigInteger = new BigDecimal(bigInteger);
+        
+    assertEquals("0.1",bdFromString.toString());
+    assertEquals("3.1615",bdFromCharArray.toString());
+    assertEquals("42",bdlFromInt.toString());
+    assertEquals("123412345678901",bdFromLong.toString());
+    assertEquals(bigInteger.toString(),bdFromBigInteger.toString());
+}
+
+@Test
+public void whenComparingBigDecimals_thenExpectedResult() {
+    BigDecimal bd1 = new BigDecimal("1.0");
+    BigDecimal bd2 = new BigDecimal("1.00");
+    BigDecimal bd3 = new BigDecimal("2.0");
+
+    assertTrue(bd1.compareTo(bd3) < 0);
+    assertTrue(bd3.compareTo(bd1) > 0);
+    assertTrue(bd1.compareTo(bd2) == 0);
+    assertTrue(bd1.compareTo(bd3) <= 0);
+    assertTrue(bd1.compareTo(bd2) >= 0);
+    assertTrue(bd1.compareTo(bd3) != 0);
+}
+
+On the other hand, the equals method considers two BigDecimal objects as equal only if they are equal in value and scale. Thus, BigDecimals 1.0 and 1.00 are not equal when compared by this method.
+
+@Test
+public void whenEqualsCalled_thenSizeAndScaleMatched() {
+    BigDecimal bd1 = new BigDecimal("1.0");
+    BigDecimal bd2 = new BigDecimal("1.00");
+        
+    assertFalse(bd1.equals(bd2));
+}
+
+
+@Test
+public void whenPerformingArithmetic_thenExpectedResult() {
+    BigDecimal bd1 = new BigDecimal("4.0");
+    BigDecimal bd2 = new BigDecimal("2.0");
+
+    BigDecimal sum = bd1.add(bd2);
+    BigDecimal difference = bd1.subtract(bd2);
+    BigDecimal quotient = bd1.divide(bd2);
+    BigDecimal product = bd1.multiply(bd2);
+
+    assertTrue(sum.compareTo(new BigDecimal("6.0")) == 0);
+    assertTrue(difference.compareTo(new BigDecimal("2.0")) == 0);
+    assertTrue(quotient.compareTo(new BigDecimal("2.0")) == 0);
+    assertTrue(product.compareTo(new BigDecimal("8.0")) == 0);
+}
+
+
+        int myintbd=bd.intValue();
+        long mylongbd=bd.longValue();
+        double mydoublebd=bd.doubleValue();
+        String mystringbd=bd.toString();
+
+//************************************************************************************************
+
+BigInteger
+
+import java.math.BigInteger;
+
+@Test
+public void whenBigIntegerCreatedFromConstructor_thenExpectedResult() {
+    BigInteger biFromString = new BigInteger("1234567890987654321");
+    BigInteger biFromByteArray = new BigInteger(
+       new byte[] { 64, 64, 64, 64, 64, 64 });
+    BigInteger biFromSignMagnitude = new BigInteger(-1,
+       new byte[] { 64, 64, 64, 64, 64, 64 });
+
+    assertEquals("1234567890987654321", biFromString.toString());
+    assertEquals("70644700037184", biFromByteArray.toString());
+    assertEquals("-70644700037184", biFromSignMagnitude.toString());
+}
+
+@Test
+public void givenBigIntegers_whenPerformingArithmetic_thenExpectedResult() {
+    BigInteger i = new BigInteger("4");
+    BigInteger j = new BigInteger("2");
+
+    BigInteger sum = i.add(j);
+    BigInteger difference = i.subtract(j);
+    BigInteger quotient = i.divide(j);
+    BigInteger product = i.multiply(j);
+
+    assertEquals(new BigInteger("6"), sum);
+    assertEquals(new BigInteger("2"), difference);
+    assertEquals(new BigInteger("2"), quotient);
+    assertEquals(new BigInteger("8"), product);
+}
+
+
+@Test
+public void givenBigIntegers_whentCompared_thenExpectedResult() {
+    BigInteger i = new BigInteger("123456789012345678901234567890");
+    BigInteger j = new BigInteger("123456789012345678901234567891");
+    BigInteger k = new BigInteger("123456789012345678901234567892");
+
+    assertTrue(i.compareTo(i) == 0);
+    assertTrue(j.compareTo(i) > 0);
+    assertTrue(j.compareTo(k) < 0);
+}
+
+@Test
+public void givenBigIntegers_whenModularCalculation_thenExpectedResult() {
+    BigInteger i = new BigInteger("31");
+    BigInteger j = new BigInteger("24");
+    BigInteger k = new BigInteger("16");
+
+    BigInteger gcd = j.gcd(k);
+    BigInteger multiplyAndmod = j.multiply(k).mod(i);
+    BigInteger modInverse = j.modInverse(i);
+    BigInteger modPow = j.modPow(k, i);
+
+    assertEquals(new BigInteger("8"), gcd);
+    assertEquals(new BigInteger("12"), multiplyAndmod);
+    assertEquals(new BigInteger("22"), modInverse);
+    assertEquals(new BigInteger("7"), modPow);
+}
+
+        int myintC=c.intValue();
+        long mylongC=c.longValue();
+        String myStringC=c.toString();
+        double myDoubleC=c.doubleValue();
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+高频：宽度优先搜索（BFS），深度优先搜索（DFS），二分法（Binary Search），双指针（2 Pointer），堆、栈、队列、哈希表（Heap，Stack，Queue，HashMap/HashSet），前缀和（Prefix Sum），链表（LinkedList），二叉树（Binary Tree），二叉搜索树（Binary Search Tree），快速排序与归并排序（Quick Sort/ Merge Sort）
+
+中频：动态规划（DP），扫描线（Sweep Line），字典树（Trie），并查集（Union Find），单调栈与单调队列（Monotone Stack/ Queue），TreeMap等
+
+低频：Dijkstra，树状数组，线段树，最小生成树等…
+
+
+
+https://zhuanlan.zhihu.com/p/349940945
+
+
+Line Sweep
+设计
+分治算法
+Ordered Map
+递归
+动态规划
+Random
+链表
+回溯算法
+Rejection Sampling 队列
+拓扑排序
+Sliding Window
+位运算
+树状数组
+图
+双指针
+贪心算法
+堆
+哈希表
+二叉搜索树
+栈
+字典树
+极小化极大
+树
+字符串
+脑筋急转弯
+几何
+并查集
+蓄水池抽样
+排序
+线段树
+广度优先搜索
+数学
+记忆化
+深度优先搜索
+数组
+二分查找
+
+
+
+看图学习动态规划：
+
+https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&mid=2247484350&idx=1&sn=fc88aa125f5a5269575b4c4d83774f41&chksm=fa0e6c3fcd79e5297257a05b8c75898b4059b1193956c702ff5ef3f2d8d46432bb7484bf6428&token=110841213&lang=zh_CN#rd
+
+
+剑指offer的动画版本：
+
+每一道都是算法面试的高频类型，并且提供详细的分析、精美的配图、易于理解的动画操作、保姆级别的注释、手把手的视频讲解。
+在线阅读地址：
+https://blog.algomooc.com/
+Image
+左侧菜单栏（如果手机端查看则是在左上角）已经按照顺序排好了，按照顺序一道一道刷就可以，认真学习的话，大概一周时间可以全部掌握。
+同时，大部分的题目我也录制了视频，非常细致的进行讲解。
+在线播放地址：https://space.bilibili.com/28610170
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+如何正确的使用leetcode:
+https://www.zhihu.com/question/26580300
+
+
+去年找互联网的工作，刷了两遍LeetCode，只做了前200道。面试过程中碰到的算法题基本都被秒杀了。最后拿了9个offer。我是按Tag来刷的。链表，二叉树，回溯，深度宽度优先遍历，图，贪心，动规，数组，哈希表……每个tag由easy到hard，每道题先自己思考，不会的参考了一个开源的解答或者参考Discuss或者博客。开始的时候自己独立思考的时间比较长，后来没了耐心，不会的题目就马上看解答了。一般题目解法有多种，这时候最好尝试一下其他的做法，至少要知道思路。比如有关图的题目就会有DFS和BFS两种解法。Discuss里一般都会有高质量的解答。关键是每道题都要弄明白。一开始用IDE，跑出正确结果，再在线默写代码。后来写的多了，直接在线写代码了。这是一个自然的过程，做的多了就有“手感”了。总结一下，按tag由易到难，每道题弄清楚，知道其他的解法，这是核心！搞定了核心，其他的技巧都是锦上添花了。
+
+作者：知乎用户
+链接：https://www.zhihu.com/question/26580300/answer/144589637
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+作者：missmall
+链接：https://www.zhihu.com/question/26580300/answer/167136412
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+作为一个曾经把刷题网站上的题目刷过两遍并且最后拿到不错offer的人，我觉得我还是可以给题主提点建议的。
+
+1. 首先，我不建议题主在自己的本地编译器上先进行编译再上传结果。很多时候，特别是面试的时候，面试官一般都只会直接扔给你一张白纸，让你直接在白纸上写代码，如果题主一直用编译器进行编辑的话，突然被要求在白纸上写代码一定会觉得全身都废了、各种代码写不习惯。而且过度依赖编译器、特别是那些功能比较齐全的编译器的话，突然自己写代码一定会犯各种各样你想都想不到的错误，题主也不希望到时候面试官看到的是一个存在各种低级错误的代码吧。
+2, 另外，建议楼主做完一道题目之后上参考网站上看看参考答案。很多参考答案相比较于我们自己的代码还是很棒很简洁的，看过之后会有一种豁然开朗的感觉。这里安利一个可以查答案的网址：LeetCode / LintCode 答案查询。我自己在刷题的时候经常用，学着参考答案对自己的代码进行修改，效果还是很赞的。现在回过头来看看自己以前的代码，颇有点不忍直视的感觉
+3. 要想有效率的刷题就要对题目进行选择。就是说你不能每天看到什么题目就刷什么题目，而是要有计划的对题目进行先后排序。当时我刷题是在Lintcode上面进行的，就是先利用他的分类功能对题目进行类型分类，再根据难易进行排序，一段时间就专注在一种题目类型上，然后根据自己的水平，从容易或者中等难度开始刷起，一点点增加难度值。这样子的话更容易对一种类型的题目进行掌握，刷题不管速度还是效率都会有所提高。
+4. 总结很重要。人是健忘的动物，如果你刷完题就把题目扔了，肯定没多久就忘的七七八八了，所以每做完一种类型的题目，甚至是做完一天的题目，就要参照标准答案对题目进行梳理整合总结，然后把这种总结记录下来，因为我用的Lintcode里面就有自带的笔记功能，所以我当时就会每天直接在lintcode里面记录自己的总结结果，然后以后每隔一段时间就回顾一下，强化一下记忆，这样你刷过的题目才能真正为你所有，不会边刷边忘，效率底下。
+5. 最后就是一定要坚持刷，每天给自己强行安排指标，这样才能保证自己一直处在编程的状态下。这不但能养成编程刷题的习惯让刷题过程变的没那么痛苦，而且一直处在编程状态下本身就会让你的编程水平处在一个逐渐上升的过程中。
+
+
+
+
+作者：程序员吴师兄
+链接：https://www.zhihu.com/question/26580300/answer/555275635
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+刷 LeetCode 的大局观目前主流的刷题流派有两种，一种【龟系】，一种【兔系】。”龟系“刷法的精髓就是每个题目都做干净。不满足于一种解法，各种解法都写一写。这种流派适合不太急于准备算法面试的小伙伴，追求算法的干净优雅。“兔系“刷法的精髓是暴力，按照标签来刷，使用固定套路来刷。比如小吴之前分析的那道拍案叫绝的算法题，如果告诉你是标签是异或，你马上能 AC 。这都是套路。每个标签内部可以按照 Easy 、Medium、Hard 的顺序做，算法练习是一个系统工程，不要一开始就追求难题，先熟悉熟悉套路，循序渐进的去做，后面所谓的难题也就不在话下。建议小伙伴第一遍刷题可以使用【兔系】法。看懂题目万事开头难，看懂题目是做好一道算法题最开始也是最重要的一步。我将 LeetCode 上的题大致分为三种类型：考察数据结构，比如链表、栈、队列、哈希表、图、Trie、二叉树等考察基础算法，比如深度优先、广度优先、二分查找、递归等考察基本算法思想：递归、分治、回溯搜索、贪心、动态规划等一些算法题目会在标题或题目描述中给出明确的题目类型信息，比如二叉树的重建、链表的反转。而有一些题目中则在条件中给予暗示 ：设计一个 O(nlogn) 的算法（分治：在一颗搜索树中完成任务，对于数据排序）给定一个有序数组（二分法）无需考虑额外的空间（用空间换时间上的优化）数据规模大概是 10000（O(n^2)就可以）问题可以被递归解决（动态规划）无论怎样，当你拿到一道算法题的时候，希望你能先去弄明白这道题目要考察的是什么，是简单的数据结构还是复杂的算法思想。先去理清题目背后解法要用的技术，这样，这道算法题目才有做下去的可能。不要忽视暴力解法一般来说，BAT 等大厂的算法面试题基本上都是 Medium 级别及以下，并希望面试者能在 20 分钟以内给出一个「相对正确」的回答。为什么说是 相对正确 ？每一道算法题得解法都有很多种，并不是说你没有给出完美解或者最优解你就是错的。“正确” 本身是一个相对概念。在算法面试或者平时的算法练习时，如果没有头绪，可以尝试使用暴力解法。（不要忽视暴力解法。暴力解法通常是思考的起点。）当你使用了暴力解法之后，可以与面试官进行沟通优化，把这个过程看作是和面试官一起探讨一个问题的解决方案的过程，这也可以让面试官了解你的思考问题的方式。这也是一个“正确”的回答方式。先实现功能再去优化。Done is better than perfect 。
+
+实际编写到这一步就是算法的落地了：将上面的思考结果思路转换为代码。在编写的过程中需要注意题目中的边界条件，比如数组是否为空，指针是否为 NULL；同时也要注意代码的规范性：变量名，模块化，复用性。做好总结一定要做好总结，特别是当没有解出题来，没有思路的时候，一定要通过结束阶段的总结来反思犯了什么错误。解出来了也一定要总结题目的特点，题目中哪些要素是解出该题的关键。不做总结的话，花掉的时间所得到的收获通常只有 50% 左右。在题目完成后，要特别注意总结此题最后是归纳到哪种类型中，它在这种类型中的独特之处是什么。经过总结，这样题目才会变成你在此问题域中的积累。做好总结，让每道题都有最大的收获。一个月之后自己的状态应该会有很大变化。最后，承认刷 LeetCode 很吃力很正常你我都是普通的程序员，不像那些玩 ACM，拳打 LeetCode，脚踩剑指 offer，我们得接受现实：刷题，就是很痛苦很打击的过程。但，一遍一遍的刷，多刷一题就多掌握一题，你总会比别人更强一点。大家一起加油：）为了避免知乎大佬觉得我吹逼，在这里贴一下自己的 GitHub 地址，目前 20 k star。12月初，将图解算法项目放到了GitHub上面去，短短两天登上了 trending 版第一的位置，点击这了解如何我是如何 21天，在Github上获取 6300 star 的。
+
+https://zhuanlan.zhihu.com/p/53584215
 
 
 
