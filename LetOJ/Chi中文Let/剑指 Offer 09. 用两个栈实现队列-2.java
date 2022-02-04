@@ -132,7 +132,41 @@ class CQueue {
 
 
 
+class Solution {
+    int land=0;
+    public int numIslands(char[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+        boolean[][] v=new boolean[m][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]=='1'&&!v[i][j]){
+                    dfs(grid,v,i,j);
+                    land++;
+                }
+            }
+        }
+        return land;
+    }
 
+    public void dfs(char[][] grid, boolean[][] v, int x, int y){
+        //边界条件检查
+        if(x<0||x>=grid.length||y<0||y>=grid[0].length){
+            return;
+        }
+
+        // 如果访问过，就返回
+        if(v[x][y]||grid[x][y]=='0'){
+            return;
+        }
+        // 建立标志
+        v[x][y]=true;
+        dfs(grid, v, x+1,y);
+        dfs(grid, v, x-1,y);
+        dfs(grid, v, x,y+1);
+        dfs(grid, v, x,y-1);
+    }
+}
 
 
 
