@@ -2089,6 +2089,8 @@ What if the inputs contain unicode characters? How would you adapt your solution
 	
 ##HashSet iteration
 
+import java.util.HashSet;
+import java.util.Iterator;
 
 		HashSet set=new HashSet();
 		
