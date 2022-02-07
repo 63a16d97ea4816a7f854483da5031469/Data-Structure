@@ -90,8 +90,24 @@ class Solution {
     }
 }
 
+复杂度分析：
+
+时间复杂度 
+O(N^2) ： 每次调用 recur(i,j) 减去一个根节点，因此递归占用 O(N) ；最差情况下（即当树退化为链表），每轮递归都需遍历树所有节点，占用 O(N) 。
 
 
+空间复杂度 O(N) ： 最差情况下（即当树退化为链表），递归深度将达到 N。
+
+// 作者：jyd
+// 链接：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+空间：
+O(N) 额外空间。
+
+
+// 输入: [1,3,2,6,5]  true
 class Solution {
     public boolean verifyPostorder(int[] postorder) {
        return helper(postorder,0,postorder.length-1);
@@ -175,6 +191,40 @@ class Solution {
 
 
 
+
+单调栈解法：
+
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        Stack<Integer> stack = new Stack<>();
+        int root = Integer.MAX_VALUE;
+        for(int i = postorder.length - 1; i >= 0; i--) {
+            if(postorder[i] > root) return false;
+            while(!stack.isEmpty() && stack.peek() > postorder[i])
+                root = stack.pop();
+            stack.add(postorder[i]);
+        }
+        return true;
+    }
+}
+
+复杂度分析：
+
+时间复杂度 
+O(N) ： 遍历 
+
+空间：
+O(N) 额外空间。
+
+作者：jyd
+链接：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+// 作者：jyd
+// 链接：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
