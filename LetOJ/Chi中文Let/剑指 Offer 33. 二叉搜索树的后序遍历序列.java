@@ -44,6 +44,17 @@ https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lco
 数组长度 <= 1000
 
 
+
+后序遍历：
+
+>> 先左子树
+>> 再右子树
+>> 最后根节点
+
+
+
+
+
 对题目易错地方进行总结:
 
 
@@ -56,6 +67,28 @@ https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lco
 
  * 
  */
+
+
+// 后序遍历：
+
+// >> 先左子树
+// >> 再右子树
+// >> 最后根节点
+// 输入: [1,3,2,6,5]  true
+
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        return recur(postorder, 0, postorder.length - 1);
+    }
+    boolean recur(int[] postorder, int i, int j) {
+        if(i >= j) return true;
+        int p = i;
+        while(postorder[p] < postorder[j]) p++;
+        int m = p;
+        while(postorder[p] > postorder[j]) p++;
+        return p == j && recur(postorder, i, m - 1) && recur(postorder, m, j - 1);
+    }
+}
 
 
 
@@ -91,11 +124,53 @@ class Solution {
 
 
 
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        return recur(postorder, 0, postorder.length - 1);
+    }
+    boolean recur(int[] postorder, int i, int j) {
+        if(i >= j) return true;
+        int p = i;
+        while(postorder[p] < postorder[j]) p++;
+        int m = p;
+        while(postorder[p] > postorder[j]) p++;
+        return p == j && recur(postorder, i, m - 1) && recur(postorder, m, j - 1);
+    }
+}
+
+// 作者：jyd
+// 链接：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
 
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        if(postorder==null||postorder.length==1) return true;
 
+        return verify(postorder,0,postorder.length-1);
+    }
+
+    public boolean verify(int[] postorder, int start, int end){
+        if(start>=end||start<0||end<0||start>postorder.length-1||end>postorder.length-1) return true;
+
+        int point=start;
+        while(postorder[point]<postorder[end]){
+            point++;
+        }
+    
+        int tmp=point;
+        while(tmp<=end){
+            if(postorder[tmp++]<postorder[end]){
+                return false;
+            }
+        }
+        if(tmp==end) return true;
+        return verify(postorder,start,point-1) && verify(postorder,point,end-1);
+    }
+}
 
 
 
