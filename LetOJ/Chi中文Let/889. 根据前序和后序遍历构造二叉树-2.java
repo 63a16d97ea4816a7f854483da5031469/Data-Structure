@@ -103,7 +103,33 @@ class Solution {
 
 
 
+class Solution {
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        if(preorder==null||postorder==null) return null;
 
+        int n=preorder.length;
+        if(n==0) return null;
+        TreeNode root=new TreeNode(preorder[0]);
+        if(n==1) return root;
+
+        int left=0;
+        for(int i=0;i<n;i++){
+            if(preorder[1]==postorder[i]){
+                left=i+1;
+                break;
+            }
+        }
+        // 需要注意 preorder是从 1开始 (除去第一个node)
+        root.left=constructFromPrePost(Arrays.copyOfRange(preorder,1,left+1),
+                                        Arrays.copyOfRange(postorder,0,left));
+        // 需要注意 preorder是从 left+1开始 (除去第一个node)
+        // 需要注意 postorder是从 n-1为结尾，除去最后一个node
+        root.right=constructFromPrePost(Arrays.copyOfRange(preorder,left+1,n),
+                                        Arrays.copyOfRange(postorder,left,n-1));
+        return root;
+    }
+
+}
 
 
 
