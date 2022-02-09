@@ -70,6 +70,82 @@ link: https://leetcode-cn.com/problems/path-sum-iii/
  * 
  */
 
+
+// 回溯模板:
+
+class Solution {
+    List<Integer> list = new ArrayList<>();
+    int res = 0;
+    public int pathSum(TreeNode root, int sum) {
+        // 特殊情况
+        if(root == null)    return 0;
+        // 先将根节点加入list，再进入递归
+        list.add(root.val);
+
+        helper(root, sum);
+        return res;
+    }
+
+    public void helper(TreeNode root, int sum) {
+        // if 路径是否为解
+        int tmp = 0;
+        for(int i = list.size() - 1; i >= 0; i--){
+            tmp += list.get(i);
+            if(tmp == sum)  res++;
+        }
+
+        // for 多路选择
+        if(root.left != null){
+            // 做选择
+            list.add(root.left.val);
+            helper(root.left, sum);
+            // 撤销选择
+            list.remove(list.size() - 1);
+        }
+        if(root.right != null){
+            // 做选择
+            list.add(root.right.val);
+            helper(root.right, sum);
+            // 撤销选择
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
+
+
+回溯非模板：
+
+class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        helper(root, sum);
+        return res;
+    }
+
+    List<Integer> list = new ArrayList<>();
+    int res = 0;
+    public void helper(TreeNode root, int sum) {
+        // if 是否遍历到底
+        if(root == null)    return;
+        // if 路径是否为解
+        int tmp = 0;
+        list.add(root.val);
+        for(int i = list.size() - 1; i >= 0; i--){
+            tmp += list.get(i);
+            if(tmp == sum)  res++;
+        }
+
+        // for 多路选择
+        helper(root.left, sum);
+        helper(root.right, sum);
+        // 撤销选择
+        list.remove(list.size() - 1);
+    }
+}
+
+
+
+
 执行结果：
 超出内存限制
 

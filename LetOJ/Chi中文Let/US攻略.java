@@ -8,7 +8,8 @@ LeetCode-Solution-in-Good-Style
 https://github.com/abshawn/LeetCode-Solution-in-Good-Style
 
 
-
+力扣热题100 速通指南
+https://zhuanlan.zhihu.com/p/458506664
 
 
 
