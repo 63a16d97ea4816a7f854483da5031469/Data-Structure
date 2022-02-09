@@ -113,6 +113,21 @@ class Solution {
 }
 
 
+10  sum >>10 res: 0
+5 10  sum >>15 res: 0
+3 5 10 5 3 
+10  sum >>18 res: 1
+3 3 5 10  sum >>21 res: 1
+-2 3 5 10  sum >>16 res: 1
+2 5 10  sum >>17 res: 1
+1 2 5 10 5 2 1 
+10  sum >>18 res: 2
+-3 10  sum >>7 res: 2
+11 -3 10 -3 11 
+10  sum >>18 res: 3
+
+
+
 
 回溯非模板：
 
