@@ -32,7 +32,7 @@ link: https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof
 
 
 
-2022-02-10 at 22:19
+2022-02-11 at 0:10
  
 
 
@@ -61,10 +61,22 @@ link: https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof
  */
 
 
+class Solution {
+    public int minArray(int[] numbers) {
+        return minArr(numbers,0,numbers.length-1);
+    }
+    public int minArr(int[] numbers, int start, int end){
+        if(start+1>=end){
+            return Math.min(numbers[start],numbers[end]);
+        }
 
-
-
-
+        if(numbers[start]<numbers[end]){
+            return numbers[start];
+        }
+        int mid=(start+end)/2;
+        return Math.min(minArr(numbers,start,mid-1),minArr(numbers,mid,end));
+    }
+}
 
 
 
