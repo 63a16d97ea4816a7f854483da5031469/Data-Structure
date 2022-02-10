@@ -153,10 +153,34 @@ class Solution {
         // for 多路选择
         helper(root.left, sum);
         helper(root.right, sum);
+
+        for(int ele:list){
+            System.out.print(ele+" ");
+        }
+        System.out.println();
         // 撤销选择
         list.remove(list.size() - 1);
     }
 }
+
+
+10 5 3 3 
+10 5 3 -2 
+10 5 3 
+10 5 2 1 
+10 5 2 
+10 5 
+10 -3 11 
+10 -3 
+10 
+
+
+
+
+
+
+
+
 
 
 
