@@ -460,20 +460,28 @@ https://zhuanlan.zhihu.com/p/349591952
 
 
 
+Multiple Application Instances on Mac OS X
+
+
+
+Trying to use the Finder to open multiple instances of an application on Mac OS X will simply cause the first instance to come to the foreground. To get around this, use the open command from the command line with the -n option. The -n option opens a new instance of the application even if one is already running.
+
+For example, if the Data Center software is located on the user's Desktop, using the following command in the Terminal will open a new instance of the Data Center software.
+
+open -n "/Users/user/Desktop/Data Center.app"
+
+open -n "/Applications/AnkiApp.app"
+
 ------------------------------------------------------------------------------------------------------------------------
 
+第四章 - 高频考题（简单）
+https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/easy
 
+第五章 - 高频考题（中等）
+https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/medium
 
-
-
-
-
-
-
-
-
-
-
+第六章 - 高频考题（困难）
+https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/hard
 
 ------------------------------------------------------------------------------------------------------------------------
 
