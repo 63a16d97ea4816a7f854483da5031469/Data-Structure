@@ -228,3 +228,42 @@ O(N) 额外空间。
 
 
 
+
+
+
+
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+      Map<Integer, Integer> freq = new HashMap<>();
+
+        for (int num : nums) {
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
+        }
+        // 最大堆
+        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((o1, o2) -> o1.getValue() - o2.getValue());
+        for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            if (pq.size() < k) {
+                pq.offer(entry);
+            } else if (entry.getValue() > pq.peek().getValue()) {
+                pq.poll();
+                pq.offer(entry);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : pq) {
+            result.add(entry.getKey());
+        }
+        
+        int[] arr=new int[result.size()];
+        for(int i=0;i<result.size();i++){
+            arr[i]=result.get(i);
+        }
+
+        return arr;
+    }
+}
+
+
+
