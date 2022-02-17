@@ -91,6 +91,61 @@ class Solution {
 
 
 
+public class Solution {
+
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        if (len < 2) {
+            return s;
+        }
+
+        int maxLen = 1;
+        int begin = 0;
+        // dp[i][j] 表示 s[i..j] 是否是回文串
+        boolean[][] dp = new boolean[len][len];
+        // 初始化：所有长度为 1 的子串都是回文串
+        for (int i = 0; i < len; i++) {
+            dp[i][i] = true;
+        }
+
+        char[] charArray = s.toCharArray();
+        // 递推开始
+        // 先枚举子串长度
+        for (int L = 2; L <= len; L++) {
+            // 枚举左边界，左边界的上限设置可以宽松一些
+            for (int i = 0; i < len; i++) {
+                // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得
+                int j = L + i - 1;
+                // 如果右边界越界，就可以退出当前循环
+                if (j >= len) {
+                    break;
+                }
+
+                if (charArray[i] != charArray[j]) {
+                    dp[i][j] = false;
+                } else {
+                    if (j - i < 3) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                }
+
+                // 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
+                    begin = i;
+                }
+            }
+        }
+        return s.substring(begin, begin + maxLen);
+    }
+}
+
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
@@ -98,8 +153,45 @@ class Solution {
 
 
 
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        
+        size = len(s)
+        # 特殊处理
+        if size == 1:
+            return s
+        # 创建动态规划dynamic programing表
+        dp = [[False for _ in range(size)] for _ in range(size)]
+        # 初始长度为1，这样万一不存在回文，就返回第一个值（初始条件设置的时候一定要考虑输出）
+        max_len = 1
+        start = 0
+        for j in range(1,size):
+            for i in range(j):
+                # 边界条件：
+                # 只要头尾相等（s[i]==s[j]）就能返回True
+                if j-i<=2:
+                    if s[i]==s[j]:
+                        dp[i][j] = True
+                        cur_len = j-i+1
+                # 状态转移方程 
+                # 当前dp[i][j]状态：头尾相等（s[i]==s[j]）
+                # 过去dp[i][j]状态：去掉头尾之后还是一个回文（dp[i+1][j-1] is True）
+                else:
+                    if s[i]==s[j] and dp[i+1][j-1]:
+                        dp[i][j] = True
+                        cur_len = j-i+1
+                # 出现回文更新输出
+                if dp[i][j]:
+                    if cur_len > max_len:
+                        max_len = cur_len
+                        start = i
 
+        return s[start:start+max_len]
 
+作者：_Breiman
+链接：https://leetcode-cn.com/problems/longest-palindromic-substring/solution/5-zui-chang-hui-wen-zi-chuan-dong-tai-gu-p7uk/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
