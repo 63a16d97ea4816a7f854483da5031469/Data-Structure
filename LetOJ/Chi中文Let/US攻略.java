@@ -486,11 +486,12 @@ https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/hard
 ------------------------------------------------------------------------------------------------------------------------
 
 
+面试题｜智力题在面试中常问的题目！
+https://leetcode-cn.com/circle/discuss/n4UlY1/
 
 
-
-
-
+必须干掉这十道，面试100%遇到！
+https://developer.51cto.com/article/696400.html
 
 
 
