@@ -55,6 +55,110 @@ cache.get(4);       // returns 4
  */
 
 
+
+
+自己写的：
+
+
+class LRUCache {
+    int capacity;
+    DlinkNode dummyHead;
+    DlinkNode dummyTail;
+    HashMap<Integer, DlinkNode> map;
+
+    public LRUCache(int capacity) {
+        this.capacity=capacity;
+        dummyHead=new DlinkNode();
+        dummyTail=new DlinkNode();
+        dummyHead.next=dummyTail;
+        dummyTail.pre=dummyHead;
+        map=new HashMap<Integer, DlinkNode>();
+    }
+    public void removeNode(DlinkNode node){
+        node.pre.next=node.next;
+        node.next.pre=node.pre; 
+    }
+
+    public void addNodeToHead(DlinkNode node){
+        node.next=dummyHead.next;
+        dummyHead.next.pre=node;
+        dummyHead.next=node;
+        node.pre=dummyHead; //忘记了这一句
+    }
+
+    public DlinkNode removeTail(){
+        DlinkNode preNode=dummyTail.pre;
+        dummyTail.pre=preNode.pre;
+        preNode.pre.next=dummyTail; //忘记了这一句
+        return preNode;
+    }
+
+    public void moveTohead(DlinkNode node){
+        removeNode(node);
+        addNodeToHead(node);
+    }
+
+    public int get(int key) {
+        if(map.containsKey(key)){
+            DlinkNode node=map.get(key);
+            moveTohead(node);
+            return node.value;
+        }
+
+        return -1;
+    }
+    
+    public void put(int key, int value) {
+        if(map.containsKey(key)){
+            DlinkNode node=map.get(key);
+            node.value=value;
+            map.put(key,node);
+            moveTohead(node);
+        }else{
+            // not existed before
+            DlinkNode newNode=new DlinkNode(key,value);
+            if(map.size()==capacity){
+                DlinkNode old=removeTail();
+                // update the map;
+                map.remove(old.key);
+            }
+            addNodeToHead(newNode);
+            map.put(key,newNode);
+        }
+    }
+
+    
+}
+class DlinkNode{
+    int key;
+    int value;
+    DlinkNode pre;
+    DlinkNode next;
+    public DlinkNode(int key, int value)
+    {
+        this.key=key;
+        this.value=value;
+    }
+    public DlinkNode(){
+
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+
+
+
+
+
+
+
+
 import java.util.Hashtable;
 public class LRUCache {
     class DLinkedNode {
