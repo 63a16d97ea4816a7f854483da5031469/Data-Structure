@@ -420,5 +420,73 @@ class Solution {
 
 
 
+class Solution {
+    int ret=0;
+    int target;
+    public int pathSum(TreeNode root, int targetSum) {
+        target=targetSum;
+        preOrder(root);
+        return ret;
+    }
+
+    public void preOrder(TreeNode root){
+        if(root==null) return;
+        findSum(root,0);
+        // System.out.println(root.val);
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+
+    public void findSum(TreeNode root, int sum){
+        if(root==null) return;
+        sum+=root.val;
+        if(sum==target){
+            ret++;
+            // return;   这里千万不能return   《---因为可能继续向下延展，仍然是-1
+        }
+        findSum(root.left,sum);
+        findSum(root.right,sum);
+    }
+}
+
+
+
+
+
+class Solution {
+    int target;
+    int ret=0;
+    List<TreeNode> list=new ArrayList<TreeNode>();
+    public int pathSum(TreeNode root, int targetSum) {
+        target=targetSum;
+        backtrace(root);
+        return ret;
+    }
+    public void backtrace(TreeNode root){
+        if(root==null) return;
+        list.add(root);
+        int tmp=0;
+        for(int i=list.size()-1;i>=0;i--){
+            tmp+=list.get(i).val;
+            if(tmp==target)
+            {
+                ret++;
+            }
+        }
+
+        //选择左节点
+        if(root.left!=null){
+            backtrace(root.left);
+            list.remove(list.size()-1);
+        }
+        //选择右节点
+        if(root.right!=null){
+            backtrace(root.right);
+            list.remove(list.size()-1);
+        }
+    }
+    
+}
+
 
 

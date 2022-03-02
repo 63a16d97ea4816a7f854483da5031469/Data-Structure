@@ -57,7 +57,21 @@ cache.get(4);       // returns 4
 
 
 
-自己写的：
+自己写的:
+
+易错点： 
+
+LRU:
+双向链表的头部，存的是 最新访问 的 
+双向链表的尾部，存的是 最旧访问 的
+
+ 1. 在Get方法里面，要有moveToHead(DLinkedNode node); 不能忘记。
+ 2. 在Put方法里面，分两种情况，一种是HashMap从来没有这个key的情况，在头部添加（头部永远是最新），然后判断是否达到最大capacity，如果超过，去掉最后一个尾巴值，并去掉其HashMap存的key。
+ 另一个种是HashMap有这个key，更新值value，并将该node，moveToHead(node);
+ 3. 不要忘记几个操作： 在头部添加节点 addNode(node)，在尾部删除节点 removeTail(node)，把节点放到头部第一个moveToHead(node)，删除节点 removeNode(node);
+
+
+ (即便不会，也可以写最简单的linkedlist那种偷懒写法).
 
 
 class LRUCache {
