@@ -64,9 +64,6 @@ link: https://leetcode-cn.com/problems/convert-a-number-to-hexadecimal/
 
 
 
-
-
-
 class Solution {
     public String toHex(int _num) {
         if (_num == 0) return "0";
