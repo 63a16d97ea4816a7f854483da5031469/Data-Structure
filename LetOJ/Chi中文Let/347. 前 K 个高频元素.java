@@ -349,3 +349,98 @@ class Solution {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+import java.util.Map.*;
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+
+        List<java.util.Map.Entry<Integer,Integer>> list=new ArrayList<>();
+        for(Entry<Integer,Integer> entry:map.entrySet()){
+            list.add(entry);
+        }
+        Collections.sort(list,(o1, o2)->{
+            return o2.getValue()-o1.getValue();
+        });
+        int[] result=new int[k];
+        for(int i=0;i<k;i++){
+            result[i]=list.get(i).getKey();
+        }
+        return result;
+    }
+}
+
+
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+        PriorityQueue<java.util.Map.Entry<Integer,Integer>> queue=new PriorityQueue<>((o1,o2)->{
+            return o2.getValue()-o1.getValue();
+        });
+
+        for(java.util.Map.Entry entry:map.entrySet()){
+            queue.add(entry);
+        }
+        int[] result=new int[k];
+        for(int i=0;i<k;i++){
+            result[i]=queue.poll().getKey();
+        }
+       
+        return result;
+    }
+}
+
+
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+        // 桶排序
+        List<List<Integer>> bucket=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            bucket.add(new ArrayList<Integer>());
+        }
+
+        for(java.util.Map.Entry<Integer,Integer> entry:map.entrySet()){
+            // ArrayList是从0开始的，所以要减一
+            List<Integer> saved=bucket.get(entry.getValue()-1); 
+            if(!saved.contains(entry.getKey())){
+                saved.add(entry.getKey());
+            }
+        }
+
+        int[] result=new int[k];
+        int index=0;
+        for(int i=nums.length-1;i>=0&&index<k;i--){  
+            List<Integer> saved=bucket.get(i);
+                for(int o:saved){
+                    result[index++]=o;
+                }
+        }
+       
+        return result;
+    }
+}
