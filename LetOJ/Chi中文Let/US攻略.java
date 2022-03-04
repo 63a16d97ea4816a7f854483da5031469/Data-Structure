@@ -498,8 +498,8 @@ https://developer.51cto.com/article/696400.html
 
 ------------------------------------------------------------------------------------------------------------------------
 
-
-
+347. 前 K 个高频元素
+https://leetcode-cn.com/problems/top-k-frequent-elements/
 
 import java.util.Map.*;
 class Solution {
@@ -586,6 +586,40 @@ class Solution {
     }
 }
 
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+692. 前K个高频单词
+https://leetcode-cn.com/problems/top-k-frequent-words/
+
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        HashMap<String, Integer> map=new HashMap<String, Integer>();
+        for(String tmp:words){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+        PriorityQueue<java.util.Map.Entry<String, Integer>> queue=new PriorityQueue<>((o1,o2)->{
+            if(o1.getValue()==o2.getValue()){
+                return o1.getKey().compareTo(o2.getKey()); // 以字典序排序
+            }else{
+                return o2.getValue()-o1.getValue(); // 最大堆
+            }
+        });
+        for(java.util.Map.Entry<String,Integer> entry:map.entrySet()){
+            queue.add(entry);
+        }
+        List<String> result=new ArrayList<>();
+        while(result.size()<k){
+            result.add(queue.poll().getKey());
+        }
+        return result;
+    }
+}
 
 
 
