@@ -592,13 +592,104 @@ class Solution {
 ------------------------------------------------------------------------------------------------------------------------
 
 
+phone pad
+
+https://www.hackerrank.com/contests/kodecrypt-2k15-wild-card-entry/challenges/phone-keypad
 
 
 
 
+https://www.hackerrank.com/ 测试题
+
+
+输入参数1为一个键盘的顺序（9宫格，1 to 9) String, 输入参数2为要连续按的键盘的数码 String, 规则：
+1. 按第一个按键是不耗费时间的
+2. 移动到当前按键的旁边的按键是耗费1s时间
+3. 移动到非直接连接的按键是耗费2s的时间
+
+求，按序按完所有按键的最短时间。
+
+Example:
+ 
+231897465, 5111
 
 
 
+  public static void main(String args[]) {
+    String keyPad = "231897465";
+    char[][] c = new char[3][3];
+    for (int i = 0; i < keyPad.length(); i++) {
+      c[i / 3][i % 3] = keyPad.charAt(i);
+    }
+    for (int i = 0; i < c.length; i++) {
+      for (int j = 0; j < c[0].length; j++) {
+        System.out.print(c[i][j] + " ");
+      }
+      System.out.println();
+    }
+
+    List<String> inputs = Arrays.asList(new String[] {"5111", "7939124", "12131"});
+    for (String tmp : inputs) {
+      System.out.println("Input: " + tmp + " Result: " + findMinTime(keyPad, tmp));
+    }
+  }
+
+
+  static int[] currLocal;
+  static char curr;
+
+  public static int findTime(char[][] c, char target) {
+
+    int[] dx = new int[] {1, -1, 0};
+    int[] dy = new int[] {1, -1, 0};
+
+    int x = currLocal[0];
+    int y = currLocal[1];
+
+    if (target == c[x][y]) return 0;
+
+    int newX = 0, newY = 0;
+
+    for (int i = 0; i < dx.length; i++) {
+      for (int j = 0; j < dy.length; j++) {
+        newX = x + dx[i];
+        newY = y + dy[j];
+        if (newX < 0 || newY < 0 || newX >= c.length || newY >= c[0].length) {
+          continue;
+        }
+        if (c[newX][newY] == target) {
+          return 1;
+        }
+      }
+    }
+    return 2;
+  }
+
+  public static int findMinTime(String keyPad, String seq) {
+    if (seq.length() == 0 || seq.length() == 1) return 0;
+    char[][] c = new char[3][3];
+    HashMap<Character, int[]> map = new HashMap<>();
+
+    for (int i = 0; i < keyPad.length(); i++) {
+      c[i / 3][i % 3] = keyPad.charAt(i);
+    }
+
+    for (int i = 0; i < c.length; i++) {
+      for (int j = 0; j < c[0].length; j++) {
+        map.put(c[i][j], new int[] {i, j});
+      }
+    }
+
+    curr = seq.charAt(0);
+    currLocal = map.get(curr);
+    int ans = 0;
+    for (int i = 1; i < seq.length(); i++) {
+      ans += findTime(c, seq.charAt(i));
+      curr = seq.charAt(i);
+      currLocal = map.get(curr);
+    }
+    return ans;
+  }
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -606,9 +697,39 @@ class Solution {
 
 
 
+https://www.hackerrank.com/ 测试题
 
 
+给一个数组  a = [1,4,8,9,2,4]  找到数组中，与前缀数组里面元素最大diff的值。
+例如  a[0]=0;
+a[1]= a[1]-a[0]=4-1=3
+a[2]= a[2]-a[0]=8-1=7
+a[3]= a[3]-a[0]=9-1=8
 
+max_diff=8
+
+a=[1];
+max_diff=-1;
+
+当没有最大diff的时候，返回-1;
+
+要求在O(n)复杂度解决。
+
+
+public static int findMaxDiff(int[] a){
+	//防止有负数
+	int max=Integer.MIN_VALUE;
+	int minArr=new int[a.length];
+	//  处理边界
+	minArr[0]=a[0];
+	for(int i=1;i<a.length;i++){
+		minArr[i]=Math.min(minArr[i-1],a[i]);
+	}
+	for(int i=0;i<a.length;i++){
+		max=Math.max(max, a[i]-minArr[i]);
+	}
+	return max;
+}
 
 
 
