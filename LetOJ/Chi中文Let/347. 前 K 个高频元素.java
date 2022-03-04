@@ -437,10 +437,47 @@ class Solution {
         for(int i=nums.length-1;i>=0&&index<k;i--){  
             List<Integer> saved=bucket.get(i);
                 for(int o:saved){
-                    result[index++]=o;
+                    result[index++]=o; //可以被改进
                 }
         }
        
         return result;
     }
 }
+
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+        // 桶排序
+        List<List<Integer>> bucket=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            bucket.add(new ArrayList<Integer>());
+        }
+
+        for(java.util.Map.Entry<Integer,Integer> entry:map.entrySet()){
+            // ArrayList是从0开始的，所以要减一
+            List<Integer> saved=bucket.get(entry.getValue()-1); 
+            if(!saved.contains(entry.getKey())){
+                saved.add(entry.getKey());
+            }
+        }
+
+        int[] result=new int[k];
+        List<Integer> resultList=new ArrayList<Integer>();
+        for(int i=nums.length-1;i>=0;i--){  
+            List<Integer> saved=bucket.get(i);
+            resultList.addAll(saved);  // 改进部分
+        }
+        for(int i=0;i<k;i++){
+            result[i]=resultList.get(i);
+        }
+       
+        return result;
+    }
+}
+
