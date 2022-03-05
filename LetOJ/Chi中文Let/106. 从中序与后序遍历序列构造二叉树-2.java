@@ -233,3 +233,35 @@ class Solution {
     }
 }
 
+
+
+
+
+
+
+
+
+class Solution {
+    int index=0;
+    HashMap<Integer, Integer> map=new HashMap<>();
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        index=postorder.length-1;
+        for(int i=0;i<inorder.length;i++){
+            map.put(inorder[i],i);
+        }
+        return build(inorder,postorder,0,postorder.length-1);
+    }
+    public TreeNode build(int[] inorder, int[] postorder, int left, int right){
+        if(left>right) return null;
+        if(index<0) return null;
+
+        TreeNode root=new TreeNode(postorder[index]);
+        index--;
+        int position=map.get(root.val);
+        // 易错：后序遍历  ===》 左子树父节点，右子树父节点，父节点 9(左) 15（左）7（右）20（右） 3（父）
+        root.right=build(inorder,postorder,position+1,right);
+        root.left=build(inorder,postorder,left,position-1);
+        return root;
+    }
+}
+
