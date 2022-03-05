@@ -234,13 +234,6 @@ class Solution {
 }
 
 
-
-
-
-
-
-
-
 class Solution {
     int index=0;
     HashMap<Integer, Integer> map=new HashMap<>();
@@ -264,4 +257,6 @@ class Solution {
         return root;
     }
 }
+
+
 
