@@ -551,7 +551,7 @@ class Solution {
 }
 
 
-
+14 ms:
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         HashMap<Integer, Integer> map=new HashMap<>();
@@ -560,7 +560,7 @@ class Solution {
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
         }
         // 桶排序
-        List<List<Integer>> bucket=new ArrayList<>();
+        List<List<Integer>> bucket=new ArrayList<>();  // List.get(i) 寻址是每次从前或者从后进行扫描，比较慢
         for(int i=0;i<nums.length;i++){
             bucket.add(new ArrayList<Integer>());
         }
@@ -587,8 +587,50 @@ class Solution {
 }
 
 
+11ms:
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+        // 桶排序
+        List<Integer>[] bucket=new List[nums.length];   // List<Integer>[] 随机寻址 Random Access
+
+        for(java.util.Map.Entry<Integer,Integer> entry:map.entrySet()){
+            int key=entry.getKey();
+            int value=entry.getValue();
+
+            List<Integer> saved=bucket[value-1]; 
+            if(saved==null) {
+                saved=new ArrayList<Integer>();
+                bucket[value-1]=saved; 
+            }
+            if(!saved.contains(entry.getKey())){
+                saved.add(key);
+            }
+        }
+
+        int[] result=new int[k];
+        List<Integer> resultList=new ArrayList<Integer>();
+        for(int i=nums.length-1;i>=0;i--){  
+            List<Integer> saved=bucket[i];
+            if(saved==null) continue;
+            resultList.addAll(saved);
+        }
+        for(int i=0;i<k;i++){
+            result[i]=resultList.get(i);
+        }
+       
+        return result;
+    }
+}
+
 
 ------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -622,6 +664,68 @@ class Solution {
 }
 
 
+
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        HashMap<String, Integer> map=new HashMap<String, Integer>();
+        for(String tmp:words){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+        List<java.util.Map.Entry<String, Integer>> list=new ArrayList<>();
+        for(java.util.Map.Entry<String,Integer> entry:map.entrySet()){
+            list.add(entry);
+        }
+
+        Collections.sort(list, (o1,o2)->{
+            if(o1.getValue()==o2.getValue()){
+                return o1.getKey().compareTo(o2.getKey());
+            }else{
+                return o2.getValue()-o1.getValue();
+            }
+        });
+
+        List<String> result=new ArrayList<>();
+        for(int i=0;i<k;i++){
+            result.add(list.get(i).getKey());
+        }
+        return result;
+    }
+}
+
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        HashMap<String, Integer> map=new HashMap<String, Integer>();
+        for(String tmp:words){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+       // 桶排序
+       List<String>[] bucketArr=new List[words.length]; 
+
+       for(java.util.Map.Entry<String,Integer> entry:map.entrySet()){
+           String key=entry.getKey();
+           int value=entry.getValue();
+           List<String> saved=bucketArr[value];
+           if(saved==null){
+               bucketArr[value]=new ArrayList<String>();
+           }
+           if(!bucketArr[value].contains(key)){
+               bucketArr[value].add(key);
+           }
+       }
+       List<String> resultList=new ArrayList<>();
+       for(int i=bucketArr.length-1;i>=0;i--){
+           if(bucketArr[i]==null) continue;
+           Collections.sort(bucketArr[i]);
+           resultList.addAll(bucketArr[i]);
+       }
+    
+        List<String> result=new ArrayList<>();
+        for(int i=0;i<k;i++){
+            result.add(resultList.get(i));
+        }
+        return result;
+    }
+}
 
 ------------------------------------------------------------------------------------------------------------------------
 
