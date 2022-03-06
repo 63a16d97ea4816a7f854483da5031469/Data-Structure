@@ -151,7 +151,45 @@ class Solution {
 
 
 
-
+class Solution {
+    public int findPeakElement(int[] nums) {
+        int l=0;
+        int r=nums.length-1;
+        int ans=0;
+        while(l<=r){
+            int mid=(l+r)/2;
+            // [易错] 注意这里的符号规则
+            if(compare(getNum(nums,mid-1),getNum(nums,mid))<0 &&
+            compare(getNum(nums,mid),getNum(nums,mid+1))>0){
+                return mid;
+            }
+            if(compare(getNum(nums,mid),getNum(nums,mid+1))<0){
+                l=mid+1;
+            }else{
+                r=mid-1;
+            }
+        }
+        return ans;
+    }
+    public int[] getNum(int[] nums, int id){
+        //[易错]注意这里是-1 和 nums.length
+        if(id==-1||id==nums.length){
+            return new int[]{0,0};
+        }
+        return new int[]{1,nums[id]};
+    }
+    public int compare(int[] one, int[] two){
+        if(one[0]!=two[0]){
+            //[易错]注意这里的正好和负号
+            return one[0]>two[0]?1:-1;
+        }
+ 
+        if(one[1]==two[1]){
+            return 0;
+        }
+        return one[1]>two[1]?1:-1;
+    }
+}
 
 
 
