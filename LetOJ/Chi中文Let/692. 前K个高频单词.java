@@ -218,8 +218,34 @@ class Solution {
 
 
 
+// 借助TreeMap:
 
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+    HashMap<String, Integer> map = new HashMap<>();
+    TreeMap<java.util.Map.Entry<String, Integer>, String> treemap =
+        new TreeMap<>(
+            (o1, o2) -> {
+              if (o1.getValue() == o2.getValue()) {
+                return o1.getKey().compareTo(o2.getKey());
+              } else {
+                return o2.getValue() - o1.getValue();
+              }
+            });
+    for (String tmp : words) {
+      map.put(tmp, map.getOrDefault(tmp, 0) + 1);
+    }
+    for (java.util.Map.Entry<String, Integer> tmp : map.entrySet()) {
+      treemap.put(tmp, "");
+    }
 
+    List<String> result = new ArrayList<>();
+    for (int i = 0; i < k; i++) {
+      result.add(treemap.pollFirstEntry().getKey().getKey());
+    }
+    return result;
+  }
+}
 
 
 
