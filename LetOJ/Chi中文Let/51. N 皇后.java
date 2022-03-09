@@ -316,3 +316,72 @@ class Solution {
 
 
 
+
+
+class Solution {
+    List<List<String>> result=new ArrayList<>();
+    public List<List<String>> solveNQueens(int n) {
+        char[][] c=new char[n][n];
+        for(int i=0;i<n;i++){
+            Arrays.fill(c[i],'.');
+        }
+        //从0row开始回溯
+        backtracking(c, 0);
+        return result;
+    }
+
+    public void backtracking(char[][] c, int row){
+        //设置结束状态
+        if(row==c.length){
+            List<String> tmp=new ArrayList<String>();
+            for(int i=0;i<c.length;i++){
+                tmp.add(String.valueOf(c[i]));
+            }
+            result.add(new ArrayList<String>(tmp));
+            return;
+        }
+
+
+        for(int col=0;col<c.length;col++){
+            if(!isValid(c,row,col)){
+                continue;
+            }
+            //设置状态
+            c[row][col]='Q';
+            //探索下一行
+            backtracking(c,row+1);
+            //恢复状态
+            c[row][col]='.';
+        }
+    }
+    public boolean isValid(char[][] c, int row, int col){
+
+        //[易错] 检查当前列是否有Q
+        for(int i=0;i<c.length;i++){
+            if(c[i][col]=='Q'){
+                return false;
+            }
+        }
+
+        //[易错] 检查左斜线
+        for(int i=row-1,j=col+1;i>=0&&j<c.length;i--,j++){
+            if(c[i][j]=='Q'){
+                return false;
+            }
+        }
+
+        //[易错] 检查右斜线
+        for(int i=row-1,j=col-1;i>=0&&j>=0;i--,j--){
+            if(c[i][j]=='Q'){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+
+
+
+

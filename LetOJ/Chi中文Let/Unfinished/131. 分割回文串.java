@@ -172,14 +172,107 @@ public class Solution {
 
 
 
+// 速度最快解法：
+
+
+class Solution {
+    List<List<String>> result = new ArrayList<>();
+    List<String> list = new ArrayList<>();
+    boolean[][] dp;
+    int n;
+    public List<List<String>> partition(String s) {
+        n = s.length();
+        dp = new boolean[n][n];
+        for (boolean[] array : dp) {
+            Arrays.fill(array, true);
+        }
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = i + 1; j < n; j++) {
+                if (s.charAt(i) != s.charAt(j)) {
+                    dp[i][j] = false;
+                } else {
+                    dp[i][j] = dp[i + 1][j - 1];
+                }
+            }
+        }
+        dfs(s, 0);
+        return result;
+    }
+
+    public void dfs(String s, int start) {
+        if (start == n) {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = start; i < n; i++) {
+            if (dp[start][i]) {
+                list.add(s.substring(start, i + 1));
+                dfs(s, i + 1);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+
+// 作者：StackExplosion
+// 链接：https://leetcode-cn.com/problems/palindrome-partitioning/solution/131fen-ge-hui-wen-chuan-javahui-su-dong-kt608/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 
 
 
+class Solution {
+    public List<List<String>> partition(String s) {
+        int n = s.length();
+        char[] cs = s.toCharArray();
+        // f[i][j] 代表 [i, j] 这一段是否为回文串
+        boolean[][] f = new boolean[n][n];
+        for (int j = 0; j < n; j++) {
+            for (int i = j; i >= 0; i--) {
+                // 当 [i, j] 只有一个字符时，必然是回文串
+                if (i == j) {
+                    f[i][j] = true;
+                } else {
+                    // 当 [i, j] 长度为 2 时，满足 cs[i] == cs[j] 即回文串
+                    if (j - i + 1 == 2) {
+                        f[i][j] = cs[i] == cs[j];
 
+                    // 当 [i, j] 长度大于 2 时，满足 (cs[i] == cs[j] && f[i + 1][j - 1]) 即回文串
+                    } else {
+                        f[i][j] = cs[i] == cs[j] && f[i + 1][j - 1];
+                    }
+                }
+            }
+        }
+        List<List<String>> ans = new ArrayList<>();
+        List<String> cur = new ArrayList<>();
+        dfs(s, 0, ans, cur, f);
+        return ans;
+    }
+    /**
+     * s: 要搜索的字符串
+     * u: 以 s 中的那一位作为回文串分割起点
+     * ans: 最终结果集
+     * cur: 当前结果集
+     * f: 快速判断 [i,j] 是否为回文串
+     */
+    void dfs(String s, int u, List<List<String>> ans, List<String> cur, boolean[][] f) {
+        int n = s.length();
+        if (u == n) ans.add(new ArrayList<>(cur));
+        for (int i = u; i < n; i++) {
+            if (f[u][i]) {
+                cur.add(s.substring(u, i + 1));
+                dfs(s, i + 1, ans, cur, f);
+                cur.remove(cur.size() - 1);
+            }
+        }
+    }
+}
 
-
-
-
+// 作者：AC_OIer
+// 链接：https://leetcode-cn.com/problems/palindrome-partitioning/solution/wei-sha-yao-zhe-yang-bao-sou-ya-shi-ru-h-41gf/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
