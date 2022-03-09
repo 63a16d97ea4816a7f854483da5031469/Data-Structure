@@ -184,7 +184,45 @@ class Solution {
 
 
 
+class Solution {
+    Map<String, String[]> map = new HashMap<>(){{
+        put("2", new String[]{"a", "b", "c"});
+        put("3", new String[]{"d", "e", "f"});
+        put("4", new String[]{"g", "h", "i"});
+        put("5", new String[]{"j", "k", "l"});
+        put("6", new String[]{"m", "n", "o"});
+        put("7", new String[]{"p", "q", "r", "s"});
+        put("8", new String[]{"t", "u", "v"});
+        put("9", new String[]{"w", "x", "y", "z"});
+    }};
+    public List<String> letterCombinations(String ds) {
+        int n = ds.length();
+        List<String> ans = new ArrayList<>();
+        if (n == 0) return ans;
+        StringBuilder sb = new StringBuilder();
+        dfs(ds, 0, n, sb, ans);
+        return ans;
+    }
+    void dfs(String ds, int i, int n, StringBuilder sb, List<String> ans) {
+        if (i == n) {
+            ans.add(sb.toString());
+            return;
+        } 
+        String key = ds.substring(i, i + 1);
+        String[] all = map.get(key);
+        for (String item : all) {
+            sb.append(item);
+            dfs(ds, i + 1, n, sb, ans);
+            sb.deleteCharAt(sb.length() - 1);
+            //或者 sb.delete(sb.toString().length()-1,sb.toString().length());
+        }
+    }
+}
 
+// 作者：AC_OIer
+// 链接：https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/shua-chuan-lc-dfs-hui-su-jie-fa-by-ac_oi-qa02/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 

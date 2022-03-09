@@ -276,3 +276,17 @@ class Solution {
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
+
+
+<p><a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/" target="_blank">17. 电话号码的字母组合(中等)</a> : <a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/shua-chuan-lc-dfs-hui-su-jie-fa-by-ac_oi-qa02/" target="_blank">从一道「回溯算法」经典题与你分享回溯算法的基本套路</a></p>
+
+<p><a href="https://leetcode-cn.com/problems/combination-sum/" target="_blank">39. 组合总和(中等)</a> : <a href="https://leetcode-cn.com/problems/combination-sum/solution/dfs-hui-su-suan-fa-yi-ji-ru-he-que-ding-wpbo5/" target="_blank">DFS + 回溯算法，以及如何确定一道题是否应该使用 DFS + 回溯来求解</a></p>
+
+<p><a href="https://leetcode-cn.com/problems/combination-sum-ii/" target="_blank">40. 组合总和 II(中等)</a> : <a href="https://leetcode-cn.com/problems/combination-sum-ii/solution/hui-su-suan-fa-qiu-mu-biao-he-de-zu-he-f-1iys/" target="_blank">【回溯算法】求目标和的组合方案（升级篇）</a></p>
+
+<p><a href="https://leetcode-cn.com/problems/combination-sum-iii/" target="_blank">216. 组合总和 III(中等)</a> : <a href="https://leetcode-cn.com/problems/combination-sum-iii/solution/hui-su-suan-fa-jie-zhu-zui-hou-yi-dao-zu-n1lo/" target="_blank">【回溯算法】借助最后一道「组合总和」问题来总结一下回溯算法</a></p>
+
+<p><a href="https://leetcode-cn.com/problems/sudoku-solver/" target="_blank">37. 解数独(困难)</a> : <a href="https://leetcode-cn.com/problems/sudoku-solver/solution/he-n-huang-hou-yi-yang-shi-yi-dao-hui-su-lfpd/" target="_blank">【数独问题】经典面试题：解数独</a></p>
+
+
+
