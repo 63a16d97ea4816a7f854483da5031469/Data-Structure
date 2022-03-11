@@ -225,8 +225,42 @@ class Solution {
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
+class Solution {
+    List<String> result=new ArrayList<>();
+    HashMap<String, String[]> map;
+    public List<String> letterCombinations(String digits) {
+        if(digits.length()==0) return result;
+        map=new HashMap<String,String[]>(){
+            {
+                put("2",new String[]{"a","b","c"});
+                put("3",new String[]{"d","e","f"});
+                put("4",new String[]{"g","h","i"});
+                put("5",new String[]{"j","k","l"});
+                put("6",new String[]{"m","n","o"});
+                put("7",new String[]{"p","q","r","s"});
+                put("8",new String[]{"t","u","v"});
+                put("9",new String[]{"w","x","y","z"});
+            }
+        };
+        dfs(digits,0,new StringBuilder());
+        return result;
+    }
 
+    public void dfs(String digits, int index, StringBuilder sb){
+        if(sb.toString().length()==digits.length()){
+            result.add(sb.toString());
+            return;
+        }
 
-
+        String selectedNum=digits.substring(index, index+1);
+        String[] all=map.get(selectedNum);
+        for(String tmp:all){
+            sb.append(tmp);
+            dfs(digits,index+1,sb);
+            // sb.delete(sb.toString().length()-1,sb.toString().length());
+            sb.deleteCharAt(sb.toString().length()-1);
+        }
+    }
+}
 
 

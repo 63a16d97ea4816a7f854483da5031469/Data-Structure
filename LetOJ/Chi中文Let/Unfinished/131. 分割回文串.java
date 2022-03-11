@@ -290,3 +290,101 @@ class Solution {
 
 
 
+
+class Solution {
+    List<List<String>> result;
+    public List<List<String>> partition(String s) {
+        int n=s.length();
+        char[] c=s.toCharArray();
+
+        boolean[][] f=new boolean[n][n];
+        for(int j=0;j<n;j++){
+            for(int i=j;i>=0;i--){
+                if(i==j){
+                    f[i][j]=true;
+                }else if(j-i+1==2){
+                        f[i][j]=c[i]==c[j];
+                }else{
+                    f[i][j]= f[i+1][j-1] && c[i]==c[j];
+                }
+            }
+        }
+        result=new ArrayList<>();
+        dfs(s,f,0, new ArrayList<>());
+        return result;
+    }
+    public void dfs(String s, boolean[][] f, int index, List<String> list){
+        if(index>s.length()) return;
+
+        if(index==s.length())
+        {
+            result.add(new ArrayList<String>(list));
+            return;
+        }
+
+        for(int i=index;i<s.length();i++){
+            String str=s.substring(index,i+1);
+            if(f[index][i]){
+                list.add(str);
+                dfs(s,f,i+1,list);  // [易错]，这里是i+1，不是index+1
+                list.remove(list.size()-1);
+            } 
+        }
+    }
+}
+
+
+
+
+
+class Solution {
+    List<List<String>> result=new ArrayList<>();
+    public List<List<String>> partition(String s) {
+        int n=s.length();
+        char[] c=s.toCharArray();
+        boolean[][] dp=new boolean[n][n];
+        for(int j=n-1;j>0;j--){ // 易错
+            for(int i=j;i<n-2;i++){// 易错
+                if(i==j){
+                    dp[i][j]=true;
+                }else if(j-i+1==2){
+                    dp[i][j]= c[i]==c[j];
+                }else{
+                    dp[i][j]= c[i]==c[j] && dp[i+1][j-1];
+                }
+            }
+        }
+        dfs(s,dp,0,new ArrayList<String>());
+        return result;
+    }
+
+    public void dfs(String s, boolean[][] dp, int index, List<String> list){
+        if(index>s.length()) return;
+        if(index==s.length()){
+            result.add(new ArrayList<String>(list));
+            return;
+        }
+
+        for(int i=index;i<s.length();i++){
+                String tmp=s.substring(index,i+1);
+                if(isValid(tmp)){  // 易错 易于忘记isValid(xxx)
+                    list.add(tmp);
+                    dfs(s,dp,i+1,list);
+                    list.remove(list.size()-1);
+                }
+        }
+    }
+
+    public boolean isValid(String s){
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+}
+
