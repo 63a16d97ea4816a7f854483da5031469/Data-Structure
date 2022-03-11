@@ -343,8 +343,8 @@ class Solution {
         int n=s.length();
         char[] c=s.toCharArray();
         boolean[][] dp=new boolean[n][n];
-        for(int j=n-1;j>0;j--){ // 易错
-            for(int i=j;i<n-2;i++){// 易错
+        for(int j=0;j<n;j++){ // 易错 因为每一步要依赖检查前面的j-1，所以j要从0开始
+            for(int i=j;i>=0;i--){// 易错 因为后面每一步都要依赖 i+1，所以要倒序i
                 if(i==j){
                     dp[i][j]=true;
                 }else if(j-i+1==2){
@@ -367,24 +367,12 @@ class Solution {
 
         for(int i=index;i<s.length();i++){
                 String tmp=s.substring(index,i+1);
-                if(isValid(tmp)){  // 易错 易于忘记isValid(xxx)
+                if(dp[index][i]){  // 易错 易于忘记isValid(xxx)
                     list.add(tmp);
                     dfs(s,dp,i+1,list);
                     list.remove(list.size()-1);
                 }
         }
-    }
-
-    public boolean isValid(String s){
-        int i=0,j=s.length()-1;
-        while(i<j){
-            if(s.charAt(i)!=s.charAt(j)){
-                return false;
-            }
-            i++;
-            j--;
-        }
-        return true;
     }
 }
 
