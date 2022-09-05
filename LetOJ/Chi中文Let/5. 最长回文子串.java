@@ -87,8 +87,10 @@ class Solution {
 
 
 
+git remote add origin git@github.com:63a16d97ea4816a7f854483da5031469/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@github.com/63a16d97ea4816a7f854483da5031469/Data-Structure.git
+git push -u origin master
 
-
+ git remote add githubCode https://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@github.com/63a16d97ea4816a7f854483da5031469/Data-Structure.git
 
 
 public class Solution {

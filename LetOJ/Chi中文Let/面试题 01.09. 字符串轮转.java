@@ -94,7 +94,7 @@ class Solution {
     public boolean isSame(LinkedList l1, LinkedList l2)
     {
         int len1=l1.size();
-        int len2=l2.size();
+
 
         for(int i=0;i<len1;i++){
             if(l1.get(i)!=l2.get(i)){

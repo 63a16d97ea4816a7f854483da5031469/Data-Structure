@@ -144,27 +144,7 @@ java.util.Arrays类是数组的工具类，一般数组常用的方法包括
 	    }
 	}
 
-	
-	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size,new Comparactor<Integer>(){
-	    public int compare(int a, int b){
-	        return a-b;
-	    }
-	});
-	
-    PriorityQueue pq=new PriorityQueue<Integer>(10,(a,b)->{
-         return a-b;
-    });
-	
-	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size, (a,b)->a-b);
-	
-	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(new Comparactor<int[]>(){
-	    public int compare(int[] a, int[] b){
-	        return a[0]-b[0];
-	    }
-	});
-	
-	
-	
+
 	    // A custom comparator that compares two Strings by their length.
         Comparator<String> stringLengthComparator = new Comparator<String>() {
             @Override
@@ -197,6 +177,23 @@ java.util.Arrays类是数组的工具类，一般数组常用的方法包括
 	
 #堆排序
 
+	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size,new Comparactor<Integer>(){
+	    public int compare(int a, int b){
+	        return a-b;
+	    }
+	});
+	
+    PriorityQueue pq=new PriorityQueue<Integer>(10,(a,b)->{
+         return a-b;
+    });
+	
+	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size, (a,b)->a-b);
+	
+	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(new Comparactor<int[]>(){
+	    public int compare(int[] a, int[] b){
+	        return a[0]-b[0];
+	    }
+	});
 
 
 
@@ -249,6 +246,32 @@ O(nlogn):
 	}
 	
 	int peekVal=s1.peek();
+
+
+#字符串轮转
+给定两个字符串 s1 和 s2 ，请编写代码检查 s2 是否为 s1 旋转而成（比如， waterbottle 是 erbottlewat 旋转后的字符串）
+
+一定可以将字符串分为两个部分，这两个部分拼凑在一起，一定可以包含另一个完整的字符串（枚举所有可能）
+
+	class Solution {
+	    public boolean isFlipedString(String s1, String s2) {
+	        if(s1.equals(s2)) return true;
+	        if(s1.length()!=s2.length()) return false;
+	
+	        for(int i=0;i<s1.length();i++){
+	            String sub1=s1.substring(0,i);
+	            String sub2=s1.substring(i,s1.length());
+	            String changed=sub2+sub1;
+	            // System.out.println(changed+" ");
+	            if(changed.equals(s2)){
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
+	}
+
+
 
 
 #快速选择
