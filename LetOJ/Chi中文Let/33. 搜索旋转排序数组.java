@@ -141,7 +141,42 @@ class Solution {
 
 
 
+class Solution {
+    public int search(int[] nums, int target) {
+        return binarySearch(nums,target);
+    }
 
+    public int binarySearch(int[] nums, int target){
+        int l=0;
+        int r=nums.length-1;
+
+        while(l<=r){
+
+            int mid=(l+r)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            //  只能感觉nums[mid]与nums[l]确定，mid是在左边半段还是在右边半段
+            if(nums[l]<=nums[mid]){
+                //如果是在左边半段，那么我们只能在左边是升序的时候，使用二分查找规则，另一种情况只能用反之else来handle
+                //确定target在左边界与mid形成的右边界里面
+                if(nums[l]<=target && target<nums[mid]){
+                    r=mid-1;
+                }else{
+                    l=mid+1;
+                }
+            }else{  
+                //如果是在右边半段，那么我们只能在右边是升序的时候，使用二分查找规则，另一种情况只能用反之else来handle
+                if(nums[mid]<target && target<=nums[r]){
+                    l=mid+1;
+                }else{
+                    r=mid-1;
+                }
+            }
+        }
+        return -1;
+    }
+}
 
 
 
