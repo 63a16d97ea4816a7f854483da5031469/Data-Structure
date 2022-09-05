@@ -1,13 +1,18 @@
-# Must write within 1
-Remember:    
+# Must write
+**极为常见**:    
 
 			String --->  str.length();  
 			Array---> arr.length; 
 			List--->int len=list.size();
 			
-			String.valueOf(char[] ch);
+			Math.max(a,b);
+			Math.min(a,b);
 			
-
+			if(max.length() < Math.max(s1.length(),s2.length()))
+                max = s1.length() > s2.length() ? s1 : s2;
+        	}
+			
+			String.valueOf(char[] ch);
 			
 			Arrays.sort(array[])  //对数组进行快排
 		System.out.print(Arrays.toString(array));//输出快排后的数组  ---> [1,2,7,9,11]
@@ -24,13 +29,21 @@ Remember:
 		Collections.swap(list, 0, 1);
 
 
+       List<String> list2 = Arrays.asList("Monday,Tuesday,".split(","));
+        System.out.println(list2);
+        
+       List<String> list3 = Arrays.asList(new String[]{"Monday","Tuesday"});
+        System.out.println(list3);
 
-			int[] int_n=new int[10];
-			// clone the array
-			int_n.clone(xxx[]);
+
+     	 int[] array = {23, 43, 55, 12};
+        int[] copiedArray = array.clone();
+
+        for(int tmp:copiedArray){
+            System.out.print(tmp+" ");
+        }
+		 [Output] 23 43 55 12 
 			
-			
-		 
 		 // copying array org to copy 
 		 copyOf(int[] original, int newLength) 
         int[] copy = Arrays.copyOf(org, 5); 
@@ -39,21 +52,287 @@ Remember:
 
 java.util.Arrays类是数组的工具类，一般数组常用的方法包括
 
-二分查找：public static int  binarySearch(array[],int key)，返回key的下标index
+二分查找：
 
-扩容缩容：public static int[]  copyOf(array[]，newLength)，返回新数组
+	public static int  binarySearch(array[],int key)  //返回key的下标index
 
-取部分：public static int[]  copyOfRange(array[],fromindex,toindex)   ，注意[from,to)是开区间，返回新数组
+#二分查找
+**二分查找只适用于 已经完成排序的数组**
 
-数组从小到大快速排序：public static void Arrays.sort(array[])，
+	public int binarySearch(int[] nums, int target){
+		int l=0;
+		int r=nums.length-1;
+	
+		while(l<=r){
+			int mid=(l+r)/2;
+			if(nums[mid]==target){
+				return mid;
+			}
+	
+			if(nums[mid]>target){
+				r=mid-1;
+			}else{
+				l=mid+1;
+			}
+		}
+		return -1;
+	}
 
-整体赋值：public static void fill(array[],value), 
+**第二种解法：**
 
-输出为字符串：public static String  toString(array[])，返回字符串
+        public static int binarySearch(int[] nums,int target, int left, int right){
+            if(left>right) return -1;
+            int mid=(left+right)/2;
+            if(nums[mid]==target) return mid;
+            if(nums[mid]>target){
+                return binarySearch(nums,target,left,mid-1);
+            }else{
+                return binarySearch(nums,target,mid+1,right);
+            }
+        }
 
-检查是否相等：public static boolean  equals(array1[],array2[])，返回布尔值
+#常用的一些转换
+
+	import java.util.*;
+	
+	import java.math.BigInteger;  
+    BigInteger a=new BigInteger("23");
+    BigInteger b=new BigInteger("13");
+    BigInteger c=a.add(b);
+
+    int intValueOfb1 = b.intValue();
+    long longValueOfb1 = b.longValue();
+	
+	//转换成二进制
+	String tmp=Integer.toBinaryString(1)
+	System.out.println("Binary is " + Integer.toBinaryString(1024)); 
+	
+	[Output] Binary is 10000000000
+	
+	//转换成二进制
+	public static String toBinaryString(long i)
+	System.out.println("Binary is " + Long.toBinaryString(l));
+	
+	
+	Scanner scan=new Scanner();
+	scan.next();
+	scan.nextInt();
+	scan.nextLong();
+	
+	while(scan.hasNext()){
+		System.out.println(scan.next());
+	}
+
+#二分查找:
+
+	public class BinarySearch {
+	    public static int binarySearch(int[] arr, int target){
+	        int left=0;
+	        int right=arr.length-1;
+	
+	        while(left<=right){
+	            int mid=left+(right-left)/2;
+	            if(target==arr[mid]){
+	                return mid;
+	            }else if(target>arr[mid]){
+	                left=mid+1;
+	            }else{
+	                right=mid-1;
+	            }
+	        }
+	        return -1;
+	    }
+	}
+
+	
+	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size,new Comparactor<Integer>(){
+	    public int compare(int a, int b){
+	        return a-b;
+	    }
+	});
+	
+    PriorityQueue pq=new PriorityQueue<Integer>(10,(a,b)->{
+         return a-b;
+    });
+	
+	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(size, (a,b)->a-b);
+	
+	PriorityQueue<Integer> pq=new PriorityQueue<Integer>(new Comparactor<int[]>(){
+	    public int compare(int[] a, int[] b){
+	        return a[0]-b[0];
+	    }
+	});
+	
+	
+	
+	    // A custom comparator that compares two Strings by their length.
+        Comparator<String> stringLengthComparator = new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.length() - s2.length();
+            }
+        };
+
+        /*
+        The above Comparator can also be created using lambda expression like this =>
+        Comparator<String> stringLengthComparator = (s1, s2) -> {
+            return s1.length() - s2.length();
+        };
+
+        Which can be shortened even further like this =>
+        Comparator<String> stringLengthComparator = Comparator.comparingInt(String::length);
+        */
+
+	
+	Arrays.sort(months,
+	            (String a, String b) -> a.length() - b.length());
+	Or shorter:
+	Arrays.sort(months, (a, b) -> a.length() - b.length());
+	
+	
+	Arrays.sort(months, 
+	    (String a, String b) -> { return Integer.signum(a.length() - b.length()); }
+	);
+	
+	
+#堆排序
+
+
+
+
+# 快排:
+
+O(nlogn): 
+
+	public class QuickSort {
+		public static void quickSort(int[] arr, int low, int high){
+			if(arr==null||arr.length==0) return;
+			if(low>=high) return;
+	
+			int mid=low+(high-low)/2;
+			int pivot=arr[mid];
+	
+			int l=low;
+			int h=high;
+	
+			while(l<=h){
+				while(pivot>arr[l]){
+					l++;
+				}
+				while(pivot<arr[h]){
+					h--;
+				}
+				if(l<=h){
+					int tmp=arr[l];
+					arr[l]=arr[h];
+					arr[h]=tmp;
+					l++;
+					h--;
+				}
+			}
+			if(l<high){
+				quickSort(arr,l,high);
+			}
+			if(h>low){
+				quickSort(arr,low,h);
+			}
+		}
+	}
+	
+	
+#最小栈
+
+	Stack<int> s1=new Stack<>();
+	s1.push(10);
+	While(s1.isEmpty()){
+		int s1.pop();
+	}
+	
+	int peekVal=s1.peek();
+
+
+#快速选择
+
+	class Solution {
+	    public int findKthLargest(int[] nums, int k) {
+	        return quickSelect(nums, 0, nums.length - 1, k);
+	    }
+	
+	    int quickSelect(int[] nums, int lo, int hi, int k) {
+	        int pivot = lo;
+	        for (int j = lo; j < hi; j++) {
+	            if (nums[j] <= nums[hi]) {
+	                swap(nums, pivot++, j);
+	            }
+	        }
+	        swap(nums, pivot, hi);
+	        int count = hi - pivot + 1;
+	        // 如果找到直接返回
+	        if (count == k)
+	            return nums[pivot];
+	        // 从右边部分找
+	        if (count > k)
+	            return quickSelect(nums, pivot + 1, hi, k);
+	        // 从左边部分找
+	        return quickSelect(nums, lo, pivot - 1, k - count);
+	    }
+	    private void swap(int[] nums, int i, int j) {
+	        if (i != j) {
+	            int tmp=nums[i];
+	            nums[i]=nums[j];
+	            nums[j]=tmp;
+	        }
+	    }
+	}
+
+    // private void swap(int[] nums, int i, int j) {
+    //     if (i != j) {
+    //         nums[i] ^= nums[j];
+    //         nums[j] ^= nums[i];
+    //         nums[i] ^= nums[j];
+    //     }
+    // }
+
+	// 异或交换:
+	// a = a^b;    a^=b;
+	// b = a^b;    b^=a;
+	// a = a^b;    a^=b;
+
+
+
+// 作者：sdwwld
+// 链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/javadai-ma-de-2chong-da-an-by-sdwwld/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+# 冒泡排序
+	/**
+	     * 冒泡排序
+	     *
+	     * @param array
+	     * @return
+	     */
+	    public static int[] bubbleSort(int[] array) {
+	        if (array.length == 0)
+	            return array;
+	        for (int i = 0; i < array.length; i++)
+	            for (int j = 0; j < array.length - 1 - i; j++)
+	                if (array[j + 1] < array[j]) {
+	                    int temp = array[j + 1];
+	                    array[j + 1] = array[j];
+	                    array[j] = temp;
+	                }
+	        return array;
+	    }
+
+    // 1.4 算法分析
+    // 最佳情况：T(n) = O(n)   最差情况：T(n) = O(n^2)   平均情况：T(n) = O(n^2)
+
 
 ## Collections
+
 
      //对集合进行排序
         Collections.sort(list);
@@ -63,14 +342,6 @@ java.util.Arrays类是数组的工具类，一般数组常用的方法包括
         int max = Collections.max(list);
         int min = Collections.min(list);
         
-          List<String> list2 = Arrays.asList("Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday".split(","));
-        System.out.println(list2);
-
-
-    //查找子串在集合中首次出现的位置
-        List<String> subList = Arrays.asList("Friday,Saturday".split(","));
-        int index3 = Collections.indexOfSubList(list2, subList);
-        System.out.println(index3);
         
        //反转集合中的元素的顺序
         Collections.reverse(list2);
@@ -80,22 +351,12 @@ java.util.Arrays类是数组的工具类，一般数组常用的方法包括
 	        Collections.swap(list2, 0, 3);
 	        System.out.println(list2);
 	        
-	 //为集合生成一个Enumeration
-        List<String> list5 = Arrays.asList("I love my country!".split(" "));
-        System.out.println(list5);
-        Enumeration<String> e = Collections.enumeration(list5);
-        while (e.hasMoreElements()) {
-            System.out.println(e.nextElement());
-        }
-        
-        
 	原文链接：https://blog.csdn.net/wangshuang1631/article/details/53200764
 
 #操作BigInteger
 
 操作BigInteger
 
-	import java.math.BigInteger;    
 	class Solution {
 	    public int fib(int n) {
 	        if(n==0) return 0;
@@ -373,41 +634,6 @@ str2: 2x
   }
 
 
-#二分查找
-**二分查找只适用于 已经完成排序的数组**
-
-	public int binarySearch(int[] nums, int target){
-		int l=0;
-		int r=nums.length-1;
-	
-		while(l<=r){
-			int mid=(l+r)/2;
-			if(nums[mid]==target){
-				return mid;
-			}
-	
-			if(nums[mid]>target){
-				r=mid-1;
-			}else{
-				l=mid+1;
-			}
-		}
-		return -1;
-	}
-
-**第二种解法：**
-
-        public static int binarySearch(int[] nums,int target, int left, int right){
-            if(left>right) return -1;
-            int mid=(left+right)/2;
-            if(nums[mid]==target) return mid;
-            if(nums[mid]>target){
-                return binarySearch(nums,target,left,mid-1);
-            }else{
-                return binarySearch(nums,target,mid+1,right);
-            }
-        }
-
 #33. 搜索旋转排序数组 (二分查找变形)
 
 [https://leetcode.cn/problems/search-in-rotated-sorted-array/](https://leetcode.cn/problems/search-in-rotated-sorted-array/)
@@ -496,6 +722,64 @@ str2: 2x
         return -1;
     }
 }
+
+
+#回文字符串
+
+给你一个字符串 s，找到 s 中最长的回文子串。
+示例 1：
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+
+示例 2：
+输入：s = "cbbd"
+输出："bb"
+
+提示：
+1 <= s.length <= 1000
+s 仅由数字和英文字母组成
+
+	class Solution {
+	    public String longestPalindrome(String s) {
+	        String max = "";
+	        for(int i=0;i<s.length();i++){
+	            String s1 = extend(s,i,i), s2 = extend(s,i,i+1); //s2 focuses on midpoint betweek 2 letters in case of even letters
+	            if(max.length() < Math.max(s1.length(),s2.length()))
+	                max = s1.length() > s2.length() ? s1 : s2;
+	        }
+	        return max;
+	    }
+	    
+	    private String extend(String s, int l, int r){
+	        while(l >= 0 && r < s.length()){
+	            if(s.charAt(l) != s.charAt(r))
+	                break;
+	            l--;r++;
+	        }
+	        return s.substring(l+1,r); //handle the extra decrement in the while loop
+	    }
+	}
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2667,4 +2951,101 @@ Implementation with BFS
 	        } else return -1;
 	    }
 
-			
+
+#Arrays
+
+扩容缩容：public static int[]  copyOf(array[]，newLength)，返回新数组
+
+取部分：public static int[]  copyOfRange(array[],fromindex,toindex)   ，注意[from,to)是开区间，返回新数组
+
+数组从小到大快速排序：public static void Arrays.sort(array[])，
+
+整体赋值：public static void fill(array[],value), 
+
+输出为字符串：public static String  toString(array[])，返回字符串
+
+检查是否相等：public static boolean  equals(array1[],array2[])，返回布尔值
+
+
+
+
+
+#求中位数，O(n)的java实现【利用快速排序折半查找中位数】
+	
+	public static int getMedian(int[] nums) {
+	        return partition(nums, 0, nums.length - 1);
+	    }
+
+    private static int partition(int[] nums, int start, int end) {
+        /***快排partition函数原代码——start***/
+        int left = start;
+        int right = end + 1;
+
+        int point = nums[start];
+        while (true) {
+            while (left < right && nums[--right] >= point)
+                ;
+            while (left < right && nums[++left] <= point)
+                ;
+            if (left == right) {
+                break;
+            } else {
+                int tmp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tmp;
+            }
+        }
+        nums[start] = nums[left];
+        nums[left] = point;
+        /***快排partition函数原代码——end***/
+
+        /***定位判断***/
+        if (left == (nums.length - 1) / 2) {
+            return nums[left];
+        } else if (left > (nums.length - 1) / 2) {
+            return partition(nums, start, left - 1);
+        } else {
+            return partition(nums, left + 1, end);
+        }
+    }
+
+
+// 改良：
+
+	public static int getMedian(int[] nums) {
+	    return partition(nums, 0, nums.length - 1);
+	}
+	
+	private static int partition(int[] nums, int start, int end) {
+	    /***快排partition函数原代码——start***/
+	    int left = start;
+	    int right = end + 1;
+	
+	    int point = nums[start];
+	    while (left<right) {
+	        while (nums[right] >= point)
+	            right--;
+	        while (nums[left] <= point)
+	            left++;
+	        if (left == right) {
+	            break;
+	        } else {
+	            int tmp = nums[left];
+	            nums[left] = nums[right];
+	            nums[right] = tmp;
+	        }
+	    }
+	    nums[start] = nums[left];
+	    nums[left] = point;
+	    /***快排partition函数原代码——end***/
+	
+	    /***定位判断***/
+	    if (left == (nums.length - 1) / 2) {
+	        return nums[left];
+	    } else if (left > (nums.length - 1) / 2) {
+	        return partition(nums, start, left - 1);
+	    } else {
+	        return partition(nums, left + 1, end);
+	    }
+	}
+

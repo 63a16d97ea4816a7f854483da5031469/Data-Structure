@@ -1,5 +1,55 @@
 
 
+String str="";
+int len=str.length();
+
+
+arr.length;
+
+
+
+二分查找
+
+public static void main(String args[]){
+
+
+}
+
+
+public int binarySearch(int[] nums, int target){
+	int l=0;
+	int r=nums.length-1;
+
+	while(l<=r){
+		int mid=(l+r)/2;
+		if(nums[mid]==target){
+			return mid;
+		}
+
+		if(nums[mid]>target){
+			r=mid-1;
+		}else{
+			l=mid+1;
+		}
+	}
+	return -1;
+}
+
+
+BigInteger a=new BigInteger("0");
+BigInteger b=new BigInteger("1");
+BigInteger c=a.add(b);
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 33. 搜索旋转排序数组
 难度
 中等
