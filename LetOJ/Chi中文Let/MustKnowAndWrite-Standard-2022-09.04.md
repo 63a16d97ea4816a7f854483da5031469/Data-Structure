@@ -99,6 +99,35 @@
 **扫描线**
 **水塘抽样**
 
+#常用变形
+
+	  if (map.containsKey(num)) {
+	     map.put(num, map.get(num) + 1);
+	   } else {
+	      map.put(num, 1);
+	   }
+	             
+	  for(int tmp:nums){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+        
+	 for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+	 	System.out.println(entry.getKey()+" "+entry.getValue());
+	 }
+	 
+	 PriorityQueue<Integer> pq = new PriorityQueue<>(k);//队列默认自然顺序排列，小顶堆，不必重写compare
+	
+       for (int i:map.keySet()) {
+            q.add(i);
+        }
+	 
+	String[] arr=new String[]{"1","2","3"};
+	a++;
+	String result=s1.length()>s2.length() ? s1:s2;
+
+
+
+
 ## Arrays:
 
 java.util.Arrays类是数组的工具类，一般数组常用的方法包括
@@ -392,11 +421,71 @@ O(nlogn)
 	}
 	//T (O(nlogK))
 	//S (O(n))
+	
+	class Solution {
+	    public int[] topKFrequent(int[] nums, int k) {
+	        HashMap<Integer, Integer> map = new HashMap<>();
+	        PriorityQueue<Integer> q = new PriorityQueue<>((x, y) -> (map.get(y) - map.get(x)));
+	        for (int i : nums) {
+	            map.put(i, map.getOrDefault(i, 0) + 1);
+	        }
+	        for (int i:map.keySet()) {
+	            q.add(i);
+	        }
+	        int[] res = new int[k];
+	        for (int i = 0; i < k; i++) {
+	            res[i] = q.poll();
+	        }
+	        return res;
+	    }
+	}
+	//T (O(nlogN))
+	//S (O(n))
+
 
 
 #桶排序
 
-
+	//基于桶排序求解「前 K 个高频元素」
+	class Solution {
+	    public int[] topKFrequent(int[] nums, int k) {
+	        List<Integer> res = new ArrayList();
+	        // 使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+	        HashMap<Integer,Integer> map = new HashMap();
+	        for(int num : nums){
+	            if (map.containsKey(num)) {
+	               map.put(num, map.get(num) + 1);
+	             } else {
+	                map.put(num, 1);
+	             }
+	        }
+	        
+	        //桶排序
+	        //将频率作为数组下标，对于出现频率不同的数字集合，存入对应的数组下标
+	        List<Integer>[] listArr = new List[nums.length+1];
+	        for(int key : map.keySet()){
+	            // 获取出现的次数作为下标
+	            int i = map.get(key);
+	            if(listArr[i] == null){
+	               listArr[i] = new ArrayList();
+	            } 
+	            listArr[i].add(key);
+	        }
+	        
+	        // 倒序遍历数组获取出现顺序从大到小的排列
+	        for(int i = listArr.length - 1;i >= 0 && res.size() < k;i--){
+	            if(listArr[i] == null) continue;
+	            res.addAll(listArr[i]);
+	        }
+	        int[] ans=new int[res.size()];
+	        for(int i=0;i<k;i++){
+	            ans[i]=res.get(i);
+	        }
+	        return ans;
+	    }
+	}
+	//T(O(n))
+	//S(O(n))
 
 
 #递归
