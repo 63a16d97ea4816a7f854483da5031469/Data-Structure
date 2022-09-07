@@ -1,0 +1,111 @@
+
+class Solution {
+    HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+    public int[] topKFrequent(int[] nums, int k) {
+
+        for(int tmp:nums){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+        List<Map.Entry<Integer,Integer>> list=new ArrayList<>();
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            list.add(entry);
+        }
+        Collections.sort(list,(o1,o2)->{
+            return o2.getValue()-o1.getValue();
+        });
+        int[] result=new int[k];
+        for(int i=0;i<k;i++){
+            result[i]=list.get(i).getKey();
+        }
+        return result;
+    }
+}
+14 ms   44 MB   Java    2022/09/06 21:34    
+
+O(nlogn)
+
+
+class Solution {
+    HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+    public int[] topKFrequent(int[] nums, int k) {
+
+        for(int tmp:nums){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+
+        PriorityQueue<Map.Entry<Integer,Integer>> pq=new PriorityQueue<>((o1,o2)->{
+            return o2.getValue()-o1.getValue();
+        });
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+                pq.add(entry);
+        }
+        int[] result=new int[k];
+        for(int i=0;i<k;i++){
+            result[i]=pq.poll().getKey();
+        }
+        return result;
+    }
+}
+12 ms   44.1 MB Java
+
+O(nlogn)
+
+
+
+
+这里不能使用:
+
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            if(pq.size()<k){
+                pq.add(entry);
+            }else{
+                if(pq.peek().getValue()<entry.getValue()){
+                     pq.poll();
+                     pq.add(entry);
+                }
+            }
+           
+        }
+
+
+
+[4,1,-1,2,-1,2,3]
+2
+
+输出：
+[-1,1]
+预期结果：
+[-1,2]
+
+
+
+public class findTopK {
+
+    //找出前k个最大数，采用小顶堆实现
+    public static int[] findKMax(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k);//队列默认自然顺序排列，小顶堆，不必重写compare
+
+        for (int num : nums) {
+            if (pq.size() < k) {
+                pq.offer(num);
+            } else if (pq.peek() < num) {//如果堆顶元素 < 新数，则删除堆顶，加入新数入堆
+                pq.poll();
+                pq.offer(num);
+            }
+        }
+
+        int[] result = new int[k];
+        for (int i = 0; i < k&&!pq.isEmpty(); i++) {
+            result[i] = pq.poll();
+        }
+        return result;
+    }
+
+ public static void main(String[] args) {
+        int[]arr=new int[]{1, 6, 2, 3, 5, 4, 8, 7, 9};
+        System.out.println(Arrays.toString(findKMax( arr,5)));
+    }
+}
+/**
+输出：[5, 6, 7, 8, 9]
+*/

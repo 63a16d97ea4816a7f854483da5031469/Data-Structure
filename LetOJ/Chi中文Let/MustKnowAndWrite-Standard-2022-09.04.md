@@ -24,6 +24,10 @@
 			//static int  binarySearch(List list, Object key) 使用二分查找法查找指定元素在指定列表的索引位置 
 			int index = Collections.binarySearch(list, 4);
 			
+		  List<Integer> res = new ArrayList();
+        // 使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+                res.addAll(list);   //添加另一个list的所有元素到这个list中
+			
 			
 		//static void swap(List list, int i, int j) :将指定列表中的两个索引进行位置互换
 		Collections.swap(list, 0, 1);
@@ -47,6 +51,53 @@
 		 // copying array org to copy 
 		 copyOf(int[] original, int newLength) 
         int[] copy = Arrays.copyOf(org, 5); 
+        
+##常见算法套路
+
+常考：
+
+**数组**，
+**字符串**，
+**矩阵**，
+**二叉树**，固定算法结构。
+**排序**，
+**队列**,
+**堆栈**，
+**哈希表**，
+**双指针**，两指针问题，考察运用语言基本能力，灵活解题能力。
+**优先级队列**，
+**桶排序**
+**回溯**，
+**贪心**，
+**枚举(穷举)**，即通过for loop一定可以将问题分为一类，另一类：字符串轮转
+**BFS**，即通过固定模板，先广度再下一步。
+**DFS**, 即通过固定模板，先向下搜索到末尾，再回溯。
+**递归**，
+**DP-动态规划**，动态规划
+**二分查找**，
+**快排**，
+**堆排序**，
+**LRU**
+
+
+不常考：
+
+**字典树**
+**分治**
+**TreeMap**
+**单调栈**
+**滑动窗口**
+**记忆化搜索**
+**组合数学**
+**线段树**
+**状态压缩**
+**并查集**
+**位运算**
+**前缀和**
+**滚动哈希**
+**最小生成树**
+**扫描线**
+**水塘抽样**
 
 ## Arrays:
 
@@ -196,6 +247,163 @@ java.util.Arrays类是数组的工具类，一般数组常用的方法包括
 	});
 
 
+给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+示例 1:
+输入: nums = [1,1,1,2,2,3], k = 2
+输出: [1,2]
+
+示例 2:
+输入: nums = [1], k = 1
+输出: [1]
+
+	class Solution {
+	    HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+	    public int[] topKFrequent(int[] nums, int k) {
+	
+	        for(int tmp:nums){
+	            map.put(tmp,map.getOrDefault(tmp,0)+1);
+	        }
+	        List<Map.Entry<Integer,Integer>> list=new ArrayList<>();
+	        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+	            list.add(entry);
+	        }
+	        Collections.sort(list,(o1,o2)->{
+	            return o2.getValue()-o1.getValue();
+	        });
+	        int[] result=new int[k];
+	        for(int i=0;i<k;i++){
+	            result[i]=list.get(i).getKey();
+	        }
+	        return result;
+	    }
+	}
+	
+14 ms   44 MB   Java    2022/09/06 21:34    
+O(nlogn)
+	
+	class Solution {
+	    HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+	    public int[] topKFrequent(int[] nums, int k) {
+	
+	        for(int tmp:nums){
+	            map.put(tmp,map.getOrDefault(tmp,0)+1);
+	        }
+	
+	        PriorityQueue<Map.Entry<Integer,Integer>> pq=new PriorityQueue<>((o1,o2)->{
+	            return o2.getValue()-o1.getValue();
+	        });
+	        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+	                pq.add(entry);
+	        }
+	        int[] result=new int[k];
+	        for(int i=0;i<k;i++){
+	            result[i]=pq.poll().getKey();
+	        }
+	        return result;
+	    }
+	}
+12 ms   44.1 MB Java
+
+O(nlogn)
+
+	这里不能使用:
+	
+	        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+	            if(pq.size()<k){
+	                pq.add(entry);
+	            }else{
+	                if(pq.peek().getValue()<entry.getValue()){
+	                     pq.poll();
+	                     pq.add(entry);
+	                }
+	            }
+	        }
+	[4,1,-1,2,-1,2,3]
+	2
+	输出：
+	[-1,1]
+	预期结果：
+	[-1,2]
+	
+	public class findTopK {
+	
+	    //找出前k个最大数，采用小顶堆实现
+	    public static int[] findKMax(int[] nums, int k) {
+	        PriorityQueue<Integer> pq = new PriorityQueue<>(k);//队列默认自然顺序排列，小顶堆，不必重写compare
+	
+	        for (int num : nums) {
+	            if (pq.size() < k) {
+	                pq.offer(num);
+	            } else if (pq.peek() < num) {//如果堆顶元素 < 新数，则删除堆顶，加入新数入堆
+	                pq.poll();
+	                pq.offer(num);
+	            }
+	        }
+	
+	        int[] result = new int[k];
+	        for (int i = 0; i < k&&!pq.isEmpty(); i++) {
+	            result[i] = pq.poll();
+	        }
+	        return result;
+	    }
+	
+	 public static void main(String[] args) {
+	        int[]arr=new int[]{1, 6, 2, 3, 5, 4, 8, 7, 9};
+	        System.out.println(Arrays.toString(findKMax( arr,5)));
+	    }
+	}
+	/**
+	输出：[5, 6, 7, 8, 9]
+	*/
+
+	class Solution {
+	    public List<Integer> topKFrequent(int[] nums, int k) {
+	        // 使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+	        HashMap<Integer,Integer> map = new HashMap();
+	        for(int num : nums){
+	            if (map.containsKey(num)) {
+	               map.put(num, map.get(num) + 1);
+	             } else {
+	                map.put(num, 1);
+	             }
+	        }
+	        // 遍历map，用最小堆保存频率最大的k个元素
+	        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+	            @Override
+	            public int compare(Integer a, Integer b) {
+	                return map.get(a) - map.get(b);
+	            }
+	        });
+	        for (Integer key : map.keySet()) {
+	            if (pq.size() < k) {
+	                pq.add(key);
+	            } else if (map.get(key) > map.get(pq.peek())) {
+	                pq.remove();
+	                pq.add(key);
+	            }
+	        }
+	        // 取出最小堆中的元素
+	        List<Integer> res = new ArrayList<>();
+	        while (!pq.isEmpty()) {
+	            res.add(pq.remove());
+	        }
+	        return res;
+	    }
+	}
+	//T (O(nlogK))
+	//S (O(n))
+
+
+#桶排序
+
+
+
+
+#递归
+
+
+
+
 
 # 快排:
 
@@ -270,9 +478,6 @@ O(nlogn):
 	        return false;
 	    }
 	}
-
-
-
 
 #快速选择
 
