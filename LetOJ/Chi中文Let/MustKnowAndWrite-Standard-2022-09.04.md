@@ -565,6 +565,46 @@ O(nlogn):
 	        return false;
 	    }
 	}
+	
+#快排
+
+	public class Solution{
+		public void quickSort(int[] arr, int left, int right){
+			if(arr==null||arr.length==0) return;
+			if(left>=right) return;
+	
+			int l=left;
+			int h=right;
+			int mid=l+(h-l)/2;
+			int pivot=arr[mid];
+	
+			while(l<=h){
+				while(arr[l]<pivot){
+					l++;
+				}
+				while(arr[h]>pivot){
+					h--;
+				}
+	
+				if(l<=h){
+					int tmp=arr[l];
+					arr[l]=arr[h];
+					arr[h]=tmp;
+					l++;
+					h--;
+				}
+			}
+	
+			if(l<right){
+				quickSort(arr,l,right);
+			}
+			
+			if(h>left){
+				quickSort(arr,left,h);
+			}
+		}
+	}
+
 
 #快速选择
 
@@ -623,8 +663,6 @@ Top K 问题的最优解 - 快速选择算法（Quickselect）
 // 链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/javadai-ma-de-2chong-da-an-by-sdwwld/
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-
 
 # 冒泡排序
 	/**
