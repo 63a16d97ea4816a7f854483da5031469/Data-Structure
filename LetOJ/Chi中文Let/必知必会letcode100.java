@@ -39,7 +39,7 @@ public int binarySearch(int[] nums, int target){
 BigInteger a=new BigInteger("0");
 BigInteger b=new BigInteger("1");
 BigInteger c=a.add(b);
-
+c.mod(new BigInteger("1000000007"))
 
 
 
