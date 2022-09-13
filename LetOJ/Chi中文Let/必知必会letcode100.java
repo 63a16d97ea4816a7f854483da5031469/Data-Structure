@@ -217,6 +217,25 @@ class Solution {
 ------------------------------------------------------------------------------------------------------------------------
 
 
+全排列
+
+
+
+public void getAll(String s){
+	dps(s,0,"");
+}
+
+public void dps(String s, int index,String result){
+	if(result.length()>=s.length()){
+		System.out.println(result);
+		return;
+	}
+	for(int i=index;i<s.length();i++){
+		swap(s,index,i);
+		dps(s,i+1,result+s.charAt(i));
+		swap(s,i,index);
+	}
+}
 
 ------------------------------------------------------------------------------------------------------------------------
 
