@@ -66,7 +66,7 @@ class Solution {
                 dummyHead=dummyHead.next;
             }
         }
-            if(l1!=null)
+            while(l1!=null)
                 dummyHead.next=l1;
             if(l2!=null)
                 dummyHead.next=l2;
