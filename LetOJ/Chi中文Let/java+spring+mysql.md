@@ -324,6 +324,9 @@ Java提供了一个Proxy类，调用它的newInstance方法可以生成某个对
     }
     
 
+#Spring Cloud
+Spring Cloud 是为了解决微服务架构中服务治理而提供的一系列功能的开发框架，并且 Spring Cloud 是完全基于 Spring Boot 而开发，Spring Cloud 利用 Spring Boot 特性整合了开源行业中优秀的组件，整体对外提供了一套在微服务架构中服务治理的解决方案。
+
 #cglib代理也叫子类代理
 cglib代理也叫子类代理，从内存中构建出一个子类来扩展目标对象的功能！
 
