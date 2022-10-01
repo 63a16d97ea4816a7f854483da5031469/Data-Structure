@@ -281,6 +281,24 @@ AVG_A AVG_B is the average value of the score for department A, B correspondingl
 # 
 
 #开窗函数
+
+[https://blog.csdn.net/qq_31183727/article/details/107023293](https://blog.csdn.net/qq_31183727/article/details/107023293)
+
+2. 几个排序函数row_number() over()、rank() over()、dense_rank() over()、ntile() over()的区别
+
+（1） row_number() over()：
+
+对相等的值不进行区分，其实就是行号，相等的值对应的排名不同，序号从1到n连续。
+
+（2） rank() over()：
+
+相等的值排名相同，但若有相等的值，则序号从1到n不连续。如果有两个人都排在第3名，则没有第4名。
+
+（3） dense_rank() over()：
+
+对相等的值排名相同，但序号从1到n连续。如果有两个人都排在第一名，则排在第2名（假设仅有1个第二名）的人是第3个人。
+
+
 ROW_NUMBER : Returns a unique number for each row starting with 1. For rows that have duplicate values,numbers are arbitarily assigned.
 
 Rank : Assigns a unique number for each row starting with 1,except for rows that have duplicate values,in which case the same ranking is assigned and a gap appears in the sequence for each duplicate ranking.
