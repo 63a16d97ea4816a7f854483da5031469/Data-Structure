@@ -373,3 +373,10 @@ Rank : Assigns a unique number for each row starting with 1,except for rows that
 #什么是坏的查询
 
 
+
+
+#Hive
+一文彻底搞懂Hive的数据存储与压缩
+https://developer.aliyun.com/article/899924
+
+
