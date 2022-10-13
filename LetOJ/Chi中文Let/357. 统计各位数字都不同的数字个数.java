@@ -127,11 +127,11 @@ class Solution {
         if(n==0) return 1;
         if(n==1) return 10;
         int result=9;
-        int second=countNumbersWithUniqueDigits(n-1);
+        int prev=countNumbersWithUniqueDigits(n-1);
         for(int i=2;i<=n;i++){
             result=result*(10-i+1);
         }
-        return result+second;
+        return result+prev;
     }
 }
 
