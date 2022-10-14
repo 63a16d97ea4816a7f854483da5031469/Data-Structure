@@ -246,7 +246,7 @@ class Solution {
             if(o2.getValue()==o1.getValue()){
                 return o2.getKey().compareTo(o1.getKey()); // 自然序
             }else{
-                return o1.getValue()-o2.getValue();
+                return o1.getValue()-o2.getValue(); //使用的最小堆（注意，当只进入k个时候，就必须使用规则：求最大值用最小堆，求最小值用最大堆
             }
         });
         
@@ -257,7 +257,7 @@ class Solution {
                 if(pq.peek().getValue()<entry.getValue()){
                     pq.poll();
                     pq.add(entry);
-                }else if(pq.peek().getValue()==entry.getValue()){
+                }else if(pq.peek().getValue()==entry.getValue()){ // 处理没进入到pq时候，size相等，按字母序选择替换自然序靠前的
                     if(pq.peek().getKey().compareTo(entry.getKey())>0){
                         pq.poll();
                         pq.add(entry);
@@ -270,7 +270,7 @@ class Solution {
             pq.poll();
         }
         while(!pq.isEmpty()){
-                result.addFirst(pq.poll().getKey());
+                result.addFirst(pq.poll().getKey()); //因为使用最小堆，要对顺序进行逆转
         }
  
         return result;

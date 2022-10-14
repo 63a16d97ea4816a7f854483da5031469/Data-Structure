@@ -111,6 +111,49 @@ class Solution {
 
 
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+ 
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        if(preorder==null||postorder==null) return null;
+
+        int n=preorder.length;
+        if(n==0) return null;
+        TreeNode root=new TreeNode(preorder[0]);
+        if(n==1) return root;
+        int point=0;
+        for(int i=0;i<postorder.length;i++){
+            if(preorder[1]==postorder[i]){
+                point=i+1;
+            }
+        }
+        System.out.println("point: "+point);
+        System.out.println("left: preorder Arr - copyOfRange(preorder,"+1+","+(point+1)+")");
+        System.out.println("left: postorder Arr - copyOfRange(postorder,"+0+","+(point)+")");
+        System.out.println("right: preorder Arr - copyOfRange(preorder,"+(point+1)+","+(n)+")");
+        System.out.println("right: postorder Arr - copyOfRange(postorder,"+(point)+","+(n-1)+")");
+
+        root.left=constructFromPrePost(Arrays.copyOfRange(preorder,1,point+1),Arrays.copyOfRange(postorder,0,point));
+        root.right=constructFromPrePost(Arrays.copyOfRange(preorder,point+1,n),Arrays.copyOfRange(postorder,point,n-1));
+        return root;
+    }
+}
+
+
 
 
 
