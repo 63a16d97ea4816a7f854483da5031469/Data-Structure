@@ -58,6 +58,9 @@ It is guaranteed that preorder and postorder are the preorder traversal and post
  * 
  */
 
+// 主要思想，每次切出来一个 preorder的片段，postorder的片段
+// 然后准确的不断重复切割，直至分离处理完左右节点
+
 
 class Solution {
  
