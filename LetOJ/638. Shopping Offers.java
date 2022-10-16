@@ -96,7 +96,6 @@ https://leetcode.cn/problems/shopping-offers/solutions/1063610/gong-shui-san-xie
 class Solution {
     public  int minprice=0;//最低价格
 
-
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
         minprice=notusespecial( price,needs);//直接购买的价格
         DFS(price,  special,  needs,0, 0);//深度遍历琼剧
@@ -104,6 +103,7 @@ class Solution {
         return minprice;
 
     }
+
     //直接购买的价格
     public  int  notusespecial(List<Integer> price,List<Integer> needs){
         int total=0;//总和
@@ -112,9 +112,8 @@ class Solution {
             total+= needs.get(i)*price.get(i);//价格乘以数量
         }
         return total;//返回总和
-
-
     }
+
     //是否可以购买礼包
     public boolean canusespecial(List<Integer> needs,List<Integer> offer){
         int n=needs.size();//需要的数量
@@ -126,6 +125,7 @@ class Solution {
         return true;
 
     }
+    
     //穷举所有可以购买，确保最低,index索引，used已经使用的money
     public void  DFS(List<Integer> price, List<List<Integer>> special, List<Integer> needs,int index, int used){
         if(used >=minprice){
@@ -168,7 +168,75 @@ class Solution {
 
 
 
-
+class Solution {
+    int min=0;
+    List<Integer> _price=null;
+    List<List<Integer>> _special=null;
+    public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
+        
+        _price=price;
+        _special=special;
+        
+        // no use of the special offer
+        min=noSpecialOffer(needs);
+        
+        // dfs for using the special offers
+        dfs(needs, 0, 0);
+        
+        return min;
+    }
+    
+    
+    public void dfs(List<Integer> needs, int index, int cost){
+        
+        if(cost>min){
+            // stop if already over min
+            return;
+        }
+        
+        // stop condition
+        if(index==_special.size()){
+            min=Math.min(min,cost+noSpecialOffer(needs));
+            return;
+        }
+        
+        List<Integer> currSpecial=_special.get(index);
+        if(canUseOffer(currSpecial, needs)){
+            List<Integer> newNeeds=new ArrayList<Integer>();
+            for(int i=0;i<needs.size();i++){
+                newNeeds.add(needs.get(i)-currSpecial.get(i));
+            }
+            // cost+=currSpecial.get(needs.size()); 这里不能改变cost的值
+            // special offer可以反复使用，所以index不能变
+            dfs(newNeeds,index,cost+currSpecial.get(needs.size()));
+        }
+        dfs(needs,index+1,cost);
+    }
+    
+    public boolean canUseOffer(List<Integer> special, List<Integer> needs){
+        for(int i=0;i<needs.size();i++){
+            // Cannot over needs
+            if(needs.get(i)<special.get(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
+    public int noSpecialOffer(List<Integer> needs){
+        int total=0;
+        for(int i=0;i<_price.size();i++){
+            total+=_price.get(i)*needs.get(i);
+        }
+        return total;
+    }
+    
+    
+    
+    
+    
+}
 
 
 
