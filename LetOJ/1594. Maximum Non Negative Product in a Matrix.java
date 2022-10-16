@@ -62,7 +62,7 @@ TIME: 14:51:17
  * 
  */
 
-
+// 超时：
 class Solution {
     long max=Integer.MIN_VALUE;
     public int maxProductPath(int[][] grid) {
@@ -72,13 +72,10 @@ class Solution {
         long mod = (int)1e9 + 7;
         return max<0?-1:(int)(max%(mod));
     }
-    
-    
     public void dfs(int[][] g,int x, int y, long r){
         if(x<0||y<0||x>=g.length||y>=g[0].length){
             return;
         }
-        
         r*=g[x][y];
         if(x==g.length-1&&y==g[0].length-1){
             max=Math.max(max,r);
@@ -91,8 +88,7 @@ class Solution {
     
 }
 
-
-
+// 超时：
 // 加入记忆化搜索：
 
 class Solution {
@@ -106,36 +102,24 @@ class Solution {
         return max<0?-1:(int)(max%(mod));
     }
     
-    
     public void dfs(int[][] g,int x, int y, long r){
         if(x<0||y<0||x>=g.length||y>=g[0].length){
             return;
         }
-        
         if(map.get(new int[]{x,y})!=null){
             r=map.get(new int[]{x,y});
         }else{
             r*=g[x][y];
             map.put(new int[]{x,y},r);
         }
-        
         if(x==g.length-1&&y==g[0].length-1){
             max=Math.max(max,r);
             return;
-        }
-        
-      
+        } 
         dfs(g,x+1,y,r);
         dfs(g,x,y+1,r);
     }
-    
-    
 }
-
-
-
-
-
 
 
 
