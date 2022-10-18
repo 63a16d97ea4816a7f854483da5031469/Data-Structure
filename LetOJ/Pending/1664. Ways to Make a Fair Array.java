@@ -263,3 +263,78 @@ class Solution {
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
+
+
+
+
+
+
+
+
+发布于 北京
+整体思路：
+
+当我们删除某一项下标为i的元素时，i项之前的奇偶顺序是不变的，i项之后奇偶顺序交换。因此，在求删除第i项元素之后的奇偶项和就可以以下两部分：
+
+删除后的奇数项之和 = i项之前的奇数项之和 + i项之后的偶数项之和
+删除后的偶数项之和 = i项之前的偶数项之和 + i项之后的奇数项之和
+这样我们就可以通过一遍遍历求得删除每一项时的奇偶项之和，并进行判断统计。
+
+细节注意：
+
+用两个长度为n+1的数组存储当前元素前的奇偶前缀和（不包含当前元素），多一项是为了防止最后一项元素被遗漏。
+
+preOddSum[i]:第i个元素之前的奇数项前缀和（不包含nums[i]），初始化preOddSum[0] = 0
+i是奇数项：preOddSum[i] = preOddSum[i-1]
+i是偶数项：preOddSum[i] = preOddSum[i-1] + nums[i-1]
+preEvenSum[i]:第i个元素之前的偶数项前缀和（不包含nums[i]），初始化preEvenSum[0] = 0
+i是奇数项：preEvenSum[i] = preEvenSum[i-1] + nums[i-1]
+i是偶数项：preEvenSum[i] = preEvenSum[i-1]
+
+
+
+class Solution {
+public:
+    int waysToMakeFair(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> preOddSum(n+1); //奇数项前缀和
+        vector<int> preEvenSum(n+1); //偶数项前缀和
+        preOddSum[0] = 0, preEvenSum[0] = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 1) {   // 注意，下标为奇数，是偶数项
+                preOddSum[i] = preOddSum[i-1] + nums[i-1];
+                preEvenSum[i] = preEvenSum[i-1];
+            } else {
+                preOddSum[i] = preOddSum[i-1];
+                preEvenSum[i] = preEvenSum[i-1] + nums[i-1];
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            int oddSum = 0, evenSum = 0;
+            if (i % 2 == 0) {   // 删除奇数项
+                oddSum = preOddSum[i] + preEvenSum[n] - preEvenSum[i];
+                evenSum = preEvenSum[i] + preOddSum[n] - preOddSum[i] - nums[i];    \\ 后半部分的奇数项求和时，要减去当前项
+            } else {
+                oddSum = preOddSum[i] + preEvenSum[n] - preEvenSum[i] - nums[i];
+                evenSum = preEvenSum[i] + preOddSum[n] - preOddSum[i];
+            }
+            if (oddSum == evenSum)  ans++;
+        }
+        return ans;
+    }
+};
+
+作者：Yeefine
+链接：https://leetcode.cn/problems/ways-to-make-a-fair-array/solutions/493937/qian-zhui-he-liang-ci-bian-li-by-w-avan/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+复杂度分析：
+
+时间复杂度：O(n)，仅进行了两遍线性遍历。
+空间复杂度：O(n)，记录奇偶项前缀和所使用了两个长度为n+1的vector。
+
+
+
