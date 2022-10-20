@@ -536,7 +536,16 @@ class Solution {
     }
 }
 
-
+        // 另一种处理字符串的方法:
+        String str="27";
+        int ten = (str.charAt(0) - '0') * 10;
+        int one = (str.charAt(1) - '0');
+        System.out.println(ten+" "+one+" "+(ten+one));
+        if((ten+one)>26){
+            System.out.println(">26");
+        }
+        // output: 20 7 27
+        // output: >26
 
 
 
