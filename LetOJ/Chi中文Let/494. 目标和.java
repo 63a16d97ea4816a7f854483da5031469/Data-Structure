@@ -68,10 +68,16 @@ TIME: 19:00:31
  * 
  */
 
+
+
+这道题给了我们一个数组（元素非负），和一个目标值，要求给数组中每个数字前添加正号或负号所组成的表达式结果与目标值S相等，求有多少种情况。
+
+假设所有元素和为sum，所有添加正号的元素的和为A，所有添加负号的元素和为B，则有sum = A - B 且 S = A + B，解方程得A = (sum + S)/2。即题目转换成：从数组中选取一些元素使和恰好为(sum + S) / 2。可见这是一个恰好装满的01背包问题，要求所有方案数，将1.2节状态转移方程中的max改成求和即可。需要注意的是，虽然这里是恰好装满，但是dp初始值不应该是inf，因为这里求的不是总价值而是方案数，应该全部初始为0（除了dp[0]初始化为1）。所以代码如下：
+
 //动态规划
 class Solution {
   public int findTargetSumWays(int[] nums, int target) {
-    int l = nums.length;
+    int n = nums.length;
     int sun = 0;
     for (int i: nums) sun += i;
     if (target > sun || -target > sun) return 0;
@@ -79,7 +85,7 @@ class Solution {
     int t = (sun + target) / 2;
     int[] dp = new int[t + 1];
     dp[0] = 1;
-    for (int i = 0; i < l; i++) {
+    for (int i = 0; i < n; i++) {
       for (int j = t; j >= nums[i]; j--) {
         dp[j] += dp[j - nums[i]];
       }
@@ -88,8 +94,23 @@ class Solution {
   }
 }
 
+int findTargetSumWays(vector<int>& nums, int S) {
+    int sum = 0;
+    // for(int &num: nums) sum += num;
+    sum = accumulate(nums.begin(), nums.end(), 0);
+    if(S > sum || sum < -S) return 0; // 肯定不行
+    if((S + sum) & 1) return 0; // 奇数
+    int target = (S + sum) >> 1;
 
+    vector<int>dp(target + 1, 0);
 
+    dp[0] = 1;
+    for(int i = 1; i <= nums.size(); i++)
+        for(int j = target; j >= nums[i-1]; j--)
+            dp[j] = dp[j] + dp[j - nums[i-1]];
+
+    return dp[target];
+}
 
 
 
