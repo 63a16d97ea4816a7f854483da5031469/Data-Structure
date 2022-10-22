@@ -90,6 +90,9 @@ https://leetcode.cn/problems/shopping-offers/solutions/1063610/gong-shui-san-xie
  * 
  */
 
+
+// Input: price = [2,3,4], special = [[1,1,0,4],[2,2,1,9]], needs = [1,2,1]
+
 //作者思路非常清晰，值得学习
 //构造DFS搜索，必须是一个非常擅长的技能。
 
@@ -98,7 +101,7 @@ class Solution {
 
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
         minprice=notusespecial( price,needs);//直接购买的价格
-        DFS(price,  special,  needs,0, 0);//深度遍历琼剧
+        DFS(price,  special,  needs,0, 0);//深度遍历穷举
 
         return minprice;
 
@@ -136,7 +139,7 @@ class Solution {
             if(used<minprice){
                 minprice=used;//保存最小花销
             }
-            return;
+            return; //在这里结束
 
         }
         List<Integer>  offer=special.get(index);//抓取礼包
@@ -147,7 +150,7 @@ class Solution {
                 updateneeds.add(needs.get(i)-offer.get(i));//更新需求，减去提供
 
             }
-            int specialPrice=offer.get(n);
+            int specialPrice=offer.get(n); //拿到 特价值
             DFS(price,special,updateneeds,index,used+specialPrice);//深度遍历
 
         }
