@@ -158,6 +158,37 @@ public class Solution {
 
 
 
+class Solution {
+  public int coinChange(int[] coins, int amount) {
+    int[][] dp = new int[coins.length][amount + 1];
+    Arrays.fill(dp[0], -1);
+    for (int i = 0; i * coins[0] <= amount; i++) {
+      dp[0][i * coins[0]] = i;
+    }
+    for (int i = 1; i < coins.length; i++) {
+      for (int j = 0; j <= amount; j++) {
+        // 如果要使用对应的硬币 // 总金额数目肯定要大于硬币的面额 
+        if (j >= coins[i]) {
+          if (dp[i][j - coins[i]] == -1) dp[i][j] = dp[i - 1][j];
+          else if (dp[i - 1][j] == -1) dp[i][j] = dp[i][j - coins[i]] + 1;
+          else dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - coins[i]] + 1);
+        } else {
+          // 否则只能使用前 i-1 种硬币 
+          dp[i][j] = dp[i - 1][j];
+        }
+      }
+    }
+    return dp[coins.length - 1][amount];
+  }
+}
+
+
+
+
+
+
+
+
 
 // 这种解法会超时
 
