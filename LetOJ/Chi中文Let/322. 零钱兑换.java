@@ -108,12 +108,6 @@ public class Solution {
 // 链接：https://leetcode.cn/problems/coin-change/solutions/132979/322-ling-qian-dui-huan-by-leetcode-solution/
 
 
-
-
-
-
-
-
 public class Solution {
     public int coinChange(int[] coins, int amount) {
         if (amount < 1) {
@@ -149,14 +143,6 @@ public class Solution {
 
 时间复杂度：O(Sn)，其中 S 是金额，n 是面额数。我们一共需要计算 S 个状态的答案，且每个状态 F(S)由于上面的记忆化的措施只计算了一次，而计算一个状态的答案需要枚举 n个面额值，所以一共需要 O(Sn) 的时间复杂度。
 空间复杂度：O(S)，我们需要额外开一个长为 S 的数组来存储计算出来的答案 F(S)
-
-
-
-
-
-
-
-
 
 class Solution {
   public int coinChange(int[] coins, int amount) {
@@ -228,8 +214,38 @@ class Solution {
 
 
 
+// 完全背包问题
+class Solution {
+  public int coinChange(int[] coins, int amount) {
+    int[][] dp = new int[coins.length][amount + 1];
 
-
+    //使用-1表示,目前的j不能被组合出来
+    Arrays.fill(dp[0], -1);
+    
+    // 如果只使用第一个面值,那么其dp值,应该是0,1,2...i
+    for (int i = 0; i * coins[0] <= amount; i++) {
+      dp[0][i * coins[0]] = i;
+    }
+    for (int i = 1; i < coins.length; i++) {
+      for (int j = 0; j <= amount; j++) {
+        // 如果要使用对应的硬币 
+        // 总金额数目肯定要大于硬币的面额 
+        if (j >= coins[i]) {
+            //如果(i, j-coin[i])==-1, 那么不能选,只能选前面的那个 dp[i-1][j];
+          if (dp[i][j - coins[i]] == -1) dp[i][j] = dp[i - 1][j];
+          // 如果j-coin[i]!=-1, 如果前面的不能选,那么只能选当前的i,使用完全背包模板
+          else if (dp[i - 1][j] == -1) dp[i][j] = dp[i][j - coins[i]] + 1;
+          // 如果都不是前面的情况,那么就要在两个里面选择最小值Math.min(不选i,选i)
+          else dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - coins[i]] + 1);
+        } else {
+          // 如果 当前面额>j, 只能使用前 i-1 种硬币 
+          dp[i][j] = dp[i - 1][j];
+        }
+      }
+    }
+    return dp[coins.length - 1][amount];
+  }
+}
 
 
 

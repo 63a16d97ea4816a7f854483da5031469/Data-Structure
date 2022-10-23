@@ -81,19 +81,28 @@ TIME: 15:39:52
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
         int length = strs.length;
+        // i==0,表示不选择任何字符串,dp结果自然为0
+        // 选择第i个字符串,i从1开始,仍然剩下m个0和n个1
         int[][][] dp = new int[length + 1][m + 1][n + 1];
+        // 选择第i个字符串,从i=1开始到i=n为止
         for (int i = 1; i <= length; i++) {
+            // 获得0和1的个数,并用int[]返回
             int[] zerosOnes = getZerosOnes(strs[i - 1]);
             int zeros = zerosOnes[0], ones = zerosOnes[1];
+            // 遍历j,k的所有可能性
             for (int j = 0; j <= m; j++) {
                 for (int k = 0; k <= n; k++) {
+                    // 如果后面条件不满足,那么就等于dp[i-1][j][k],即不选择i
                     dp[i][j][k] = dp[i - 1][j][k];
+                    // 只有当j>=zeros && k>=ones
                     if (j >= zeros && k >= ones) {
-                        dp[i][j][k] = Math.max(dp[i][j][k], dp[i - 1][j - zeros][k - ones] + 1);
+                        // 满足条件,则dp值在Math.max(不选这个第i数,选择这个第i数)
+                        dp[i][j][k] = Math.max(dp[i-1][j][k], dp[i - 1][j - zeros][k - ones] + 1);
                     }
                 }
             }
         }
+        //返回最长n的m和n都满足的结果
         return dp[length][m][n];
     }
 
