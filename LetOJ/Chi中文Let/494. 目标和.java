@@ -117,12 +117,52 @@ int findTargetSumWays(vector<int>& nums, int S) {
 
 
 
+// 自己写的:
+class Solution {
+  public int findTargetSumWays(int[] nums, int target) {
+    int n = nums.length;
+    int sum=0;
+    for(int tmp:nums){
+        sum+=tmp;
+    }
 
+    // sum = positive - negtive; (1)
 
+    //根据题意,要求给数组中每个数字前添加正号或负号所组成的表达式结果与目标值target相等
+    // target = positive + negitive; (2) 
 
+    // (1)式+(2)式=sum+target=2postive
+    // postive = (sum+target) / 2    (能被2÷,一定是偶数,因为按题意,都是整数,整数+-整数,一定是整数)
 
+    // 如果nums的sum是小于target, 是拼凑不出来的
+    if(sum<target) return 0;
+    int amount=(sum+target)/2;
 
+    //通过公式计算, postive一定是一个偶数
+    if((sum-target) % 2!=0){
+        return 0;
+    }
 
+    // 在i-1之间,拼出j的组合数 (01背包,不选i-1和选i-1, 装进去,不装进去)
+    int[][] dp=new int[n+1][amount+1];
+    dp[0][0]=1;
+
+    for(int i=1;i<=n;i++){
+        for(int j=0;j<=amount;j++){
+            // 如果j>=nums[i]
+            if(j>=nums[i-1]){
+                // dp值= Math.max(不取这个数, 取这个数)
+                dp[i][j]=dp[i-1][j]+dp[i-1][j-nums[i-1]];
+            }else{
+                // dp值 = 不取这个数
+                dp[i][j]=dp[i-1][j];
+            }
+        }
+    }
+
+    return dp[n][amount];
+  }
+}
 
 
 

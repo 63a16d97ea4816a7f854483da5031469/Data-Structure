@@ -234,18 +234,43 @@ class Solution {
         }
         return total;
     }
-    
-    
-    
-    
-    
 }
 
 
 
 
 
+public final int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
+        Map<String, Integer> cache = new HashMap<String, Integer>();
+        return search(price, special, needs, cache);
+    }
 
+    private final int search(List<Integer> prices, List<List<Integer>> specials, List<Integer> needs,
+                       Map<String, Integer> cache) {
+        int res = 0;
+        String key = "";
+        for (int i = 0; i < needs.size(); i++) key += "," + needs.get(i);
+        if (cache.containsKey(key)) return cache.get(key);
+        //这一句非常关键
+        for (int i = 0; i < needs.size(); i++) res += prices.get(i) * needs.get(i);
+        if (res == 0) return 0;
+        // 开始遍历special offer
+        for (int i = 0; i < specials.size(); i++) {
+            List<Integer> special = specials.get(i), clone = new ArrayList<Integer>(needs);
+            boolean canBuy = true;
+            for (int j = 0; j < needs.size(); j++) {
+                int diff = clone.get(j) - special.get(j);
+                if (diff < 0) {
+                    canBuy = false;
+                    break;
+                }
+                clone.set(j, diff);
+            }
+            if (canBuy) res = Math.min(res, search(prices, specials, clone, cache) + special.get(special.size()-1));
+        }
+        cache.put(key, res);
+        return res;
+    }
 
 
 
