@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>数据结构具体需要的走一遍</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<p>具体这次复习分为几个部分：</p>
+
+<p>网上算法教程：</p>
+
+<p>牛客网左程云亲自上场带你刷爆数据结构与算法-金九银十最新版！
+<a href="https://www.bilibili.com/video/BV1N44y1C7Dq/">https://www.bilibili.com/video/BV1N44y1C7Dq/</a></p>
+
+<p>刷题技巧网站：
+<a href="https://labuladong.github.io/algo/2/20/23/">https://labuladong.github.io/algo/2/20/23/</a>
+https://labuladong.github.io/algo/1/</p>
+
+<p>设计模式：
+<a href="https://refactoringguru.cn/design-patterns/singleton">https://refactoringguru.cn/design-patterns/singleton</a></p>
+
+<blockquote>
+<p>从心态上看，算法是一个套路和实践双结合的问题，就是套路要知道，练得要足够，手够热。</p>
+
+<p>读面经，有助于快速吸收知识，补足不懂的地方，提问是引起检查知识缺陷和快速进入面试状态的一种方式</p>
+</blockquote>
+
+<ol>
+<li>广泛的过一遍知识点，在状态好的时候，写题目，在状态不好的时候，见缝插针读题目。唤醒和加强记忆技法。</li>
+<li>实际去写题目，进行一些简单的预备，进入考试和面试的那种状态。</li>
+<li>复习一下相关的java知识点</li>
+<li>复习一下现有的工作的知识点</li>
+</ol>
+
+<p>遇到一道题目的思考路径：</p>
+
+<p><strong>动态规划,深度优先搜索(dfs),广度优先搜索(bfs),排序,二分查找,双指针,栈,堆（优先队列）,回溯,递归,分治,单调栈,枚举,队列,状态压缩,记忆化搜索,哈希函数,单调队列,快速选择,桶排序,模拟,贪心</strong></p>
+
+<p><strong>基础结构</strong></p>
+
+<div><pre><code class="language-none"> //在写dp中经常遇到
+ int[] dp=new int[n];
+ //赋值一维数组
+ Arrays.fill(dp, -1);
+
+     int[] cnt1 = new int[26];
+    int[] cnt2 = new int[26];
+    for (int i = 0; i &lt; n; ++i) {
+        ++cnt1[s1.charAt(i) - &#39;a&#39;];
+        ++cnt2[s2.charAt(i) - &#39;a&#39;];
+    }
+    // 判断两个arr相等
+    if (Arrays.equals(cnt1, cnt2)) {
+        return true;
+    }
+
+链接：https://leetcode.cn/problems/permutation-in-string/solutions/599202/zi-fu-chuan-de-pai-lie-by-leetcode-solut-7k7u/
+
+
+
+ //赋值二维数组
+ int[][] dp=new int[m][n];
+ for(int i=0;i&lt;m;i++){
+   Arrays.fill(dp[i]);
+ }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+LinkedList&lt;Integer&gt; list=new LinkedList&lt;&gt;();
+PriorityQueue&lt;Integer&gt; pq=new PriorityQueue&lt;&gt;((o1,o2)-&gt;{
+    return o2-o1;
+});
+for(Map.Entry&lt;String,String&gt; tmp:map.entrySet()){
+    System.out.println(tmp.getKey()+&quot;-&gt;&quot;+tmp.getValue());
+}
+for(String tmp:map.KeySet()){
+    System.out.println(tmp);
+}
+
+HashSet&lt;String&gt; set=new HashSet&lt;&gt;();
+for(String tmp:set){
+    System.out.println(tmp);
+}
+
+table.foreach(
+(key,value) - &gt; {
+    System.out.println(key+&quot; &quot;+value); 
+}
+Stack&lt;Integer&gt; stack=new Stack&lt;&gt;();
+stack.push(a);
+stack.pop();
+stack.peek();
+stack.size();
+while(stack.isEmpty()){
+
+}
+
+
+
+       HashMap&lt;String, String&gt; map=new           HashMap&lt;String,String&gt;(){
+            {
+                put(&quot;key1&quot;,&quot;value1&quot;);
+                put(&quot;key2&quot;,&quot;value2&quot;);
+            }
+        };</code></pre></div>
+
+<p><strong>二进制</strong> (toBinaryString)</p>
+
+<div><pre><code class="language-none">      int l = 10;
+     &quot;Binary is &quot; + Integer.toBinaryString(l)
+
+    int l = 10;
+    // returns the string representation of the unsigned int value
+    // represented by the argument in binary (base 2)
+    System.out.println(&quot;Binary is &quot; + Integer.toBinaryString(l));
+
+    l = 9;
+    System.out.println(&quot;Binary is &quot; + Integer.toBinaryString(l));
+
+public static String toBinaryString(int num)
+
+Parameter : The function accepts a single mandatory parameter num 
+num - This parameter specifies the number to be converted to binary string. 
+It is of int data-type 
+Return Value: This function returns the string representation of the unsigned Integer value represented by the argument in binary (base 2).
+Examples:
+
+Input : 10 
+Output : 1010 
+
+Input : 9
+Output : 1001 </code></pre></div>
+
+<p><strong>数组</strong>，       ====&gt; OK</p>
+
+<p>如何找到数组中的奇数节点，和偶数节点 i%2==0</p>
+
+<p>给一个数组，实现奇数位置从大到小排列，偶数位置从小到大排列 （LinkedList, sort, 一个从removeFirst()，一个从removeLast()拿, 偶数节点 i%2==0
+1 , 2，3，4</p>
+
+<div><pre><code class="language-none">int[] a=new int[]{1,2,3,4};
+int size=a.length;
+List&lt;Integer&gt; list=Arrays.asList(a);
+Arrays.sort(a);</code></pre></div>
+
+<ul>
+<li>数组经常考双指针。</li>
+<li>快慢指针。</li>
+<li>移除0。</li>
+<li>桶排序。</li>
+</ul>
+
+<p><strong>字符串</strong>，       ====&gt; OK</p>
+
+<div><pre><code class="language-none">String ---&gt;  str.length();  
+
+   str.substring(start,end);
+
+
+   int index=s1.charAt(i) - &#39;a&#39;;  // index to (0 to 26)
+
+     int[] count1 = new int[26]; // s1每个字符出现的次数
+    int[] count2 = new int[26]; // s2每个字符出现的次数
+    // 1. 进行统计
+    for (int i = 0; i &lt; s1.length(); i++) {
+        count1[s1.charAt(i) - &#39;a&#39;]++;
+        count2[s2.charAt(i) - &#39;a&#39;]++;
+    }
+
+原文链接：https://blog.csdn.net/afei__/article/details/85058158
+
+
+    public static void main(String args[]) {
+    String str = &quot;I love shopee !&quot;;
+    ListNode curr=node;
+
+    for(Character tmp:str.toCharArray()) {
+        ListNode newNode=new ListNode();
+        newNode.value=tmp+&quot;&quot;;
+        curr.next=newNode;
+        curr=curr.next;
+    }
+    ListNode returnNode=FindKthToTail(node,1);
+    System.out.println(returnNode.value);
+}
+
+
+String string1 = &quot;foo bar&quot;;
+String string2 = &quot;foo bar&quot;;
+
+// java string compare example
+if (string1.compareTo(string2) == 0)
+{
+    // this line WILL print
+    System.out.println(&quot;The two strings are the same.&quot;)
+}</code></pre></div>
+
+<p><strong>Compares two strings lexicographically. The comparison is based on the Unicode value of each character in the strings.</strong> </p>
+
+<p>说明：
+如果第一个字符和参数的第一个字符不等，结束比较，返回第一个字符的ASCII码差值。
+如果第一个字符和参数的第一个字符相等，则以第二个字符和参数的第二个字符做比较，以此类推,直至不等为止，返回该字符的ASCII码差值。 如果两个字符串不一样长，可对应字符又完全一样，则返回两个字符串的长度差值。</p>
+
+<div><pre><code class="language-none">        // Decode ways 里面compare字符串是否&gt;=&quot;10&quot;,并且&lt;=&quot;26&quot;
+       if (i &gt;= 2 &amp;&amp; (s.substring(i - 2, i).compareTo(&quot;10&quot;) &gt;= 0 &amp;&amp; s.substring(i - 2, i).compareTo(&quot;26&quot;) &lt;= 0)) {
+            dp[i] += dp[i - 2];
+        }
+
+ public int compareTo(String anotherString) {
+        byte v1[] = value;
+        byte v2[] = anotherString.value;
+        if (coder() == anotherString.coder()) {
+            return isLatin1() ? StringLatin1.compareTo(v1, v2)
+                              : StringUTF16.compareTo(v1, v2);
+        }
+        return isLatin1() ? StringLatin1.compareToUTF16(v1, v2)
+                          : StringUTF16.compareToLatin1(v1, v2);
+     }
+
+
+     // 另一种处理字符串的方法:
+    String str=&quot;27&quot;;
+    int ten = (str.charAt(0) - &#39;0&#39;) * 10;
+    int one = (str.charAt(1) - &#39;0&#39;);
+    System.out.println(ten+&quot; &quot;+one+&quot; &quot;+(ten+one));
+    if((ten+one)&gt;26){
+        System.out.println(&quot;&gt;26&quot;);
+    }
+    // output: 20 7 27
+    // output: &gt;26</code></pre></div>
+
+<p><strong>矩阵</strong>，</p>
+
+<p>int[][] a =new int[m][n];</p>
+
+<ul>
+<li>矩阵这种，经常在DP中用到</li>
+</ul>
+
+<p><strong>链表</strong>
+prev、cur、next </p>
+
+<ul>
+<li>链表要注意边界条件（链表为空情况）</li>
+<li> 合并两个有序链表</li>
+<li> 给定一个链表的头结点，也给定这个结点的指针，在O(1)的时间删除该节点（例如该节点为target), target=target.next;</li>
+<li><p>找到单链表第k个节点。</p></li>
+<li><p>将链表逆转</p></li>
+<li><p>拼接两个有序链表</p></li>
+<li><p>删除单链表倒数第 n 个节点(里面有两种情况）</p></li>
+<li><p>求单链表的中间节点(快慢指针）</p></li>
+<li><p>快慢指针，有环没环</p></li>
+<li><p>找到环的入口点（要理解证明过程）</p></li>
+<li><p>求两个无环单链表的第一个相交点（第一个公共交点）</p></li>
+</ul>
+
+<p><img src="./images/cycleEntrypoint.png" alt=""></p>
+
+<blockquote>
+<p>　有环时查找入环点的方法的证明过程如下：
+　　当fast与slow相遇时，slow还没走完链表，而fast已经在环内循环了n圈了，假设slow在相遇前走了s步，则fast走了2s步，设环长为r，有2s=s+nr，即s=nr.
+　　由上图可知a+x=s, x+y=r，而我们的目标是找到a的位置。设上图那个拱起的曲线的长度为y，有a+x=s=nr=(n-1)r+r=(n-1)r+y+x，则a=(n-1)r+y. 这个公式告诉我们，从链表头和相遇点分别设一个指针，每次各走一步，这两个指针必定相遇，且相遇的第一个点为环入口点。</p>
+</blockquote>
+
+<ul>
+<li>判断两个无环单链表是否相交（转换为环解决，hashmap解决，或者将两个链表都移到最后一个点，因为如果相交的话，最后一个点一定是相同的）</li>
+</ul>
+
+<blockquote>
+<p>无环单链表是否相交判断有多种方法：
+方法1：先循环链表1，将每个节点的地址进行hash计算存入哈希表，然后计算链表2的每个节点的地址的hash值，若与hash表中对应位置有值，则相交，否则不相交。
+方法2：见链表1与2进行首尾相连，判断新链表是否有环，若没有，则不相交，若有环，则是相交的。
+方法3：先计算两个链表的长度L1、L2，若L1 &gt; L2，则先将链表1移动（L1 - L2）个节点，等到链表1和链表2剩下的长度一样的时候，一起向后移动，依次判断当前链表的节点是否相等，若相等，则相交，若到队尾还没有相等的，则不相交</p>
+</blockquote>
+
+<ul>
+<li>判断两个有环单链表是否相交</li>
+</ul>
+
+<p>链表经典题目：
+<a href="https://www.jianshu.com/p/a2d53142860c">https://www.jianshu.com/p/a2d53142860c</a></p>
+
+<p><strong>LinkedList</strong></p>
+
+<div><pre><code class="language-none">LinkedList&lt;String&gt; list=new LinkedList&lt;&gt;();
+
+list.removeFirst();
+list.removeLast();
+list.add(x);  ==&gt; list.addLast(x);
+
+Iterator&lt;String&gt; it=list.iterator();
+while(it.hasNext()){
+    System.out.println(it.next());
+}
+
+List&lt;String&gt; res = new LinkedList&lt;&gt;();
+res.toArray(new String[0]);  // 转array
+res.remove(0); // 按位置删除
+
+LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;();
+list.get(i);
+list.set(i, newValue);
+
+Iterator&lt;String&gt; it=list.iterator();
+while(it.hasNext())[
+   System.out.println(it.next());
+}</code></pre></div>
+
+<p><img src="images/linkedlistRandomAccess.jpg" alt=""></p>
+
+<p><strong>队列</strong>,</p>
+
+<p>使用两个队列，做一个栈。(看queue1是空的话，就插入到queue2，然后将queue1的都装进来，弹出的时候，直接从有数据的那个queue直接弹出。这样就保证了后进先出。)</p>
+
+<p><img src="images/twoqueues.png" alt=""></p>
+
+<p><strong>堆栈</strong>，<br>
+使用两针堆栈，模拟一个队列
+倒序打印一个单链表
+stack.peek();
+stack.push(x);
+stack.pop();
+最小栈
+有效的括号</p>
+
+<p><strong>二叉树</strong>，固定算法结构。</p>
+
+<p>构建二叉树，根据先根和中根遍历，构造二叉树。(root.left=rebuildTree(preorder, inorder, start, mid-1), root.right=rebuildTree(preorder, inorder, mid+1, end);
+构建二叉树，根据后根和中跟遍历，构造二叉树。
+二叉树，输出其镜像（每个节点的左右子节点交换）==》 left.val==right.val &amp;&amp; symm(left.left,right.right) &amp;&amp; symm(left.right,right.left)</p>
+
+<p>序列化和反序列化二叉树. 
+    public void serializeHelper(TreeNode root, List<String> list) {
+            if (root == null) {
+                list.add(&quot;#&quot;);
+                return;
+            }
+            list.add(String.valueOf(root.val));
+            serializeHelper(root.left, list);
+            serializeHelper(root.right, list);
+            return;
+    }</p>
+
+<p><strong>二叉搜索树</strong></p>
+
+<p>判断二叉搜索树的后根遍历序列。。（二叉树右子树的值一定大于root, 先找到第一个大于root的值，这个值是右子树的根mid index，然后分别verify(postorder, start, mid-1) &amp;&amp; verify(postorder,mid,end-1))</p>
+
+<p><strong>排序</strong>，  </p>
+
+<p>快排。
+Arrays.sort(a);
+Arrays.sort(a, (o1,o2)-&gt;{
+     return o1-o2;
+});
+Collections.sort(b, (o1,o2)-&gt;{
+     return o1-o2;
+});
+桶排序</p>
+
+<p><strong>快慢指针</strong>
+判断链表是否有环，环的入口在哪里</p>
+
+<p><strong>哈希表</strong>，</p>
+
+<p>哈希表的结构</p>
+
+<p><strong>双指针</strong>，两指针问题，考察运用语言基本能力，灵活解题能力。</p>
+
+<p>移动零</p>
+
+<p><strong>优先级队列</strong>，    ====&gt; OK</p>
+
+<p>PriorityQueue<Integer> pq=new PriorityQueue&lt;&gt;((o1,o2)-&gt;{
+  return o2-o1;
+});</p>
+
+<p>pq.add(x);
+pq.poll();
+pq.peek();</p>
+
+<p>O(nlogn)</p>
+
+<p><strong>桶排序</strong>, 首先，桶的最长长度是可以确定的，然后可以根据一定的规则把所有的值分桶（topK） ====&gt; OK </p>
+
+<p><strong>排列</strong></p>
+
+<p>全排列 ===&gt; DPS解法
+全排列，但是不能有重复 ===&gt;  DPS解法+HashSet</p>
+
+<p><strong>回溯</strong>，</p>
+
+<div><pre><code class="language-none">List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;();
+// 记录回溯算法的递归路径
+LinkedList&lt;Integer&gt; track = new LinkedList&lt;&gt;();
+
+// 主函数
+public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
+    backtrack(nums, 0);
+    return res;
+}
+
+// 回溯算法核心函数，遍历子集问题的回溯树
+void backtrack(int[] nums, int start) {
+
+    // 前序位置，每个节点的值都是一个子集
+    res.add(new LinkedList&lt;&gt;(track));
+
+    // 回溯算法标准框架
+    for (int i = start; i &lt; nums.length; i++) {
+        // 做选择
+        track.addLast(nums[i]);
+        // 通过 start 参数控制树枝的遍历，避免产生重复的子集
+        backtrack(nums, i + 1);
+        // 撤销选择
+        track.removeLast();
+    }
+}</code></pre></div>
+
+<p><strong>贪心</strong>，</p>
+
+<p><strong>枚举(穷举)</strong>，即通过for loop一定可以将问题分为一类，另一类：字符串轮转，一定可以通过穷举找到所有的情况</p>
+
+<p><strong>BFS</strong>，即通过固定模板，先广度再下一步。
+腐烂的橘子</p>
+
+<p><strong>DFS</strong>, 即通过固定模板，先向下搜索到末尾，再回溯。
+二叉树先根遍历
+电话号码的字母组合</p>
+
+<p><strong>递归</strong>，</p>
+
+<p>二叉树的递归</p>
+
+<div><pre><code class="language-none">public void preOrderTraverse(TreeNode root) {
+        if (root != null) {
+            System.out.print(root.val + &quot;-&gt;&quot;);
+            preOrderTraverse(root.left);
+            preOrderTraverse(root.right);
+        }
+    }</code></pre></div>
+
+<p>非递归实现 二叉树先根遍历：</p>
+
+<div><pre><code class="language-none">public void preOrderTraverse2(TreeNode root) {
+        Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
+        TreeNode node = root;
+        while (node != null || !stack.empty()) {
+            if (node != null) {
+                System.out.print(node.val + &quot;-&gt;&quot;);
+                stack.push(node);
+                node = node.left;
+            } else {
+                TreeNode tem = stack.pop();
+                node = tem.right;
+            }
+        }
+    }</code></pre></div>
+
+<p>binarySearch递归</p>
+
+<div><pre><code class="language-none">public int binarySearch(int[] nums, int target, int left, int right){
+    if(left&lt;0 || right&gt;nums.length || left&gt;right){
+        return -1;  //结束条件
+    }
+    while(left&lt;=right){
+        int mid=(left+right)/2;
+        if(nums[mid]==target){
+            return mid;
+        }else if(nums[mid]&gt;target){
+            return binarySearch(nums,target,left, mid-1);
+        }else{
+            return binarySearch(nums,target,mid+1,right);
+        }
+    }
+}</code></pre></div>
+
+<p>递归回退：</p>
+
+<div><pre><code class="language-none">int count = 1;
+ListNode node;
+
+public ListNode FindKthToTail(ListNode head,int k) {
+    if(head != null){
+        this.FindKthToTail(head.next,k);
+        if(count++ == k){
+            node = head;
+        }
+    }
+    return node;
+}</code></pre></div>
+
+<p>Two Sum BST(binary Search  Tree)</p>
+
+<div><pre><code class="language-none">public boolean findTarget(TreeNode root, int target){
+    HashSet&lt;Integer&gt; set=new HashSet&lt;&gt;();
+    return dfs(root,target,set);
+}
+
+public boolean dfs(TreeNode root, int target, HashSet&lt;Integer&gt; set){
+    if(root==null){
+        return false;
+    }
+
+    if(set.contains(target-root.val){
+        return true;
+    }
+    set.add(root.val);
+
+    return dfs(root.left, target, set) || dfs(root.right, target, set);
+}</code></pre></div>
+
+<p><strong>DP-动态规划</strong>，动态规划</p>
+
+<p>一个有名的理发师会收到源源不断的预约请求，每个预约都可以选择接或不接。在每次预约服务之间要有休息时间，因此她不能接受相邻的预约。给定一个预约请求序列，替理发师找到最优的预约集合（总预约时间最长），返回总的分钟数。</p>
+
+<p>示例 1：
+输入： [1,2,3,1]
+输出： 4
+解释： 选择 1 号预约和 3 号预约，总时长 = 1 + 3 = 4。</p>
+
+<p>dp[i]=Math.max(dp[i-2]+nums[i], dp[i-1]);</p>
+
+<ol>
+<li>打家劫舍 II (这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的)
+<a href="https://leetcode.cn/problems/house-robber-ii/solution/da-jia-jie-she-ii-by-leetcode-solution-bwja/">https://leetcode.cn/problems/house-robber-ii/solution/da-jia-jie-she-ii-by-leetcode-solution-bwja/</a></li>
+</ol>
+
+<p>根据上述思路，可以得到时间复杂度 O(n) 和空间复杂度 O(n) 的实现。考虑到每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关，因此可以使用滚动数组，在每个时刻只需要存储前两间房屋的最高总金额，将空间复杂度降到 O (1).</p>
+
+<p>打家劫舍 （每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关）
+dp[i]=Math.max(dp[i-2]+nums[i], dp[i-1]);</p>
+
+<p>可以使用滚动数组计算，把空间降低到1.</p>
+
+<p>打家劫舍 II
+<strong>思路2：</strong> 怎么就没想到把环形分成两个单排呢 (一个是去掉首，一个去掉尾)，然后比较这两个大小。</p>
+
+<div><pre><code class="language-none">    class Solution {
+        public int rob(int[] nums) {
+            int length = nums.length;
+            if (length == 1) {
+                return nums[0];
+            } else if (length == 2) {
+                return Math.max(nums[0], nums[1]);
+            }
+            return Math.max(robRange(nums, 0, length - 2), robRange(nums, 1, length - 1));
+        }
+
+        public int robRange(int[] nums, int start, int end) {
+        //滚动数组，每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关
+            int first = nums[start], second = Math.max(nums[start], nums[start + 1]);
+            for (int i = start + 2; i &lt;= end; i++) {
+                int temp = second;
+                second = Math.max(first + nums[i], second);
+                first = temp;
+            }
+            return second;
+        }
+    }</code></pre></div>
+
+<p><img src="images/dp.jpg" alt=""></p>
+
+<p>打家劫舍 三 （二叉树）
+<img src="images/dp-jieshe3.jpeg" alt=""></p>
+
+<div><pre><code class="language-none">public int rob(TreeNode root) {
+    if (root == null) return 0;
+
+    int money = root.val;
+    if (root.left != null) {
+        money += (rob(root.left.left) + rob(root.left.right));
+    }
+
+    if (root.right != null) {
+        money += (rob(root.right.left) + rob(root.right.right));
+    }
+    return Math.max(money, rob(root.left) + rob(root.right));
+}</code></pre></div>
+
+<p>解法二、记忆化 - 解决重复子问题</p>
+
+<p>针对解法一种速度太慢的问题，经过分析其实现，我们发现爷爷在计算自己能偷多少钱的时候，同时计算了 4 个孙子能偷多少钱，也计算了 2 个儿子能偷多少钱。这样在儿子当爷爷时，就会产生重复计算一遍孙子节点。</p>
+
+<p>于是乎我们发现了一个动态规划的关键优化点</p>
+
+<p>重复子问题</p>
+
+<p>我们这一步针对重复子问题进行优化，我们在做斐波那契数列时，使用的优化方案是记忆化，但是之前的问题都是使用数组解决的，把每次计算的结果都存起来，下次如果再来计算，就从缓存中取，不再计算了，这样就保证每个数字只计算一次。
+由于二叉树不适合拿数组当缓存，我们这次使用哈希表来存储结果，TreeNode 当做 key，能偷的钱当做 value</p>
+
+<p>解法一加上记忆化优化后代码如下：</p>
+
+<div><pre><code class="language-none">public int rob(TreeNode root) {
+    HashMap&lt;TreeNode, Integer&gt; memo = new HashMap&lt;&gt;();
+    return robInternal(root, memo);
+}
+
+public int robInternal(TreeNode root, HashMap&lt;TreeNode, Integer&gt; memo) {
+    if (root == null) return 0;
+    if (memo.containsKey(root)) return memo.get(root);
+    int money = root.val;
+
+    if (root.left != null) {
+        money += (robInternal(root.left.left, memo) + robInternal(root.left.right, memo));
+    }
+    if (root.right != null) {
+        money += (robInternal(root.right.left, memo) + robInternal(root.right.right, memo));
+    }
+    int result = Math.max(money, robInternal(root.left, memo) + robInternal(root.right, memo));
+    memo.put(root, result);
+    return result;
+}    </code></pre></div>
+
+<p><strong>二分查找</strong>，</p>
+
+<div><pre><code class="language-none">public int binarySearch(int[] arr, int target){
+    int left=0;
+    int right=arr.length-1;
+
+    while(left&lt;=right){
+        int mid=(left+right)/2;
+        if(nums[mid]==target){
+            return mid;
+        }
+        if(nums[mid]&gt;target){
+            right=mid-1;
+        }else{
+            left=mid+1;
+        }
+    }
+    return -1;
+}</code></pre></div>
+
+<p><strong>快排</strong>，</p>
+
+<p><strong>堆排序</strong>，
+如果所有上部节点大于其下部孩子节点，我们叫做大根堆。 
+如果所有上部节点小于其下部孩子节点，我们较多小根堆。</p>
+
+<p><strong>LRU</strong></p>
+
+<p><strong>Snowflake id</strong></p>
+
+
+
+
+</body>
+
+</html>

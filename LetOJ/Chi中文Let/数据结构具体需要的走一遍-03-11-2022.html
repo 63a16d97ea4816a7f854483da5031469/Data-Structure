@@ -1,0 +1,4300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>数据结构具体需要的走一遍</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<p>具体这次复习分为几个部分：</p>
+
+<p>网上算法教程：</p>
+
+<p>牛客网左程云亲自上场带你刷爆数据结构与算法-金九银十最新版！
+<a href="https://www.bilibili.com/video/BV1N44y1C7Dq/">https://www.bilibili.com/video/BV1N44y1C7Dq/</a></p>
+
+<p>刷题技巧网站：
+<a href="https://labuladong.github.io/algo/2/20/23/">https://labuladong.github.io/algo/2/20/23/</a>
+https://labuladong.github.io/algo/1/</p>
+
+<p>设计模式：
+<a href="https://refactoringguru.cn/design-patterns/singleton">https://refactoringguru.cn/design-patterns/singleton</a></p>
+
+<blockquote>
+<p>从心态上看，算法是一个套路和实践双结合的问题，就是套路要知道，练得要足够，手够热。</p>
+
+<p>读面经，有助于快速吸收知识，补足不懂的地方，提问是引起检查知识缺陷和快速进入面试状态的一种方式</p>
+</blockquote>
+
+<ol>
+<li>广泛的过一遍知识点，在状态好的时候，写题目，在状态不好的时候，见缝插针读题目。唤醒和加强记忆技法。</li>
+<li>实际去写题目，进行一些简单的预备，进入考试和面试的那种状态。</li>
+<li>复习一下相关的java知识点</li>
+<li>复习一下现有的工作的知识点</li>
+</ol>
+
+<p>遇到一道题目的思考路径：</p>
+
+<p><strong>动态规划,深度优先搜索(dfs),广度优先搜索(bfs),排序,二分查找,双指针,栈,堆（优先队列）,回溯,递归,分治,单调栈,枚举,队列,状态压缩,记忆化搜索,哈希函数,单调队列,快速选择,桶排序,模拟,贪心</strong></p>
+
+<p><strong>基础结构</strong></p>
+
+<div><pre><code class="language-none"> //在写dp中经常遇到
+ int[] dp=new int[n];
+ //赋值一维数组
+ Arrays.fill(dp, -1);
+
+     int[] cnt1 = new int[26];
+    int[] cnt2 = new int[26];
+    for (int i = 0; i &lt; n; ++i) {
+        ++cnt1[s1.charAt(i) - &#39;a&#39;];
+        ++cnt2[s2.charAt(i) - &#39;a&#39;];
+    }
+    // 判断两个arr相等
+    if (Arrays.equals(cnt1, cnt2)) {
+        return true;
+    }
+
+链接：https://leetcode.cn/problems/permutation-in-string/solutions/599202/zi-fu-chuan-de-pai-lie-by-leetcode-solut-7k7u/
+
+
+
+ //赋值二维数组
+ int[][] dp=new int[m][n];
+ for(int i=0;i&lt;m;i++){
+   Arrays.fill(dp[i],-1);
+ }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+LinkedList&lt;Integer&gt; list=new LinkedList&lt;&gt;();
+PriorityQueue&lt;Integer&gt; pq=new PriorityQueue&lt;&gt;((o1,o2)-&gt;{
+    return o2-o1;
+});
+for(Map.Entry&lt;String,String&gt; tmp:map.entrySet()){
+    System.out.println(tmp.getKey()+&quot;-&gt;&quot;+tmp.getValue());
+}
+for(String tmp:map.KeySet()){
+    System.out.println(tmp);
+}
+
+HashSet&lt;String&gt; set=new HashSet&lt;&gt;();
+for(String tmp:set){
+    System.out.println(tmp);
+}
+
+table.foreach(
+(key,value) -&gt; {
+    System.out.println(key+&quot; &quot;+value); 
+}
+Stack&lt;Integer&gt; stack=new Stack&lt;&gt;();
+stack.push(a);
+stack.pop();
+stack.peek();
+stack.size();
+while(!stack.isEmpty()){
+
+}
+
+
+
+       HashMap&lt;String, String&gt; map=new           HashMap&lt;String,String&gt;(){
+            {
+                put(&quot;key1&quot;,&quot;value1&quot;);
+                put(&quot;key2&quot;,&quot;value2&quot;);
+            }
+        };</code></pre></div>
+
+<p><strong>二进制</strong> (toBinaryString)</p>
+
+<div><pre><code class="language-none">      int l = 10;
+     &quot;Binary is &quot; + Integer.toBinaryString(l)
+
+    int l = 10;
+    // returns the string representation of the unsigned int value
+    // represented by the argument in binary (base 2)
+    System.out.println(&quot;Binary is &quot; + Integer.toBinaryString(l));
+
+    l = 9;
+    System.out.println(&quot;Binary is &quot; + Integer.toBinaryString(l));
+
+public static String toBinaryString(int num)
+
+Parameter : The function accepts a single mandatory parameter num 
+num - This parameter specifies the number to be converted to binary string. 
+It is of int data-type 
+Return Value: This function returns the string representation of the unsigned Integer value represented by the argument in binary (base 2).
+Examples:
+
+Input : 10 
+Output : 1010 
+
+Input : 9
+Output : 1001 </code></pre></div>
+
+<p><strong>数组</strong>，       ====&gt; OK</p>
+
+<p>如何找到数组中的奇数节点，和偶数节点 i%2==0</p>
+
+<p>给一个数组，实现奇数位置从大到小排列，偶数位置从小到大排列 （LinkedList, sort, 一个从removeFirst()，一个从removeLast()拿, 偶数节点 i%2==0
+1 , 2，3，4</p>
+
+<div><pre><code class="language-none">int[] a=new int[]{1,2,3,4};
+int size=a.length;
+List&lt;Integer&gt; list=Arrays.asList(a);
+Arrays.sort(a);</code></pre></div>
+
+<ul>
+<li>数组经常考双指针。</li>
+<li>快慢指针。</li>
+<li>移除0。</li>
+<li>桶排序。</li>
+</ul>
+
+<p><strong>字符串</strong>，       ====&gt; OK</p>
+
+<div><pre><code class="language-none">String ---&gt;  str.length();  
+
+   str.substring(start,end);
+
+
+   int index=s1.charAt(i) - &#39;a&#39;;  // index to (0 to 26)
+
+     int[] count1 = new int[26]; // s1每个字符出现的次数
+    int[] count2 = new int[26]; // s2每个字符出现的次数
+
+    // 1. 进行统计
+    for (int i = 0; i &lt; s1.length(); i++) {
+        count1[s1.charAt(i) - &#39;a&#39;]++;
+        count2[s2.charAt(i) - &#39;a&#39;]++;
+    }
+
+原文链接：https://blog.csdn.net/afei__/article/details/85058158
+
+
+    public static void main(String args[]) {
+    String str = &quot;I love shopee !&quot;;
+    ListNode curr=node;
+
+    for(Character tmp:str.toCharArray()) {
+        ListNode newNode=new ListNode();
+        newNode.value=tmp+&quot;&quot;;
+        curr.next=newNode;
+        curr=curr.next;
+    }
+    ListNode returnNode=FindKthToTail(node,1);
+    System.out.println(returnNode.value);
+}
+
+
+String string1 = &quot;foo bar&quot;;
+String string2 = &quot;foo bar&quot;;
+
+// java string compare example
+if (string1.compareTo(string2) == 0)
+{
+    // this line WILL print
+    System.out.println(&quot;The two strings are the same.&quot;)
+}</code></pre></div>
+
+<p><strong>Compares two strings lexicographically. The comparison is based on the Unicode value of each character in the strings.</strong> </p>
+
+<p>说明：
+如果第一个字符和参数的第一个字符不等，结束比较，返回第一个字符的ASCII码差值。
+如果第一个字符和参数的第一个字符相等，则以第二个字符和参数的第二个字符做比较，以此类推,直至不等为止，返回该字符的ASCII码差值。 如果两个字符串不一样长，可对应字符又完全一样，则返回两个字符串的长度差值。</p>
+
+<div><pre><code class="language-none">                    // 0并不能单独成为一个编码
+                    if(s.charAt(i-1)-&#39;0&#39;!=0){
+                        dp[i]+=dp[i-1];
+                    }
+
+                // 极限case
+                if(s.charAt(0)-&#39;0&#39;==0){
+                    return 0;
+                }
+              System.out.println(s.charAt(0)-&#39;0&#39;);
+
+        // Decode ways 里面compare字符串是否&gt;=&quot;10&quot;,并且&lt;=&quot;26&quot;
+       if (i &gt;= 2 &amp;&amp; (s.substring(i - 2, i).compareTo(&quot;10&quot;) &gt;= 0 &amp;&amp; s.substring(i - 2, i).compareTo(&quot;26&quot;) &lt;= 0)) {
+            dp[i] += dp[i - 2];
+        }
+
+ public int compareTo(String anotherString) {
+        byte v1[] = value;
+        byte v2[] = anotherString.value;
+        if (coder() == anotherString.coder()) {
+            return isLatin1() ? StringLatin1.compareTo(v1, v2)
+                              : StringUTF16.compareTo(v1, v2);
+        }
+        return isLatin1() ? StringLatin1.compareToUTF16(v1, v2)
+                          : StringUTF16.compareToLatin1(v1, v2);
+     }
+
+
+     // 另一种处理字符串的方法:
+    String str=&quot;27&quot;;
+    int ten = (str.charAt(0) - &#39;0&#39;) * 10;
+    int one = (str.charAt(1) - &#39;0&#39;);
+    System.out.println(ten+&quot; &quot;+one+&quot; &quot;+(ten+one));
+    if((ten+one)&gt;26){
+        System.out.println(&quot;&gt;26&quot;);
+    }
+    // output: 20 7 27
+    // output: &gt;26</code></pre></div>
+
+<p><strong>矩阵</strong>，</p>
+
+<p>int[][] a =new int[m][n];</p>
+
+<div><pre><code class="language-none">       // 构造方向向量
+       public int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    //遍历方向向量, 对多维数组,遍历单维度
+    for (int[] dir : dirs) {
+        int newRow = row + dir[0], newColumn = column + dir[1];
+        //判断是否越界,另外是否新的搜寻方向的值&gt;现在搜寻的当前节点的值(是否递增)
+        if (newRow &gt;= 0 &amp;&amp; newRow &lt; rows &amp;&amp; newColumn &gt;= 0 &amp;&amp; newColumn &lt; columns &amp;&amp; matrix[newRow][newColumn] &gt; matrix[row][column]) {
+            // 比较,从下一个节点开始(该节点可能以前走过,也可能是第一次走),所以要Math.max(xx,xx),否则一旦是新节点,可能小于了之前值
+            memo[row][column] = Math.max(memo[row][column], dfs(matrix, newRow, newColumn, memo) + 1);
+        }
+    }</code></pre></div>
+
+<ul>
+<li>矩阵这种，经常在DP中用到</li>
+</ul>
+
+<p><strong>链表</strong>
+prev、cur、next </p>
+
+<ul>
+<li>链表要注意边界条件（链表为空情况）</li>
+<li> 合并两个有序链表</li>
+<li> 给定一个链表的头结点，也给定这个结点的指针，在O(1)的时间删除该节点（例如该节点为target), target=target.next;</li>
+<li><p>找到单链表第k个节点。</p></li>
+<li><p>将链表逆转</p></li>
+<li><p>拼接两个有序链表</p></li>
+<li><p>删除单链表倒数第 n 个节点(里面有两种情况）</p></li>
+<li><p>求单链表的中间节点(快慢指针）</p></li>
+<li><p>快慢指针，有环没环</p></li>
+<li><p>找到环的入口点（要理解证明过程）</p></li>
+<li><p>求两个无环单链表的第一个相交点（第一个公共交点）</p></li>
+</ul>
+
+<p><img src="./images/cycleEntrypoint.png" alt=""></p>
+
+<blockquote>
+<p>　有环时查找入环点的方法的证明过程如下：
+　　当fast与slow相遇时，slow还没走完链表，而fast已经在环内循环了n圈了，假设slow在相遇前走了s步，则fast走了2s步，设环长为r，有2s=s+nr，即s=nr.
+　　由上图可知a+x=s, x+y=r，而我们的目标是找到a的位置。设上图那个拱起的曲线的长度为y，有a+x=s=nr=(n-1)r+r=(n-1)r+y+x，则a=(n-1)r+y. 这个公式告诉我们，从链表头和相遇点分别设一个指针，每次各走一步，这两个指针必定相遇，且相遇的第一个点为环入口点。</p>
+</blockquote>
+
+<ul>
+<li>判断两个无环单链表是否相交（转换为环解决，hashmap解决，或者将两个链表都移到最后一个点，因为如果相交的话，最后一个点一定是相同的）</li>
+</ul>
+
+<blockquote>
+<p>无环单链表是否相交判断有多种方法：
+方法1：先循环链表1，将每个节点的地址进行hash计算存入哈希表，然后计算链表2的每个节点的地址的hash值，若与hash表中对应位置有值，则相交，否则不相交。
+方法2：见链表1与2进行首尾相连，判断新链表是否有环，若没有，则不相交，若有环，则是相交的。
+方法3：先计算两个链表的长度L1、L2，若L1 &gt; L2，则先将链表1移动（L1 - L2）个节点，等到链表1和链表2剩下的长度一样的时候，一起向后移动，依次判断当前链表的节点是否相等，若相等，则相交，若到队尾还没有相等的，则不相交</p>
+</blockquote>
+
+<ul>
+<li>判断两个有环单链表是否相交</li>
+</ul>
+
+<p>链表经典题目：
+<a href="https://www.jianshu.com/p/a2d53142860c">https://www.jianshu.com/p/a2d53142860c</a></p>
+
+<p><strong>LinkedList</strong></p>
+
+<div><pre><code class="language-none">LinkedList&lt;String&gt; list=new LinkedList&lt;&gt;();
+
+List&lt;Integer&gt; special = specials.get(i), clone = new ArrayList&lt;Integer&gt;(needs);
+list.set(i, value);
+// 替换index=j的值为diff
+clone.set(j, diff);
+
+list.removeFirst();
+list.removeLast();
+list.add(x);  ==&gt; list.addLast(x);
+
+Iterator&lt;String&gt; it=list.iterator();
+while(it.hasNext()){
+    System.out.println(it.next());
+}
+
+List&lt;String&gt; res = new LinkedList&lt;&gt;();
+res.toArray(new String[0]);  // 转array
+res.remove(0); // 按位置删除
+
+LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;();
+list.get(i);
+list.set(i, newValue);
+
+Iterator&lt;String&gt; it=list.iterator();
+while(it.hasNext())[
+   System.out.println(it.next());
+}</code></pre></div>
+
+<p><img src="images/linkedlistRandomAccess.jpg" alt=""></p>
+
+<p><strong>队列</strong>,</p>
+
+<p>使用两个队列，做一个栈。(看queue1是空的话，就插入到queue2，然后将queue1的都装进来，弹出的时候，直接从有数据的那个queue直接弹出。这样就保证了后进先出。)</p>
+
+<p><img src="images/twoqueues.png" alt=""></p>
+
+<p><strong>堆栈</strong>，<br>
+使用两针堆栈，模拟一个队列
+倒序打印一个单链表
+stack.peek();
+stack.push(x);
+stack.pop();
+最小栈
+有效的括号</p>
+
+<p><strong>二叉树</strong>，固定算法结构。</p>
+
+<p>构建二叉树，根据先根和中根遍历，构造二叉树。(root.left=rebuildTree(preorder, inorder, start, mid-1), root.right=rebuildTree(preorder, inorder, mid+1, end);
+构建二叉树，根据后根和中跟遍历，构造二叉树。
+二叉树，输出其镜像（每个节点的左右子节点交换）==》 left.val==right.val &amp;&amp; symm(left.left,right.right) &amp;&amp; symm(left.right,right.left)</p>
+
+<p>序列化和反序列化二叉树. 
+    public void serializeHelper(TreeNode root, List<String> list) {
+            if (root == null) {
+                list.add(&quot;#&quot;);
+                return;
+            }
+            list.add(String.valueOf(root.val));
+            serializeHelper(root.left, list);
+            serializeHelper(root.right, list);
+            return;
+    }</p>
+
+<p><strong>二叉搜索树</strong></p>
+
+<p>判断二叉搜索树的后根遍历序列。。（二叉树右子树的值一定大于root, 先找到第一个大于root的值，这个值是右子树的根mid index，然后分别verify(postorder, start, mid-1) &amp;&amp; verify(postorder,mid,end-1))</p>
+
+<p><strong>排序</strong>，  </p>
+
+<p>快排。
+Arrays.sort(a);
+Arrays.sort(a, (o1,o2)-&gt;{
+     return o1-o2;
+});
+Collections.sort(b, (o1,o2)-&gt;{
+     return o1-o2;
+});
+桶排序</p>
+
+<p><strong>快慢指针</strong>
+判断链表是否有环，环的入口在哪里</p>
+
+<p><strong>哈希表</strong>，</p>
+
+<p>哈希表的结构</p>
+
+<p><strong>双指针</strong>，两指针问题，考察运用语言基本能力，灵活解题能力。</p>
+
+<p>移动零</p>
+
+<p><strong>优先级队列</strong>，    ====&gt; OK</p>
+
+<p>PriorityQueue<Integer> pq=new PriorityQueue&lt;&gt;((o1,o2)-&gt;{
+  return o2-o1;
+});</p>
+
+<p>pq.add(x);
+pq.poll();
+pq.peek();</p>
+
+<p>O(nlogn)</p>
+
+<p><strong>桶排序</strong>, 首先，桶的最长长度是可以确定的，然后可以根据一定的规则把所有的值分桶（topK） ====&gt; OK </p>
+
+<p><strong>排列</strong></p>
+
+<p>全排列 ===&gt; DPS解法
+全排列，但是不能有重复 ===&gt;  DPS解法+HashSet</p>
+
+<p><strong>回溯</strong>，</p>
+
+<div><pre><code class="language-none">List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;();
+// 记录回溯算法的递归路径
+LinkedList&lt;Integer&gt; track = new LinkedList&lt;&gt;();
+
+// 主函数
+public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
+    backtrack(nums, 0);
+    return res;
+}
+
+// 回溯算法核心函数，遍历子集问题的回溯树
+void backtrack(int[] nums, int start) {
+
+    // 前序位置，每个节点的值都是一个子集
+    res.add(new LinkedList&lt;&gt;(track));
+
+    // 回溯算法标准框架
+    for (int i = start; i &lt; nums.length; i++) {
+        // 做选择
+        track.addLast(nums[i]);
+        // 通过 start 参数控制树枝的遍历，避免产生重复的子集
+        backtrack(nums, i + 1);
+        // 撤销选择
+        track.removeLast();
+    }
+}</code></pre></div>
+
+<p><strong>贪心</strong>，</p>
+
+<p><strong>枚举(穷举)</strong>，即通过for loop一定可以将问题分为一类，另一类：字符串轮转，一定可以通过穷举找到所有的情况</p>
+
+<p><strong>BFS</strong>，即通过固定模板，先广度再下一步。
+腐烂的橘子</p>
+
+<p><strong>DFS</strong>, 即通过固定模板，先向下搜索到末尾，再回溯。
+二叉树先根遍历
+电话号码的字母组合</p>
+
+<p><strong>递归</strong>，</p>
+
+<p>二叉树的递归</p>
+
+<div><pre><code class="language-none">public void preOrderTraverse(TreeNode root) {
+        if (root != null) {
+            System.out.print(root.val + &quot;-&gt;&quot;);
+            preOrderTraverse(root.left);
+            preOrderTraverse(root.right);
+        }
+    }</code></pre></div>
+
+<p>非递归实现 二叉树先根遍历：</p>
+
+<div><pre><code class="language-none">public void preOrderTraverse2(TreeNode root) {
+        Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
+        TreeNode node = root;
+        while (node != null || !stack.empty()) {
+            if (node != null) {
+                System.out.print(node.val + &quot;-&gt;&quot;);
+                stack.push(node);
+                node = node.left;
+            } else {
+                TreeNode tem = stack.pop();
+                node = tem.right;
+            }
+        }
+    }</code></pre></div>
+
+<p>binarySearch递归</p>
+
+<div><pre><code class="language-none">public int binarySearch(int[] nums, int target, int left, int right){
+    if(left&lt;0 || right&gt;nums.length || left&gt;right){
+        return -1;  //结束条件
+    }
+    while(left&lt;=right){
+        int mid=(left+right)/2;
+        if(nums[mid]==target){
+            return mid;
+        }else if(nums[mid]&gt;target){
+            return binarySearch(nums,target,left, mid-1);
+        }else{
+            return binarySearch(nums,target,mid+1,right);
+        }
+    }
+}</code></pre></div>
+
+<p>递归回退：</p>
+
+<div><pre><code class="language-none">int count = 1;
+ListNode node;
+
+public ListNode FindKthToTail(ListNode head,int k) {
+    if(head != null){
+        this.FindKthToTail(head.next,k);
+        if(count++ == k){
+            node = head;
+        }
+    }
+    return node;
+}</code></pre></div>
+
+<p>Two Sum BST(binary Search  Tree)</p>
+
+<div><pre><code class="language-none">public boolean findTarget(TreeNode root, int target){
+    HashSet&lt;Integer&gt; set=new HashSet&lt;&gt;();
+    return dfs(root,target,set);
+}
+
+public boolean dfs(TreeNode root, int target, HashSet&lt;Integer&gt; set){
+    if(root==null){
+        return false;
+    }
+
+    if(set.contains(target-root.val){
+        return true;
+    }
+    set.add(root.val);
+
+    return dfs(root.left, target, set) || dfs(root.right, target, set);
+}</code></pre></div>
+
+<p><strong>DP-动态规划</strong>，动态规划</p>
+
+<p>一个有名的理发师会收到源源不断的预约请求，每个预约都可以选择接或不接。在每次预约服务之间要有休息时间，因此她不能接受相邻的预约。给定一个预约请求序列，替理发师找到最优的预约集合（总预约时间最长），返回总的分钟数。</p>
+
+<p>示例 1：
+输入： [1,2,3,1]
+输出： 4
+解释： 选择 1 号预约和 3 号预约，总时长 = 1 + 3 = 4。</p>
+
+<p>dp[i]=Math.max(dp[i-2]+nums[i], dp[i-1]);</p>
+
+<ol>
+<li>打家劫舍 II (这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的)
+<a href="https://leetcode.cn/problems/house-robber-ii/solution/da-jia-jie-she-ii-by-leetcode-solution-bwja/">https://leetcode.cn/problems/house-robber-ii/solution/da-jia-jie-she-ii-by-leetcode-solution-bwja/</a></li>
+</ol>
+
+<p>根据上述思路，可以得到时间复杂度 O(n) 和空间复杂度 O(n) 的实现。考虑到每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关，因此可以使用滚动数组，在每个时刻只需要存储前两间房屋的最高总金额，将空间复杂度降到 O (1).</p>
+
+<p>打家劫舍 （每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关）
+dp[i]=Math.max(dp[i-2]+nums[i], dp[i-1]);</p>
+
+<p>可以使用滚动数组计算，把空间降低到1.</p>
+
+<p>打家劫舍 II
+<strong>思路2：</strong> 怎么就没想到把环形分成两个单排呢 (一个是去掉首，一个去掉尾)，然后比较这两个大小。</p>
+
+<div><pre><code class="language-none">    class Solution {
+        public int rob(int[] nums) {
+            int length = nums.length;
+            if (length == 1) {
+                return nums[0];
+            } else if (length == 2) {
+                return Math.max(nums[0], nums[1]);
+            }
+            return Math.max(robRange(nums, 0, length - 2), robRange(nums, 1, length - 1));
+        }
+
+        public int robRange(int[] nums, int start, int end) {
+        //滚动数组，每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关
+            int first = nums[start], second = Math.max(nums[start], nums[start + 1]);
+            for (int i = start + 2; i &lt;= end; i++) {
+                int temp = second;
+                second = Math.max(first + nums[i], second);
+                first = temp;
+            }
+            return second;
+        }
+    }</code></pre></div>
+
+<p><img src="images/dp.jpg" alt=""></p>
+
+<p>打家劫舍 三 （二叉树）
+<img src="images/dp-jieshe3.jpeg" alt=""></p>
+
+<div><pre><code class="language-none">public int rob(TreeNode root) {
+    if (root == null) return 0;
+
+    int money = root.val;
+    if (root.left != null) {
+        money += (rob(root.left.left) + rob(root.left.right));
+    }
+
+    if (root.right != null) {
+        money += (rob(root.right.left) + rob(root.right.right));
+    }
+    return Math.max(money, rob(root.left) + rob(root.right));
+}</code></pre></div>
+
+<p>解法二、记忆化 - 解决重复子问题</p>
+
+<p>针对解法一种速度太慢的问题，经过分析其实现，我们发现爷爷在计算自己能偷多少钱的时候，同时计算了 4 个孙子能偷多少钱，也计算了 2 个儿子能偷多少钱。这样在儿子当爷爷时，就会产生重复计算一遍孙子节点。</p>
+
+<p>于是乎我们发现了一个动态规划的关键优化点</p>
+
+<p>重复子问题</p>
+
+<p>我们这一步针对重复子问题进行优化，我们在做斐波那契数列时，使用的优化方案是记忆化，但是之前的问题都是使用数组解决的，把每次计算的结果都存起来，下次如果再来计算，就从缓存中取，不再计算了，这样就保证每个数字只计算一次。
+由于二叉树不适合拿数组当缓存，我们这次使用哈希表来存储结果，TreeNode 当做 key，能偷的钱当做 value</p>
+
+<p>解法一加上记忆化优化后代码如下：</p>
+
+<div><pre><code class="language-none">public int rob(TreeNode root) {
+    HashMap&lt;TreeNode, Integer&gt; memo = new HashMap&lt;&gt;();
+    return robInternal(root, memo);
+}
+
+public int robInternal(TreeNode root, HashMap&lt;TreeNode, Integer&gt; memo) {
+    if (root == null) return 0;
+    if (memo.containsKey(root)) return memo.get(root);
+    int money = root.val;
+
+    if (root.left != null) {
+        money += (robInternal(root.left.left, memo) + robInternal(root.left.right, memo));
+    }
+    if (root.right != null) {
+        money += (robInternal(root.right.left, memo) + robInternal(root.right.right, memo));
+    }
+    int result = Math.max(money, robInternal(root.left, memo) + robInternal(root.right, memo));
+    memo.put(root, result);
+    return result;
+}    </code></pre></div>
+
+<p><strong>二分查找</strong>，</p>
+
+<div><pre><code class="language-none">public int binarySearch(int[] arr, int target){
+    int left=0;
+    int right=arr.length-1;
+
+    while(left&lt;=right){
+        int mid=(left+right)/2;
+        if(nums[mid]==target){
+            return mid;
+        }
+        if(nums[mid]&gt;target){
+            right=mid-1;
+        }else{
+            left=mid+1;
+        }
+    }
+    return -1;
+}</code></pre></div>
+
+<p><strong>快排</strong>，</p>
+
+<p><strong>堆排序</strong>，
+如果所有上部节点大于其下部孩子节点，我们叫做大根堆。 
+如果所有上部节点小于其下部孩子节点，我们较多小根堆。</p>
+
+<p><strong>LRU</strong></p>
+
+<p><strong>Snowflake id</strong></p>
+
+<h1 id="toc_0">Must write</h1>
+
+<p><strong>极为常见</strong>:    </p>
+
+<div><pre><code class="language-none">        String ---&gt;  str.length();  
+        Array---&gt; arr.length; 
+        List---&gt;int len=list.size();
+
+        Math.max(a,b);
+        Math.min(a,b);
+
+        if(max.length() &lt; Math.max(s1.length(),s2.length()))
+            max = s1.length() &gt; s2.length() ? s1 : s2;
+        }
+
+        String.valueOf(char[] ch);
+
+        Arrays.sort(array[])  //对数组进行快排
+    System.out.print(Arrays.toString(array));//输出快排后的数组  ---&gt; [1,2,7,9,11]
+
+        Collections.sort(List&lt;xxxx&gt;);
+
+        Collections.reverse(list);
+
+        //static int  binarySearch(List list, Object key) 使用二分查找法查找指定元素在指定列表的索引位置 
+        int index = Collections.binarySearch(list, 4);
+
+      List&lt;Integer&gt; res = new ArrayList();
+    // 使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+            res.addAll(list);   //添加另一个list的所有元素到这个list中
+
+
+    //static void swap(List list, int i, int j) :将指定列表中的两个索引进行位置互换
+    Collections.swap(list, 0, 1);
+
+
+   List&lt;String&gt; list2 = Arrays.asList(&quot;Monday,Tuesday,&quot;.split(&quot;,&quot;));
+    System.out.println(list2);
+
+   List&lt;String&gt; list3 = Arrays.asList(new String[]{&quot;Monday&quot;,&quot;Tuesday&quot;});
+    System.out.println(list3);
+
+
+     int[] array = {23, 43, 55, 12};
+    int[] copiedArray = array.clone();
+
+    for(int tmp:copiedArray){
+        System.out.print(tmp+&quot; &quot;);
+    }
+     [Output] 23 43 55 12 
+
+     // copying array org to copy 
+     copyOf(int[] original, int newLength) 
+    int[] copy = Arrays.copyOf(org, 5); </code></pre></div>
+
+<h2 id="toc_1">常见算法套路</h2>
+
+<p>常考：</p>
+
+<p><strong>数组</strong>，       ====&gt; OK
+<strong>字符串</strong>，       ====&gt; OK
+<strong>矩阵</strong>，
+<strong>链表</strong>
+<strong>队列</strong>,
+<strong>二叉树</strong>，固定算法结构。
+<strong>二叉搜索树</strong>
+<strong>排序</strong>，<br>
+<strong>快慢指针</strong>
+<strong>堆栈</strong>，<br>
+<strong>哈希表</strong>，
+<strong>双指针</strong>，两指针问题，考察运用语言基本能力，灵活解题能力。
+<strong>优先级队列</strong>，    ====&gt; OK</p>
+
+<blockquote>
+<p><strong>桶排序</strong> ， 首先，桶的最长长度是可以确定的，然后可以根据一定的规则把所有的值分桶（topK） ====&gt; OK 
+<strong>回溯</strong>，
+<strong>贪心</strong>，
+<strong>枚举(穷举)</strong>，即通过for loop一定可以将问题分为一类，另一类：字符串轮转，一定可以通过穷举找到所有的情况
+<strong>BFS</strong>，即通过固定模板，先广度再下一步。
+<strong>DFS</strong>, 即通过固定模板，先向下搜索到末尾，再回溯。
+<strong>递归</strong>，
+<strong>DP-动态规划</strong>，动态规划
+<strong>二分查找</strong>，
+<strong>快排</strong>，
+<strong>堆排序</strong>，
+<strong>LRU</strong>
+<strong>Snowflake id</strong></p>
+</blockquote>
+
+<p>不常考：</p>
+
+<p><strong>字典树</strong>
+<strong>分治</strong>
+<strong>TreeMap</strong>
+<strong>单调栈</strong>
+<strong>滑动窗口</strong>
+<strong>记忆化搜索</strong>
+<strong>组合数学</strong>
+<strong>线段树</strong>
+<strong>状态压缩</strong>
+<strong>并查集</strong>
+<strong>位运算</strong>
+<strong>前缀和</strong>
+<strong>滚动哈希</strong>
+<strong>最小生成树</strong>
+<strong>扫描线</strong>
+<strong>水塘抽样</strong></p>
+
+<h1 id="toc_2">常用变形</h1>
+
+<div><pre><code class="language-none">  if (map.containsKey(num)) {
+     map.put(num, map.get(num) + 1);
+   } else {
+      map.put(num, 1);
+   }
+
+  for(int tmp:nums){
+        map.put(tmp,map.getOrDefault(tmp,0)+1);
+    }
+
+ for(Map.Entry&lt;Integer,Integer&gt; entry : map.entrySet()){
+    System.out.println(entry.getKey()+&quot; &quot;+entry.getValue());
+ }
+
+ PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(k);//队列默认自然顺序排列，小顶堆，不必重写compare
+
+   for (int i:map.keySet()) {
+        q.add(i);
+    }
+
+String[] arr=new String[]{&quot;1&quot;,&quot;2&quot;,&quot;3&quot;};
+a++;
+String result=s1.length()&gt;s2.length() ? s1:s2;</code></pre></div>
+
+<h2 id="toc_3">Arrays:</h2>
+
+<p>java.util.Arrays类是数组的工具类，一般数组常用的方法包括</p>
+
+<p>二分查找：</p>
+
+<div><pre><code class="language-none">public static int  binarySearch(array[],int key)  //返回key的下标index</code></pre></div>
+
+<h1 id="toc_4">二分查找</h1>
+
+<p><strong>二分查找只适用于 已经完成排序的数组</strong></p>
+
+<div><pre><code class="language-none">public int binarySearch(int[] nums, int target){
+    int l=0;
+    int r=nums.length-1;
+
+    while(l&lt;=r){
+        int mid=(l+r)/2;
+        if(nums[mid]==target){
+            return mid;
+        }
+
+        if(nums[mid]&gt;target){
+            r=mid-1;
+        }else{
+            l=mid+1;
+        }
+    }
+    return -1;
+}</code></pre></div>
+
+<p><strong>第二种解法：</strong></p>
+
+<div><pre><code class="language-none">    public static int binarySearch(int[] nums,int target, int left, int right){
+        if(left&gt;right) return -1;
+        int mid=(left+right)/2;
+        if(nums[mid]==target) return mid;
+        if(nums[mid]&gt;target){
+            return binarySearch(nums,target,left,mid-1);
+        }else{
+            return binarySearch(nums,target,mid+1,right);
+        }
+    }</code></pre></div>
+
+<h1 id="toc_5">常用的一些转换</h1>
+
+<div><pre><code class="language-none">import java.util.*;
+
+import java.math.BigInteger;  
+BigInteger a=new BigInteger(&quot;23&quot;);
+BigInteger b=new BigInteger(&quot;13&quot;);
+BigInteger c=a.add(b);
+
+int intValueOfb1 = b.intValue();
+long longValueOfb1 = b.longValue();
+
+//转换成二进制
+String tmp=Integer.toBinaryString(1)
+System.out.println(&quot;Binary is &quot; + Integer.toBinaryString(1024)); 
+
+[Output] Binary is 10000000000
+
+//转换成二进制
+public static String toBinaryString(long i)
+System.out.println(&quot;Binary is &quot; + Long.toBinaryString(l));
+
+
+Scanner scan=new Scanner();
+scan.next();
+scan.nextInt();
+scan.nextLong();
+
+while(scan.hasNext()){
+    System.out.println(scan.next());
+}</code></pre></div>
+
+<h1 id="toc_6">二分查找:</h1>
+
+<div><pre><code class="language-none">public class BinarySearch {
+    public static int binarySearch(int[] arr, int target){
+        int left=0;
+        int right=arr.length-1;
+
+        while(left&lt;=right){
+            int mid=left+(right-left)/2;
+            if(target==arr[mid]){
+                return mid;
+            }else if(target&gt;arr[mid]){
+                left=mid+1;
+            }else{
+                right=mid-1;
+            }
+        }
+        return -1;
+    }
+}
+
+
+    // A custom comparator that compares two Strings by their length.
+    Comparator&lt;String&gt; stringLengthComparator = new Comparator&lt;String&gt;() {
+        @Override
+        public int compare(String s1, String s2) {
+            return s1.length() - s2.length();
+        }
+    };
+
+    /*
+    The above Comparator can also be created using lambda expression like this =&gt;
+    Comparator&lt;String&gt; stringLengthComparator = (s1, s2) -&gt; {
+        return s1.length() - s2.length();
+    };
+
+    Which can be shortened even further like this =&gt;
+    Comparator&lt;String&gt; stringLengthComparator = Comparator.comparingInt(String::length);
+    */
+
+
+Arrays.sort(months,
+            (String a, String b) -&gt; a.length() - b.length());
+Or shorter:
+Arrays.sort(months, (a, b) -&gt; a.length() - b.length());
+
+
+Arrays.sort(months, 
+    (String a, String b) -&gt; { return Integer.signum(a.length() - b.length()); }
+);</code></pre></div>
+
+<h1 id="toc_7">堆排序</h1>
+
+<div><pre><code class="language-none">PriorityQueue&lt;Integer&gt; pq=new PriorityQueue&lt;Integer&gt;(size,new Comparactor&lt;Integer&gt;(){
+    public int compare(int a, int b){
+        return a-b;
+    }
+});
+
+PriorityQueue pq=new PriorityQueue&lt;Integer&gt;(10,(a,b)-&gt;{
+     return a-b;
+});
+
+PriorityQueue&lt;Integer&gt; pq=new PriorityQueue&lt;Integer&gt;(size, (a,b)-&gt;a-b);
+
+PriorityQueue&lt;Integer&gt; pq=new PriorityQueue&lt;Integer&gt;(new Comparactor&lt;int[]&gt;(){
+    public int compare(int[] a, int[] b){
+        return a[0]-b[0];
+    }
+});</code></pre></div>
+
+<p>给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+示例 1:
+输入: nums = [1,1,1,2,2,3], k = 2
+输出: [1,2]</p>
+
+<p>示例 2:
+输入: nums = [1], k = 1
+输出: [1]</p>
+
+<div><pre><code class="language-none">class Solution {
+    HashMap&lt;Integer,Integer&gt; map=new HashMap&lt;Integer,Integer&gt;();
+    public int[] topKFrequent(int[] nums, int k) {
+
+        for(int tmp:nums){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+        List&lt;Map.Entry&lt;Integer,Integer&gt;&gt; list=new ArrayList&lt;&gt;();
+        for(Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
+            list.add(entry);
+        }
+        Collections.sort(list,(o1,o2)-&gt;{
+            return o2.getValue()-o1.getValue();
+        });
+        int[] result=new int[k];
+        for(int i=0;i&lt;k;i++){
+            result[i]=list.get(i).getKey();
+        }
+        return result;
+    }
+}</code></pre></div>
+
+<p>14 ms   44 MB   Java    2022/09/06 21:34<br>
+O(nlogn)</p>
+
+<div><pre><code class="language-none">class Solution {
+    HashMap&lt;Integer,Integer&gt; map=new HashMap&lt;Integer,Integer&gt;();
+    public int[] topKFrequent(int[] nums, int k) {
+
+        for(int tmp:nums){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+
+        PriorityQueue&lt;Map.Entry&lt;Integer,Integer&gt;&gt; pq=new PriorityQueue&lt;&gt;((o1,o2)-&gt;{
+            return o2.getValue()-o1.getValue();
+        });
+        for(Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
+                pq.add(entry);
+        }
+        int[] result=new int[k];
+        for(int i=0;i&lt;k;i++){
+            result[i]=pq.poll().getKey();
+        }
+        return result;
+    }
+}</code></pre></div>
+
+<p>12 ms   44.1 MB Java</p>
+
+<p>O(nlogn)</p>
+
+<div><pre><code class="language-none">这里不能使用:
+
+        for(Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
+            if(pq.size()&lt;k){
+                pq.add(entry);
+            }else{
+                if(pq.peek().getValue()&lt;entry.getValue()){
+                     pq.poll();
+                     pq.add(entry);
+                }
+            }
+        }
+[4,1,-1,2,-1,2,3]
+2
+输出：
+[-1,1]
+预期结果：
+[-1,2]
+
+public class findTopK {
+
+    //找出前k个最大数，采用小顶堆实现
+    public static int[] findKMax(int[] nums, int k) {
+        PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(k);//队列默认自然顺序排列，小顶堆，不必重写compare
+
+        for (int num : nums) {
+            if (pq.size() &lt; k) {
+                pq.offer(num);
+            } else if (pq.peek() &lt; num) {//如果堆顶元素 &lt; 新数，则删除堆顶，加入新数入堆
+                pq.poll();
+                pq.offer(num);
+            }
+        }
+
+        int[] result = new int[k];
+        for (int i = 0; i &lt; k&amp;&amp;!pq.isEmpty(); i++) {
+            result[i] = pq.poll();
+        }
+        return result;
+    }
+
+ public static void main(String[] args) {
+        int[]arr=new int[]{1, 6, 2, 3, 5, 4, 8, 7, 9};
+        System.out.println(Arrays.toString(findKMax( arr,5)));
+    }
+}
+/**
+输出：[5, 6, 7, 8, 9]
+*/
+
+class Solution {
+    public List&lt;Integer&gt; topKFrequent(int[] nums, int k) {
+        // 使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+        HashMap&lt;Integer,Integer&gt; map = new HashMap();
+        for(int num : nums){
+            if (map.containsKey(num)) {
+               map.put(num, map.get(num) + 1);
+             } else {
+                map.put(num, 1);
+             }
+        }
+        // 遍历map，用最小堆保存频率最大的k个元素
+        PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(new Comparator&lt;Integer&gt;() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                return map.get(a) - map.get(b);
+            }
+        });
+        for (Integer key : map.keySet()) {
+            if (pq.size() &lt; k) {
+                pq.add(key);
+            } else if (map.get(key) &gt; map.get(pq.peek())) {
+                pq.remove();
+                pq.add(key);
+            }
+        }
+        // 取出最小堆中的元素
+        List&lt;Integer&gt; res = new ArrayList&lt;&gt;();
+        while (!pq.isEmpty()) {
+            res.add(pq.remove());
+        }
+        return res;
+    }
+}
+//T (O(nlogK))
+//S (O(n))
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
+        PriorityQueue&lt;Integer&gt; q = new PriorityQueue&lt;&gt;((x, y) -&gt; (map.get(y) - map.get(x)));
+        for (int i : nums) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+        for (int i:map.keySet()) {
+            q.add(i);
+        }
+        int[] res = new int[k];
+        for (int i = 0; i &lt; k; i++) {
+            res[i] = q.poll();
+        }
+        return res;
+    }
+}
+//T (O(nlogN))
+//S (O(n))</code></pre></div>
+
+<h1 id="toc_8">桶排序</h1>
+
+<div><pre><code class="language-none">//基于桶排序求解「前 K 个高频元素」
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        List&lt;Integer&gt; res = new ArrayList();
+        // 使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+        HashMap&lt;Integer,Integer&gt; map = new HashMap();
+        for(int num : nums){
+            if (map.containsKey(num)) {
+               map.put(num, map.get(num) + 1);
+             } else {
+                map.put(num, 1);
+             }
+        }
+
+        //桶排序
+        //将频率作为数组下标，对于出现频率不同的数字集合，存入对应的数组下标
+        List&lt;Integer&gt;[] listArr = new List[nums.length+1];
+        for(int key : map.keySet()){
+            // 获取出现的次数作为下标
+            int i = map.get(key);
+            if(listArr[i] == null){
+               listArr[i] = new ArrayList();
+            } 
+            listArr[i].add(key);
+        }
+
+        // 倒序遍历数组获取出现顺序从大到小的排列
+        for(int i = listArr.length - 1;i &gt;= 0 &amp;&amp; res.size() &lt; k;i--){
+            if(listArr[i] == null) continue;
+            res.addAll(listArr[i]);
+        }
+        int[] ans=new int[res.size()];
+        for(int i=0;i&lt;k;i++){
+            ans[i]=res.get(i);
+        }
+        return ans;
+    }
+}
+//T(O(n))
+//S(O(n))</code></pre></div>
+
+<h1 id="toc_9">递归</h1>
+
+<h1 id="toc_10">快排:</h1>
+
+<p>O(nlogn): </p>
+
+<div><pre><code class="language-none">public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high){
+        if(arr==null||arr.length==0) return;
+        if(low&gt;=high) return;
+
+        int mid=low+(high-low)/2;
+        int pivot=arr[mid];
+
+        int l=low;
+        int h=high;
+
+        while(l&lt;=h){
+            while(pivot&gt;arr[l]){
+                l++;
+            }
+            while(pivot&lt;arr[h]){
+                h--;
+            }
+            if(l&lt;=h){
+                int tmp=arr[l];
+                arr[l]=arr[h];
+                arr[h]=tmp;
+                l++;
+                h--;
+            }
+        }
+        if(l&lt;high){
+            quickSort(arr,l,high);
+        }
+        if(h&gt;low){
+            quickSort(arr,low,h);
+        }
+    }
+}</code></pre></div>
+
+<h1 id="toc_11">最小栈</h1>
+
+<div><pre><code class="language-none">Stack&lt;int&gt; s1=new Stack&lt;&gt;();
+s1.push(10);
+While(s1.isEmpty()){
+    int s1.pop();
+}
+
+int peekVal=s1.peek();</code></pre></div>
+
+<h1 id="toc_12">字符串轮转</h1>
+
+<p>给定两个字符串 s1 和 s2 ，请编写代码检查 s2 是否为 s1 旋转而成（比如， waterbottle 是 erbottlewat 旋转后的字符串）</p>
+
+<p>一定可以将字符串分为两个部分，这两个部分拼凑在一起，一定可以包含另一个完整的字符串（枚举所有可能）</p>
+
+<div><pre><code class="language-none">class Solution {
+    public boolean isFlipedString(String s1, String s2) {
+        if(s1.equals(s2)) return true;
+        if(s1.length()!=s2.length()) return false;
+
+        for(int i=0;i&lt;s1.length();i++){
+            String sub1=s1.substring(0,i);
+            String sub2=s1.substring(i,s1.length());
+            String changed=sub2+sub1;
+            // System.out.println(changed+&quot; &quot;);
+            if(changed.equals(s2)){
+                return true;
+            }
+        }
+        return false;
+    }
+}</code></pre></div>
+
+<h1 id="toc_13">快排</h1>
+
+<div><pre><code class="language-none">public class Solution{
+    public void quickSort(int[] arr, int left, int right){
+        if(arr==null||arr.length==0) return;
+        if(left&gt;=right) return;
+
+        int l=left;
+        int h=right;
+        int mid=l+(h-l)/2;
+        int pivot=arr[mid];
+
+        while(l&lt;=h){
+            while(arr[l]&lt;pivot){
+                l++;
+            }
+            while(arr[h]&gt;pivot){
+                h--;
+            }
+
+            if(l&lt;=h){
+                int tmp=arr[l];
+                arr[l]=arr[h];
+                arr[h]=tmp;
+                l++;
+                h--;
+            }
+        }
+
+        if(l&lt;right){
+            quickSort(arr,l,right);
+        }
+
+        if(h&gt;left){
+            quickSort(arr,left,h);
+        }
+    }
+}</code></pre></div>
+
+<h1 id="toc_14">快速选择</h1>
+
+<p>Top K 问题的最优解 - 快速选择算法（Quickselect）</p>
+
+<p>字节跳动面试必会：快速选择算法，TopK问题最优解</p>
+
+<div><pre><code class="language-none">class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        return quickSelect(nums, 0, nums.length - 1, k);
+    }
+
+    int quickSelect(int[] nums, int lo, int hi, int k) {
+        int pivot = lo;
+        for (int j = lo; j &lt; hi; j++) {
+            if (nums[j] &lt;= nums[hi]) {
+                swap(nums, pivot++, j);
+            }
+        }
+        swap(nums, pivot, hi);
+        int count = hi - pivot + 1;
+        // 如果找到直接返回
+        if (count == k)
+            return nums[pivot];
+        // 从右边部分找
+        if (count &gt; k)
+            return quickSelect(nums, pivot + 1, hi, k);
+        // 从左边部分找
+        return quickSelect(nums, lo, pivot - 1, k - count);
+    }
+    private void swap(int[] nums, int i, int j) {
+        if (i != j) {
+            int tmp=nums[i];
+            nums[i]=nums[j];
+            nums[j]=tmp;
+        }
+    }
+}
+
+// private void swap(int[] nums, int i, int j) {
+//     if (i != j) {
+//         nums[i] ^= nums[j];
+//         nums[j] ^= nums[i];
+//         nums[i] ^= nums[j];
+//     }
+// }
+
+// 异或交换:
+// a = a^b;    a^=b;
+// b = a^b;    b^=a;
+// a = a^b;    a^=b;</code></pre></div>
+
+<p>// 作者：sdwwld
+// 链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/javadai-ma-de-2chong-da-an-by-sdwwld/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<h1 id="toc_15">冒泡排序</h1>
+
+<div><pre><code class="language-none">/**
+     * 冒泡排序
+     *
+     * @param array
+     * @return
+     */
+    public static int[] bubbleSort(int[] array) {
+        if (array.length == 0)
+            return array;
+        for (int i = 0; i &lt; array.length; i++)
+            for (int j = 0; j &lt; array.length - 1 - i; j++)
+                if (array[j + 1] &lt; array[j]) {
+                    int temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+        return array;
+    }
+
+// 1.4 算法分析
+// 最佳情况：T(n) = O(n)   最差情况：T(n) = O(n^2)   平均情况：T(n) = O(n^2)</code></pre></div>
+
+<h2 id="toc_16">Collections</h2>
+
+<div><pre><code class="language-none"> //对集合进行排序
+    Collections.sort(list);
+
+    //寻找最大和最小值
+
+    int max = Collections.max(list);
+    int min = Collections.min(list);
+
+
+   //反转集合中的元素的顺序
+    Collections.reverse(list2);
+    System.out.println(list2);
+
+ //交换集合中指定元素的位置
+        Collections.swap(list2, 0, 3);
+        System.out.println(list2);
+
+原文链接：https://blog.csdn.net/wangshuang1631/article/details/53200764</code></pre></div>
+
+<h1 id="toc_17">操作BigInteger</h1>
+
+<p>操作BigInteger</p>
+
+<div><pre><code class="language-none">class Solution {
+    public int fib(int n) {
+        if(n==0) return 0;
+        if(n==1) return 1;
+        BigInteger a=new BigInteger(&quot;0&quot;);
+        BigInteger b=new BigInteger(&quot;1&quot;);
+        BigInteger c=a.add(b);
+        for(int i=2;i&lt;=n;i++){
+            c=a.add(b);
+            a=b;
+            b=c;
+        }
+        return c.mod(new BigInteger(&quot;1000000007&quot;)).intValue();
+    }
+}</code></pre></div>
+
+<h1 id="toc_18">字符串处理，获得length，char之间转换</h1>
+
+<div><pre><code class="language-none">char[] arr=str.toCharArray();
+
+ Character[] c =
+        new Character[] {
+          &#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;,
+          &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;
+        };
+    List&lt;Character&gt; list = Arrays.asList(c);
+
+String str=&quot;test&quot;;
+char c=str.charAt(0);</code></pre></div>
+
+<h1 id="toc_19">DFS</h1>
+
+<h1 id="toc_20">BFS</h1>
+
+<p>link: https://leetcode-cn.com/problems/rotting-oranges/</p>
+
+<ol>
+<li>腐烂的橘子
+难度
+中等
+在给定的 m x n 网格 grid 中，每个单元格可以有以下三个值之一：</li>
+</ol>
+
+<p>值 0 代表空单元格；
+值 1 代表新鲜橘子；
+值 2 代表腐烂的橘子。
+每分钟，腐烂的橘子 周围 4 个方向上相邻 的新鲜橘子都会腐烂。</p>
+
+<p>返回 直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 -1 。</p>
+
+<p>示例 1：
+<img src="./images/oranges.png" alt="image info">
+输入：grid = [[2,1,1],[1,1,0],[0,1,1]]
+输出：4
+示例 2：</p>
+
+<p>输入：grid = [[2,1,1],[0,1,1],[1,0,1]]
+输出：-1
+解释：左下角的橘子（第 2 行， 第 0 列）永远不会腐烂，因为腐烂只会发生在 4 个正向上。
+示例 3：</p>
+
+<p>输入：grid = [[0,2]]
+输出：0
+解释：因为 0 分钟时已经没有新鲜橘子了，所以答案就是 0 。</p>
+
+<p>提示：</p>
+
+<p>m == grid.length
+n == grid[i].length
+1 &lt;= m, n &lt;= 10
+grid[i][j] 仅为 0、1 或 2</p>
+
+<div><pre><code class="language-none">class Solution {
+    public int orangesRotting(int[][] grid) {
+        if(grid.length==0) return 0;
+
+    int m=grid.length;
+    int n=grid[0].length;
+
+    int count=0;
+    LinkedList&lt;int[]&gt; queue=new LinkedList&lt;int[]&gt;();
+    for(int i=0;i&lt;m;i++){
+        for(int j=0;j&lt;n;j++){
+            if(grid[i][j]==1){
+                count++;
+            }
+            if(grid[i][j]==2){
+                queue.add(new int[]{i,j});
+            }
+        }
+    }
+    // add the first level end mark
+    queue.add(new int[]{-1,-1});
+
+    int minute=0;
+    while(!queue.isEmpty()){
+        int[] head=queue.removeFirst();
+        int x=head[0];
+        int y=head[1];
+
+        if(x==-1&amp;&amp;y==-1){
+            minute++;
+
+            if(!queue.isEmpty()){
+                queue.add(new int[]{-1,-1});
+            }
+            continue;
+        }
+
+        if(x+1&lt;m&amp;&amp;grid[x+1][y]==1){
+            count--;
+            grid[x+1][y]=2;
+            queue.add(new int[]{x+1,y});
+        }
+        if(x-1&gt;=0&amp;&amp;grid[x-1][y]==1){
+            count--;
+            grid[x-1][y]=2;
+            queue.add(new int[]{x-1,y});
+        }
+        if(y+1&lt;n&amp;&amp;grid[x][y+1]==1){
+            count--;
+            grid[x][y+1]=2;
+            queue.add(new int[]{x,y+1});
+        }
+        if(y-1&gt;=0&amp;&amp;grid[x][y-1]==1){
+            count--;
+            grid[x][y-1]=2;
+            queue.add(new int[]{x,y-1});
+        }
+    }
+
+if(count&gt;0) return -1;
+
+return minute-1;
+}</code></pre></div>
+
+<p>}</p>
+
+<h1 id="toc_21">17. 电话号码的字母组合</h1>
+
+<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。</p>
+
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+
+<p><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/">Link</a>.</p>
+
+<p><img src="./images/200px-telephone-keypad2svg.png" alt="image info"></p>
+
+<p>示例 1：</p>
+
+<p>输入：digits = &quot;23&quot;
+输出：[&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]
+示例 2：</p>
+
+<p>输入：digits = &quot;&quot;
+输出：[]</p>
+
+<div><pre><code class="language-none">class Solution {
+    List&lt;String&gt; result=new ArrayList&lt;String&gt;();
+    String[] mapArr=new String[]{&quot;&quot;,&quot;&quot;,&quot;abc&quot;,&quot;def&quot;,&quot;ghi&quot;,&quot;jkl&quot;,&quot;mno&quot;,&quot;pqrs&quot;,&quot;tuv&quot;,&quot;wxyz&quot;};
+    public List&lt;String&gt; letterCombinations(String digits) {
+        if(digits.length()==0){
+            return result;
+        }
+        findAll(digits,0,&quot;&quot;);
+        return result;
+    }
+
+    public void findAll(String digits,int index,String s){
+        //结束条件
+        if(index==digits.length()){
+            result.add(s);
+            return;
+        }
+        char c=digits.charAt(index);
+        String mapStr=mapArr[Integer.parseInt(c+&quot;&quot;)];
+        for(int i=0;i&lt;mapStr.length();i++){
+            findAll(digits,index+1,s+mapStr.charAt(i));
+        }
+    }
+}</code></pre></div>
+
+<h1 id="toc_22">36进制由0-9，a-z，共36个字符表示，最小为’0’, ‘0’、&#39;9’对应十进制的09，‘a’、&#39;z’对应十进制的10 35</h1>
+
+<p>例如：</p>
+
+<p>&#39;1b&#39; 换算成10进制等于 1 * 36^1 + 11 * 36^0 = 36 + 11 = 47
+&#39;2x&#39; 换算成10进制等于 2 * 36^1 + 33 * 36^0 = 105
+要求按照加法规则计算出任意两个36进制正整数的和
+如：按照加法规则，计算&#39;1b&#39; + &#39;2x&#39; = &#39;48&#39;（解释：47 + 105 = 152）</p>
+
+<p>&#39;48&#39; 换算成10进制等于 4 * 36^1 + 8 * 36^0 = 152</p>
+
+<p>要求：
+不允许把36进制数字整体转为10进制数字，计算出10进制数字的相加结果再转回为36进制</p>
+
+<p>思路
+按照十进制的加法方法，满36向前进一位</p>
+
+<p>str1: 1b
+str2: 2x</p>
+
+<div><pre><code class="language-none">  public static void main(String args[]) {
+    System.out.println(addNums(&quot;1b&quot;, &quot;2x&quot;));
+  }
+
+   public static String addNums(String str1, String str2) {
+    Character[] c =
+        new Character[] {
+          &#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;,
+          &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;
+        };
+    List&lt;Character&gt; list = Arrays.asList(c);
+    StringBuilder sb = new StringBuilder();
+    char[] c1 = str1.toCharArray();
+    char[] c2 = str2.toCharArray();
+
+int i = c1.length - 1, j = c2.length - 1;
+
+int carry = 0;
+while (i &gt;= 0 &amp;&amp; j &gt;= 0) {
+  int num1 = list.indexOf(c1[i]);
+  int num2 = list.indexOf(c2[j]);
+  int result = num1 + num2 + carry;
+
+  if (result &gt;= 36) {
+    carry = 1;
+    result %= 36;
+  } else {
+    carry = 0;
+  }
+  System.out.println(num1 + &quot; &quot; + num2 + &quot; &quot; + carry + &quot; result: &quot; + result);
+  sb.append(list.get(result).toString());
+  i--;
+  j--;
+}
+
+while (i &gt;= 0) {
+  int num1 = list.indexOf(c1[i]);
+  int sum = num1 + carry;
+  if (sum &gt;= 36) {
+    carry = 1;
+    sum %= 36;
+  } else {
+    carry = 0;
+  }
+  sb.append(list.get(sum).toString());
+  i--;
+}
+
+while (j &gt;= 0) {
+  int num2 = list.indexOf(c2[j]);
+  int sum = num2 + carry;
+  if (sum &gt;= 36) {
+    carry = 1;
+    sum %= 36;
+  } else {
+    carry = 0;
+  }
+  sb.append(list.get(sum).toString());
+  j--;
+}
+
+if (carry == 1) {
+  sb.append(&quot;1&quot;);
+}
+
+return sb.reverse().toString();</code></pre></div>
+
+<p>}</p>
+
+<h1 id="toc_23">33. 搜索旋转排序数组 (二分查找变形)</h1>
+
+<p><a href="https://leetcode.cn/problems/search-in-rotated-sorted-array/">https://leetcode.cn/problems/search-in-rotated-sorted-array/</a></p>
+
+<p>整数数组 nums 按升序排列，数组中的值 互不相同 。</p>
+
+<p>在传递给函数之前，nums 在预先未知的某个下标 k（0 &lt;= k &lt; nums.length）上进行了 旋转，使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。例如， [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。</p>
+
+<p>给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。</p>
+
+<p>你必须设计一个时间复杂度为 O(log n) 的算法解决此问题。</p>
+
+<p>二分查找只能在有序的区间里面去查找，对于倒序的是没法查找的，所以只能定位到有序的区间，跳到那里去继续寻找</p>
+
+<div><pre><code class="language-none">class Solution {
+    public int search(int[] nums, int target) {
+        return binarySearch(nums,target);
+    }
+
+public int binarySearch(int[] nums, int target){
+    int l=0;
+    int r=nums.length-1;
+    while(l&lt;=r){
+        int mid=(l+r)/2;
+
+        if(nums[mid]==target) return mid;
+
+        if(nums[0]&lt;=nums[mid]){
+            // target 在这个区间内
+            if(nums[0]&lt;=target &amp;&amp; target&lt;nums[mid]){
+                r=mid-1;
+            }else{
+                l=mid+1;
+            }
+        }else {
+            // target 在这个区间内
+            if(nums[mid]&lt;target &amp;&amp; target&lt;=nums[nums.length-1]){
+                l=mid+1;
+            }else{
+                r=mid-1;
+            }
+        }
+    }
+    return -1;
+}</code></pre></div>
+
+<p>}</p>
+
+<div><pre><code class="language-none">class Solution {
+    public int search(int[] nums, int target) {
+        return binarySearch(nums,target);
+    }
+
+public int binarySearch(int[] nums, int target){
+    int l=0;
+    int r=nums.length-1;
+
+    while(l&lt;=r){
+
+        int mid=(l+r)/2;
+        if(nums[mid]==target){
+            return mid;
+        }
+        //  只能感觉nums[mid]与nums[l]确定，mid是在左边半段还是在右边半段
+        if(nums[l]&lt;=nums[mid]){
+            //如果是在左边半段，那么我们只能在左边是升序的时候，使用二分查找规则，另一种情况只能用反之else来handle
+            //确定target在左边界与mid形成的右边界里面
+            if(nums[l]&lt;=target &amp;&amp; target&lt;nums[mid]){
+                r=mid-1;
+            }else{
+                l=mid+1;
+            }
+        }else{  
+            //如果是在右边半段，那么我们只能在右边是升序的时候，使用二分查找规则，另一种情况只能用反之else来handle
+            if(nums[mid]&lt;target &amp;&amp; target&lt;=nums[r]){
+                l=mid+1;
+            }else{
+                r=mid-1;
+            }
+        }
+    }
+    return -1;
+}</code></pre></div>
+
+<p>}</p>
+
+<h1 id="toc_24">回文字符串</h1>
+
+<p>给你一个字符串 s，找到 s 中最长的回文子串。
+示例 1：
+输入：s = &quot;babad&quot;
+输出：&quot;bab&quot;
+解释：&quot;aba&quot; 同样是符合题意的答案。</p>
+
+<p>示例 2：
+输入：s = &quot;cbbd&quot;
+输出：&quot;bb&quot;</p>
+
+<p>提示：
+1 &lt;= s.length &lt;= 1000
+s 仅由数字和英文字母组成</p>
+
+<div><pre><code class="language-none">class Solution {
+    public String longestPalindrome(String s) {
+        String max = &quot;&quot;;
+        for(int i=0;i&lt;s.length();i++){
+            String s1 = extend(s,i,i), s2 = extend(s,i,i+1); //s2 focuses on midpoint betweek 2 letters in case of even letters
+            if(max.length() &lt; Math.max(s1.length(),s2.length()))
+                max = s1.length() &gt; s2.length() ? s1 : s2;
+        }
+        return max;
+    }
+
+    private String extend(String s, int l, int r){
+        while(l &gt;= 0 &amp;&amp; r &lt; s.length()){
+            if(s.charAt(l) != s.charAt(r))
+                break;
+            l--;r++;
+        }
+        return s.substring(l+1,r); //handle the extra decrement in the while loop
+    }
+}</code></pre></div>
+
+<h2 id="toc_25">Given a sorted (in increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.</h2>
+
+<div><pre><code class="language-none">    public void convert(int[] nums,int left,int right){
+
+        if(left&gt;right){
+        return null;
+        }
+
+        int middle=low+((right-left)&gt;&gt;1);
+
+        TreeNode root=new TreeNode(nums[middle]);
+
+        root.left=convert(nums,left,middle-1);
+        root.right=convert(nums,middle+1,right);
+
+        return root;
+    }</code></pre></div>
+
+<h2 id="toc_26">Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. --can repeat pick up numbers</h2>
+
+<div><pre><code class="language-none">    public void runPermutation(int[] a) {
+
+        if(null == a || a.length == 0)
+            return;
+
+        int[] b = new int[a.length];//辅助空间，保存待输出排列数
+        getAllPermutation(a, b, 0);
+    }
+
+    public void getAllPermutation(int[] a, int[] b, int index) {
+
+        if(index == a.length){
+            for(int i = 0; i &lt; index; i++){
+                System.out.print(b[i] + &quot; &quot;);
+            }
+            System.out.println();
+            return;
+        }
+
+        for(int i = 0; i &lt; a.length; i++){
+
+            b[index] = a[i];
+            getAllPermutation(a, b, index+1);
+        }
+
+    }
+
+    public static void main(String[] args){
+
+        Solution3 robot = new Solution3();
+
+        int[] a = {1,2,3};
+        robot.runPermutation(a);
+
+    }</code></pre></div>
+
+<h2 id="toc_27">Input m and an input Array, pick up some numbers from specfic array, to fulfill the sum of them is equal to m. (can repeat)</h2>
+
+<div><pre><code class="language-none">    public static void main(String[] args){
+        Solution3 robot = new Solution3();
+        int[] a = {1,2,3,6,7,3,4,10};
+        robot.findSum(a,10);            
+    }
+
+ int[] nums;
+    public void findSum(int[] nums,int sum){
+
+        // Arrays.sort(nums);     // no need sort
+        this.nums=nums;
+        combine(sum);
+    }
+
+
+
+        public void combine(int m) {
+
+            if(m &lt; 1 )
+                return;
+
+            ArrayList&lt;Integer&gt; arr = new ArrayList&lt;Integer&gt;();
+            getCombination(m, arr);
+        }
+        public void getCombination(int m, ArrayList&lt;Integer&gt; arr) {
+
+            if (m == 0 &amp;&amp; arr.size() &gt;= 1) {
+                for (int i = 0; i &lt; arr.size(); i++) {
+
+                    System.out.print(arr.get(i) + &quot; &quot;);
+                }
+                System.out.println();
+                return;
+            }
+
+            if(m&lt;0) return;
+
+            for (int i = 0; i &lt;nums.length; i++) {
+                if (!arr.isEmpty() &amp;&amp; nums[i] &lt; arr.get(arr.size() - 1))//使集合内元素递增，防止重复
+                    continue;
+
+                arr.add(nums[i]);
+                getCombination(m - nums[i], arr);
+                if(!arr.isEmpty())
+                arr.remove(arr.size()-1);
+            }
+        }
+
+
+
+
+
+1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 2 
+1 1 1 1 1 1 1 3 
+1 1 1 1 1 1 1 3 
+1 1 1 1 1 1 2 2 
+1 1 1 1 1 1 4 
+1 1 1 1 1 2 3 
+1 1 1 1 1 2 3 
+1 1 1 1 2 2 2 
+1 1 1 1 2 4 
+1 1 1 1 3 3 
+1 1 1 1 3 3 
+1 1 1 1 3 3 
+1 1 1 1 3 3 
+1 1 1 1 6 
+1 1 1 2 2 3 
+1 1 1 2 2 3 
+1 1 1 3 4 
+1 1 1 3 4 
+1 1 1 7 
+1 1 2 2 2 2 
+1 1 2 2 4 
+1 1 2 3 3 
+1 1 2 3 3 
+1 1 2 3 3 
+1 1 2 3 3 
+1 1 2 6 
+1 1 4 4 
+1 2 2 2 3 
+1 2 2 2 3 
+1 2 3 4 
+1 2 3 4 
+1 2 7 
+1 3 3 3 
+1 3 3 3 
+1 3 3 3 
+1 3 3 3 
+1 3 6 
+1 3 3 3 
+1 3 3 3 
+1 3 3 3 
+1 3 3 3 
+1 3 6 
+2 2 2 2 2 
+2 2 2 4 
+2 2 3 3 
+2 2 3 3 
+2 2 3 3 
+2 2 3 3 
+2 2 6 
+2 4 4 
+3 3 4 
+3 3 4 
+3 7 
+3 3 4 
+3 3 4 
+3 7 
+4 6 
+10          </code></pre></div>
+
+<h2 id="toc_28">Input n,m    Pick up some numbers from 1,2,3....n, to fulfill the sum of them is equal to m. (0/1 bag)</h2>
+
+<div><pre><code class="language-none">    LinkedList&lt;Integer&gt; list=new LinkedList&lt;Integer&gt;();
+
+
+    public void find_factor(int sum,int n){
+
+        if(n&lt;=0||sum&lt;=0) return;  //递归退出条件
+
+        if(sum==n){
+
+            //reverse the list:
+            Collections.reverse(list);
+//          for(int i=0;i&lt;list.size();i++){
+//              int tmp=list1.get(i);
+//              list1.set(i, list1.get(list1.size()-1-i));
+//              list1.set(list1.size()-1-i, tmp);
+//          }
+//          
+            for(int tmp:list)
+                System.out.print(tmp+&quot;+&quot;);
+
+            System.out.println(n);
+        }
+
+        list.push(n);  // save the current try
+        find_factor(sum-n,n-1);  // 将改值的Wi 放入背包，减少当前容量，并在n-1范围内再试，看能否到满足条件临界。 
+        list.pop();// 还原状态，不将当前值放入背包
+        find_factor(sum,n-1); // 尝试 不将当前值放入背包，在n-1范围内再试。
+
+    }</code></pre></div>
+
+<p>====&gt; another way to write the code:        </p>
+
+<div><pre><code class="language-none">LinkedList&lt;Integer&gt; list=new LinkedList&lt;Integer&gt;();
+
+public void find_factor(int sum,int n){
+    if(sum&lt;=0 ||n&lt;=0) return;
+
+    if(sum==n){
+        for(int i=list.size()-1;i&gt;0;i--)
+        System.out.print(list.get(i)+&quot; &quot;);
+        System.out.println();
+    }
+    list.push(n);
+    find_factor(sum-n,n-1);
+    list.pop();
+    find_factor(sum,n-1);
+}</code></pre></div>
+
+<p>Output:</p>
+
+<div><pre><code class="language-none">s.find_factor(10,20);
+
+10
+9+1
+8+2
+7+3
+7+2+1
+6+4
+6+3+1
+5+4+1
+4+3+2
+4+3+2+1</code></pre></div>
+
+<h2 id="toc_29">Binary operation / Bit operations  --- The sum of two binary numbers</h2>
+
+<div><pre><code class="language-none">public static String addBinary4(String a, String b){
+    if (a == null || a.length() == 0)
+        return b;
+    if (b == null || b.length() == 0)
+        return a;
+
+    int currA = a.length() - 1;
+    int currB = b.length() - 1;
+    int flag = 0;
+    StringBuilder sb = new StringBuilder();
+
+    while (currA &gt;= 0 || currB &gt;= 0) {
+
+        int va = 0;
+        int vb = 0;
+
+        if (currA &gt;= 0) {
+            va = a.charAt(currA) == &#39;0&#39; ? 0 : 1;
+            currA--;
+        }
+
+        if (currB &gt;= 0) {
+            vb = b.charAt(currB) == &#39;0&#39; ? 0 : 1;
+            currB--;
+        }
+
+        int sum = va + vb + flag;
+
+        if (sum &gt;= 2) {
+            sb.append(sum - 2);
+            flag = 1;
+        } else {
+            sb.append(sum);
+            flag=0;
+        }
+
+    }
+
+    if (flag == 1) {
+        sb.append(&quot;1&quot;);
+    }
+
+    return sb.reverse().toString();
+}</code></pre></div>
+
+<h2 id="toc_30">PreOrder Traversal</h2>
+
+<p>Without using recursion:</p>
+
+<div><pre><code class="language-none">   public List&lt;Integer&gt; preorderTraversal3(TreeNode root) {
+        Stack&lt;TreeNode&gt; s=new Stack&lt;TreeNode&gt;();
+        s.push(root);
+        ArrayList&lt;Integer&gt; arr=new ArrayList&lt;Integer&gt;();
+
+        while(!s.isEmpty()){
+         TreeNode node=s.pop();
+          if(node!=null){
+//       System.out.print(node.val+&quot; &quot;);
+              arr.add(node.val);
+          //Last in first out.
+            if(node.right!=null){
+                s.push(node.right);
+            }
+
+
+            if(node.left!=null) {
+                s.push(node.left);
+            }
+        }
+
+        }
+
+        return arr;
+
+    }</code></pre></div>
+
+<p>Using recustion:</p>
+
+<div><pre><code class="language-none">//By using recursion:
+
+public List&lt;Integer&gt; preorderTraversal(TreeNode root) {
+
+    if(root!=null){
+
+        System.out.println(root.val);
+
+        if(root.left!=null) preorderTraversal(root.left);
+
+        if(root.right!=null) preorderTraversal(root.right);
+
+
+    }
+
+
+return null;
+}</code></pre></div>
+
+<h2 id="toc_31">InOrder Traversal</h2>
+
+<p>Without using recursion:</p>
+
+<div><pre><code class="language-none">public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
+
+    Stack&lt;TreeNode&gt; s = new Stack&lt;TreeNode&gt;();
+    List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
+    HashMap&lt;TreeNode, Boolean&gt; vistedMap = new HashMap&lt;TreeNode, Boolean&gt;();
+
+    s.push(root);
+    while (!s.isEmpty()) {
+        TreeNode node = s.pop();
+
+        if (node != null) {
+
+            if (vistedMap.get(node) == null) {
+                if (node.right != null) {
+                    s.push(node.right);
+                }
+
+                if (node.left != null || node.right != null)
+                    s.push(node);
+
+                if (node.left == null &amp;&amp; node.right == null) {
+                    result.add(node.val);
+                }
+
+                if (node.left != null) {
+                    s.push(node.left);
+                }
+
+                // marke it as visted.
+                if (vistedMap.get(node) == null) {
+                    vistedMap.put(node, true);
+                }
+
+            } else {
+                result.add(node.val);
+            }
+
+        }
+
+    }
+
+    return result;
+}</code></pre></div>
+
+<p>Using recursion:</p>
+
+<div><pre><code class="language-none">public List&lt;Integer&gt; inOrderTraversalRecursion(TreeNode root){
+
+    if(root!=null){
+
+    if(root.left!=null) inOrderTraversalRecursion(root.left);
+
+    list.add(root.val);
+
+    if(root.right!=null) inOrderTraversalRecursion(root.right);
+
+    }
+
+    return list;
+}</code></pre></div>
+
+<h2 id="toc_32">PostOrder Traversal</h2>
+
+<p>Using recursion:</p>
+
+<div><pre><code class="language-none">public List&lt;Integer&gt; postOrderTraversalRecursion(TreeNode root){
+    if(root.left!=null) postOrderTraversalRecursion(root.left);
+
+    if(root.right!=null) postOrderTraversalRecursion(root.right);
+
+    list.add(root.val);
+
+    return list;
+}</code></pre></div>
+
+<h2 id="toc_33">LevelOrder Traversal</h2>
+
+<div><pre><code class="language-none">public static List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
+
+    if(root==null) return new ArrayList&lt;List&lt;Integer&gt;&gt;();
+
+    List&lt;List&lt;Integer&gt;&gt; result=new ArrayList&lt;List&lt;Integer&gt;&gt;();
+
+    LinkedList&lt;TreeNode&gt; que=new LinkedList&lt;TreeNode&gt;();
+
+    List&lt;Integer&gt; list=new ArrayList&lt;Integer&gt;();
+
+    que.add(root);
+    que.add(null);
+
+    while(!que.isEmpty()){
+
+        TreeNode firstNode=que.removeFirst();
+
+
+        if(firstNode==null){
+            result.add(list);
+            //reset the list ArrayList.
+            list=new ArrayList&lt;Integer&gt;();
+            if(!que.isEmpty()) que.addLast(null);
+
+        }else{
+
+            list.add(firstNode.val);
+            if(firstNode.left!=null) que.add(firstNode.left);
+            if(firstNode.right!=null) que.add(firstNode.right);
+
+        }
+
+    }
+
+    return result;
+}</code></pre></div>
+
+<h2 id="toc_34">Deepth of binary tree Traversal</h2>
+
+<h2 id="toc_35">Linked List Traversal</h2>
+
+<h2 id="toc_36">Fibonacci Number</h2>
+
+<div><pre><code class="language-none">    public long find_fib2(int n){
+
+          long v3=0;     //using long can reach:91 7540113804746346429
+
+          if(n==0||n==1) return 1;
+
+          long v1=1;
+          long v2=1;
+
+          for(int i=1;i&lt;n;i++){
+            v3=v1+v2;
+            v1=v2;
+            v2=v3;
+          }
+
+          return v3;
+
+        }
+
+
+    public int find_fib(int n){
+
+      int v3=0;   //using int only can reach: 45 1836311903 after that output becomes negative number
+
+      if(n==0||n==1) return 1;
+
+      int v1=1;
+      int v2=1;
+
+      for(int i=1;i&lt;n;i++){
+        v3=v1+v2;
+        v1=v2;
+        v2=v3;
+      }
+
+      return v3;
+
+    }
+
+
+    //using recursion:
+    public int find_fib0(int n){  // it is quite slow, when it show 43 701408733
+
+        if(n==0||n==1) return 1;
+
+        return find_fib0(n-1)+find_fib0(n-2);  
+
+        }</code></pre></div>
+
+<h2 id="toc_37">BFS</h2>
+
+<h2 id="toc_38">DFS</h2>
+
+<h2 id="toc_39">Judge whether has cycle</h2>
+
+<div><pre><code class="language-none">public static boolean hasCycle(ListNode head){
+    ListNode first=head,second=head;
+
+    if(head==null) return false;  // when head==null
+    if(head.next==null) return false; // when only contain head node.
+
+    // when contain more than one node
+    int j=0;
+    while(first.next!=null){
+        first=first.next;
+        j++;
+        if(j==2){
+            j=0;
+            second=second.next;
+        }
+        if(first==second) return true;
+
+    }
+
+    return false;
+}</code></pre></div>
+
+<h2 id="toc_40">find the insection node of two single lists</h2>
+
+<h2 id="toc_41">find the beginning node of cycle (Linked List)</h2>
+
+<div><pre><code class="language-none">public static ListNode detectCycle5(ListNode head) {
+
+    ListNode first = head, second = head;
+
+    if (head == null)
+        return null; // when head==null
+    if (head.next == null)
+        return null; // when only contain head node.
+    if(head.next.next==head) return head;
+
+    boolean adjustFlag = false;
+    // when contain more than one node
+
+    int meetTime=0;
+
+    while (first!=null&amp;&amp;first.next != null) {
+
+        if(!adjustFlag){
+        first = first.next.next;
+        second=second.next;
+        }else{
+            first=first.next;
+            second=second.next;
+        }
+        if(first==second&amp;&amp;first!=null&amp;&amp;meetTime!=2){
+            System.out.println(&quot;meet:&quot;+first.val);
+            meetTime++;
+            if(meetTime==2) return second;  
+            adjustFlag=true;
+            second=head;
+        }
+
+
+    }
+
+    return null;
+}</code></pre></div>
+
+<h2 id="toc_42">LRU Cache</h2>
+
+<div><pre><code class="language-none">    HashMap&lt;Integer, Node&gt; map = new HashMap&lt;Integer, Node&gt;();
+
+
+    int capacity = 0;
+
+    Node head = null;
+    Node rear = null;
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int get(int key) {
+
+        if(map.get(key)!=null) {
+            remove(map.get(key));
+            setHead(map.get(key));
+            return map.get(key).value;
+        }
+
+        return -1;
+    }
+
+    public void set(int key, int value) {
+
+           if(map.get(key)!=null){
+             Node tmpNode=map.get(key);
+             tmpNode.value=value;
+
+             /*
+              *  set it to the head
+              */
+             remove(tmpNode);
+             setHead(tmpNode);
+           }else{
+
+               Node newNode=new Node(key,value);
+
+               //add this new key and value into the HashMap
+               map.put(key, newNode);
+
+               if(map.size()&lt;=capacity){
+                   setHead(newNode);
+               }else{
+                   removeRear();
+                   setHead(newNode);
+               }
+
+           }
+    }
+
+    public void setHead(Node node){
+
+        /*
+         * 1. remove the element from LinkedList
+         * 
+         * Cannot put remove element from LinkedList here:
+         * This method will be called by two different cases:
+         * (1) add totally new node into the list
+         * (2) adjust the old node&#39;s position in the list.
+         * 
+         * So we need to use a separated method to handle this.
+         * 
+         * 
+         */
+
+        //if this node is  head, no need to do the &quot;set head operation&quot;
+        if(node==head) return;
+//      
+//      
+//      if(node.prev!=null) node.prev.next=node.next;
+//      
+//      if(node.next!=null) node.next.prev=node.prev;
+
+
+
+        /*
+         * 2. move it to the head.
+         *   (1) head==null
+         *   (2) head!=null     
+         */
+        if(head==null) {
+            head=node;
+            rear=head;
+        }else{
+            node.prev=null;
+            head.prev=node;
+            node.next=head;
+            head=node;
+        }
+
+
+
+
+    }
+
+
+    public void remove(Node node){
+        /*
+         * For removing node, there are several cases:
+         * 
+         * remove from the head
+         * remove from the rear
+         * 
+         * remove from middle
+         * 
+         *      
+         */
+
+        // Consider two directions:
+        // from the next direction
+        if(node.next!=null){
+
+
+
+            if(node.prev!=null){            
+
+            }
+            //if node.preve==null, that means it is head, adjust the head pointer           
+            else{
+                head=node.next;
+            }
+
+            node.next.prev=node.prev;
+//          
+
+            //if node.next==null, that means it is rear. adjust the rear pointer.
+        }else{
+
+            rear=node.prev;
+
+            if(node.prev!=null){
+            node.prev.next=null;
+            }
+            //node.prev==null, it is head.
+            else{
+                head=null;
+                rear=null;
+            }
+
+        }
+
+
+      // Consider another direction:
+      // from the another direction:
+
+
+        if(node.prev!=null){
+
+            if(node.next!=null){
+
+            }
+            //if node.next==null, it means it is rear. need to adjust the rear pointer
+            else{
+                rear=node.prev;
+            }
+
+            node.prev.next=node.next;
+
+        }
+        //if node.prev==null, that means it is head, need to adjust the head pointer
+        else{
+
+            head=node.next;
+
+            if(node.next!=null){
+                head.prev=null;
+
+            //node.next==null, it is rear.  
+            }else{
+                head=null;
+                rear=null;
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+    public void removeRear(){
+
+        /*
+         * 1. remove the element from HashMap
+
+         * 
+         * 
+         */
+
+        /*
+         *  Important!!!!:
+ public V remove(Object key) {
+        Entry&lt;K,V&gt; e = removeEntryForKey(key);
+        return (e == null ? null : e.value);
+    }
+
+         * 
+         */
+//      map.remove(rear);  // This is wrong.   should put key there.
+
+        map.remove(rear.key);
+
+//      System.out.println(&quot;remove:&quot;+rear.key);
+//      System.out.println(map.keySet());
+
+        /*
+         * 2. adjust the pointer
+         *  (1) rear ==null
+         *  (2) rear !=null
+         */
+        if(rear==null) {
+            head=rear;
+        }else{
+            rear=rear.prev;
+
+            /*
+             * After you delete the last element:
+             * (1) There are more than one elements are left.
+             * (2) There is only one element left.  ---&gt; no need to adjust the head pointer
+             * (3) There is no element left ---&gt; need to adjust the head pointer.
+             * 
+             */
+
+            // (1) There are more than one elements are left.
+            if(rear!=null)  {
+                rear.next=null;
+
+            // (3) There is no element left ---&gt; need to adjust the head pointer.
+            }else{
+                head=rear;
+            }
+        }
+
+
+    }</code></pre></div>
+
+<h2 id="toc_43">Minimum Depth of Binary Tree</h2>
+
+<div><pre><code class="language-none">public static int minDepth2(TreeNode root) {
+
+    boolean foundFlag = false;
+
+    if (root == null)
+        return 0;
+
+    int result = 0;
+    LinkedList&lt;TreeNode&gt; que = new LinkedList&lt;TreeNode&gt;();
+
+    que.add(root);
+    que.add(null);
+
+    while (!que.isEmpty()) {
+
+        TreeNode firstNode = que.pop();
+
+        if (firstNode == null) {
+            result++;
+            if (foundFlag)
+                return result;
+            if (!que.isEmpty())
+                que.addLast(null);
+
+        } else {
+
+            if (firstNode.left == null &amp;&amp; firstNode.right == null) {
+                foundFlag = true;
+            }
+            if (firstNode.left != null)
+                que.addLast(firstNode.left);
+
+            if (firstNode.right != null)
+                que.addLast(firstNode.right);
+        }
+
+    }
+
+    return result;
+}</code></pre></div>
+
+<h2 id="toc_44">Maximum Depth of Binary Tree</h2>
+
+<p>BFS:</p>
+
+<div><pre><code class="language-none">public static int maxDepthBFS(TreeNode root) {
+    int len = 0;
+    /*
+     * Because we remove and add nodes so frequently, we choose LinkedList
+     * as fundamental structure.
+     */
+    LinkedList&lt;TreeNode&gt; que = new LinkedList&lt;TreeNode&gt;();
+
+    if (root != null) { // need to consider the special cases.
+        que.add(root);
+        que.add(null); // add a special mark to mark the first level
+    }
+    /*
+     * 构造特征，并可以reuse，是必备的一种技能
+     * 
+     * Creating new features based on the basic structure is a necessary
+     * skill.
+     * 
+     */
+
+    while (!que.isEmpty()) {
+
+        TreeNode cur = que.removeFirst(); // Thinking why put in? ---&gt;
+                                            // should be in.
+
+        if (cur == null) {
+            len++; // if the que is empty, it means this level&#39;s nodes are
+                    // visted.
+
+            if (!que.isEmpty())
+                que.addLast(null); // add the mark to mark this is the end
+                                    // of this level.
+
+        } else {
+            if (cur.left != null)
+                que.add(cur.left);
+            if (cur.right != null)
+                que.add(cur.right);
+        }
+
+    }
+
+    return 0;
+}</code></pre></div>
+
+<p>Another method:</p>
+
+<div><pre><code class="language-none">public static int maxDepth(TreeNode node) {
+
+    int left = 0, right = 0;
+
+    if (node == null)
+        return 0;
+    if (node != null &amp;&amp; node.left == null &amp;&amp; node.right == null)
+        return 1;
+
+    if (node != null) {
+        if (node.left != null) {
+            left++;
+            left += maxDepth(node.left);
+        }
+
+        if (node.right != null) {
+            right++;
+            right += maxDepth(node.right);
+
+        }
+
+        return Math.max(left, right);
+    }
+
+    return 0;
+
+}</code></pre></div>
+
+<p>Another method 2:</p>
+
+<div><pre><code class="language-none">public static int maxDeepbyDeepSearch(TreeNode root) {
+
+    if (root == null)
+        return 0;
+    Stack&lt;TreeNode&gt; s = new Stack&lt;TreeNode&gt;();
+    s.push(root);
+
+    int maxDepth = 0;
+    TreeNode prev = null;
+    while (!s.empty()) {
+        TreeNode curr = s.peek();
+
+        if (prev == null || prev.left == curr || prev.right == curr) {
+            if (curr.left != null)
+                s.push(curr.left);
+            else if (curr.right != null)
+                s.push(curr.right);
+
+        } else if (curr.left == prev) {
+            if (curr.right != null)
+                s.push(curr.right);
+        } else {
+            s.pop();
+        }
+        prev = curr;
+        if (s.size() &gt; maxDepth)
+            maxDepth = s.size();
+    }
+    return maxDepth;
+}</code></pre></div>
+
+<h2 id="toc_45">Binary Search</h2>
+
+<h2 id="toc_46">Implement Queue using stacks</h2>
+
+<div><pre><code class="language-none">public class ImplementQueueUsingStacks {
+
+// Using two stack to implement the Queue
+Stack&lt;Integer&gt; s1 = new Stack&lt;Integer&gt;();
+Stack&lt;Integer&gt; s2 = new Stack&lt;Integer&gt;();
+
+// Push element x to the back of queue.
+public void push(int x) {
+    s1.push(x);
+}
+
+// Removes the element from in front of queue.
+public void pop() {
+    if (s2.isEmpty()) {
+        while (!s1.isEmpty()) {
+            s2.push(s1.pop());
+        }
+    }
+
+    // Because in the expression of the question: You may assume that all
+    // operations are valid (for example, no pop or peek operations will be
+    // called on an empty queue).
+    // So in this place, we will not do any checking for empty.
+    s2.pop();
+}
+
+// Get the front element.
+public int peek() {
+    if (s2.isEmpty()) {
+        while (!s1.isEmpty()) {
+            s2.push(s1.pop());
+        }
+    }
+    // Because in the expression of the question: You may assume that all
+    // operations are valid (for example, no pop or peek operations will be
+    // called on an empty queue).
+    // So in this place, we will not do any checking for empty.
+    return s2.peek();
+}
+
+// Return whether the queue is empty.
+public boolean empty() {
+
+    return (s1.isEmpty() &amp;&amp; s2.isEmpty()) ? true : false;
+}
+
+}</code></pre></div>
+
+<h2 id="toc_47">Implement Stack using Queues</h2>
+
+<div><pre><code class="language-none">    LinkedList&lt;Integer&gt; l1=new LinkedList&lt;Integer&gt;();
+    LinkedList&lt;Integer&gt; l2=new LinkedList&lt;Integer&gt;();
+
+   public void push(int x) {
+
+       //always from l1, add elements
+       l1.addLast(x);
+   }
+
+   // Removes the element on top of the stack.
+   public void pop() {
+
+
+
+       //handle only contain one element&#39;s case.
+//         if(l1.size()==1) l1.removeFirst();
+
+       int length=l1.size();
+
+       for(int i=0;i&lt;length-1;i++){
+       int removeValue=l1.removeFirst();
+       l2.addLast(removeValue); 
+//         System.out.println(&quot;remove:&quot;+removeValue);
+       }
+
+//         l1.removeFirst();
+
+       LinkedList&lt;Integer&gt; tmp=l1;
+       l1=l2;
+       l2=tmp;
+
+       //always from l2 remove elements
+       l2.removeFirst();
+   }
+
+   // Get the top element.
+   public int top() {
+//         System.out.println(&quot;top:&quot;+l1.getLast());
+       return l1.getLast();
+   }
+
+   // Return whether the stack is empty.
+   public boolean empty() {
+//         System.out.println(l1.isEmpty()&amp;&amp;l2.isEmpty());
+       return (l1.isEmpty()&amp;&amp;l2.isEmpty());
+   }</code></pre></div>
+
+<h2 id="toc_48">invert binary tree</h2>
+
+<div><pre><code class="language-none">/*
+ * Accepted:
+ * 
+ * 
+ */
+
+public static TreeNode invertTree(TreeNode root){
+
+    if(root==null||(root.left==null&amp;&amp;root.right==null)) return root;
+
+    if(root!=null){
+
+        if(root.left!=null||root.right!=null){
+            TreeNode tmp=root.right;
+            root.right=root.left;
+            root.left=tmp;
+        }
+
+        if(root.left!=null)
+            invertTree(root.left);
+
+        if(root.right!=null)
+            invertTree(root.right);
+    }
+    return root;
+}</code></pre></div>
+
+<h2 id="toc_49">Swap two variables without using extra space</h2>
+
+<div><pre><code class="language-none">public static void main(String args[]){
+    int a = 3;
+    int b = 2;
+    a = a ^ b;
+    b = a ^ b;  //----&gt; b= a^b^b ===&gt; b=a
+    a = a ^ b;  //----&gt; a= a^a^b ===&gt; a=b
+    System.out.println(a + &quot; &quot; + b);
+}</code></pre></div>
+
+<h2 id="toc_50">Merge two sorted arrays ===&gt; array operation</h2>
+
+<h2 id="toc_51">Merge two sorted lists</h2>
+
+<h2 id="toc_52">O(1) time complexity to get minimum value of stack</h2>
+
+<div><pre><code class="language-none">Stack&lt;Integer&gt; s1 = new Stack&lt;Integer&gt;();
+Stack&lt;Integer&gt; s2 = new Stack&lt;Integer&gt;();
+int min = (int) (Math.pow(2, 32) - 1);
+
+public void push(int x) {
+    s1.push(x);
+
+    if(!s2.isEmpty()) min=getMin();
+
+    if (min &gt; x) {
+        min = x;
+    }
+
+    s2.push(min);
+
+}
+
+public void pop() {
+    s1.pop();
+    s2.pop();
+    //if the statck is empty, should reset the min value to maximum.
+    if(s2.isEmpty()){
+     min = (int) (Math.pow(2, 32) - 1); 
+    }
+}
+
+public int top() {
+    return s1.peek();
+}
+
+public int getMin() {
+    return s2.peek();
+}   </code></pre></div>
+
+<h2 id="toc_53">Move-zeroes  ===&gt; array operation</h2>
+
+<div><pre><code class="language-none">public static void moveZeroes4(int[] nums) {
+        makeFirstBeRight4(0,nums);
+        for (int tmp : nums)
+            System.out.print(tmp + &quot; &quot;);
+}
+
+
+
+public static void makeFirstBeRight4(int begin, int[] nums) {
+
+    /*
+     * Added this mark to terminate the useless all zero loop in advance
+     *          
+     */
+
+
+    //Do not use recursion method
+//  // if the begin value is not zero
+//  if (nums[begin] != 0 &amp;&amp; begin + 1 &lt; nums.length) {
+//      makeFirstBeRight(begin + 1, nums);
+
+
+
+    /*
+     * (1) Have one pointer to indicate the first zero index in the array
+     * (2) From the head, keep searching the zero until to the end of the array
+     * (3) Once find zero, then, move this zero to after its position&#39;s 
+     * first find&#39;s non-zero number&#39;s position
+     * 
+     */
+
+
+
+    int p=begin;
+    boolean stopflag=false;
+
+    while(p!=nums.length-1&amp;&amp;!stopflag){
+        for(int j=p;j&lt;nums.length;j++){
+            if(nums[j]==0) {
+                p=j;
+            break;
+            }
+        }
+
+        //add one terminated condition
+        //If cannot be able to find any 0 in the array, it is end.
+
+
+        /*
+Input:
+[0,1,0,3,12]
+Output:
+[0,1,0,3,12]
+Expected:
+[1,3,12,0,0]
+
+Reason: use below sentence, actually it has defect.
+         * 
+         *      if(p==begin) return; 
+         */
+
+
+        //if the nums[p]!=0 and p==begin, that means it did not find any zero in array. it should return.
+        if(nums[p]!=0&amp;&amp;p==begin) return;
+
+        //add one terminated condition
+        //If the p is reach the end already, it should return.
+        if(p==nums.length-1) return;
+
+        stopflag=true;
+
+
+
+        // p is the current found 0&#39;s position
+
+        for (int i = p+1; i &lt; nums.length; i++) {
+            if (nums[i] != 0) {
+                stopflag=false;
+                nums[p] = nums[i];
+                nums[i] = 0;
+                break;
+            }
+        }   
+    }
+
+        //Do not use recursion method
+//      if (begin + 1 &lt; nums.length&amp;&amp;!mark)
+//          makeFirstBeRight(begin + 1, nums);
+
+}</code></pre></div>
+
+<h2 id="toc_54">Palindrome Number (回文)</h2>
+
+<div><pre><code class="language-none">// reverse the number to see whether it is equal to previous number;
+public boolean isPalindrome3(int x) {
+    int tmp = x;
+    int reverse = 0;
+
+    while (tmp != 0) {
+        reverse = reverse * 10 + (tmp % 10);
+        tmp /= 10;
+    }
+
+    return reverse == x;
+}
+
+public boolean isPalindrome2(int x) {
+    if (x &lt; 0)
+        return false;
+
+    int div = 1;
+    while (x / div &gt;= 10) {
+        div *= 10;
+    }
+
+    while (x != 0) {
+        int l = x / div;
+        int r = x % 10;
+        if (l != r)
+            return false;
+        x = (x % div) / 10;
+        div /= 100;
+    }
+
+    return true;
+}</code></pre></div>
+
+<h2 id="toc_55">Permutations [排列 (important)]</h2>
+
+<p>method 1:</p>
+
+<div><pre><code class="language-none">private static void permutation(String prefix, String str) {
+
+    int n = str.length();
+    if (n == 0) System.out.println(prefix);
+    else {
+        for (int i = 0; i &lt; n; i++){
+            System.out.println(prefix + str.charAt(i)+&quot; || &quot;+ str.substring(0, i) &quot; || &quot;+ str.substring(i+1, n));
+
+            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+        }
+    }
+}</code></pre></div>
+
+<p>method 2:   ----&gt; int[] nums should contain non-repeated numbers</p>
+
+<div><pre><code class="language-none">public void permutations(int[] nums,int i,int n){
+    if(i==n){
+        for(int tmp:nums)
+        System.out.print(tmp+&quot; &quot;);
+
+        System.out.println();
+    }else{
+        for(int j=i;j&lt;nums.length;j++){
+            swap(nums,i,j);
+            permutations(nums,i+1,n);
+            swap(nums,i,j);
+        }
+    }
+}</code></pre></div>
+
+<h2 id="toc_56">Find path of Binary Tree</h2>
+
+<div><pre><code class="language-none">class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x){val=x;}
+}
+
+List&lt;String&gt; result=new ArrayList&lt;String&gt;();
+List&lt;TreeNode&gt; list=new ArrayList&lt;TreeNode&gt;();
+
+public void findPath(TreeNode root){
+
+    if(root!=null){
+        list.add(root);
+
+        if(root.left==null&amp;&amp;root.right==null){
+            String str=&quot;&quot;;
+            for(TreeNode tmp:list)
+            str+=tmp.val;
+            result.add(str);
+            list=new ArrayList&lt;TreeNode&gt;();
+        }
+
+        if(root.left!=null){
+            findPath(root.left);
+            list.remove(list.size()-1);
+        }
+
+        if(root.right!=null){
+            findPath(root.right);
+            list.remove(list.size()-1);
+        }
+
+    }
+
+}</code></pre></div>
+
+<p>The sum of path:</p>
+
+<div><pre><code class="language-none">boolean flag=false;
+int sum=0;
+
+public boolean hasPathSum(TreeNode root,int sum){
+
+    if(root==null&amp;&amp;sum!=0) return false;
+    if(root==null&amp;&amp;sum==0) return false;
+
+    this.sum=sum;
+
+
+    return loopTree(root,0);
+}
+
+
+public boolean loopTree(TreeNode root,int prevSum){
+
+
+    //stop faster.
+    if(flag) return true;
+
+    if(root!=null){
+
+        prevSum+=root.val;
+//          System.out.println(root.val);
+
+
+        if(root.left==null&amp;&amp;root.right==null) {
+//              System.out.println(prevSum+&quot;&lt;-&quot;+(prevSum==sum));
+            if(prevSum==sum) flag=true;
+        }
+
+        if(root.left!=null) loopTree(root.left,prevSum);
+
+//           result-=root.val;
+
+         if(root.right!=null) loopTree(root.right,prevSum);
+    }
+
+    if(flag) return true;
+ return false;
+
+}</code></pre></div>
+
+<h2 id="toc_57">ReverseBits</h2>
+
+<div><pre><code class="language-none">public int reverse3(int n){
+
+    // Convert the n to be 32 bits Binary number.
+    StringBuilder nb = new StringBuilder(Integer.toBinaryString(n));
+    nb.reverse();
+    // for(int i=0;i&lt;32-nb.length();i++){ ===&gt; this is wrong. as nb.length
+    // is changing. Be careful!!!!!!!!
+    int tmpN = 32 - nb.length();
+    for (int i = 0; i &lt; tmpN; i++) {
+        nb.append(&quot;0&quot;);
+    }
+    nb = nb.reverse();
+    System.out.println(nb.toString());
+
+    char[] nbchar=nb.toString().toCharArray();
+    int head=0;
+    int end=nb.length()-1;
+
+    /*
+     *   replace(old char,new char) this one will 
+     *   replace all the old char to new char.
+    nbstr=nbstr.replace(nbstr.charAt(end), nbstr.charAt(head));
+    nbstr=nbstr.replace(nbstr.charAt(head), tmp);
+     */
+
+while(head&lt;end){
+    char tmp=nbchar[end];
+    nbchar[end]=nbchar[head];
+    nbchar[head]=tmp;
+
+    head++;
+    end--;
+}
+
+System.out.println(&quot;final:&quot;+String.valueOf(nbchar));
+
+return (int)Long.parseLong(String.valueOf(nbchar),2);  //Used the long first and used (int) to cast the value. So it will not cause exception.
+
+}</code></pre></div>
+
+<h2 id="toc_58">Reverse Integer</h2>
+
+<div><pre><code class="language-none">public static int reverse2(int x) {
+    if((Math.abs(x)+&quot;&quot;).length()==1) return x;
+    List&lt;Integer&gt; list=new ArrayList&lt;Integer&gt;();        
+    long result=0;
+
+//      boolean flag=x&gt;0?true:false;
+
+    while(x!=0){
+     list.add(x%10);
+     x/=10;
+    }
+
+    for(int tmp:list){
+        System.out.print(tmp+&quot; &quot;);
+    }
+    System.out.println();
+
+    for(int i=0;i&lt;list.size();i++){
+        result+=list.get(i)*Math.pow(10,list.size()-i-1);
+
+        System.out.print(list.size()-i-1+&quot; &quot;);
+    }
+
+    /*
+     * Consider one issue: if the number is 100, then reverse it. The result should be 001?
+     * 
+     */
+
+
+    // Need to consider overflow(上溢) and underflow(下溢) at the same time.
+//      if(result&gt;Math.pow(2, 32)-1) return 0;
+
+    /*
+     * Java int:
+     *  Minimum value is - 2,147,483,648.(-2^31) Maximum value is 2,147,483,647(inclusive).(2^31 -1)
+     * 
+     */
+    if(result&gt;Math.pow(2, 31)-1||result&lt;-Math.pow(2, 31)) return 0;
+
+    System.out.println(result);
+
+    return (int)result;
+}</code></pre></div>
+
+<h2 id="toc_59">Reverse Linked List</h2>
+
+<div><pre><code class="language-none">public ListNode reverseList3(ListNode head) {
+    if (head == null)
+        return head;
+    if (head.next == null)
+        return head;
+    if (head.next.next == null) {
+
+        ListNode next = head.next;
+        next.next = head;
+        head.next = null;
+        return next;
+    }
+    ListNode prev = head;
+
+    head = head.next;
+    ListNode next = head.next;
+
+    prev.next = null;
+
+    while (next.next != null) {
+        head.next = prev;
+        prev = head;
+        head = next;
+        next = next.next;
+    }
+
+    if (next.next == null) {
+        head.next = prev;
+    }
+
+    next.next = head;
+
+    return next;
+}</code></pre></div>
+
+<h2 id="toc_60">Rotate Array</h2>
+
+<p>Rotate an array of n elements to the right by k steps.</p>
+
+<p>For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].</p>
+
+<div><pre><code class="language-none">public static void rotate(int[] nums, int k) {
+
+    int[] n=nums.clone();
+
+
+    if(nums==null) return;
+
+    for(int i=0;i&lt;nums.length;i++){
+        int tmp=n[i];
+
+        nums[(i+k)%nums.length]=tmp;
+
+
+
+    }</code></pre></div>
+
+<h2 id="toc_61">Reverse Array</h2>
+
+<h2 id="toc_62">Is Same Tree (/same-tree/)</h2>
+
+<div><pre><code class="language-none">public static boolean isSameTree(TreeNode p, TreeNode q) {
+
+    ArrayList&lt;TreeNode&gt; list1 = new ArrayList&lt;TreeNode&gt;();
+    ArrayList&lt;TreeNode&gt; list2 = new ArrayList&lt;TreeNode&gt;();
+    getListFromTree(p, list1);
+    getListFromTree(q, list2);
+
+    if (list1.size() != list2.size())
+        return false; // need to consider the length is different case.
+
+    for (int i = 0; i &lt; list1.size(); i++) {
+        // Compare the value
+        if (list1.get(i) != null &amp;&amp; (list2.get(i) != null) &amp;&amp; list1.get(i).val != list2.get(i).val)
+            return false;
+
+        // Compare the structure ---&gt; use the null to distinguish differences.
+        if ((list1.get(i) == null &amp;&amp; list2.get(i) != null) || (list1.get(i) != null &amp;&amp; list2.get(i) == null))
+            return false;
+    }
+
+    return true;
+}
+
+public static void getListFromTree(TreeNode tree, ArrayList list) {
+
+    if (tree == null)
+        return;
+
+    list.add(tree); // Do not forget the root element
+
+    if (tree.left != null) {
+        getListFromTree(tree.left, list);
+        list.add(tree.left);
+    } else {
+        list.add(tree.left); // Do not forget null---&gt; distinguish the
+                                // structure
+    }
+
+    /*
+     * In order to make the logic clear to read, keep the above code
+     * 
+     * Actually, it can be replaced below:
+     * 
+     * if(tree.left!=null) getListFromTree(tree.left,list);
+     * list.add(tree.left);
+     * 
+     * 
+     */
+
+    if (tree.right != null) {
+        getListFromTree(tree.right, list);
+        list.add(tree.right);
+    } else {
+        list.add(tree.right); // Do not forget null---&gt; distinguish the
+                                // structure
+    }
+
+    /*
+     * In order to make the logic clear to read, keep the above code
+     * 
+     * Actually, it can be replaced below:
+     * 
+     * if(tree.right!=null) getListFromTree(tree.right,list);
+     * list.add(tree.right);
+     * 
+     * 
+     */
+
+}</code></pre></div>
+
+<h2 id="toc_63">Symmetric Tree</h2>
+
+<div><pre><code class="language-none">public static boolean isSymmetric2(TreeNode root) {
+
+    if(root==null) return true;
+
+    return symmSubTree(root.left,root.right);       
+}
+
+
+public static boolean symmSubTree(TreeNode left, TreeNode right){
+
+    if(left==null&amp;&amp;right==null) return true;
+    if(left!=null&amp;&amp;right==null) return false;
+    if(left==null&amp;&amp;right!=null) return false;
+
+    if(left.val!=right.val) return false;
+
+    if(!symmSubTree(left.left,left.right)) return false;
+    if(!symmSubTree(right.right,right.left)) return false;
+
+
+    return true;    
+
+}</code></pre></div>
+
+<h2 id="toc_64">valid-anagram (/valid-anagram/)</h2>
+
+<p>Given two strings s and t, write a function to determine if t is an anagram of s.</p>
+
+<p>For example,
+s = &quot;anagram&quot;, t = &quot;nagaram&quot;, return true.
+s = &quot;rat&quot;, t = &quot;car&quot;, return false.</p>
+
+<p>Note:
+You may assume the string contains only lowercase alphabets.</p>
+
+<p>Follow up:
+What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
+
+<div><pre><code class="language-none">public static boolean isAnagram(String s, String t) {
+
+    if (s.length() != t.length())
+        return false;
+
+    HashMap&lt;Character, Integer&gt; sMap = new HashMap&lt;Character, Integer&gt;();
+    HashMap&lt;Character, Integer&gt; tMap = new HashMap&lt;Character, Integer&gt;();
+
+    char[] sCharArr = s.toCharArray();
+    char[] tCharArr = t.toCharArray();
+
+    for (Character tmp : sCharArr) {
+        if (sMap.get(tmp) == null)
+            sMap.put(tmp, 1);
+        else {
+            sMap.put(tmp, sMap.get(tmp) + 1);
+        }
+
+    }
+
+    for (Character tmp : tCharArr) {
+        if (tMap.get(tmp) == null)
+            tMap.put(tmp, 1);
+        else {
+            tMap.put(tmp, tMap.get(tmp) + 1);
+        }
+    }
+
+    for (Character tmp : tCharArr) {
+        if (sMap.get(tmp) == null || tMap.get(tmp) == null){
+            System.out.println(1);
+            return false;
+        }
+        else {
+            if (sMap.get(tmp).intValue()!= tMap.get(tmp).intValue()){
+                return false;
+            }
+        }
+
+    }
+
+    for (Character tmp : sCharArr) {
+        if (sMap.get(tmp) == null || tMap.get(tmp) == null){
+            return false;
+        }
+        else {
+            if (sMap.get(tmp).intValue()!= tMap.get(tmp).intValue()){
+
+                return false;
+            }
+        }
+    }
+
+    return true;
+
+}</code></pre></div>
+
+<h2 id="toc_65">HashSet iteration</h2>
+
+<p>import java.util.HashSet;
+import java.util.Iterator;</p>
+
+<div><pre><code class="language-none">    HashSet set=new HashSet();
+
+    set.add(&quot;123&quot;);
+    set.add(&quot;123&quot;);
+
+    for(Iterator it=set.iterator();it.hasNext();){
+        System.out.println(it.next());
+    }</code></pre></div>
+
+<h2 id="toc_66">HashMap iteration</h2>
+
+<p>Method 1:        (method 1 is better than method 2----&gt; entry is the basic type in HashMap&#39;s implementation.)</p>
+
+<div><pre><code class="language-none">for(Entry&lt;Integer, String&gt; entry:map.entrySet())
+  {
+   System.out.println(entry.getKey()+&quot;=&quot;+entry.getValue());
+  }</code></pre></div>
+
+<p>Method 2:</p>
+
+<div><pre><code class="language-none">for(Object obj : map.keySet()) {     
+      Object key = obj;     
+      Object value = map.get(obj);     
+      System.out.println(value);
+  }</code></pre></div>
+
+<h2 id="toc_67">HashTable iteration</h2>
+
+<div><pre><code class="language-none">Hashtable table = new Hashtable();
+  table.put(1, &quot;1&quot;);
+  table.put(2, &quot;1&quot;);
+  table.put(3, &quot;1&quot;);
+  //遍历key
+  Enumeration e = table.keys();
+
+      while( e. hasMoreElements() ){
+
+      System.out.println( e.nextElement() );
+
+      }
+  //遍历value
+  e = table.elements();
+
+  while( e. hasMoreElements() ){
+
+  System.out.println( e.nextElement() );
+
+  }
+
+
+
+
+
+Hashtable table=new Hashtable()
+
+table.put(&quot;dfs&quot;,&quot;fds&quot;);
+
+Enumeration keys=table.keys();
+
+while(keys.hasMoreElements()){
+    str=(String) keys.nextElement();
+    System.out.println(str+&quot;:&quot;+table.get(str));
+}</code></pre></div>
+
+<h2 id="toc_68">MaximumSubarray</h2>
+
+<div><pre><code class="language-none">public int maxSubArray3(int[] nums) {
+    int max_ending_here=nums[0];
+    int max_so_far=nums[0];
+
+    for(int i=1;i&lt;nums.length;i++){
+        max_ending_here=Math.max(nums[i], max_ending_here+nums[i]);
+        max_so_far=Math.max(max_so_far,max_ending_here);
+    }
+
+    return max_so_far;
+}</code></pre></div>
+
+<h2 id="toc_69">LinkRightNode</h2>
+
+<p>Link all the same level node from left to right by using &quot;Right&quot; field.</p>
+
+<div><pre><code class="language-none">class Node
+{
+    public Node[] Children;
+    public Node Right;
+    public int val;
+    Node(int x){val=x;}
+}
+
+
+public Node linkRightNode(Node rootNode){
+
+    if(rootNode==null) return null;  //consider the null case.
+
+    LinkedList&lt;Node&gt; que=new LinkedList&lt;Node&gt;();
+
+    que.addLast(rootNode);
+    que.addLast(null);
+
+    Node prev=null;
+
+    while(!que.isEmpty()){
+        Node firstNode=que.removeFirst();
+
+        if(firstNode==null){
+            prev=null;
+            if(!que.isEmpty()){
+                que.addLast(null);
+            }
+        }else{
+
+            if(prev!=null){
+                prev.Right=firstNode;
+            }
+
+            if(firstNode.Children!=null)
+            for(Node tmp:firstNode.Children){
+                que.addLast(tmp);
+            }
+            prev=firstNode;
+        }
+    }
+    return rootNode;
+}</code></pre></div>
+
+<h2 id="toc_70">反转输出：</h2>
+
+<p>I love computer   to  i evol retupmoc.</p>
+
+<div><pre><code class="language-none">public static void main(String args[]) {
+    String str = &quot;I love shopee !&quot;;
+    StringBuilder sb = new StringBuilder();
+    String[] str_arr = str.split(&quot; &quot;);
+    for (String tmp : str_arr) {
+        sb.append(reverseStr(tmp) + &quot; &quot;);
+    }
+    System.out.println(sb.toString());
+}
+public static String reverseStr(String input) {
+    String str = input;
+    if (input == null) {
+        return null;
+    }
+    if (input != null &amp;&amp; input.length() &lt;= 1) {
+        return input;
+    }
+    char[] char_arr = str.toCharArray();
+    for (int i = 0; i &lt;= (input.length() - 1) / 2; i++) {
+        // swap the value
+        char tmp = char_arr[i];
+        char_arr[i] = char_arr[input.length() - 1 - i];
+        char_arr[input.length() - 1 - i] = tmp;
+    }
+    return String.valueOf(char_arr);
+}</code></pre></div>
+
+<h2 id="toc_71">Clone the Undirected graph.</h2>
+
+<p>http://n00tc0d3r.blogspot.sg/2013/09/clone-graph.html</p>
+
+<p>Each node in the graph contains a label and a list of its neighbors.</p>
+
+<div><pre><code class="language-none">class UndirectedGraphNode {
+      int label;
+      ArrayList&lt;UndirectedGraphNode&gt; neighbors;
+      UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList(); }
+  };</code></pre></div>
+
+<p>Implementation with DFS</p>
+
+<div><pre><code class="language-none">   private UndirectedGraphNode cloneDFS(UndirectedGraphNode root, HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt; visited) {  
+     if (root == null) return root;  
+     UndirectedGraphNode node = new UndirectedGraphNode(root.label);  
+     visited.put(root, node);  
+
+     // DFS  
+     for (UndirectedGraphNode nb : root.neighbors) {  
+       if (visited.containsKey(nb)) {  
+         node.neighbors.add(visited.get(nb));  
+       } else {  
+         node.neighbors.add(cloneDFS(nb, visited));  
+       }  
+     }  
+
+     return node;  
+   }  
+
+   public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {  
+     return cloneDFS(node, new HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;());  
+   }  </code></pre></div>
+
+<p>Implementation with BFS</p>
+
+<div><pre><code class="language-none">   public UndirectedGraphNode cloneBFS(UndirectedGraphNode root) {  
+     if (root == null) return root;  
+
+     ArrayDeque&lt;UndirectedGraphNode&gt; que = new ArrayDeque&lt;UndirectedGraphNode&gt;();  
+     que.addLast(root);  
+
+     HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt; visited = new HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();  
+     UndirectedGraphNode rootCopy = new UndirectedGraphNode(root.label);  
+     visited.put(root, rootCopy);  
+
+     // BFS  
+    while (!que.isEmpty()) {
+        root = que.removeFirst();
+        UndirectedGraphNode node = visited.get(root);
+
+        for (UndirectedGraphNode nb : root.neighbors) {
+            if (visited.containsKey(visited.get(nb))) {
+                node.neighbors.add(visited.get(nb));
+            } else {
+                UndirectedGraphNode n = new UndirectedGraphNode(nb.label);
+                node.neighbors.add(n);
+                visited.put(nb, n);
+                que.addLast(nb);
+            }
+        }
+    }
+     return rootCopy;  
+   }  </code></pre></div>
+
+<h2 id="toc_72">Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.--KMP</h2>
+
+<div><pre><code class="language-none">    public int strStr3(String haystack, String needle) {
+        // Input validation.
+        if (haystack == null || needle == null) return -1;
+        if (haystack.length() &lt; needle.length()) return -1;
+//          if (needle.length() == 0) return haystack;
+            if(needle.equals(&quot;&quot;)&amp;&amp;haystack.equals(&quot;&quot;)) return 0;
+            if(needle.length()==0) return -1;
+
+//          if(needle.length()==0) return 0; // according to leetcode: Input: &quot;&quot; &quot;&quot; Expect: 0
+
+        // KMP.
+        int firstMatchedIndex = KMP(haystack, needle);
+
+        // Return result.
+        if (firstMatchedIndex &lt; 0) return -1;
+//          else return haystack.substring(firstMatchedIndex, haystack.length());
+            else return firstMatchedIndex;
+        }
+
+    public int[] getNextArr(String pat) {
+        int pat_len = pat.length();
+
+        int[] next = new int[pat_len];
+        next[0] = -1;
+
+        int prefix_index = -1;
+        int suffix_index = 0;
+
+        while (suffix_index &lt; pat_len) {
+            if (prefix_index == -1 || 
+                pat.charAt(prefix_index) == pat.charAt(suffix_index)) {
+
+                int numMatched_prefix_and_suffix = prefix_index + 1;
+
+                if (suffix_index + 1 &gt;= pat_len) break;
+                next[suffix_index + 1] = numMatched_prefix_and_suffix;
+
+                prefix_index ++;
+                suffix_index ++;
+
+            } else {
+                // Let next array guide use how to reset the prefix_index.
+                prefix_index = next[prefix_index];
+
+            }
+        }
+
+        return next;
+    }
+
+    public int KMP(String str, String pat) {
+        int str_len = str.length();
+        int pat_len = pat.length();
+
+        int[] next = getNextArr(pat);
+
+        int str_start = 0;
+        int pat_start = 0;
+
+        while (str_start &lt; str_len &amp;&amp; pat_start &lt; pat_len) {
+            // Since if the pat_start = next[0], the pat_start == -1,
+            // so we need check whether pat_start == -1,
+            // if that we just keep move forward.
+            if (pat_start == -1 || str.charAt(str_start) == pat.charAt(pat_start)) {
+
+                str_start ++;
+                pat_start ++;
+
+            } else {
+                // Let next array guide us how to reset the pat_start.
+                pat_start = next[pat_start];
+
+            }
+        }
+
+        if (pat_start &gt;= pat_len) {
+            // The current str_start is point to,
+            // the end of the matched part in the str,
+            // and we know the matched length is pat_len,
+            // so we use str_start - pat_len to get,
+            // the matched start point in str.
+            return str_start - pat_len;
+        } else return -1;
+    }</code></pre></div>
+
+<p>Format the code to be readable:</p>
+
+<div><pre><code class="language-none">    public int findSubStrBeginIndex(String str, String subStr) {
+        // Input validation.
+        if (str == null || subStr == null) return -1;
+        if (str.length() &lt; subStr.length()) return -1;
+
+        if(subStr.equals(&quot;&quot;)&amp;&amp;str.equals(&quot;&quot;)) return 0;
+        if(subStr.length()==0) return -1;
+
+        // KMP.
+        int firstMatchedIndex = KMP(str, subStr);
+
+        // Return result.
+        if (firstMatchedIndex &lt; 0) return -1;
+        else return firstMatchedIndex;
+    }
+
+ public int[] getNextArr(String subStr) {
+    int subStr_len = subStr.length();
+
+    int[] next = new int[subStr_len];
+    next[0] = -1;
+
+    int prefix_index = -1;
+    int suffix_index = 0;
+
+    while (suffix_index &lt; subStr_len) {
+        if (prefix_index == -1 || 
+                subStr.charAt(prefix_index) == subStr.charAt(suffix_index)) {
+
+            int numMatched_prefix_and_suffix = prefix_index + 1;
+
+            if (suffix_index + 1 &gt;= subStr_len) break;
+            next[suffix_index + 1] = numMatched_prefix_and_suffix;
+
+            prefix_index ++;
+            suffix_index ++;
+
+        } else {
+            // Let next array guide use how to reset the prefix_index.
+            prefix_index = next[prefix_index];
+
+        }
+    }
+
+    return next;
+}
+
+  public int KMP(String str, String subStr) {
+        int str_len = str.length();
+        int subStr_len = subStr.length();
+
+        int[] next = getNextArr(subStr);
+
+        int str_start = 0;
+        int subStr_start = 0;
+
+        while (str_start &lt; str_len &amp;&amp; subStr_start &lt; subStr_len) {
+            if (subStr_start == -1 || str.charAt(str_start) == subStr.charAt(subStr_start)) {
+
+                str_start ++;
+                subStr_start ++;
+
+            } else {
+                subStr_start = next[subStr_start];
+
+            }
+        }
+
+        if (subStr_start &gt;= subStr_len) {
+            return str_start - subStr_len;
+        } else return -1;
+    }</code></pre></div>
+
+<h1 id="toc_73">Arrays</h1>
+
+<p>扩容缩容：public static int[]  copyOf(array[]，newLength)，返回新数组</p>
+
+<p>取部分：public static int[]  copyOfRange(array[],fromindex,toindex)   ，注意[from,to)是开区间，返回新数组</p>
+
+<p>数组从小到大快速排序：public static void Arrays.sort(array[])，</p>
+
+<p>整体赋值：public static void fill(array[],value), </p>
+
+<p>输出为字符串：public static String  toString(array[])，返回字符串</p>
+
+<p>检查是否相等：public static boolean  equals(array1[],array2[])，返回布尔值</p>
+
+<h1 id="toc_74">求中位数，O(n)的java实现【利用快速排序折半查找中位数】</h1>
+
+<div><pre><code class="language-none">public static int getMedian(int[] nums) {
+        return partition(nums, 0, nums.length - 1);
+    }
+
+private static int partition(int[] nums, int start, int end) {
+    /***快排partition函数原代码——start***/
+    int left = start;
+    int right = end + 1;
+
+    int point = nums[start];
+    while (true) {
+        while (left &lt; right &amp;&amp; nums[--right] &gt;= point)
+            ;
+        while (left &lt; right &amp;&amp; nums[++left] &lt;= point)
+            ;
+        if (left == right) {
+            break;
+        } else {
+            int tmp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = tmp;
+        }
+    }
+    nums[start] = nums[left];
+    nums[left] = point;
+    /***快排partition函数原代码——end***/
+
+    /***定位判断***/
+    if (left == (nums.length - 1) / 2) {
+        return nums[left];
+    } else if (left &gt; (nums.length - 1) / 2) {
+        return partition(nums, start, left - 1);
+    } else {
+        return partition(nums, left + 1, end);
+    }
+}</code></pre></div>
+
+<p>// 改良：</p>
+
+<div><pre><code class="language-none">public static int getMedian(int[] nums) {
+    return partition(nums, 0, nums.length - 1);
+}
+
+private static int partition(int[] nums, int start, int end) {
+    /***快排partition函数原代码——start***/
+    int left = start;
+    int right = end + 1;
+
+    int point = nums[start];
+    while (left&lt;right) {
+        while (nums[right] &gt;= point)
+            right--;
+        while (nums[left] &lt;= point)
+            left++;
+        if (left == right) {
+            break;
+        } else {
+            int tmp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = tmp;
+        }
+    }
+    nums[start] = nums[left];
+    nums[left] = point;
+    /***快排partition函数原代码——end***/
+
+    /***定位判断***/
+    if (left == (nums.length - 1) / 2) {
+        return nums[left];
+    } else if (left &gt; (nums.length - 1) / 2) {
+        return partition(nums, start, left - 1);
+    } else {
+        return partition(nums, left + 1, end);
+    }
+}</code></pre></div>
+
+
+
+
+</body>
+
+</html>
