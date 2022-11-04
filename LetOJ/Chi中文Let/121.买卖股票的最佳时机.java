@@ -45,24 +45,6 @@ link: https://leetcode.cn/problems/Best-Time-to-Buy-and-Sell-Stock/
  */
 
 
-动态规划解决:
-
-for (int i = 1; i < prices.length; i++) {
-      // 持有股票，还有两次交易机会
-      hold[0][i] = Math.max(hold[0][i - 1], -prices[i])
-      // 持有股票，还有一次交易机会
-      hold[1][i] = Math.max(hold[1][i - 1], notHold[0][i - 1] - prices[i])
-
-      // 不持有股票，还有两次交易机会
-      notHold[0][i] = Math.max(notHold[0][i - 1], prices[i] + hold[0][i - 1])
-      // 不持有股票，还有一次交易机会
-      notHold[1][i] = Math.max(notHold[1][i - 1], prices[i] + hold[1][i - 1])
-    }
-    
-    return notHold[1][prices.length - 1]
-
-
-
 
 在约等于o(n)的范围内解决:
 

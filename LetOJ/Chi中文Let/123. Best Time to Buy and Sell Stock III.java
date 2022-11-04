@@ -70,6 +70,30 @@ Constraints:
  */
 
 
+
+动态规划解决:
+
+for (int i = 1; i < prices.length; i++) {
+      // 持有股票，还有两次交易机会
+      // 持有股票,还有两次机会=max{仍然维持上次选择,立刻持有}
+      hold[0][i] = Math.max(hold[0][i - 1], -prices[i])
+      // 持有股票，还有一次交易机会(易错点,从不持有股票还有2次机会,转移而来)
+      // 持有股票仍有1次机会=max{仍然维持上次选择,之前不持有现在立刻持有(从仍然有两次机会的不持有转移)}
+      hold[1][i] = Math.max(hold[1][i - 1], notHold[0][i - 1] - prices[i])
+
+      // 不持有股票，还有两次交易机会
+      // 持有股票仍然有两次机会=max{维持之前不选择的值,现在卖出}
+      notHold[0][i] = Math.max(notHold[0][i - 1], prices[i] + hold[0][i - 1])
+      // 不持有股票，还有一次交易机会
+      // 持有股票仍然有一次机会=max{维持之前的选择,现在卖出}
+      notHold[1][i] = Math.max(notHold[1][i - 1], prices[i] + hold[1][i - 1])
+    }
+    
+    return notHold[1][prices.length - 1]
+
+
+
+
 class Solution {
     public int maxProfit(int[] prices) {
         int n=prices.length;
