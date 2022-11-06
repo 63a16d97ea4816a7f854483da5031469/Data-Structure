@@ -70,6 +70,7 @@ class Solution {
         // Get the indegree and adjacency of every course.
         for(int[] cp : prerequisites) {
             indegrees[cp[0]]++;
+            // 学习cp[0]课程前,你需要先学习课程cp[1]
             adjacency.get(cp[1]).add(cp[0]);
         }
         // Get all the courses with the indegree of 0.
@@ -139,6 +140,8 @@ class Solution {
      private boolean canFinish1stDFS(int[][] adjacency, int[] flags, int i) {
          if (flags[i] == 1) return false;
          if (flags[i] == -1) return true;
+         
+         //正在访问标志
          flags[i] = 1;
          //注意这种邻接矩阵的表达方式，以及如何在这种矩阵上做DFS
          for (int j = 0; j < adjacency.length; j++) {

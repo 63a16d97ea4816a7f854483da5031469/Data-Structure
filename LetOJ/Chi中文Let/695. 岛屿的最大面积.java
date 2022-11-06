@@ -77,6 +77,9 @@ grid[i][j] 为 0 或 1
 预期结果
 6
 
+
+// 错误的主要原因: DFS如果不累加四个方向的面积,
+// 在有boolean的情况下,是在算单个选择方向一直走到头的面积,这样会漏掉一些面积.
 class Solution {
     int max=0;
     public int maxAreaOfIsland(int[][] grid) {
@@ -178,7 +181,54 @@ class Solution {
 
 
 
+// 普通的DFS的写法,会漏掉面积,这里使用的是循环.
+class Solution {
+    int result=0;
+    public int maxAreaOfIsland(int[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
 
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1){
+                    result=Math.max(result,dfs(grid,i,j));
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public int dfs(int[][] grid, int x, int y){
+
+        if(x<0||y<0||x>=grid.length||y>=grid[0].length){
+                return 0;
+        }
+
+        if(grid[x][y]==0){
+            return 0; // 如果是0,则停止
+        }
+
+        int ans=1; //能到这里,肯定已经是有1个面积
+
+        //这句非常关键,因为这样就省去了boolean[][] v
+        grid[x][y]=0; // 对已经访问的节点置为0,防止重复访问
+
+        int[][] m=new int[][]{{-1,0},{1,0},{0,1},{0,-1}};
+        for(int i=0;i<m.length;i++){
+            int dx=m[i][0];
+            int dy=m[i][1];
+            int currX=dx+x;
+            int currY=dy+y;
+            ans+=dfs(grid,currX,currY);
+        }
+
+        //如果需要回溯,则这里可以恢复状态;
+        // grid[x][y]=1
+
+       return ans;
+    }
+}
 
 
 

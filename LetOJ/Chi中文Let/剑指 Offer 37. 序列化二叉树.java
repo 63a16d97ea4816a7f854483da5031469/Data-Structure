@@ -112,7 +112,7 @@ class Codec {
 
 
 
-
+// 自己写的:
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -143,6 +143,7 @@ public class Codec {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
+        //拿掉最后一个多余的,
         data=data.substring(0,data.length()-1);
         String[] arr=data.split(",");
         TreeNode root=buildTree(arr);
