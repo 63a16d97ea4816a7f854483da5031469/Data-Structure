@@ -77,7 +77,38 @@ dp[4]=
 
 
 
+class Solution {
+    public int numSquares(int n) {
+        List<Integer> list=new ArrayList<>();
+        for(int i=1;i<=n;i++){
+            if(i*i<=n){
+                list.add(i);
+            }
+        }
+        int[] dp=new int[n+1];
+        Arrays.fill(dp,-1);
+        return dfs(list,n,dp);
+    }
 
+    public int dfs(List<Integer> list,int n, int[] dp){
+        if(n==0) return 0;
+
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<list.size();i++){
+            int c=list.get(i);
+            if(c*c<=n){
+                min=Math.min(dfs(list,n-c*c,dp)+1,min);
+            }else{
+                break;
+            }
+        }
+        dp[n]=min;
+        return min;
+    }
+}
 
 
 

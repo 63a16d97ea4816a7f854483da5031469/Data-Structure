@@ -117,7 +117,34 @@ class Solution {
 
 
 
-
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        int min=Integer.MAX_VALUE;
+        String minWord="";
+        for(String tmp:strs){
+            if(tmp.length()<min){
+                minWord=tmp;
+                min=tmp.length();
+            }
+        }
+        int r=minWord.length()-1;
+        while(r>=0){
+            String common=minWord.substring(0,r+1);
+            boolean isFound=true;
+            for(String tmp:strs){
+                if(!tmp.substring(0,r+1).contains(common)){
+                    r--;
+                    isFound=false;
+                    break;
+                }
+            }
+            if(isFound){
+                return common;
+            }
+        }
+        return "";
+    }
+}
 
 
 
